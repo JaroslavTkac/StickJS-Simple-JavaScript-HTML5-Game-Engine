@@ -1,0 +1,34 @@
+<html>
+    <head>
+        <title>StickJS</title>
+        <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+        <link rel="stylesheet" href="Styles/styles.css">
+
+
+        <script type="text/javascript" src="Library/glMatrix-0.9.5.min.js"></script>
+        <script type="text/javascript" src="Library/webgl-utils.js"></script>
+        <script type="text/javascript" src="Additional/WebglHelper.js"></script>
+        <script type="text/javascript" src="Scripts/Shaders.js"></script>
+        <script type="text/javascript" src="Scripts/Controls.js"></script>
+        <script type="text/javascript" src="Scripts/Scene.js"></script>
+        <script type="text/javascript" src="Scripts/OptimizeCalls.js"></script>
+        <script type="text/javascript" src="Scripts/Lightning.js"></script>
+        <script type="text/javascript" src="Scripts/Animations.js"></script>
+        <script type="text/javascript" src="Scripts/Main.js"></script>
+
+    </head>
+
+
+    <body onload="webGLStart();">
+        <div class="container">
+            <canvas id="Scene" style="border: none;" width="1600" height="800"></canvas>
+            <div id="overlay">
+                <div>Current fps: <span id="fps"></span></div>
+                <div>Average fps: <span id="avgFps"></span>
+            </div>
+        </div>
+    </body>
+
+
+</html>
+

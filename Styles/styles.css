@@ -1,0 +1,12 @@
+.container {
+    position: relative;
+}
+#overlay {
+    position: absolute;
+    color: #043d18;
+    font-family: "Times New Roman";
+    text-shadow: -1px 0 #397a40, 0 1px #397a40, 1px 0 #397a40, 0 -1px #397a40;
+    font-size: 26pt;
+    left: 10px;
+    top: 10px;
+}
