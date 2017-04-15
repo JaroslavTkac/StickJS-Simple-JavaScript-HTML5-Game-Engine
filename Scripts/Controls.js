@@ -1,6 +1,76 @@
 /**
  * Created by jaroslavtkaciuk on 06/04/2017.
  */
+class KeyboardPresets{
+    constructor(controlsType, speed, rotationSpeed){
+        this.controlsType = controlsType;
+        this.speed = speed;
+        this.rotationSpeed = rotationSpeed;
+        this.shooterControlsEnabled = false;
+    }
+    simpleControls(){
+        var w, s, a, d;
+        if(this.controlsType == "arrows") {
+            w = new Key("uarrow");
+            w.z = this.speed;
+            s = new Key("darrow");
+            s.z = -this.speed;
+            a = new Key("larrow");
+            a.x = this.speed;
+            d = new Key("rarrow");
+            d.x = -this.speed;
+        }
+        else{
+            w = new Key("w");
+            w.z = this.speed;
+            s = new Key("s");
+            s.z = -this.speed;
+            a = new Key("a");
+            a.x = this.speed;
+            d = new Key("d");
+            d.x = -this.speed;
+        }
+        var space = new Key("space");
+        space.y = -this.speed;
+        var shift = new Key("shift");
+        shift.y = this.speed;
+        var q = new Key("q");
+        q.yRot = -this.rotationSpeed;
+        var e = new Key("e");
+        e.yRot = this.rotationSpeed;
+        keysArray.push(w, s, a , d, space, shift, q, e);
+    }
+    shooterControls(){
+        this.shooterControlsEnabled = true;
+        var w, s, a, d;
+        if(this.controlsType == "arrows") {
+            w = new Key("uarrow");
+            w.z = this.speed;
+            s = new Key("darrow");
+            s.z = -this.speed;
+            a = new Key("larrow");
+            a.yRot = -this.rotationSpeed;
+            d = new Key("rarrow");
+            d.yRot = this.rotationSpeed;
+        }
+        else{
+            w = new Key("w");
+            w.z = this.speed;
+            s = new Key("s");
+            s.z = -this.speed;
+            a = new Key("a");
+            a.yRot = -this.rotationSpeed;
+            d = new Key("d");
+            d.yRot = this.rotationSpeed;
+        }
+        var space = new Key("space");
+        space.y = -this.speed;
+        var shift = new Key("shift");
+        shift.y = this.speed;
+        keysArray.push(w, s, a , d, space, shift);
+    }
+
+}
 class Key{
     constructor(name, fpsControlsSpeed){
         this.keyPressed = false;
@@ -20,7 +90,6 @@ class Key{
         this.yRot = 0;
         this.zRot = 0;
     }
-
     initializeKeyboardCodes(){
         this.keyCodes = {
             "tab": 9,
@@ -74,7 +143,8 @@ class Key{
 
     doAction(){
         if(this.keyPressed) {
-            this.shooterControlsValidation();
+            if(keyboard !== undefined && keyboard.shooterControlsEnabled)
+                this.shooterControlsValidation(keyboard.speed, keyboard.controlsType);
             x += this.x;
             y += this.y;
             z += this.z;
@@ -83,137 +153,114 @@ class Key{
             zRotation += this.zRot;
         }
     }
-    shooterControlsValidation(){
-        var speed = this.fpsControlsSpeed;
+    shooterControlsValidation(speed, type){
         yRotation = yRotation % 360;
         var delta = yRotation/90;
+        var forward = "w", backward = "s";
+        if(type == "arrows"){
+            forward = "uarrow";
+            backward = "darrow";
+        }
 
-        if(this.keyName == "w"){
+        if(this.keyName == forward){
             if(yRotation >= -90 && yRotation <= 90){
                 this.x = - speed * delta;
                 this.z = speed - Math.abs(this.x);
                 return
             }
         }
-        if(this.keyName == "s"){
+        if(this.keyName == backward){
             if(yRotation >= -90 && yRotation <= 90){
                 this.x = speed * delta;
                 this.z = - (speed - Math.abs(this.x));
                 return
             }
         }
-        if(this.keyName == "w"){
+        if(this.keyName == forward){
             if(yRotation > 90 && yRotation <= 180){
                 this.z = - ((speed * delta) - speed);
                 this.x = - (speed - Math.abs(this.z));
                 return
             }
         }
-        if(this.keyName == "s"){
+        if(this.keyName == backward){
             if(yRotation > 90 && yRotation <= 180){
                 this.z = ((speed * delta) - speed);
                 this.x = (speed - Math.abs(this.z));
+                return
             }
         }
-        if(this.keyName == "w"){
+        if(this.keyName == forward){
             if(yRotation >= -180 && yRotation < -90){
                 this.z = (speed * delta) + speed;
                 this.x = (speed - Math.abs(this.z));
                 return
             }
         }
-        if(this.keyName == "s"){
+        if(this.keyName == backward){
             if(yRotation >= -180 && yRotation < -90){
                 this.z = Math.abs((speed * delta) + speed);
                 this.x = - (speed - Math.abs(this.z));
                 return
             }
         }
-        if(this.keyName == "w"){
+        if(this.keyName == forward){
             if(yRotation > 180 && yRotation <= 270){
                 this.x = ((speed * delta) - 2*speed);
                 this.z = - (speed - Math.abs(this.x));
+                return
             }
         }
-        if(this.keyName == "s"){
+        if(this.keyName == backward){
             if(yRotation > 180 && yRotation <= 270){
                 this.x = - ((speed * delta) - 2*speed);
                 this.z = (speed - Math.abs(this.x));
+                return
             }
         }
-        if(this.keyName == "w"){
+        if(this.keyName == forward){
             if(yRotation >= -270 && yRotation < -180){
                 this.x = ((speed * delta) + 2*speed);
                 this.z = - (speed - Math.abs(this.x));
+                return
             }
         }
-        if(this.keyName == "s"){
+        if(this.keyName == backward){
             if(yRotation >= -270 && yRotation < -180){
                 this.x = - ((speed * delta) + 2*speed);
                 this.z = (speed - Math.abs(this.x));
+                return
             }
         }
-        if(this.keyName == "w"){
+        if(this.keyName == forward){
             if(yRotation > 270 && yRotation <= 360){
                 this.z = ((speed * delta) - 3*speed);
                 this.x = (speed - Math.abs(this.z));
                 return
             }
         }
-        if(this.keyName == "s"){
+        if(this.keyName == backward){
             if(yRotation > 270 && yRotation <= 360){
                 this.z = -((speed * delta) - 3*speed);
                 this.x = - (speed - Math.abs(this.z));
                 return
             }
         }
-        if(this.keyName == "w"){
+        if(this.keyName == forward){
             if(yRotation >= -360 && yRotation < -270){
                 this.z = Math.abs((speed * delta) + 3*speed);
                 this.x = -(speed - Math.abs(this.z));
                 return
             }
         }
-        if(this.keyName == "s"){
+        if(this.keyName == backward){
             if(yRotation >= -360 && yRotation < -270){
                 this.z = ((speed * delta) + 3*speed);
                 this.x = (speed - Math.abs(this.z));
+                return
             }
         }
     }
-
-}
-function simpleControls(speed){
-    var w = new Key("w");
-    w.z = speed;
-    var s = new Key("s");
-    s.z = -speed;
-    var a = new Key("a");
-    a.x = speed;
-    var d = new Key("d");
-    d.x = -speed;
-    var space = new Key("space");
-    space.y = -speed;
-    var shift = new Key("shift");
-    shift.y = speed;
-    var q = new Key("q");
-    q.yRot = -2;
-    var e = new Key("e");
-    e.yRot = 2;
-    keysArray.push(w, s, a , d, space, shift, q, e);
-}
-function shooterControls(forwardKey, backwardKey, speed){
-    var w = new Key(forwardKey, speed);
-    var s = new Key(backwardKey, speed);
-    var a = new Key("a");
-    a.yRot = -3.5;
-    var d = new Key("d");
-    d.yRot = 3.5;
-    var space = new Key("space");
-    space.y = -1;
-    var shift = new Key("shift");
-    shift.y = 1;
-    keysArray.push(w, s, a , d, space, shift);
 }
 function handleKeyDown(event) {
     for (var i in keysArray) {

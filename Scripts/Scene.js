@@ -81,6 +81,8 @@ class CreateShape{
         glUseTexture(webgl, this.useTexture);
         glUseColor(webgl, this.r, this.g, this.b);
 
+        webgl.uniform1f(shaderProgram.pointLightingIntensityUniform, 100);
+
         //Transparency
         if (this.transparency)
             glTransparent(webgl, this.transparency, this.alpha);
@@ -98,8 +100,10 @@ class CreateShape{
             glDirectionalLight(webgl, directionalLight.r, directionalLight.g, directionalLight.b);
 
             //Point
-            glPointLightLocation(webgl, pointLight.x, pointLight.y, pointLight.z);
-            glPointLight(webgl, pointLight.r, pointLight.g, pointLight.b);
+            for(var i in pointLightArray) {
+                glPointLightLocation(webgl, pointLightArray[i].x, pointLightArray[i].y, pointLightArray[i].z);
+                glPointLight(webgl, pointLightArray[i].r, pointLightArray[i].g, pointLightArray[i].b);
+            }
         }
         glBindBuffer(webgl, this.vertexIndexBuffer);
 

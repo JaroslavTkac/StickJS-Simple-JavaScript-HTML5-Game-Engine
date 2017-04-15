@@ -41,6 +41,7 @@ var vertexShaderGSLS =
 
     "uniform vec3 uPointLightingLocation;" +
     "uniform vec3 uPointLightingColor;" +
+    "uniform float uPointLightingIntensity;" +
 
     "uniform bool uUseLighting;" +
 
@@ -55,15 +56,21 @@ var vertexShaderGSLS =
         "if (!uUseLighting) {" +
             "vLightWeighting = vec3(1.0, 1.0, 1.0);" +
         "} else {" +
-            "vec3 pointLightDirection = normalize(uPointLightingLocation - mvPosition.xyz);" +
             "vec3 directionalLightDirection = normalize(uLightingDirection - mvPosition.xyz);" +
+            //"vec3 pointLightDirection = normalize(uPointLightingLocation - mvPosition.xyz);" +
+
+            "float lightDistance = length(uPointLightingLocation - mvPosition.xyz);" +
+            "if(lightDistance < 0.0){" +
+                "lightDistance = lightDistance * -1.0;" +
+            "}" +
+            "lightDistance = (uPointLightingIntensity - lightDistance) / uPointLightingIntensity;" +
 
             "vec3 transformedNormal = uNMatrix * aVertexNormal;" +
             "float directionalLightWeighting = max(dot(transformedNormal, directionalLightDirection), 0.0);" +
-            "float pointDirectionalLightWeighting = max(dot(transformedNormal, pointLightDirection), 0.0);" +
+            //"float pointDirectionalLightWeighting = max(dot(transformedNormal, pointLightDirection), 0.0);" + //pointDirectionalLightWeighting arba lightDistance
 
             "vLightWeighting = uAmbientColor + uDirectionalColor * directionalLightWeighting + " +
-                                "uPointLightingColor * pointDirectionalLightWeighting;" +
+                               "uPointLightingColor * lightDistance;" +
         "}" +
     "}";
 
@@ -116,9 +123,9 @@ class Shader {
         shaderProgram.directionalColorUniform = webgl.getUniformLocation(shaderProgram, "uDirectionalColor");
         shaderProgram.pointLightingLocationUniform = webgl.getUniformLocation(shaderProgram, "uPointLightingLocation");
         shaderProgram.pointLightingColorUniform = webgl.getUniformLocation(shaderProgram, "uPointLightingColor");
+        shaderProgram.pointLightingIntensityUniform = webgl.getUniformLocation(shaderProgram, "uPointLightingIntensity");
         shaderProgram.colorUniform = webgl.getUniformLocation(shaderProgram, "uColor");
         shaderProgram.alphaUniform = webgl.getUniformLocation(shaderProgram, "uAlpha");
-
     }
 }
 

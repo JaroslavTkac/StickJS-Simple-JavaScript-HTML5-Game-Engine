@@ -23,11 +23,13 @@ var fps = 0;
 var objArray = [];
 var lastRendered;
 //Lightning
-var ambientLight, directionalLight, pointLight;
+var ambientLight, directionalLight;
+var pointLightArray = [];
 // Movement
 var camera;
 var x = 0, y = 0, z = 0, xRotation = 0, yRotation = 0, zRotation = 0;
 var keysArray = [];
+var keyboard;
 
 
 
@@ -42,7 +44,6 @@ function initGL(canvas) {
         alert("Could not initialise WebGL, sorry :-(");
     }
 }
-
 function handleLoadedTexture(texture) {
     webgl.pixelStorei(webgl.UNPACK_FLIP_Y_WEBGL, true);
 
@@ -54,17 +55,14 @@ function handleLoadedTexture(texture) {
 
     webgl.bindTexture(webgl.TEXTURE_2D, null);
 }
-
 function mvPushMatrix() {
     var copy = mat4.create();
     mat4.set(mvMatrix, copy);
     mvMatrixStack.push(copy);
 }
-
 function mvPopMatrix() {
     mvMatrix = mvMatrixStack.pop();
 }
-
 function setMatrixUniforms() {
     webgl.uniformMatrix4fv(shaderProgram.pMatrixUniform, false, pMatrix);
     webgl.uniformMatrix4fv(shaderProgram.mvMatrixUniform, false, mvMatrix);
@@ -74,8 +72,19 @@ function setMatrixUniforms() {
     mat3.transpose(normalMatrix);
     webgl.uniformMatrix3fv(shaderProgram.nMatrixUniform, false, normalMatrix);
 }
-
 function degToRad(degrees) {
     return degrees * Math.PI / 180;
 }
-
+function fpsCounter() {
+    var delta = (Date.now() - lastCalledTime) / 1000;
+    lastCalledTime = Date.now();
+    fps = 1 / delta;
+    fpsSum += fps;
+    fpsElement.appendChild(fpsNode);
+    fpsNode.nodeValue = fps.toFixed(1);
+}
+function avgFps(){
+    framesPassed++;
+    avgFpsElement.appendChild(avgFpsNode);
+    avgFpsNode.nodeValue = (fpsSum/framesPassed).toFixed(2);
+}
