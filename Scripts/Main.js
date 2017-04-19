@@ -14,7 +14,11 @@ function animate() {
                 objArray[i].zRot += (objArray[i].zRotSpeed * elapsed) / 1000.0;
             }
         }
-        spaceImitation();
+        spaceImitation(elapsed);
+
+        //sound
+
+
     }
     lastTime = timeNow;
 }
@@ -24,7 +28,7 @@ function drawScene() {
     webgl.viewport(0, 0, webgl.viewportWidth, webgl.viewportHeight);
     webgl.clear(webgl.COLOR_BUFFER_BIT | webgl.DEPTH_BUFFER_BIT);
 
-    mat4.perspective(60, webgl.viewportWidth / webgl.viewportHeight, 0.1, 400.0, pMatrix);
+    mat4.perspective(60, webgl.viewportWidth / webgl.viewportHeight, 0.1, 800.0, pMatrix);
 
     mat4.identity(mvMatrix);
 
@@ -32,14 +36,13 @@ function drawScene() {
         //console.log(objArray[i]);
         mvPushMatrix();
 
-        if(!objArray[i].useCamera) {
+        if (!objArray[i].useCamera) {
             mat4.rotate(mvMatrix, degToRad(yRotation), [false, true, false]);
             mat4.translate(mvMatrix, [objArray[i].x + x, objArray[i].y + y, objArray[i].z + z]);
         }
-        else{
+        else {
             mat4.translate(mvMatrix, [objArray[i].x, objArray[i].y, objArray[i].z]);
         }
-
 
         //Scaling
         var scaleMatrix = new Float32Array([
@@ -50,10 +53,8 @@ function drawScene() {
         ]);
         mat4.multiply(mvMatrix, scaleMatrix);
 
-
         objArray[i].rotation();
         objArray[i].draw();
-
 
         webgl.drawElements(webgl.TRIANGLES, objArray[i].vertexIndexBuffer.numItems, webgl.UNSIGNED_SHORT, 0);
         mvPopMatrix();
@@ -64,12 +65,9 @@ function webGLStart() {
     var canvas = document.getElementById("Scene");
     initGL(canvas);
     new Shader();
-    ambientLight = new AmbientLight(0.1, 0.1, 0.1);
-    directionalLight = new DirectionalLight(0.2, 0.15, 0.15, 0, 0, 50);
-    //pointLightArray.push(new PointLight("sun", 1, 0.5, 0, -10, 0, -70, 40, 0.025));
-    pointLightArray.push(new PointLight("sun", 1, 0, 0, -40, 0, -70, 30, 0.025));
-    pointLightArray.push(new PointLight("sun2", 0, 0, 1, 40, 0, -70, 30, 0.010));
-    //pointLight = new PointLight(0, 0, 0, -10, 0, -30);
+    ambientLight = new AmbientLight(0.15, 0.15, 0.15);
+    directionalLight = new DirectionalLight(0.15, 0.15, 0.15, 0, 0, 50);
+    pointLightArray.push(new PointLight("sun", 0.6, 0.2, 0.1, -10, 0, -50, 50, 0.025));
 
     webgl.clearColor(0.0, 0.0, 0.0, 1.0);
     webgl.enable(webgl.DEPTH_TEST);
@@ -78,78 +76,64 @@ function webGLStart() {
     document.onkeyup = handleKeyUp;
 
 
-    keyboard = new KeyboardPresets("wasd", 2.5, 3.5);
+    keyboard = new KeyboardPresets("wasd", 0.5, 1.4);
     keyboard.shooterControls();
 
 
 
-    /*new LoadObject(sphereSrc, "Standard textures/deep_space.jpg", {
+    sound = new Sound();
+    sound.addSong(new Song("Standard sounds/jet_engine.aiff", "jetEngine"));
+    sound.addSong(new Song("Standard sounds/space_engine.mp3", "spaceEngine"));
+    sound.addSong(new Song("Standard sounds/space_ambient.mp3", "spaceAmbient"));
+
+
+    sound.getSongByName("jetEngine").sound.volume = 0.35;
+    sound.getSongByName("spaceAmbient").repeat();
+    sound.getSongByName("spaceAmbient").sound.volume = 0.10;
+    sound.getSongByName("spaceAmbient").play();
+
+
+    getKeyByName("w").songName = "spaceEngine";
+    getKeyByName("w").useSong = true;
+
+    getKeyByName("s").songName = "spaceEngine";
+    getKeyByName("s").useSong = true;
+
+    getKeyByName("a").songName = "jetEngine";
+    getKeyByName("a").useSong = true;
+
+    getKeyByName("d").songName = "jetEngine";
+    getKeyByName("d").useSong = true;
+
+
+
+
+
+    world(1000);
+
+    /*new LoadObject("Scripts/Shapes/sphere.json", "Standard textures/deep_space.jpg", {
         "name": "space",
-        "x": 0,
+        "x": -15,
         "y": 0,
-        "z": -40,
-        "sx": 200,
-        "sy": 200,
-        "sz": 200,
+        "z": 0,
+        "sx": 10,
+        "sy": 10,
+        "sz": 10,
         "yRot": 0.05,
         "xRot": 0.05,
         "zRot": 0.05,
-        "yRotSpeed": 0.05,
-        "xRotSpeed": 0.05,
-        "zRotSpeed": 0.05,
+        "yRotSpeed": 0.25,
+        "xRotSpeed": 0.25,
+        "zRotSpeed": 0.25,
         "animateRotation": true,
         "useTexture": true,
-        "lighting" : false
+        "lighting" : true,
+        //"useCamera": true,
     });*/
-    world(1000);
 
+    demoPlayer();
 
-    new LoadObject("Scripts/Shapes/cone.json", "Standard textures/metal.jpg", {
-        "name": "head",
-        "x": 0,
-        "y": -1,
-        "z": -4,
-        "sx": 0.4,
-        "sy": 0.4,
-        "sz": 0.4,
-        "xRot": -90,
-        "yRot": 10,
-        "yRotSpeed": 10,
-        "animateRotation": true,
-        "useTexture": true,
-        "useCamera": true
-    });
-    new LoadObject("Scripts/Shapes/simpleSphere.json", "Standard textures/carbon_fiber.jpg", {
-        "name": "center",
-        "x": 0,
-        "y": -1,
-        "z": -3.5,
-        "sx": 0.35,
-        "sy": 0.35,
-        "sz": 0.35,
-        "zRot": 10,
-        "zRotSpeed": 10,
-        "animateRotation": true,
-        "useTexture": true,
-        "useCamera": true
-    });
-    new LoadObject("Scripts/Shapes/cylinder.json", "Standard textures/metal.jpg", {
-        "name": "back",
-        "x": 0,
-        "y": -1,
-        "z": -2.5,
-        "sx": 0.3,
-        "sy": 0.15,
-        "sz": 1,
-        "xRot": -90,
-        "yRot": -10,
-        "yRotSpeed": 10,
-        "animateRotation": true,
-        "useTexture": true,
-        "useCamera": true
-    });
-
-    //setTimeout(function () {
+    setTimeout(function () {
         fpsElement = document.getElementById("fps");
         fpsNode = document.createTextNode("");
         avgFpsElement = document.getElementById("avgFps");
@@ -157,7 +141,7 @@ function webGLStart() {
         console.log("Objects loaded in scene: " + objArray.length);
         lastRendered = new LastRendered();
         render();
-    //}, 100);
+    }, 1200);
 }
 
 function render() {
@@ -214,7 +198,7 @@ function world(size) {
                 break;
         }
         object = new LoadObject(geometry, src, {
-            "name": Math.random() < 0.85 ? "stars" : String(i),
+            "name": Math.random() < 0.95 ? "stars" : String(i),
             "x": -52 + Math.random() * 75,
             "y": -22 + Math.random() * 45,
             "z": -50 - Math.random() * 50,
@@ -228,10 +212,79 @@ function world(size) {
             "yRotSpeed": Math.random() * 35,
             "zRotSpeed": Math.random() * 35,
             "animateRotation": Math.random() < 0.95,
-            "useTexture": Math.random() < 0.5,
+            "useTexture": Math.random() > 0.5,
             //"transparency": Math.random() < 0.5,
             "alpha" : Math.random() + 0.4
         });
     }
 }
 
+function demoPlayer() {
+    new LoadObject("Scripts/Shapes/cylinder.json", "Standard textures/metal.jpg", {
+        "name": "back",
+        "x": 0,
+        "y": -1,
+        "z": -2.5,
+        "sx": 0.4,
+        "sy": 0.5,
+        "sz": 0.8,
+        "xRot": -90,
+        "yRot": -10,
+        "yRotSpeed": 10,
+        //"animateRotation": true,
+        "useTexture": true,
+        "useCamera": true
+    });
+    new LoadObject("Scripts/Shapes/cube.json", "Standard textures/metal.jpg", {
+        "name": "wingL",
+        "x": -0.8,
+        "y": -0.7,
+        "z": -2,
+        "sx": 0.5,
+        "sy": 0.04,
+        "sz": 0.25,
+        "useTexture": true,
+        "useCamera": true
+    });
+    new LoadObject("Scripts/Shapes/cube.json", "Standard textures/metal.jpg", {
+        "name": "wingR",
+        "x": 0.8,
+        "y": -0.7,
+        "z": -2,
+        "sx": 0.5,
+        "sy": 0.04,
+        "sz": 0.25,
+        "useTexture": true,
+        "useCamera": true
+    });
+    new LoadObject("Scripts/Shapes/cone.json", "Standard textures/metal.jpg", {
+        "name": "wingRCone",
+        "x": 1.75,
+        "y": -0.85,
+        "z": -2.55,
+        "sx": 0.3,
+        "sy": 0.3,
+        "sz": 0.6,
+        "xRot": -90,
+        "yRot": 10,
+        "yRotSpeed": 10,
+        "animateRotation": true,
+        "useTexture": true,
+        "useCamera": true
+    });
+    new LoadObject("Scripts/Shapes/cone.json", "Standard textures/metal.jpg", {
+        "name": "wingLCone",
+        "x": -1.75,
+        "y": -0.85,
+        "z": -2.55,
+        "sx": 0.3,
+        "sy": 0.3,
+        "sz": 0.6,
+        "xRot": -90,
+        "yRot": 10,
+        "yRotSpeed": -10,
+        "animateRotation": true,
+        "useTexture": true,
+        "useCamera": true
+    });
+}

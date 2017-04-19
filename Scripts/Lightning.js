@@ -16,7 +16,7 @@ class DirectionalLight{
         this.y = y;
         this.z = z;
         this.name = "directional";
-        /*new LoadObject("Scripts/Shapes/sphere.json", "Standard textures/sun.jpg", {
+        /*new LoadObject("Scripts/Shapes/sphere1.json", "Standard textures/sun.jpg", {
             "name" : this.name,
             "x": this.x,
             "y": this.y,

@@ -10,7 +10,7 @@ class KeyboardPresets{
     }
     simpleControls(){
         var w, s, a, d;
-        if(this.controlsType == "arrows") {
+        if(this.controlsType === "arrows") {
             w = new Key("uarrow");
             w.z = this.speed;
             s = new Key("darrow");
@@ -43,7 +43,7 @@ class KeyboardPresets{
     shooterControls(){
         this.shooterControlsEnabled = true;
         var w, s, a, d;
-        if(this.controlsType == "arrows") {
+        if(this.controlsType === "arrows") {
             w = new Key("uarrow");
             w.z = this.speed;
             s = new Key("darrow");
@@ -56,6 +56,7 @@ class KeyboardPresets{
         else{
             w = new Key("w");
             w.z = this.speed;
+            w.sound = true;
             s = new Key("s");
             s.z = -this.speed;
             a = new Key("a");
@@ -82,6 +83,8 @@ class Key{
             this.keyName = name;
         }
         //console.log("Name: " + this.keyName + "  value: " + this.keyCode);
+        this.songName = "";
+        this.useSong = false;
         this.fpsControlsSpeed = fpsControlsSpeed;
         this.z = 0;
         this.x = 0;
@@ -141,6 +144,15 @@ class Key{
         };
     }
 
+    playSound(){
+        if(sound.getSongByName(this.songName) !== undefined)
+            sound.getSongByName(this.songName).play();
+    }
+    doNotPlaySound(){
+        if(sound.getSongByName(this.songName) !== undefined)
+            sound.getSongByName(this.songName).stop();
+    }
+
     doAction(){
         if(this.keyPressed) {
             if(keyboard !== undefined && keyboard.shooterControlsEnabled)
@@ -151,6 +163,8 @@ class Key{
             xRotation += this.xRot;
             yRotation += this.yRot;
             zRotation += this.zRot;
+            if(this.useSong)
+                this.playSound();
         }
     }
     shooterControlsValidation(speed, type){
@@ -264,15 +278,19 @@ class Key{
 }
 function handleKeyDown(event) {
     for (var i in keysArray) {
-        if (keysArray[i].keyCode == event.keyCode) {
+        if (keysArray[i].keyCode === event.keyCode) {
             keysArray[i].keyPressed = true;
+            if(keysArray[i].useSong)
+                keysArray[i].playSound();
         }
     }
 }
 function handleKeyUp(event) {
     for (var i in keysArray) {
-        if (keysArray[i].keyCode == event.keyCode) {
+        if (keysArray[i].keyCode === event.keyCode) {
             keysArray[i].keyPressed = false;
+            if(keysArray[i].useSong)
+                keysArray[i].doNotPlaySound();
         }
     }
 }

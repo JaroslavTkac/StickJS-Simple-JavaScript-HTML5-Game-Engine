@@ -81,7 +81,7 @@ class CreateShape{
         glUseTexture(webgl, this.useTexture);
         glUseColor(webgl, this.r, this.g, this.b);
 
-        webgl.uniform1f(shaderProgram.pointLightingIntensityUniform, 100);
+        glPointLightIntensity(webgl, 250);
 
         //Transparency
         if (this.transparency)

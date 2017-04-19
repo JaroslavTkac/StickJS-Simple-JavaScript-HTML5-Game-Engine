@@ -57,7 +57,7 @@ var vertexShaderGSLS =
             "vLightWeighting = vec3(1.0, 1.0, 1.0);" +
         "} else {" +
             "vec3 directionalLightDirection = normalize(uLightingDirection - mvPosition.xyz);" +
-            //"vec3 pointLightDirection = normalize(uPointLightingLocation - mvPosition.xyz);" +
+            "vec3 pointLightDirection = normalize(uPointLightingLocation - mvPosition.xyz);" +
 
             "float lightDistance = length(uPointLightingLocation - mvPosition.xyz);" +
             "if(lightDistance < 0.0){" +
@@ -67,10 +67,10 @@ var vertexShaderGSLS =
 
             "vec3 transformedNormal = uNMatrix * aVertexNormal;" +
             "float directionalLightWeighting = max(dot(transformedNormal, directionalLightDirection), 0.0);" +
-            //"float pointDirectionalLightWeighting = max(dot(transformedNormal, pointLightDirection), 0.0);" + //pointDirectionalLightWeighting arba lightDistance
+            "float pointDirectionalLightWeighting = max(dot(transformedNormal, pointLightDirection), 0.0);" + //pointDirectionalLightWeighting arba lightDistance
 
             "vLightWeighting = uAmbientColor + uDirectionalColor * directionalLightWeighting + " +
-                               "uPointLightingColor * lightDistance;" +
+                               "uPointLightingColor * (pointDirectionalLightWeighting * lightDistance);" +
         "}" +
     "}";
 

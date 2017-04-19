@@ -21,7 +21,9 @@ var lastCalledTime = 0;
 var fps = 0;
 // Environment
 var objArray = [];
+var objArrayGroup = [];
 var lastRendered;
+var sound;
 //Lightning
 var ambientLight, directionalLight;
 var pointLightArray = [];
@@ -87,4 +89,10 @@ function avgFps(){
     framesPassed++;
     avgFpsElement.appendChild(avgFpsNode);
     avgFpsNode.nodeValue = (fpsSum/framesPassed).toFixed(2);
+}
+function getKeyByName(name){
+    for(var i in keysArray) {
+        if (keysArray[i].keyName === name)
+            return keysArray[i];
+    }
 }

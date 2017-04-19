@@ -14,17 +14,17 @@ function orbitLight(){
     }
 }
 
-function spaceImitation(){
+function spaceImitation(elapsed){
     orbitLight();
-    //chaos();
+    chaos();
+    //rotateSpaceBackground(elapsed);
 }
 
 
 function chaos(){
     var size = objArray.length;
     for(var i in objArray){
-        if(objArray[i].name == "stars" && objArray[i].centerX == undefined) {
-            console.log("Do");
+        if(objArray[i].name === "stars" && objArray[i].centerX === undefined) {
             objArray[i].centerX = objArray[i].x;
             objArray[i].centerY = objArray[i].y;
             objArray[i].centerZ = objArray[i].z;
@@ -34,7 +34,7 @@ function chaos(){
         }
     }
     for(var i in objArray) {
-        if (objArray[i].name == "stars" && objArray[i].name !== "sun") {
+        if (objArray[i].name === "stars" && objArray[i].name !== "sun") {
             objArray[i].x = objArray[i].centerX + Math.cos(objArray[i].alpha) * objArray[i].radius;
             if(i < (size/3))
                 objArray[i].y = objArray[i].centerY + (Math.cos(objArray[i].alpha) + Math.sin(objArray[i].alpha)) * (objArray[i].radius) / 1.5;
@@ -48,5 +48,9 @@ function chaos(){
             objArray[i].alpha += objArray[i].alphaInc;
         }
     }
+}
+function rotateSpaceBackground(elapsed){
+
+    modifyObjByName("space").yRot += (modifyObjByName("space").yRotSpeed * elapsed) / 1000.0
 }
 

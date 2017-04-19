@@ -30,6 +30,7 @@ class LastRendered{
         this.pointX = null;
         this.pointY = null;
         this.pointZ = null;
+        this.pointLightIntensity = null;
     }
 }
 
@@ -168,4 +169,10 @@ function glPointLightLocation(webgl, x, y, z){
         lastRendered.pointZ = z;
     }
 }
+function glPointLightIntensity(webgl, value){
+    if(lastRendered.pointLightIntensity !== value){
+        webgl.uniform1f(shaderProgram.pointLightingIntensityUniform, value);
 
+        lastRendered.pointLightIntensity = value;
+    }
+}
