@@ -1,24 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4d98851f-1cbe-463c-84f1-c95cfca61c40" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Standard sounds/jet_engine.aiff" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Standard sounds/space_ambient.mp3" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Standard sounds/space_engine.mp3" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Standard textures/deep_space.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Scripts/Audio.js" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Scripts/Shapes/sphere1.json" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Additional/WebglHelper.js" afterPath="$PROJECT_DIR$/Additional/WebglHelper.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Scripts/Animations.js" afterPath="$PROJECT_DIR$/Scripts/Animations.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Scripts/Controls.js" afterPath="$PROJECT_DIR$/Scripts/Controls.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Scripts/Lightning.js" afterPath="$PROJECT_DIR$/Scripts/Lightning.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Scripts/Main.js" afterPath="$PROJECT_DIR$/Scripts/Main.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Scripts/OptimizeCalls.js" afterPath="$PROJECT_DIR$/Scripts/OptimizeCalls.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Scripts/Scene.js" afterPath="$PROJECT_DIR$/Scripts/Scene.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Scripts/Shaders.js" afterPath="$PROJECT_DIR$/Scripts/Shaders.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
-    </list>
+    <list default="true" id="4d98851f-1cbe-463c-84f1-c95cfca61c40" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -420,12 +403,12 @@
       <workItem from="1492506533423" duration="189000" />
       <workItem from="1492513519845" duration="1290000" />
       <workItem from="1492518754083" duration="735000" />
-      <workItem from="1492607671958" duration="8955000" />
+      <workItem from="1492607671958" duration="9021000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="197304000" />
+    <option name="totallyTimeSpent" value="197370000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="1680" height="952" extended-state="6" />
