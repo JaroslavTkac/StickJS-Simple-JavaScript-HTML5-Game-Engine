@@ -5,6 +5,7 @@
 
 class LoadObject{
     constructor(shapeSrc, imageSrc, properties){
+        totalObjects ++;
         this.shape = null;
         this.loadJSON(shapeSrc, imageSrc, this, properties);
     }
@@ -13,8 +14,8 @@ class LoadObject{
         request.open("GET", shapeSrc);
 
         request.onreadystatechange = function () {
-            if (request.readyState == 4) {
-                if(request.status == 404) {
+            if (request.readyState === 4) {
+                if(request.status === 404) {
                     console.info(shapeSrc + " does not exist");
                 }
                 else {
@@ -37,7 +38,7 @@ class CreateShape{
         this.vertexTextureCoordBuffer = this.buffer["vertexTextureCoordBuffer"];
         this.vertexIndexBuffer = this.buffer["vertexIndexBuffer"];
         this.texture = webgl.createTexture();
-        this.useTexture = imageSrc != undefined; //true when address exist
+        this.useTexture = imageSrc !== undefined; //true when address exist
         this.textureSrc = imageSrc;
         this.initTexture(this.texture, this.textureSrc);
         this.name = "object";
@@ -157,62 +158,63 @@ function initBuffers(object) {
 
 }
 function initProperties(object, properties){
-    if(properties["name"] != undefined)
+    if(properties["name"] !== undefined)
         object.name = properties["name"];
 
-    if(properties["useCamera"] != undefined)
+    if(properties["useCamera"] !== undefined)
         object.useCamera = properties["useCamera"];
 
-    if(properties["x"] != undefined)
+    if(properties["x"] !== undefined)
         object.x = properties["x"];
-    if(properties["y"] != undefined)
+    if(properties["y"] !== undefined)
         object.y = properties["y"];
-    if(properties["z"] != undefined)
+    if(properties["z"] !== undefined)
         object.z = properties["z"];
 
-    if(properties["r"] != undefined)
+    if(properties["r"] !== undefined)
         object.r = properties["r"];
-    if(properties["g"] != undefined)
+    if(properties["g"] !== undefined)
         object.g = properties["g"];
-    if(properties["b"] != undefined)
+    if(properties["b"] !== undefined)
         object.b = properties["b"];
 
-    if(properties["sx"] != undefined)
+    if(properties["sx"] !== undefined)
         object.sx = properties["sx"];
-    if(properties["sy"] != undefined)
+    if(properties["sy"] !== undefined)
         object.sy = properties["sy"];
-    if(properties["sz"] != undefined)
+    if(properties["sz"] !== undefined)
         object.sz = properties["sz"];
 
-    if(properties["xRot"] != undefined)
+    if(properties["xRot"] !== undefined)
         object.xRot = properties["xRot"];
-    if(properties["yRot"] != undefined)
+    if(properties["yRot"] !== undefined)
         object.yRot = properties["yRot"];
-    if(properties["zRot"] != undefined)
+    if(properties["zRot"] !== undefined)
         object.zRot = properties["zRot"];
 
-    if(properties["xRotSpeed"] != undefined)
+    if(properties["xRotSpeed"] !== undefined)
         object.xRotSpeed = properties["xRotSpeed"];
-    if(properties["yRotSpeed"] != undefined)
+    if(properties["yRotSpeed"] !== undefined)
         object.yRotSpeed = properties["yRotSpeed"];
-    if(properties["zRotSpeed"] != undefined)
+    if(properties["zRotSpeed"] !== undefined)
         object.zRotSpeed = properties["zRotSpeed"];
 
-    if(properties["animateRotation"] != undefined)
+    if(properties["animateRotation"] !== undefined)
         object.animateRotation = properties["animateRotation"];
 
-    if(properties["useTexture"] != undefined)
+    if(properties["useTexture"] !== undefined)
         object.useTexture = properties["useTexture"];
-    if(properties["textureSrc"] != undefined)
+    if(properties["textureSrc"] !== undefined)
         object.textureSrc = properties["textureSrc"];
-    if(properties["alpha"] != undefined)
+    if(properties["alpha"] !== undefined)
         object.alpha = properties["alpha"];
-    if(properties["transparency"] != undefined)
+    if(properties["transparency"] !== undefined)
         object.transparency = properties["transparency"];
-    if(properties["lighting"] != undefined)
+    if(properties["lighting"] !== undefined)
         object.lighting = properties["lighting"];
 
     objArray.push(object);
+    loadedObjects++;
 }
 function modifyObjByName(name){
     for (var i in objArray)

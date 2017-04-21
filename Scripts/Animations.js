@@ -14,10 +14,9 @@ function orbitLight(){
     }
 }
 
-function spaceImitation(elapsed){
+function spaceImitation(){
     orbitLight();
     chaos();
-    //rotateSpaceBackground(elapsed);
 }
 
 
@@ -48,9 +47,5 @@ function chaos(){
             objArray[i].alpha += objArray[i].alphaInc;
         }
     }
-}
-function rotateSpaceBackground(elapsed){
-
-    modifyObjByName("space").yRot += (modifyObjByName("space").yRotSpeed * elapsed) / 1000.0
 }
 

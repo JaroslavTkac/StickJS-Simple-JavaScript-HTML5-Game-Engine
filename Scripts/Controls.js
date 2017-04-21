@@ -73,7 +73,7 @@ class KeyboardPresets{
 
 }
 class Key{
-    constructor(name, fpsControlsSpeed){
+    constructor(name){
         this.keyPressed = false;
         this.keyName = "undefined";
         this.keyCode = -1;
@@ -85,7 +85,6 @@ class Key{
         //console.log("Name: " + this.keyName + "  value: " + this.keyCode);
         this.songName = "";
         this.useSong = false;
-        this.fpsControlsSpeed = fpsControlsSpeed;
         this.z = 0;
         this.x = 0;
         this.y = 0;
@@ -145,17 +144,19 @@ class Key{
     }
 
     playSound(){
-        if(sound.getSongByName(this.songName) !== undefined)
-            sound.getSongByName(this.songName).play();
+        if(sound !== undefined)
+            if(sound.getSongByName(this.songName) !== undefined)
+                sound.getSongByName(this.songName).play();
     }
     doNotPlaySound(){
-        if(sound.getSongByName(this.songName) !== undefined)
-            sound.getSongByName(this.songName).stop();
+        if(sound !== undefined)
+            if(sound.getSongByName(this.songName) !== undefined)
+                sound.getSongByName(this.songName).stop();
     }
 
     doAction(){
         if(this.keyPressed) {
-            if(keyboard !== undefined && keyboard.shooterControlsEnabled)
+            if(keyboard.shooterControlsEnabled)
                 this.shooterControlsValidation(keyboard.speed, keyboard.controlsType);
             x += this.x;
             y += this.y;

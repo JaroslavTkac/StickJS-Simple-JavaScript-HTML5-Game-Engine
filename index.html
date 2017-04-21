@@ -13,6 +13,7 @@
         <script type="text/javascript" src="Scripts/Scene.js"></script>
         <script type="text/javascript" src="Scripts/OptimizeCalls.js"></script>
         <script type="text/javascript" src="Scripts/Audio.js"></script>
+        <script type="text/javascript" src="Scripts/Group.js"></script>
         <script type="text/javascript" src="Scripts/Lightning.js"></script>
         <script type="text/javascript" src="Scripts/Animations.js"></script>
         <script type="text/javascript" src="Scripts/Main.js"></script>
@@ -22,12 +23,21 @@
 
     <body onload="webGLStart();">
         <div class="container">
-            <canvas id="Scene" style="border: none;" width="1600" height="800"></canvas>
+            <canvas id="Scene" style="border: 1px black solid;" width="1679" height="880" ></canvas>
+
             <div id="overlay">
-                <div>Current fps: <span id="fps"></span></div>
-                <div>Average fps: <span id="avgFps"></span>
+                <div id="loading">
+                    <div class="spinner">
+                        <div class="double-bounce1"></div>
+                        <div class="double-bounce2"></div>
+                    </div>
+                    <div class="loading-div"><span id="loading-progress"></span></div>
+                </div>
+                <div><span id="fps"></span></div>
+                <div><span id="avgFps"></span></div>
             </div>
         </div>
+
     </body>
 
 

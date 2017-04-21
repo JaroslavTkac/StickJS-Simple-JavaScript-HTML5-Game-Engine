@@ -32,6 +32,11 @@ var camera;
 var x = 0, y = 0, z = 0, xRotation = 0, yRotation = 0, zRotation = 0;
 var keysArray = [];
 var keyboard;
+//Loading
+var loadedObjects = 0;
+var totalObjects = 0;
+var loaderElement;
+var loaderNode;
 
 
 
@@ -83,12 +88,12 @@ function fpsCounter() {
     fps = 1 / delta;
     fpsSum += fps;
     fpsElement.appendChild(fpsNode);
-    fpsNode.nodeValue = fps.toFixed(1);
+    fpsNode.nodeValue = "Current fps: " + fps.toFixed(2);
 }
 function avgFps(){
     framesPassed++;
     avgFpsElement.appendChild(avgFpsNode);
-    avgFpsNode.nodeValue = (fpsSum/framesPassed).toFixed(2);
+    avgFpsNode.nodeValue = "Average fps: " + (fpsSum/framesPassed).toFixed(2);
 }
 function getKeyByName(name){
     for(var i in keysArray) {

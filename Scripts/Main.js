@@ -61,11 +61,16 @@ function drawScene() {
     }
 }
 
+var group;
+
 function webGLStart() {
     var canvas = document.getElementById("Scene");
+    var loaderPlace = document.getElementById("loading");
+    loaderPlace.style.left = canvas.width/2.5;
+    loaderPlace.style.top = canvas.height/4;
     initGL(canvas);
     new Shader();
-    ambientLight = new AmbientLight(0.15, 0.15, 0.15);
+    ambientLight = new AmbientLight(0.25, 0.25, 0.25);
     directionalLight = new DirectionalLight(0.15, 0.15, 0.15, 0, 0, 50);
     pointLightArray.push(new PointLight("sun", 0.6, 0.2, 0.1, -10, 0, -50, 50, 0.025));
 
@@ -82,12 +87,12 @@ function webGLStart() {
 
 
     sound = new Sound();
-    sound.addSong(new Song("Standard sounds/jet_engine.aiff", "jetEngine"));
+    sound.addSong(new Song("Standard sounds/rotation_engine.aiff", "rotationEngine"));
     sound.addSong(new Song("Standard sounds/space_engine.mp3", "spaceEngine"));
     sound.addSong(new Song("Standard sounds/space_ambient.mp3", "spaceAmbient"));
 
 
-    sound.getSongByName("jetEngine").sound.volume = 0.35;
+    sound.getSongByName("rotationEngine").sound.volume = 0.35;
     sound.getSongByName("spaceAmbient").repeat();
     sound.getSongByName("spaceAmbient").sound.volume = 0.10;
     sound.getSongByName("spaceAmbient").play();
@@ -99,41 +104,46 @@ function webGLStart() {
     getKeyByName("s").songName = "spaceEngine";
     getKeyByName("s").useSong = true;
 
-    getKeyByName("a").songName = "jetEngine";
+    getKeyByName("a").songName = "rotationEngine";
     getKeyByName("a").useSong = true;
 
-    getKeyByName("d").songName = "jetEngine";
+    getKeyByName("d").songName = "rotationEngine";
     getKeyByName("d").useSong = true;
 
 
-
-
+    //TODO Grupavimas
+    //group = new Group("player");
+    /*group.add(new LoadObject("Scripts/Shapes/cylinder.json", "Standard textures/metal.jpg", {
+        "name": "back",
+        "x": 0,
+        "y": -1,
+        "z": -2.5,
+        "sx": 0.4,
+        "sy": 0.5,
+        "sz": 0.8,
+        "xRot": -90,
+        "yRot": -10,
+        "yRotSpeed": 10,
+        //"animateRotation": true,
+        "useTexture": true,
+        "useCamera": true
+    }));*/
 
     world(1000);
-
-    /*new LoadObject("Scripts/Shapes/sphere.json", "Standard textures/deep_space.jpg", {
-        "name": "space",
-        "x": -15,
-        "y": 0,
-        "z": 0,
-        "sx": 10,
-        "sy": 10,
-        "sz": 10,
-        "yRot": 0.05,
-        "xRot": 0.05,
-        "zRot": 0.05,
-        "yRotSpeed": 0.25,
-        "xRotSpeed": 0.25,
-        "zRotSpeed": 0.25,
-        "animateRotation": true,
-        "useTexture": true,
-        "lighting" : true,
-        //"useCamera": true,
-    });*/
-
     demoPlayer();
 
-    setTimeout(function () {
+    loaderElement = document.getElementById("loading-progress");
+    loaderNode = document.createTextNode("");
+    loading();
+}
+
+function loading(){
+    console.log(loadedObjects + " / " + totalObjects);
+    if(totalObjects <= loadedObjects) {
+        var element = document.getElementById("loading");
+        element.outerHTML = "";
+        delete element;
+
         fpsElement = document.getElementById("fps");
         fpsNode = document.createTextNode("");
         avgFpsElement = document.getElementById("avgFps");
@@ -141,7 +151,12 @@ function webGLStart() {
         console.log("Objects loaded in scene: " + objArray.length);
         lastRendered = new LastRendered();
         render();
-    }, 1200);
+    }
+    else{
+        loaderElement.appendChild(loaderNode);
+        loaderNode.nodeValue = ((loadedObjects/totalObjects)*100).toFixed(0) + "%";
+        requestAnimationFrame(loading);
+    }
 }
 
 function render() {
@@ -163,7 +178,9 @@ function world(size) {
     var object;
     var src, geometry;
     var rndObj;
+    console.log("world size: " + size);
     for(var i = 0; i < size; i++) {
+
         rndObj = Math.floor(Math.random() * 4) + 1;
         switch (rndObj){
             case 1:
@@ -212,14 +229,14 @@ function world(size) {
             "yRotSpeed": Math.random() * 35,
             "zRotSpeed": Math.random() * 35,
             "animateRotation": Math.random() < 0.95,
-            "useTexture": Math.random() > 0.5,
-            //"transparency": Math.random() < 0.5,
+            "useTexture": Math.random() > 0.7,
             "alpha" : Math.random() + 0.4
         });
     }
 }
 
 function demoPlayer() {
+    //totalObjects += 5;
     new LoadObject("Scripts/Shapes/cylinder.json", "Standard textures/metal.jpg", {
         "name": "back",
         "x": 0,

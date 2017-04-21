@@ -23,7 +23,7 @@ class Song{
     constructor(soundSrc, name){
         this.soundSrc = soundSrc;
         this.name = name;
-        this.sound = new Audio(soundSrc);
+        this.sound = new Audio(this.soundSrc);
     }
     play(){
         this.sound.play();
@@ -35,5 +35,6 @@ class Song{
         this.sound.pause();
         this.sound.currentTime = 0.0;
     }
+
 }
 
