@@ -4,13 +4,14 @@
 
 
 class LoadObject{
-    constructor(shapeSrc, imageSrc, properties){
-        totalObjects ++;
+    constructor(shapeSrc, imageSrc, properties, saveTo){
+        if(!(saveTo === "editor"))
+            totalObjects ++;
         this.shape = null;
-        this.loadJSON(shapeSrc, imageSrc, this, properties);
+        this.loadJSON(shapeSrc, imageSrc, this, properties, saveTo);
     }
-    loadJSON(shapeSrc, imageSrc, object, properties) {
-        var request = new XMLHttpRequest();
+    loadJSON(shapeSrc, imageSrc, object, properties, saveTo) {
+        let request = new XMLHttpRequest();
         request.open("GET", shapeSrc);
 
         request.onreadystatechange = function () {
@@ -19,28 +20,31 @@ class LoadObject{
                     console.info(shapeSrc + " does not exist");
                 }
                 else {
-                    var buffer = initBuffers(JSON.parse(request.responseText));
-                    object.shape = new CreateShape(buffer, imageSrc);
-                    return initProperties(object.shape, properties);
+                    let buffer;
+                    if(saveTo === undefined || saveTo === "objArray") {
+                        saveTo = "objArray";
+                        buffer = initBuffers(JSON.parse(request.responseText), webgl);
+                    }
+                    else
+                        buffer = initBuffers(JSON.parse(request.responseText), webglE);
+                    object.shape = new CreateShape(buffer, imageSrc, saveTo);
+                    return initProperties(object.shape, properties, saveTo);
                 }
             }
         };
         request.send();
     }
-
 }
 
 class CreateShape{
-    constructor(buffer, imageSrc){
+    constructor(buffer, imageSrc, saveTo){
         this.buffer = buffer;
         this.vertexPositionBuffer = this.buffer["vertexPositionBuffer"];
         this.vertexNormalBuffer = this.buffer["vertexNormalBuffer"];
         this.vertexTextureCoordBuffer = this.buffer["vertexTextureCoordBuffer"];
         this.vertexIndexBuffer = this.buffer["vertexIndexBuffer"];
-        this.texture = webgl.createTexture();
         this.useTexture = imageSrc !== undefined; //true when address exist
         this.textureSrc = imageSrc;
-        this.initTexture(this.texture, this.textureSrc);
         this.name = "object";
         this.useCamera = false;
         this.x = 0;
@@ -62,55 +66,120 @@ class CreateShape{
         this.r = 0;
         this.g = 1;
         this.b = 0;
+        if(saveTo === "objArray") {
+            this.lastRendered = "main";
+            this.texture = webgl.createTexture();
+        }
+        else {
+            this.lastRendered = "editor";
+            this.texture = webglE.createTexture();
+        }
+        this.initTexture(this.texture, this.textureSrc, saveTo);
     }
-    initTexture(texture, src) {
+    initTexture(texture, src, saveTo) {
         if(this.useTexture) {
             texture.image = new Image();
             texture.image.onload = function () {
-                handleLoadedTexture(texture)
+                if(saveTo === "objArray") {
+                    handleLoadedTextureMain(texture);
+                }
+                else {
+                    handleLoadedTextureEditor(texture);
+                }
             };
             texture.image.src = src;
         }
     }
-    draw(){
-        glBindVertexBuffer(webgl, this.vertexPositionBuffer);
-        glBindNormalBuffer(webgl, this.vertexNormalBuffer);
-        glBindTextureBuffer(webgl, this.vertexTextureCoordBuffer);
-        glBindTexture(webgl, this.texture);
+    draw(webgl, mvMatrix, pMatrix, shaderProgram, ambientLight, directionalLight, pointLightArray){
+        if(this.lastRendered === "main") {
+            glBindVertexBuffer(webgl, this.vertexPositionBuffer, shaderProgram, lastRenderedMainScene);
 
-        //Use Texture or Color
-        glUseTexture(webgl, this.useTexture);
-        glUseColor(webgl, this.r, this.g, this.b);
+            glBindNormalBuffer(webgl, this.vertexNormalBuffer, shaderProgram, lastRenderedMainScene);
+             glBindTextureBuffer(webgl, this.vertexTextureCoordBuffer, shaderProgram, lastRenderedMainScene);
+             glBindTexture(webgl, this.texture, shaderProgram, lastRenderedMainScene);
 
-        glPointLightIntensity(webgl, 250);
+             //Use Texture or Color
+             glUseTexture(webgl, this.useTexture, shaderProgram, lastRenderedMainScene);
 
-        //Transparency
-        if (this.transparency)
-            glTransparent(webgl, this.transparency, this.alpha);
-        else
-            glNonTransparent(webgl, this.transparency, 1.0);
+            glUseColor(webgl, this.r, this.g, this.b, shaderProgram, lastRenderedMainScene);
+            //webgl.uniform4f(shaderProgram.colorUniform, this.r, this.g, this.b, 1);
 
-        //Lighting
-        glLighting(webgl, this.lighting);
-        if (this.lighting) {
-            //Ambient
-            glAmbientLight(webgl, ambientLight.r, ambientLight.g, ambientLight.b);
 
-            //Directional
-            glDirectionalLightLocation(webgl, directionalLight.x, directionalLight.y, directionalLight.z);
-            glDirectionalLight(webgl, directionalLight.r, directionalLight.g, directionalLight.b);
-
-            //Point
-            for(var i in pointLightArray) {
-                glPointLightLocation(webgl, pointLightArray[i].x, pointLightArray[i].y, pointLightArray[i].z);
-                glPointLight(webgl, pointLightArray[i].r, pointLightArray[i].g, pointLightArray[i].b);
+            if (this.name === "editing") {
+                console.log(this.r + " " + this.g + " " + this.b);
             }
-        }
-        glBindBuffer(webgl, this.vertexIndexBuffer);
+            glPointLightIntensity(webgl, 250, shaderProgram, lastRenderedMainScene);
 
-        setMatrixUniforms();
+             //Transparency
+             if (this.transparency)
+             glTransparent(webgl, this.transparency, this.alpha, shaderProgram, lastRenderedMainScene);
+             else
+             glNonTransparent(webgl, this.transparency, 1.0, shaderProgram, lastRenderedMainScene);
+
+             //Lighting
+             glLighting(webgl, this.lighting, shaderProgram, lastRenderedMainScene);
+             if (this.lighting) {
+             //Ambient
+             glAmbientLight(webgl, ambientLight.r, ambientLight.g, ambientLight.b, shaderProgram, lastRenderedMainScene);
+
+             //Directional
+             glDirectionalLightLocation(webgl, directionalLight.x, directionalLight.y, directionalLight.z, shaderProgram, lastRenderedMainScene);
+             glDirectionalLight(webgl, directionalLight.r, directionalLight.g, directionalLight.b, shaderProgram, lastRenderedMainScene);
+
+             //Point
+             for(let i in pointLightArray) {
+             glPointLightLocation(webgl, pointLightArray[i].x, pointLightArray[i].y, pointLightArray[i].z, shaderProgram, lastRenderedMainScene);
+             glPointLight(webgl, pointLightArray[i].r, pointLightArray[i].g, pointLightArray[i].b, shaderProgram, lastRenderedMainScene);
+             }
+             }
+            glBindBuffer(webgl, this.vertexIndexBuffer, lastRenderedMainScene);
+        }
+        else{
+            glBindVertexBuffer(webgl, this.vertexPositionBuffer, shaderProgram, lastRenderedEditorScene);
+
+            glBindNormalBuffer(webgl, this.vertexNormalBuffer, shaderProgram, lastRenderedEditorScene);
+             glBindTextureBuffer(webgl, this.vertexTextureCoordBuffer, shaderProgram, lastRenderedEditorScene);
+             glBindTexture(webgl, this.texture, shaderProgram, lastRenderedEditorScene);
+
+             //Use Texture or Color
+             glUseTexture(webgl, this.useTexture, shaderProgram, lastRenderedEditorScene);
+
+            glUseColor(webgl, this.r, this.g, this.b, shaderProgram, lastRenderedEditorScene);
+
+
+            if (this.name === "editing") {
+                console.log(this.r + " " + this.g + " " + this.b);
+            }
+            glPointLightIntensity(webgl, 250, shaderProgram, lastRenderedEditorScene);
+
+             //Transparency
+             if (this.transparency)
+             glTransparent(webgl, this.transparency, this.alpha, shaderProgram, lastRenderedEditorScene);
+             else
+             glNonTransparent(webgl, this.transparency, 1.0, shaderProgram, lastRenderedEditorScene);
+
+             //Lighting
+             glLighting(webgl, this.lighting, shaderProgram, lastRenderedEditorScene);
+             if (this.lighting) {
+             //Ambient
+             glAmbientLight(webgl, ambientLight.r, ambientLight.g, ambientLight.b, shaderProgram, lastRenderedEditorScene);
+
+             //Directional
+             glDirectionalLightLocation(webgl, directionalLight.x, directionalLight.y, directionalLight.z, shaderProgram, lastRenderedEditorScene);
+             glDirectionalLight(webgl, directionalLight.r, directionalLight.g, directionalLight.b, shaderProgram, lastRenderedEditorScene);
+
+             //Point
+             for(let i in pointLightArray) {
+             glPointLightLocation(webgl, pointLightArray[i].x, pointLightArray[i].y, pointLightArray[i].z, shaderProgram, lastRenderedEditorScene);
+             glPointLight(webgl, pointLightArray[i].r, pointLightArray[i].g, pointLightArray[i].b, shaderProgram, lastRenderedEditorScene);
+             }
+             }
+            glBindBuffer(webgl, this.vertexIndexBuffer, lastRenderedEditorScene);
+        }
+
+        setMatrixUniforms(webgl, shaderProgram, mvMatrix, pMatrix);
     }
-    rotation() {
+    rotation(mvMatrix) {
         if(!this.animateRotation) {
             mat4.rotate(mvMatrix, degToRad(this.xRot), [true, false, false]);
             mat4.rotate(mvMatrix, degToRad(this.yRot), [false, true, false]);
@@ -123,7 +192,7 @@ class CreateShape{
         }
     }
 }
-function initBuffers(object) {
+function initBuffers(object, webgl) {
     var vertexPositionBuffer = webgl.createBuffer();
     var vertexNormalBuffer = webgl.createBuffer();
     var vertexTextureCoordBuffer = webgl.createBuffer();
@@ -157,7 +226,7 @@ function initBuffers(object) {
     };
 
 }
-function initProperties(object, properties){
+function initProperties(object, properties, saveTo){
     if(properties["name"] !== undefined)
         object.name = properties["name"];
 
@@ -213,11 +282,20 @@ function initProperties(object, properties){
     if(properties["lighting"] !== undefined)
         object.lighting = properties["lighting"];
 
-    objArray.push(object);
-    loadedObjects++;
+
+    if(saveTo === "objArray") {
+        objArray.push(object);
+        loadedObjects++;
+    }
+    if(saveTo === "editor") {
+        console.log(object);
+        //console.log(object.vertexIndexBuffer);
+        editorObjArray.push(object);
+        //console.log(editorObjArray.size);
+    }
 }
 function modifyObjByName(name){
-    for (var i in objArray)
-        if(objArray[i].name == name)
+    for (let i in objArray)
+        if(objArray[i].name === name)
             return objArray[i];
 }

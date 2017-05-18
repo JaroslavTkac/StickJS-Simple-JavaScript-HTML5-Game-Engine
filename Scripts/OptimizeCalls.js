@@ -34,7 +34,7 @@ class LastRendered{
     }
 }
 
-function glBindVertexBuffer(webgl, value){
+function glBindVertexBuffer(webgl, value, shaderProgram, lastRendered){
     if(lastRendered.vertexPositionBuffer !== value) {
         webgl.bindBuffer(webgl.ARRAY_BUFFER, value);
         webgl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, value.itemSize, webgl.FLOAT, false, 0, 0);
@@ -42,7 +42,7 @@ function glBindVertexBuffer(webgl, value){
         lastRendered.vertexPositionBuffer = value;
     }
 }
-function glBindNormalBuffer(webgl, value){
+function glBindNormalBuffer(webgl, value, shaderProgram, lastRendered){
     if(lastRendered.vertexNormalBuffer !== value) {
         webgl.bindBuffer(webgl.ARRAY_BUFFER, value);
         webgl.vertexAttribPointer(shaderProgram.vertexNormalAttribute, value.itemSize, webgl.FLOAT, false, 0, 0);
@@ -50,7 +50,7 @@ function glBindNormalBuffer(webgl, value){
         lastRendered.vertexNormalBuffer = value;
     }
 }
-function glBindTextureBuffer(webgl, value){
+function glBindTextureBuffer(webgl, value, shaderProgram, lastRendered){
     if(lastRendered.vertexTextureCoordBuffer !== value){
         webgl.bindBuffer(webgl.ARRAY_BUFFER, value);
         webgl.vertexAttribPointer(shaderProgram.textureCoordAttribute, value.itemSize, webgl.FLOAT, false, 0, 0);
@@ -59,14 +59,14 @@ function glBindTextureBuffer(webgl, value){
         lastRendered.vertexTextureCoordBuffer = value;
     }
 }
-function glBindBuffer(webgl, value){
+function glBindBuffer(webgl, value, lastRendered){
     if(lastRendered.vertexIndexBuffer !== value){
         webgl.bindBuffer(webgl.ELEMENT_ARRAY_BUFFER, value);
 
         lastRendered.vertexIndexBuffer = value;
     }
 }
-function glBindTexture(webgl, value){
+function glBindTexture(webgl, value, shaderProgram, lastRendered){
     if(lastRendered.texture !== value){
         webgl.bindTexture(webgl.TEXTURE_2D, value);
         webgl.uniform1i(shaderProgram.samplerUniform, 0);
@@ -74,14 +74,14 @@ function glBindTexture(webgl, value){
         lastRendered.texture = value;
     }
 }
-function glUseTexture(webgl, value){
+function glUseTexture(webgl, value, shaderProgram, lastRendered){
     if(lastRendered.useTexture !== value){
         webgl.uniform1i(shaderProgram.useTexturesUniform, value);
 
         lastRendered.useTexture = value;
     }
 }
-function glUseColor(webgl, r, g, b) {
+function glUseColor(webgl, r, g, b, shaderProgram, lastRendered) {
     if(lastRendered.r !== r || lastRendered.g !== g || lastRendered.b !== b) {
         webgl.uniform4f(shaderProgram.colorUniform, r, g, b, 1);
 
@@ -90,7 +90,7 @@ function glUseColor(webgl, r, g, b) {
         lastRendered.b = b;
     }
 }
-function glTransparent(webgl, value, alphaValue){
+function glTransparent(webgl, value, alphaValue, shaderProgram, lastRendered){
     if(lastRendered.transparency !== value) {
         webgl.blendFunc(webgl.SRC_ALPHA, webgl.ONE);
         webgl.enable(webgl.BLEND);
@@ -104,7 +104,7 @@ function glTransparent(webgl, value, alphaValue){
         lastRendered.alpha = alphaValue;
     }
 }
-function glNonTransparent(webgl, value, alphaValue){
+function glNonTransparent(webgl, value, alphaValue, shaderProgram, lastRendered){
     if(lastRendered.alpha !== alphaValue) {
         webgl.uniform1f(shaderProgram.alphaUniform, alphaValue);
 
@@ -117,14 +117,14 @@ function glNonTransparent(webgl, value, alphaValue){
         lastRendered.transparency = value;
     }
 }
-function glLighting(webgl, value){
+function glLighting(webgl, value, shaderProgram, lastRendered){
     if(lastRendered.lighting !== value){
         webgl.uniform1i(shaderProgram.useLightingUniform, value);
 
         lastRendered.lighting = value;
     }
 }
-function glAmbientLight(webgl, r, g, b){
+function glAmbientLight(webgl, r, g, b, shaderProgram, lastRendered){
     if(lastRendered.ambientR !== r || lastRendered.ambientG !== g || lastRendered.ambientB !== b){
         webgl.uniform3f(shaderProgram.ambientColorUniform, r, g, b);
 
@@ -133,7 +133,7 @@ function glAmbientLight(webgl, r, g, b){
         lastRendered.ambientB = b;
     }
 }
-function glDirectionalLight(webgl, r, g, b){
+function glDirectionalLight(webgl, r, g, b, shaderProgram, lastRendered){
     if(lastRendered.directionalR !== r || lastRendered.directionalG !== g || lastRendered.directionalB !== b){
         webgl.uniform3f(shaderProgram.directionalColorUniform, r, g, b);
 
@@ -142,7 +142,7 @@ function glDirectionalLight(webgl, r, g, b){
         lastRendered.directionalB = b;
     }
 }
-function glDirectionalLightLocation(webgl, x, y, z){
+function glDirectionalLightLocation(webgl, x, y, z, shaderProgram, lastRendered){
     if(lastRendered.directionalX !== x || lastRendered.directionalY !== y || lastRendered.directionalZ !== z){
         webgl.uniform3fv(shaderProgram.lightingDirectionUniform, vec3.scale([x, y, z], -1));
 
@@ -151,7 +151,7 @@ function glDirectionalLightLocation(webgl, x, y, z){
         lastRendered.directionalZ = z;
     }
 }
-function glPointLight(webgl, r, g, b){
+function glPointLight(webgl, r, g, b, shaderProgram, lastRendered){
     if(lastRendered.pointR !== r || lastRendered.pointG !== g || lastRendered.pointB !== b){
         webgl.uniform3f(shaderProgram.pointLightingColorUniform, r, g, b);
 
@@ -160,7 +160,7 @@ function glPointLight(webgl, r, g, b){
         lastRendered.pointB = b;
     }
 }
-function glPointLightLocation(webgl, x, y, z){
+function glPointLightLocation(webgl, x, y, z, shaderProgram, lastRendered){
     if(lastRendered.pointX !== x || lastRendered.pointY !== y || lastRendered.pointZ !== z){
         webgl.uniform3f(shaderProgram.pointLightingLocationUniform, x, y, z);
 
@@ -169,7 +169,7 @@ function glPointLightLocation(webgl, x, y, z){
         lastRendered.pointZ = z;
     }
 }
-function glPointLightIntensity(webgl, value){
+function glPointLightIntensity(webgl, value, shaderProgram, lastRendered){
     if(lastRendered.pointLightIntensity !== value){
         webgl.uniform1f(shaderProgram.pointLightingIntensityUniform, value);
 

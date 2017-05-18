@@ -43,7 +43,7 @@ class DirectionalLight{
     }
 }
 class PointLight{
-    constructor(name, r, g, b, x, y, z, radius, alphaInc){
+    constructor(name, r, g, b, x, y, z, radius, alphaInc, saveTo, createObj){
         this.r = r;
         this.g = g;
         this.b = b;
@@ -57,25 +57,30 @@ class PointLight{
         this.alphaInc = alphaInc;
         this.radius = radius;
         this.name = name;
-        new LoadObject("Scripts/Shapes/simpleSphere.json", "Standard textures/sun.jpg", {
-            "name" : this.name,
-            "x": this.x,
-            "y": this.y,
-            "z": this.z,
-            "sx" : 3.5,
-            "sy" : 3.5,
-            "sz" : 3.5,
-            "yRot" : 10,
-            "yRotSpeed" : 45,
-            "animateRotation": true,
-            "lighting" : false
-        });
+        this.createObj = createObj;
+        if(this.createObj) {
+            new LoadObject("Scripts/Shapes/simpleSphere.json", "Standard textures/sun.jpg", {
+                "name": this.name,
+                "x": this.x,
+                "y": this.y,
+                "z": this.z,
+                "sx": 3.5,
+                "sy": 3.5,
+                "sz": 3.5,
+                "yRot": 10,
+                "yRotSpeed": 45,
+                "animateRotation": true,
+                "lighting": false,
+                "useTexture": false
+            }, saveTo);
+        }
     }
     changePlace(x, y, z){
-        modifyObjByName(this.name).x = x;
-        modifyObjByName(this.name).y = y;
-        modifyObjByName(this.name).z = z;
-
+        if(this.createObj) {
+            modifyObjByName(this.name).x = x;
+            modifyObjByName(this.name).y = y;
+            modifyObjByName(this.name).z = z;
+        }
         this.x = x;
         this.y = y;
         this.z = z;

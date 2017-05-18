@@ -5,6 +5,13 @@
         <link rel="stylesheet" href="Styles/styles.css">
 
 
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/9.8.0/bootstrap-slider.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/9.8.0/css/bootstrap-slider.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+
         <script type="text/javascript" src="Library/glMatrix-0.9.5.min.js"></script>
         <script type="text/javascript" src="Library/webgl-utils.js"></script>
         <script type="text/javascript" src="Additional/WebglHelper.js"></script>
@@ -16,26 +23,202 @@
         <script type="text/javascript" src="Scripts/Group.js"></script>
         <script type="text/javascript" src="Scripts/Lightning.js"></script>
         <script type="text/javascript" src="Scripts/Animations.js"></script>
+        <script type="text/javascript" src="Scripts/EditorMainWindow.js"></script>
         <script type="text/javascript" src="Scripts/Main.js"></script>
 
+        <script>
+            $(document).ready(function () {
+                $(function () {
+                    let window_height = $(window).height(),
+                        content_height = window_height - 600;
+
+                    $('#bottom-menu').height(content_height);
+                });
+                $(window).resize(function () {
+                    let window_height = $(window).height(),
+                        content_height = window_height - 600;
+                    $('#bottom-menu').height(content_height);
+                });
+
+                $('.nav.navbar-nav.top > li').on('click', function (e) { //TODO highlight nav bar current element
+                    e.preventDefault();
+                    $('.nav.navbar-nav.top> li').removeClass('active');
+                    $(this).addClass('active');
+                });
+                $('.nav.navbar-nav.bot > li').on('click', function (e) { //TODO highlight nav bar current element
+                    e.preventDefault();
+                    $('.nav.navbar-nav.bot> li').removeClass('active');
+                    $(this).addClass('active');
+                });
+
+                var RGBChange = function() {
+                    //console.log("R: " + red.getValue()+ " G: " + green.getValue() + " B: " + blue.getValue());
+                    redChange = red.getValue();
+                    greenChange = green.getValue();
+                    blueChange = blue.getValue();
+                };
+
+                var red = $('#R').slider()
+                    .on('slide', RGBChange)
+                    .data('slider');
+                var green = $('#G').slider()
+                    .on('slide', RGBChange)
+                    .data('slider');
+                var blue = $('#B').slider()
+                    .on('slide', RGBChange)
+                    .data('slider');
+
+            });
+
+        </script>
     </head>
 
 
-    <body onload="webGLStart();">
-        <div class="container">
-            <canvas id="Scene" style="border: 1px black solid;" width="1679" height="880" ></canvas>
+    <body style="background-color: #606365" onload="webGLStart();">
+        <div class="custom-container-container">
+            <div id="wrapper">
 
-            <div id="overlay">
-                <div id="loading">
-                    <div class="spinner">
-                        <div class="double-bounce1"></div>
-                        <div class="double-bounce2"></div>
+                <!-- WEB GL Canvas area -->
+                <canvas id="Scene"></canvas>
+
+                <!-- Menu and navigation bar area -->
+                <div id="preview-menu">
+                    <!-- Window menu bar in preview area -->
+
+                    <div id="top-menu">
+                        <nav class="navbar navbar-inverse" style="margin-bottom: 1.5%;">
+                            <ul class="nav navbar-nav top">
+                                <li class="active"><a href="#">Colour</a></li>
+                                <li><a href="#">Texture</a></li>
+                                <li><a href="#">Sound</a></li>
+                                <li><a href="#">...</a></li>
+                            </ul>
+                        </nav>
                     </div>
-                    <div class="loading-div"><span id="loading-progress"></span></div>
+
+                    <div class="center">
+                        <!-- WEB GL Canvas editor area -->
+                        <canvas id="Editor-Scene"></canvas>
+                        <!-- Color picker -->
+                        <div id="color-picker">
+                            <p>
+                                R <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="1" data-slider-step="0.025" data-slider-value="0.5" data-slider-id="RC" id="R" data-slider-tooltip="hide" data-slider-handle="square" />
+                            </p>
+                            <p>
+                                G <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="1" data-slider-step="0.025" data-slider-value="0.5" data-slider-id="GC" id="G" data-slider-tooltip="hide" data-slider-handle="square" />
+                            </p>
+                            <p>
+                                B <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="1" data-slider-step="0.025" data-slider-value="0.5" data-slider-id="BC" id="B" data-slider-tooltip="hide" data-slider-handle="square" />
+                            </p>
+                        </div>
+                    </div>
+
                 </div>
-                <div><span id="fps"></span></div>
-                <div><span id="avgFps"></span></div>
+
+                <div id="overlay">
+                    <div id="loading">
+                        <div class="spinner">
+                            <div class="double-bounce1"></div>
+                            <div class="double-bounce2"></div>
+                        </div>
+                        <div class="loading-div"><span id="loading-progress"></span></div>
+                    </div>
+                    <div><span id="fps"></span></div>
+                    <div><span id="avgFps"></span></div>
+                </div>
+
+
+
+                <!-- Menu and navigation bar area -->
+                <div id="bottom-menu">
+                    <nav class="navbar navbar-inverse" style="position: fixed;  z-index: 10; width: 49.4%;">
+                        <ul class="nav navbar-nav bot">
+                            <li class="active"><a href="#">Standard Shapes</a></li>
+                            <li><a href="#">Your Shapes</a></li>
+                            <li><a href="#">...</a></li>
+                        </ul>
+                    </nav>
+                    <div id="filler"> </div>
+                    <div class="row">
+                        <div class="col-xs-4 col-md-2">
+                            <a href="#" class="thumbnail" >
+                                <img src="Standard%20textures/sun.jpg" class="img-rounded inline-block" alt="..." >
+                            </a>
+                        </div>
+                        <div class="col-xs-4 col-md-2">
+                            <a href="#" class="thumbnail" >
+                                <img src="Standard%20textures/sun.jpg" class="img-rounded inline-block" alt="..." >
+                            </a>
+                        </div>
+                        <div class="col-xs-4 col-md-2">
+                            <a href="#" class="thumbnail" >
+                                <img src="Standard%20textures/sun.jpg" class="img-rounded inline-block" alt="..." >
+                            </a>
+                        </div>
+                        <div class="col-xs-4 col-md-2">
+                            <a href="#" class="thumbnail" >
+                                <img src="Standard%20textures/sun.jpg" class="img-rounded inline-block" alt="..." >
+                            </a>
+                        </div>
+                        <div class="col-xs-4 col-md-2">
+                            <a href="#" class="thumbnail" >
+                                <img src="Standard%20textures/sun.jpg" class="img-rounded inline-block" alt="..." >
+                            </a>
+                        </div>
+                        <div class="col-xs-4 col-md-2">
+                            <a href="#" class="thumbnail" >
+                                <img src="Standard%20textures/sun.jpg" class="img-rounded inline-block" alt="..." >
+                            </a>
+                        </div>
+                        <div class="col-xs-4 col-md-2">
+                            <a href="#" class="thumbnail" >
+                                <img src="Standard%20textures/sun.jpg" class="img-rounded inline-block" alt="..." >
+                            </a>
+                        </div>
+                        <div class="col-xs-4 col-md-2">
+                            <a href="#" class="thumbnail" >
+                                <img src="Standard%20textures/sun.jpg" class="img-rounded inline-block" alt="..." >
+                            </a>
+                        </div>
+                        <div class="col-xs-4 col-md-2">
+                            <a href="#" class="thumbnail" >
+                                <img src="Standard%20textures/sun.jpg" class="img-rounded inline-block" alt="..." >
+                            </a>
+                        </div>
+                        <div class="col-xs-4 col-md-2">
+                            <a href="#" class="thumbnail" >
+                                <img src="Standard%20textures/sun.jpg" class="img-rounded inline-block" alt="..." >
+                            </a>
+                        </div>
+                        <div class="col-xs-4 col-md-2">
+                            <a href="#" class="thumbnail" >
+                                <img src="Standard%20textures/sun.jpg" class="img-rounded inline-block" alt="..." >
+                            </a>
+                        </div>
+                        <div class="col-xs-4 col-md-2">
+                            <a href="#" class="thumbnail" >
+                                <img src="Standard%20textures/sun.jpg" class="img-rounded inline-block" alt="..." >
+                            </a>
+                        </div>
+                        <div class="col-xs-4 col-md-2">
+                            <a href="#" class="thumbnail" >
+                                <img src="Standard%20textures/sun.jpg" class="img-rounded inline-block" alt="..." >
+                            </a>
+                        </div>
+                        <div class="col-xs-4 col-md-2">
+                            <a href="#" class="thumbnail" >
+                                <img src="Standard%20textures/sun.jpg" class="img-rounded inline-block" alt="..." >
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
             </div>
+
         </div>
 
     </body>

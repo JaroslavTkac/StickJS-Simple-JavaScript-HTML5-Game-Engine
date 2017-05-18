@@ -3,28 +3,55 @@
  */
 
 
-function animate() {
-    var timeNow = new Date().getTime();
-    if (lastTime != 0) {
-        var elapsed = timeNow - lastTime;
-        for(var i in objArray){
-            if(objArray[i].animateRotation){
-                objArray[i].xRot += (objArray[i].xRotSpeed * elapsed) / 1000.0;
-                objArray[i].yRot += (objArray[i].yRotSpeed * elapsed) / 1000.0;
-                objArray[i].zRot += (objArray[i].zRotSpeed * elapsed) / 1000.0;
+function animate(array) {
+    let timeNow = new Date().getTime();
+    if (lastTime !== 0) {
+        let elapsed = timeNow - lastTime;
+        for(let i in array){
+            if(array[i].animateRotation){
+                array[i].xRot += (array[i].xRotSpeed * elapsed) / 1000.0;
+                array[i].yRot += (array[i].yRotSpeed * elapsed) / 1000.0;
+                array[i].zRot += (array[i].zRotSpeed * elapsed) / 1000.0;
             }
         }
-        spaceImitation(elapsed);
-
-        //sound
-
-
+        spaceImitation();
     }
     lastTime = timeNow;
 }
+var pyramidVertexPositionBuffer;
+
+function initBuffers1() {
+    pyramidVertexPositionBuffer = webgl.createBuffer();
+    webgl.bindBuffer(webgl.ARRAY_BUFFER, pyramidVertexPositionBuffer);
+    var vertices = [
+        // Front face
+        0.0,  1.0,  0.0,
+        -1.0, -1.0,  1.0,
+        1.0, -1.0,  1.0,
+
+        // Right face
+        0.0,  1.0,  0.0,
+        1.0, -1.0,  1.0,
+        1.0, -1.0, -1.0,
+
+        // Back face
+        0.0,  1.0,  0.0,
+        1.0, -1.0, -1.0,
+        -1.0, -1.0, -1.0,
+
+        // Left face
+        0.0,  1.0,  0.0,
+        -1.0, -1.0, -1.0,
+        -1.0, -1.0,  1.0
+    ];
+    webgl.bufferData(webgl.ARRAY_BUFFER, new Float32Array(vertices), webgl.STATIC_DRAW);
+    pyramidVertexPositionBuffer.itemSize = 3;
+    pyramidVertexPositionBuffer.numItems = 12;
+}
 
 
-function drawScene() {
+function drawScene(canvas, webgl, array, mvMatrix, pMatrix, mvMatrixStack, shaderProgram, ambientLight, directionalLight, pointLightArray) {
+    resize(canvas, webgl);
     webgl.viewport(0, 0, webgl.viewportWidth, webgl.viewportHeight);
     webgl.clear(webgl.COLOR_BUFFER_BIT | webgl.DEPTH_BUFFER_BIT);
 
@@ -32,49 +59,63 @@ function drawScene() {
 
     mat4.identity(mvMatrix);
 
-    for (var i in objArray){
-        //console.log(objArray[i]);
-        mvPushMatrix();
 
-        if (!objArray[i].useCamera) {
+    //------
+    /*mat4.translate(mvMatrix, [0.0, 0.0, -4.0]);
+
+    webgl.bindBuffer(webgl.ARRAY_BUFFER, pyramidVertexPositionBuffer);
+    webgl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, pyramidVertexPositionBuffer.itemSize, webgl.FLOAT, false, 0, 0);
+
+    webgl.uniform4f(shaderProgram.colorUniform, redChange, greenChange, blueChange, 1);
+    webgl.uniformMatrix4fv(shaderProgram.pMatrixUniform, false, pMatrix);
+    webgl.uniformMatrix4fv(shaderProgram.mvMatrixUniform, false, mvMatrix);
+
+    webgl.drawArrays(webgl.TRIANGLES, 0, pyramidVertexPositionBuffer.numItems);*/
+    //----
+
+    for (let i in array){
+        mvPushMatrix(mvMatrix, mvMatrixStack);
+
+        if (!array[i].useCamera) {
             mat4.rotate(mvMatrix, degToRad(yRotation), [false, true, false]);
-            mat4.translate(mvMatrix, [objArray[i].x + x, objArray[i].y + y, objArray[i].z + z]);
+            mat4.translate(mvMatrix, [array[i].x + x, array[i].y + y, array[i].z + z]);
         }
         else {
-            mat4.translate(mvMatrix, [objArray[i].x, objArray[i].y, objArray[i].z]);
+            mat4.translate(mvMatrix, [array[i].x, array[i].y, array[i].z]);
         }
 
         //Scaling
-        var scaleMatrix = new Float32Array([
-            objArray[i].sx,   0.0,  0.0,  0.0,
-            0.0,  objArray[i].sy,   0.0,  0.0,
-            0.0,  0.0,  objArray[i].sz,   0.0,
+        let scaleMatrix = new Float32Array([
+            array[i].sx,   0.0,  0.0,  0.0,
+            0.0,  array[i].sy,   0.0,  0.0,
+            0.0,  0.0,  array[i].sz,   0.0,
             0.0,  0.0,  0.0,  1.0
         ]);
         mat4.multiply(mvMatrix, scaleMatrix);
 
-        objArray[i].rotation();
-        objArray[i].draw();
+        //array[i].rotation(mvMatrix);
+        array[i].draw(webgl, mvMatrix, pMatrix, shaderProgram, ambientLight, directionalLight, pointLightArray);
 
-        webgl.drawElements(webgl.TRIANGLES, objArray[i].vertexIndexBuffer.numItems, webgl.UNSIGNED_SHORT, 0);
-        mvPopMatrix();
+        webgl.drawElements(webgl.TRIANGLES, array[i].vertexIndexBuffer.numItems, webgl.UNSIGNED_SHORT, 0);
+        mvMatrix = mvPopMatrix(mvMatrixStack);
     }
 }
 
-var group;
-
 function webGLStart() {
-    var canvas = document.getElementById("Scene");
-    var loaderPlace = document.getElementById("loading");
-    loaderPlace.style.left = canvas.width/2.5;
-    loaderPlace.style.top = canvas.height/4;
-    initGL(canvas);
-    new Shader();
+    canvas = document.getElementById("Scene");
+    let loaderPlace = document.getElementById("loading");
+    loaderPlace.style.left = canvas.width;
+    loaderPlace.style.top = canvas.height/2;
+    initGLForScene(canvas);
+    mainShader();
+    //initBuffers();
+
     ambientLight = new AmbientLight(0.25, 0.25, 0.25);
     directionalLight = new DirectionalLight(0.15, 0.15, 0.15, 0, 0, 50);
-    pointLightArray.push(new PointLight("sun", 0.6, 0.2, 0.1, -10, 0, -50, 50, 0.025));
+    pointLightArray.push(new PointLight("sun", 0.6, 0.2, 0.1, -10, 0, -50, 50, 0.025, "objArray", true));
 
-    webgl.clearColor(0.0, 0.0, 0.0, 1.0);
+
+    webgl.clearColor(0, 0, 0, 1.0);
     webgl.enable(webgl.DEPTH_TEST);
 
     document.onkeydown = handleKeyDown;
@@ -86,8 +127,8 @@ function webGLStart() {
 
 
 
-    sound = new Sound();
-    sound.addSong(new Song("Standard sounds/rotation_engine.aiff", "rotationEngine"));
+   /* sound = new Sound();
+    sound.addSong(new Song("Standard sounds/rotation_engine.mp3", "rotationEngine"));
     sound.addSong(new Song("Standard sounds/space_engine.mp3", "spaceEngine"));
     sound.addSong(new Song("Standard sounds/space_ambient.mp3", "spaceAmbient"));
 
@@ -110,27 +151,18 @@ function webGLStart() {
     getKeyByName("d").songName = "rotationEngine";
     getKeyByName("d").useSong = true;
 
+    getKeyByName("shift").songName = "rotationEngine";
+    getKeyByName("shift").useSong = true;
+
+    getKeyByName("space").songName = "rotationEngine";
+    getKeyByName("space").useSong = true;*/
+
 
     //TODO Grupavimas
-    //group = new Group("player");
-    /*group.add(new LoadObject("Scripts/Shapes/cylinder.json", "Standard textures/metal.jpg", {
-        "name": "back",
-        "x": 0,
-        "y": -1,
-        "z": -2.5,
-        "sx": 0.4,
-        "sy": 0.5,
-        "sz": 0.8,
-        "xRot": -90,
-        "yRot": -10,
-        "yRotSpeed": 10,
-        //"animateRotation": true,
-        "useTexture": true,
-        "useCamera": true
-    }));*/
 
-    world(1000);
-    demoPlayer();
+
+    world(100);
+    //demoPlayer();
 
     loaderElement = document.getElementById("loading-progress");
     loaderNode = document.createTextNode("");
@@ -149,7 +181,9 @@ function loading(){
         avgFpsElement = document.getElementById("avgFps");
         avgFpsNode = document.createTextNode("");
         console.log("Objects loaded in scene: " + objArray.length);
-        lastRendered = new LastRendered();
+        lastRenderedMainScene = new LastRendered();
+        lastRenderedEditorScene = new LastRendered();
+        startEditorWindow();
         render();
     }
     else{
@@ -162,10 +196,12 @@ function loading(){
 function render() {
     requestAnimationFrame(render);
     handleKeys();
-    drawScene();
-    animate();
+    drawScene(canvas, webgl, objArray, mvMatrix, pMatrix, mvMatrixStack, shaderProgram,
+        ambientLight, directionalLight, pointLightArray);
+    animate(objArray);
     fpsCounter();
     avgFps();
+    renderEditor();
 }
 
 function world(size) {
@@ -229,14 +265,13 @@ function world(size) {
             "yRotSpeed": Math.random() * 35,
             "zRotSpeed": Math.random() * 35,
             "animateRotation": Math.random() < 0.95,
-            "useTexture": Math.random() > 0.7,
+            "useTexture": false,//Math.random() > 0.7,
             "alpha" : Math.random() + 0.4
         });
     }
 }
 
 function demoPlayer() {
-    //totalObjects += 5;
     new LoadObject("Scripts/Shapes/cylinder.json", "Standard textures/metal.jpg", {
         "name": "back",
         "x": 0,
@@ -248,10 +283,9 @@ function demoPlayer() {
         "xRot": -90,
         "yRot": -10,
         "yRotSpeed": 10,
-        //"animateRotation": true,
         "useTexture": true,
         "useCamera": true
-    });
+    },);
     new LoadObject("Scripts/Shapes/cube.json", "Standard textures/metal.jpg", {
         "name": "wingL",
         "x": -0.8,

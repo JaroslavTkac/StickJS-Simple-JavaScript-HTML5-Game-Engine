@@ -3,7 +3,7 @@
  */
 
 function orbitLight(){
-    for(var i in pointLightArray) {
+    for(let i in pointLightArray) {
         pointLightArray[i].changePlace(
             (pointLightArray[i].centerX + Math.cos(pointLightArray[i].alpha) * pointLightArray[i].radius),
             0,
@@ -21,8 +21,8 @@ function spaceImitation(){
 
 
 function chaos(){
-    var size = objArray.length;
-    for(var i in objArray){
+    let size = objArray.length;
+    for(let i in objArray){
         if(objArray[i].name === "stars" && objArray[i].centerX === undefined) {
             objArray[i].centerX = objArray[i].x;
             objArray[i].centerY = objArray[i].y;
@@ -32,7 +32,7 @@ function chaos(){
             objArray[i].radius = Math.random() * 600;
         }
     }
-    for(var i in objArray) {
+    for(let i in objArray) {
         if (objArray[i].name === "stars" && objArray[i].name !== "sun") {
             objArray[i].x = objArray[i].centerX + Math.cos(objArray[i].alpha) * objArray[i].radius;
             if(i < (size/3))

@@ -1,25 +1,48 @@
-.container {
-    position: relative;
+#Scene{
+    float:left;
+    border: 1px #777777 solid;
+    height: 65%;
+    width: 60%;
 }
+#Editor-Scene{
+    width: 100%;
+    height: 60%;
+}
+body{
+    background-color: #606365;
+}
+.custom-container-container {
+    position: relative;
+    background-color: #606365;
+    padding-left: 1%;
+}
+
+#wrapper{
+    background-color: #434343;
+}
+
+
 #overlay {
     position: absolute;
     color: #043d18;
     font-family: "Times New Roman";
     text-shadow: -1px 0 #397a40, 0 1px #397a40, 1px 0 #397a40, 0 -1px #397a40;
-    font-size: 26pt;
-    left: 10px;
-    top: 10px;
+    font-size: 20pt;
+    padding: 0.5%;
+
 }
 #loading{
     position: absolute;
     text-align: center;
+}
+.loading-div{
+    margin: 0 auto;
 }
 .spinner {
     width: 300px;
     height: 300px;
     position: relative;
 }
-
 .double-bounce1, .double-bounce2 {
     width: 100%;
     height: 100%;
@@ -33,17 +56,14 @@
     -webkit-animation: sk-bounce 2.0s infinite ease-in-out;
     animation: sk-bounce 2.0s infinite ease-in-out;
 }
-
 .double-bounce2 {
     -webkit-animation-delay: -1.0s;
     animation-delay: -1.0s;
 }
-
 @-webkit-keyframes sk-bounce {
     0%, 100% { -webkit-transform: scale(0.0) }
     50% { -webkit-transform: scale(1.0) }
 }
-
 @keyframes sk-bounce {
     0%, 100% {
         transform: scale(0.0);
@@ -53,7 +73,6 @@
           -webkit-transform: scale(1.0);
       }
 }
-
 #loading-progress {
     text-align: center;
     color: darkred;
@@ -61,14 +80,71 @@
     text-shadow: -1px 0 #397a40, 0 1px #397a40, 1px 0 #397a40, 0 -1px #397a40;
     font-size: 60pt;
 }
-.loading-div{
-    margin: 0 auto;
-}
-#Scene{
-    position:absolute;
-}
-body{
-    padding: 0 auto;
-    margin: 4px auto;
-}
 
+
+
+#bottom-menu{
+    background-color: #434343;
+    display: inline-block;
+    overflow: scroll;
+    float:left;
+    clear: left;
+    border: solid 1px #777777;
+    width: 50%;
+    height: 30%;
+}
+#preview-menu{
+    background-color: #434343;
+    width: 40%;
+    height: 65%;
+    float: left;
+
+}
+#color-picker{
+    border: 1px #777777 dashed;
+    border-radius: 5%;
+    width: 100%;
+    float: left;
+    margin-top: 0.5%;
+    padding: 2%;
+}
+#color-picker p {
+    color: white;
+}
+#color-picker p input {
+    margin: 10%;
+    padding: 10%;
+}
+#RC .slider-selection {
+    background: #FF8282;
+}
+#RC .slider-handle {
+    background: red;
+}
+#GC .slider-selection {
+    background: #428041;
+}
+#GC .slider-handle {
+    background: green;
+}
+#BC .slider-selection {
+    background: #8283FF;
+}
+#BC .slider-handle {
+    border-bottom-color: blue;
+}
+#R, #G, #B {
+    width: 20%;
+}
+.center {
+    margin: auto;
+    width: 60%;
+    border: 1px solid #777777;
+}
+#filler{
+    width: 50%;
+    height: 20%;
+}
+.navbar{
+    margin-top: 0;
+}
