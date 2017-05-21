@@ -161,7 +161,7 @@ function webGLStart() {
     //TODO Grupavimas
 
 
-    world(600);
+    world(30);
     demoPlayer();
 
     loaderElement = document.getElementById("loading-progress");

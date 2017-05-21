@@ -281,48 +281,44 @@
                             <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="1" data-slider-step="0.025" data-slider-value="0.2" data-slider-id="GC" id="G-point" data-slider-tooltip="hide" data-slider-handle="square" data-slider-orientation="vertical" />
 
                             <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="1" data-slider-step="0.025" data-slider-value="0.2" data-slider-id="BC" id="B-point" data-slider-tooltip="hide" data-slider-handle="square" data-slider-orientation="vertical" />
-                            <div style="padding-top: 30%">
+                            <div style="padding-top: 64%; padding-bottom: 5%">
                                 <input id="use-animation" type="checkbox" value="animation" style="margin-left: 35%; margin-top: 5%" checked>
                                 <p style="color: white; margin-left: -18%">Use Animation</p>
                             </div>
                         </div>
-                        <br>
-                        <br>
-                        <br>
-                        <div id="opacity">
-                            <p>Opacity</p>
-                            <div id="opacity-slider" class=".rs-bg-color .rs-range-color .rs-border .rs-handle"></div>
-                        </div>
                     </div>
 
 
 
-                    <div id="add-shape-buttons-area" style="float: left; clear: both; padding-top: 4%; padding-left: 6%">
-                        <input id="use-light" type="checkbox" name="light" value="lightning" style="margin-left: 35%" checked>
-                        <p style="color: white;">Use Light</p>
-                        <!-- Button to add object to scene -->
-                        <button id="addShape" class="button add-your-shape-button">To Scene</button>
-                    </div>
+
+
 
                     <div class="center">
                         <!-- WEB GL Canvas editor area -->
                         <canvas id="Editor-Scene"></canvas>
+                    </div>
 
+
+
+
+
+
+
+                    <div id="preview-menu-bottom">
+                        <!-- Add Shape button -->
+                        <div id="add-shape-buttons-area">
+                            <input id="use-light" type="checkbox" name="light" value="lightning" style="margin-left: 35%" checked>
+                            <p style="color: white;">Use Light</p>
+                            <!-- Button to add object to scene -->
+                            <button id="addShape" class="button add-your-shape-button">To Scene</button>
+                        </div>
                         <!-- Color picker -->
                         <div id="color-picker">
-                            <p>
-                                R <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="1" data-slider-step="0.025" data-slider-value="0.5" data-slider-id="RC" id="R" data-slider-tooltip="hide" data-slider-handle="square"   />
-                            </p>
-                            <p>
-                                G <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="1" data-slider-step="0.025" data-slider-value="0.5" data-slider-id="GC" id="G" data-slider-tooltip="hide" data-slider-handle="square" />
-                            </p>
-                            <p>
-                                B <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="1" data-slider-step="0.025" data-slider-value="0.5" data-slider-id="BC" id="B" data-slider-tooltip="hide" data-slider-handle="square" />
-                            </p>
+                            <p>R <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="1" data-slider-step="0.025" data-slider-value="0.5" data-slider-id="RC" id="R" data-slider-tooltip="hide" data-slider-handle="square"   /></p>
+                            <p>G <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="1" data-slider-step="0.025" data-slider-value="0.5" data-slider-id="GC" id="G" data-slider-tooltip="hide" data-slider-handle="square" /></p>
+                            <p>B <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="1" data-slider-step="0.025" data-slider-value="0.5" data-slider-id="BC" id="B" data-slider-tooltip="hide" data-slider-handle="square" /></p>
                         </div>
-
-                        <!-- TODO on hover change cursor and highlight image-->
-
+                        <!-- Texture picker -->
                         <div id="texture-picker">
                             <div class="row">
                                 <div class="col-xs-2 col-md-3">
@@ -382,7 +378,19 @@
                                 </div>
                             </div>
                         </div>
+                        <!-- Opacity slider -->
+                        <div id="opacity">
+                            <p>Opacity</p>
+                            <div id="opacity-slider" class=".rs-bg-color .rs-range-color .rs-border .rs-handle"></div>
+                        </div>
                     </div>
+
+
+
+
+
+
+
 
 
                 </div>
@@ -452,7 +460,7 @@
 
                 <!--CODE zone-->
                 <div id="code-area">
-
+                    <img src="Awesome%20Code.png" class="img-rounded inline-block" alt="Awesome Code.png" >
                 </div>
 
 
