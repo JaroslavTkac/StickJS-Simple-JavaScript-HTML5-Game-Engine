@@ -16,6 +16,8 @@ let shaderProgramE;
 let mvMatrixE = mat4.create();
 let mvMatrixStackE = [];
 let pMatrixE = mat4.create();
+let editorObjectLoaded = false;
+let opacitySlider;
 // Animation
 let lastTime = 0;
 // Frames per Second
@@ -53,7 +55,9 @@ let canvas;
 let editorCanvas;
 
 //Change Colour in Editor
-let redChange = 0.5, blueChange = 0.5, greenChange = 0.5;
+let redChange = 0.5, blueChange = 0.5, greenChange = 0.5,
+    redAChange = 0.5, blueAChange = 0.5, greenAChange = 0.5,
+    redPChange = 0.2, bluePChange = 0.2, greenPChange = 0.2;
 
 
 function initGLForScene(canvas) {
@@ -94,7 +98,7 @@ function resize(canvas, webgl) {
     webgl.viewportWidth = displayWidth;
     webgl.viewportHeight = displayHeight;
 }
-function handleLoadedTextureMain(texture) { //TODO webgl or webglE use
+function handleLoadedTextureMain(texture) {
     webgl.pixelStorei(webgl.UNPACK_FLIP_Y_WEBGL, true);
 
     webgl.bindTexture(webgl.TEXTURE_2D, texture);
@@ -105,11 +109,11 @@ function handleLoadedTextureMain(texture) { //TODO webgl or webglE use
 
     webgl.bindTexture(webgl.TEXTURE_2D, null);
 }
-function handleLoadedTextureEditor(texture) { //TODO webgl or webglE use
+function handleLoadedTextureEditor(texture) {
     webglE.pixelStorei(webglE.UNPACK_FLIP_Y_WEBGL, true);
 
     webglE.bindTexture(webglE.TEXTURE_2D, texture);
-    webglE.texImage2D(webglE.TEXTURE_2D, 0, webglE.RGBA, webglE.RGBA,   webglE.UNSIGNED_BYTE, texture.image);
+    webglE.texImage2D(webglE.TEXTURE_2D, 0, webglE.RGBA, webglE.RGBA,  webglE.UNSIGNED_BYTE, texture.image);
     webglE.texParameteri(webglE.TEXTURE_2D, webglE.TEXTURE_MAG_FILTER, webglE.LINEAR);
     webglE.texParameteri(webglE.TEXTURE_2D, webglE.TEXTURE_MIN_FILTER, webglE.LINEAR_MIPMAP_NEAREST);
     webglE.generateMipmap(webglE.TEXTURE_2D);

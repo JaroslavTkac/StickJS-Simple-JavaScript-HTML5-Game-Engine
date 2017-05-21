@@ -63,9 +63,9 @@ class CreateShape{
         this.xRotSpeed = 0;
         this.yRotSpeed = 0;
         this.zRotSpeed = 0;
-        this.r = 0;
-        this.g = 1;
-        this.b = 0;
+        this.r = 0.5;
+        this.g = 0.5;
+        this.b = 0.5;
         if(saveTo === "objArray") {
             this.lastRendered = "main";
             this.texture = webgl.createTexture();
@@ -95,88 +95,79 @@ class CreateShape{
             glBindVertexBuffer(webgl, this.vertexPositionBuffer, shaderProgram, lastRenderedMainScene);
 
             glBindNormalBuffer(webgl, this.vertexNormalBuffer, shaderProgram, lastRenderedMainScene);
-             glBindTextureBuffer(webgl, this.vertexTextureCoordBuffer, shaderProgram, lastRenderedMainScene);
-             glBindTexture(webgl, this.texture, shaderProgram, lastRenderedMainScene);
+            glBindTextureBuffer(webgl, this.vertexTextureCoordBuffer, shaderProgram, lastRenderedMainScene);
+            glBindTexture(webgl, this.texture, shaderProgram, lastRenderedMainScene);
 
-             //Use Texture or Color
-             glUseTexture(webgl, this.useTexture, shaderProgram, lastRenderedMainScene);
+            //Use Texture or Color
+            glUseTexture(webgl, this.useTexture, shaderProgram, lastRenderedMainScene);
 
             glUseColor(webgl, this.r, this.g, this.b, shaderProgram, lastRenderedMainScene);
-            //webgl.uniform4f(shaderProgram.colorUniform, this.r, this.g, this.b, 1);
 
-
-            if (this.name === "editing") {
-                console.log(this.r + " " + this.g + " " + this.b);
-            }
             glPointLightIntensity(webgl, 250, shaderProgram, lastRenderedMainScene);
 
-             //Transparency
-             if (this.transparency)
-             glTransparent(webgl, this.transparency, this.alpha, shaderProgram, lastRenderedMainScene);
-             else
-             glNonTransparent(webgl, this.transparency, 1.0, shaderProgram, lastRenderedMainScene);
+            //Transparency
+            if (this.transparency)
+                glTransparent(webgl, this.transparency, 1.0, shaderProgram, lastRenderedMainScene); //this.alpha
+            else
+                glNonTransparent(webgl, this.transparency, 1.0, shaderProgram, lastRenderedMainScene);
 
-             //Lighting
-             glLighting(webgl, this.lighting, shaderProgram, lastRenderedMainScene);
-             if (this.lighting) {
-             //Ambient
-             glAmbientLight(webgl, ambientLight.r, ambientLight.g, ambientLight.b, shaderProgram, lastRenderedMainScene);
+            //Lighting
+            glLighting(webgl, this.lighting, shaderProgram, lastRenderedMainScene);
+            if (this.lighting) {
+                //Ambient
+                glAmbientLight(webgl, ambientLight.r, ambientLight.g, ambientLight.b, shaderProgram, lastRenderedMainScene);
 
-             //Directional
-             glDirectionalLightLocation(webgl, directionalLight.x, directionalLight.y, directionalLight.z, shaderProgram, lastRenderedMainScene);
-             glDirectionalLight(webgl, directionalLight.r, directionalLight.g, directionalLight.b, shaderProgram, lastRenderedMainScene);
+                //Directional
+                glDirectionalLightLocation(webgl, directionalLight.x, directionalLight.y, directionalLight.z, shaderProgram, lastRenderedMainScene);
+                glDirectionalLight(webgl, directionalLight.r, directionalLight.g, directionalLight.b, shaderProgram, lastRenderedMainScene);
 
-             //Point
-             for(let i in pointLightArray) {
-             glPointLightLocation(webgl, pointLightArray[i].x, pointLightArray[i].y, pointLightArray[i].z, shaderProgram, lastRenderedMainScene);
-             glPointLight(webgl, pointLightArray[i].r, pointLightArray[i].g, pointLightArray[i].b, shaderProgram, lastRenderedMainScene);
-             }
-             }
+                //Point
+                for(let i in pointLightArray) {
+                    glPointLightLocation(webgl, pointLightArray[i].x, pointLightArray[i].y, pointLightArray[i].z, shaderProgram, lastRenderedMainScene);
+                    glPointLight(webgl, pointLightArray[i].r, pointLightArray[i].g, pointLightArray[i].b, shaderProgram, lastRenderedMainScene);
+                }
+            }
             glBindBuffer(webgl, this.vertexIndexBuffer, lastRenderedMainScene);
         }
         else{
             glBindVertexBuffer(webgl, this.vertexPositionBuffer, shaderProgram, lastRenderedEditorScene);
 
             glBindNormalBuffer(webgl, this.vertexNormalBuffer, shaderProgram, lastRenderedEditorScene);
-             glBindTextureBuffer(webgl, this.vertexTextureCoordBuffer, shaderProgram, lastRenderedEditorScene);
-             glBindTexture(webgl, this.texture, shaderProgram, lastRenderedEditorScene);
+            glBindTextureBuffer(webgl, this.vertexTextureCoordBuffer, shaderProgram, lastRenderedEditorScene);
+            glBindTexture(webgl, this.texture, shaderProgram, lastRenderedEditorScene);
 
-             //Use Texture or Color
-             glUseTexture(webgl, this.useTexture, shaderProgram, lastRenderedEditorScene);
+            //Use Texture or Color
+            glUseTexture(webgl, this.useTexture, shaderProgram, lastRenderedEditorScene);
+            webgl.uniform1i(shaderProgram.useTexturesUniform, this.useTexture);
 
             glUseColor(webgl, this.r, this.g, this.b, shaderProgram, lastRenderedEditorScene);
 
-
-            if (this.name === "editing") {
-                console.log(this.r + " " + this.g + " " + this.b);
-            }
             glPointLightIntensity(webgl, 250, shaderProgram, lastRenderedEditorScene);
 
-             //Transparency
-             if (this.transparency)
-             glTransparent(webgl, this.transparency, this.alpha, shaderProgram, lastRenderedEditorScene);
-             else
-             glNonTransparent(webgl, this.transparency, 1.0, shaderProgram, lastRenderedEditorScene);
+            //Transparency
+            if (this.transparency)
+                 glTransparent(webgl, this.transparency, this.alpha, shaderProgram, lastRenderedEditorScene);
+            else
+                 glNonTransparent(webgl, this.transparency, 1.0, shaderProgram, lastRenderedEditorScene);
 
-             //Lighting
-             glLighting(webgl, this.lighting, shaderProgram, lastRenderedEditorScene);
-             if (this.lighting) {
-             //Ambient
-             glAmbientLight(webgl, ambientLight.r, ambientLight.g, ambientLight.b, shaderProgram, lastRenderedEditorScene);
+            //Lighting
+            glLighting(webgl, this.lighting, shaderProgram, lastRenderedEditorScene);
+            if (this.lighting) {
+                //Ambient
+                glAmbientLight(webgl, ambientLight.r, ambientLight.g, ambientLight.b, shaderProgram, lastRenderedEditorScene);
 
-             //Directional
-             glDirectionalLightLocation(webgl, directionalLight.x, directionalLight.y, directionalLight.z, shaderProgram, lastRenderedEditorScene);
-             glDirectionalLight(webgl, directionalLight.r, directionalLight.g, directionalLight.b, shaderProgram, lastRenderedEditorScene);
+                //Directional
+                glDirectionalLightLocation(webgl, directionalLight.x, directionalLight.y, directionalLight.z, shaderProgram, lastRenderedEditorScene);
+                glDirectionalLight(webgl, directionalLight.r, directionalLight.g, directionalLight.b, shaderProgram, lastRenderedEditorScene);
 
-             //Point
-             for(let i in pointLightArray) {
-             glPointLightLocation(webgl, pointLightArray[i].x, pointLightArray[i].y, pointLightArray[i].z, shaderProgram, lastRenderedEditorScene);
-             glPointLight(webgl, pointLightArray[i].r, pointLightArray[i].g, pointLightArray[i].b, shaderProgram, lastRenderedEditorScene);
-             }
-             }
+                //Point
+                for(let i in pointLightArray) {
+                    glPointLightLocation(webgl, pointLightArray[i].x, pointLightArray[i].y, pointLightArray[i].z, shaderProgram, lastRenderedEditorScene);
+                    glPointLight(webgl, pointLightArray[i].r, pointLightArray[i].g, pointLightArray[i].b, shaderProgram, lastRenderedEditorScene);
+                }
+            }
             glBindBuffer(webgl, this.vertexIndexBuffer, lastRenderedEditorScene);
         }
-
         setMatrixUniforms(webgl, shaderProgram, mvMatrix, pMatrix);
     }
     rotation(mvMatrix) {
@@ -288,10 +279,10 @@ function initProperties(object, properties, saveTo){
         loadedObjects++;
     }
     if(saveTo === "editor") {
-        console.log(object);
-        //console.log(object.vertexIndexBuffer);
         editorObjArray.push(object);
-        //console.log(editorObjArray.size);
+        editorObjectLoaded = true;
+        console.log(editorObjArray[0]);
+        console.log(opacitySlider.option("value"));
     }
 }
 function modifyObjByName(name){

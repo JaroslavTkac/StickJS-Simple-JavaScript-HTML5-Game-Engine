@@ -2,7 +2,7 @@
  * Created by jaroslavtkaciuk on 10/04/2017.
  */
 
-function orbitLight(){
+function orbitLight(pointLightArray){
     for(let i in pointLightArray) {
         pointLightArray[i].changePlace(
             (pointLightArray[i].centerX + Math.cos(pointLightArray[i].alpha) * pointLightArray[i].radius),
@@ -15,7 +15,7 @@ function orbitLight(){
 }
 
 function spaceImitation(){
-    orbitLight();
+    orbitLight(pointLightArray);
     chaos();
 }
 

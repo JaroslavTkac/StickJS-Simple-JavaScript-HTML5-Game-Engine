@@ -2,14 +2,15 @@
     <head>
         <title>StickJS</title>
         <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
-        <link rel="stylesheet" href="Styles/styles.css">
-
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/9.8.0/bootstrap-slider.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/jquery.roundslider/1.3/roundslider.min.js"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/jquery.roundslider/1.3/roundslider.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/9.8.0/css/bootstrap-slider.min.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="Styles/styles.css">
 
 
         <script type="text/javascript" src="Library/glMatrix-0.9.5.min.js"></script>
@@ -28,7 +29,13 @@
 
         <script>
             $(document).ready(function () {
-                $(function () {
+                let lastSelectedTexture = "Standard textures/sun.jpg";
+                let currentlySelectedShape = "Scripts/Shapes/cube.json";
+                let isTextureWillBeUsed;
+                let isLightWillBeUsed;
+                $('#color-picker').css('display', 'inline');
+
+                /*$(function () {
                     let window_height = $(window).height(),
                         content_height = window_height - 600;
 
@@ -38,36 +45,188 @@
                     let window_height = $(window).height(),
                         content_height = window_height - 600;
                     $('#bottom-menu').height(content_height);
-                });
+                });*/
 
-                $('.nav.navbar-nav.top > li').on('click', function (e) { //TODO highlight nav bar current element
+                $('.nav.navbar-nav.top > li').on('click', function (e) {
                     e.preventDefault();
                     $('.nav.navbar-nav.top> li').removeClass('active');
                     $(this).addClass('active');
+                    if($(this).text() === "Texture"){
+                        $('#Editor-Scene').css('display', 'inline');
+                        $('#color-picker').css('display', 'none');
+                        $('#texture-picker').css('display', 'inline');
+                        //color & more
+                        $('#light-control').css('display', 'inline');
+                        $('#additional-menu').css('display', 'inline');
+                        $('#add-shape-buttons-area').css('display', 'inline');
+                        applyTexture(lastSelectedTexture);
+                    }
+                    if($(this).text() === "Colour"){
+                        editorObjArray[0].useTexture = false;
+                        $('#Editor-Scene').css('display', 'inline');
+                        $('#texture-picker').css('display', 'none');
+                        $('#color-picker').css('display', 'inline');
+                        //color & more
+                        $('#light-control').css('display', 'inline');
+                        $('#additional-menu').css('display', 'inline');
+                        $('#add-shape-buttons-area').css('display', 'inline');
+                    }
+                    if($(this).text() === "Sound"){
+                        $('#texture-picker').css('display', 'none');
+                        $('#color-picker').css('display', 'none');
+                        $('#Editor-Scene').css('display', 'none');
+                        //color & more
+                        $('#light-control').css('display', 'none');
+                        $('#additional-menu').css('display', 'none');
+                        $('#add-shape-buttons-area').css('display', 'none');
+                    }
                 });
-                $('.nav.navbar-nav.bot > li').on('click', function (e) { //TODO highlight nav bar current element
+
+                $('.nav.navbar-nav.bot > li').on('click', function (e) {
                     e.preventDefault();
                     $('.nav.navbar-nav.bot> li').removeClass('active');
                     $(this).addClass('active');
+                    if($(this).text() === "Standard Shapes"){
+                        $('#your-selectable-shapes').css('display', 'none');
+                        $('#selectable-shapes').css('display', 'inline');
+                    }
+                    if($(this).text() === "Your Shapes"){
+                        $('#selectable-shapes').css('display', 'none');
+                        $('#your-selectable-shapes').css('display', 'inline');
+                    }
                 });
 
-                var RGBChange = function() {
-                    //console.log("R: " + red.getValue()+ " G: " + green.getValue() + " B: " + blue.getValue());
+                $('.texture').on('click', function (e) {
+                   e.preventDefault();
+                   applyTexture("Standard textures/" + $(this).attr("alt") );
+                   lastSelectedTexture = "Standard textures/" + $(this).attr("alt");
+                });
+
+                //Add Shape to Editor
+                $('.shape').on('click', function (e) {
+                    e.preventDefault();
+                    editorObjectLoaded = false;
+                    editorObjArray.pop();
+                    isTextureWillBeUsed = $('#color-picker').css('display') === 'none';
+                    isLightWillBeUsed = !!$('#use-light').prop("checked");
+                    currentlySelectedShape = "Scripts/Shapes/" + $(this).attr("alt") + ".json";
+
+                    new LoadObject("Scripts/Shapes/" + $(this).attr("alt") + ".json", lastSelectedTexture, {
+                        "name": "forEditor",
+                        "z": -4,
+                        "r": redChange,
+                        "g": greenChange,
+                        "b": blueChange,
+                        "yRot": 50,
+                        "yRotSpeed": 275,
+                        "lighting": isLightWillBeUsed,
+                        "animateRotation": true,
+                        "useTexture": isTextureWillBeUsed,
+                        "useCamera": true,
+                        "transparency": true,
+                        "alpha": opacitySlider.option("value")
+                    }, "editor");
+
+                });
+
+                $('#use-light').on('click', function (e) {
+                    editorObjArray[0].lighting = !!$(this).prop("checked");
+                });
+                $('#use-combine-ambient').on('click', function (e) {
+                    if($(this).prop("checked")){
+                        $('#ambient-light-full').css('display', 'none');
+                        $('#ambient-light-combined').css('display', 'inline');
+                    }
+                    else{
+                        $('#ambient-light-combined').css('display', 'none');
+                        $('#ambient-light-full').css('display', 'inline');
+                    }
+                });
+
+                $('#use-animation').on('click', function (e) {
+                   if($(this).prop("checked")){
+                       pointLightArrayE[0].alphaInc = 0.02;
+                   }
+                   else{
+                       pointLightArrayE[0].alphaInc = 0.0;
+                   }
+                });
+
+                //Add Shape to Scene
+                $('#addShape').on('click', function () {
+                    isTextureWillBeUsed = $('#color-picker').css('display') === 'none';
+                    isLightWillBeUsed = !!$('#use-light').prop("checked");
+                    let trasperent = true;
+                    if(opacitySlider.option("value") === 1.0)
+                        trasperent = false;
+
+                    new LoadObject(currentlySelectedShape, lastSelectedTexture, {
+                        "name": "fromEditor",
+                        "x": -10 + Math.random() * 15,
+                        "y": -10 + Math.random() * 15,
+                        "z": -10 + Math.random() * 15,
+                        "r": redChange,
+                        "g": greenChange,
+                        "b": blueChange,
+                        "yRot": 50,
+                        "yRotSpeed": 25,
+                        "lighting": isLightWillBeUsed,
+                        "animateRotation": true,
+                        "useTexture": isTextureWillBeUsed,
+                        "transparency": trasperent,
+                        "alpha": opacitySlider.option("value")
+                    }, "objArray");
+                });
+
+                opacitySlider = $('#opacity-slider').roundSlider({
+                    sliderType: "min-range",
+                    value: 1.0,
+                    max: 1.0,
+                    step: 0.025,
+                    radius: 90,
+                    circleShape: "quarter-top-left",
+                    showTooltip: false,
+                    handleShape: "square",
+                    width: 12,
+                    handleSize: "+8"
+                }).data("roundSlider");
+
+
+
+                let RGBChange = function() {
                     redChange = red.getValue();
                     greenChange = green.getValue();
                     blueChange = blue.getValue();
+                    redPChange = redP.getValue();
+                    greenPChange = greenP.getValue();
+                    bluePChange = blueP.getValue();
+                };
+                let RGBAmbientChange = function () {
+                    if($('#use-combine-ambient').prop("checked")){
+                        redAChange = combinedALight.getValue();
+                        greenAChange = combinedALight.getValue();
+                        blueAChange = combinedALight.getValue();
+                    }
+                    else{
+                        redAChange = redA.getValue();
+                        greenAChange = greenA.getValue();
+                        blueAChange = blueA.getValue();
+                    }
                 };
 
-                var red = $('#R').slider()
-                    .on('slide', RGBChange)
-                    .data('slider');
-                var green = $('#G').slider()
-                    .on('slide', RGBChange)
-                    .data('slider');
-                var blue = $('#B').slider()
-                    .on('slide', RGBChange)
-                    .data('slider');
+                let red = $('#R').slider().on('slide', RGBChange).data('slider');
+                let green = $('#G').slider().on('slide', RGBChange).data('slider');
+                let blue = $('#B').slider().on('slide', RGBChange).data('slider');
 
+                let redA = $("#R-ambient").slider().on('slide', RGBAmbientChange).data('slider');
+                let greenA = $("#G-ambient").slider().on('slide', RGBAmbientChange).data('slider');
+                let blueA = $("#B-ambient").slider().on('slide', RGBAmbientChange).data('slider');
+
+                let redP = $("#R-point").slider().on('slide', RGBChange).data('slider');
+                let greenP = $("#G-point").slider().on('slide', RGBChange).data('slider');
+                let blueP = $("#B-point").slider().on('slide', RGBChange).data('slider');
+
+                let combinedALight = $("#combined-light").slider().on('slide', RGBAmbientChange).data('slider');
             });
 
         </script>
@@ -95,14 +254,64 @@
                             </ul>
                         </nav>
                     </div>
+                    <div id="light-control">
+                        <p>Ambient light</p>
+                        <div id="ambient-light-full" style="padding-left: 15%">
+                            <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="1" data-slider-step="0.025" data-slider-value="0.5" data-slider-id="RC" id="R-ambient" data-slider-tooltip="hide" data-slider-handle="square" data-slider-orientation="vertical" />
+
+                            <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="1" data-slider-step="0.025" data-slider-value="0.5" data-slider-id="GC" id="G-ambient" data-slider-tooltip="hide" data-slider-handle="square" data-slider-orientation="vertical" />
+
+                            <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="1" data-slider-step="0.025" data-slider-value="0.5" data-slider-id="BC" id="B-ambient" data-slider-tooltip="hide" data-slider-handle="square" data-slider-orientation="vertical" />
+                        </div>
+                        <div id="ambient-light-combined" style="display: none">
+                            <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="1" data-slider-step="0.025" data-slider-value="0.5" data-slider-id="combined" id="combined-light" data-slider-tooltip="hide" data-slider-handle="square" data-slider-orientation="vertical" />
+                        </div>
+                        <div style="padding-top: 55%; padding-left: 6%;">
+                            <input id="use-combine-ambient" type="checkbox" value="combining" style="margin-left: 41%">
+                            <p style="color: white;">Combine</p>
+                        </div>
+
+                    </div>
+
+                    <div id="additional-menu">
+                        <p>Point light</p>
+                        <div style="padding-left: 15%">
+                            <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="1" data-slider-step="0.025" data-slider-value="0.2" data-slider-id="RC" id="R-point" data-slider-tooltip="hide" data-slider-handle="square" data-slider-orientation="vertical" />
+
+                            <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="1" data-slider-step="0.025" data-slider-value="0.2" data-slider-id="GC" id="G-point" data-slider-tooltip="hide" data-slider-handle="square" data-slider-orientation="vertical" />
+
+                            <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="1" data-slider-step="0.025" data-slider-value="0.2" data-slider-id="BC" id="B-point" data-slider-tooltip="hide" data-slider-handle="square" data-slider-orientation="vertical" />
+                            <div style="padding-top: 30%">
+                                <input id="use-animation" type="checkbox" value="animation" style="margin-left: 35%; margin-top: 5%" checked>
+                                <p style="color: white; margin-left: -18%">Use Animation</p>
+                            </div>
+                        </div>
+                        <br>
+                        <br>
+                        <br>
+                        <div id="opacity">
+                            <p>Opacity</p>
+                            <div id="opacity-slider" class=".rs-bg-color .rs-range-color .rs-border .rs-handle"></div>
+                        </div>
+                    </div>
+
+
+
+                    <div id="add-shape-buttons-area" style="float: left; clear: both; padding-top: 4%; padding-left: 6%">
+                        <input id="use-light" type="checkbox" name="light" value="lightning" style="margin-left: 35%" checked>
+                        <p style="color: white;">Use Light</p>
+                        <!-- Button to add object to scene -->
+                        <button id="addShape" class="button add-your-shape-button">To Scene</button>
+                    </div>
 
                     <div class="center">
                         <!-- WEB GL Canvas editor area -->
                         <canvas id="Editor-Scene"></canvas>
+
                         <!-- Color picker -->
                         <div id="color-picker">
                             <p>
-                                R <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="1" data-slider-step="0.025" data-slider-value="0.5" data-slider-id="RC" id="R" data-slider-tooltip="hide" data-slider-handle="square" />
+                                R <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="1" data-slider-step="0.025" data-slider-value="0.5" data-slider-id="RC" id="R" data-slider-tooltip="hide" data-slider-handle="square"   />
                             </p>
                             <p>
                                 G <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="1" data-slider-step="0.025" data-slider-value="0.5" data-slider-id="GC" id="G" data-slider-tooltip="hide" data-slider-handle="square" />
@@ -111,7 +320,70 @@
                                 B <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="1" data-slider-step="0.025" data-slider-value="0.5" data-slider-id="BC" id="B" data-slider-tooltip="hide" data-slider-handle="square" />
                             </p>
                         </div>
+
+                        <!-- TODO on hover change cursor and highlight image-->
+
+                        <div id="texture-picker">
+                            <div class="row">
+                                <div class="col-xs-2 col-md-3">
+                                    <a href="#" class="thumbnail" >
+                                        <img src="Standard%20textures/sun.jpg" class="img-rounded inline-block texture" alt="sun.jpg" >
+                                    </a>
+                                </div>
+                                <div class="col-xs-2 col-md-3">
+                                    <a href="#" class="thumbnail" >
+                                        <img src="Standard%20textures/metal.jpg" class="img-rounded inline-block texture" alt="metal.jpg" >
+                                    </a>
+                                </div>
+                                <div class="col-xs-2 col-md-3">
+                                    <a href="#" class="thumbnail" >
+                                        <img src="Standard%20textures/carbon_fiber.jpg" class="img-rounded inline-block texture" alt="carbon_fiber.jpg" >
+                                    </a>
+                                </div>
+                                <div class="col-xs-2 col-md-3">
+                                    <a href="#" class="thumbnail" >
+                                        <img src="Standard%20textures/wood.jpg" class="img-rounded inline-block texture" alt="wood.jpg" >
+                                    </a>
+                                </div>
+                                <div class="col-xs-2 col-md-3">
+                                    <a href="#" class="thumbnail" >
+                                        <img src="Standard%20textures/leather.jpg" class="img-rounded inline-block texture" alt="leather.jpg" >
+                                    </a>
+                                </div>
+                                <div class="col-xs-2 col-md-3">
+                                    <a href="#" class="thumbnail" >
+                                        <img src="Standard%20textures/asphalt.jpg" class="img-rounded inline-block texture" alt="asphalt.jpg" >
+                                    </a>
+                                </div>
+                                <div class="col-xs-2 col-md-3">
+                                    <a href="#" class="thumbnail" >
+                                        <img src="Standard%20textures/glass.jpg" class="img-rounded inline-block texture" alt="glass.jpg" >
+                                    </a>
+                                </div>
+                                <div class="col-xs-2 col-md-3">
+                                    <a href="#" class="thumbnail" >
+                                        <img src="Standard%20textures/grass.jpg" class="img-rounded inline-block texture" alt="grass.jpg" >
+                                    </a>
+                                </div>
+                                <div class="col-xs-2 col-md-3">
+                                    <a href="#" class="thumbnail" >
+                                        <img src="Standard%20textures/lava.jpg" class="img-rounded inline-block texture" alt="lava.jpg" >
+                                    </a>
+                                </div>
+                                <div class="col-xs-2 col-md-3">
+                                    <a href="#" class="thumbnail" >
+                                        <img src="Standard%20textures/molten_lava.jpg" class="img-rounded inline-block texture" alt="molten_lava.jpg" >
+                                    </a>
+                                </div>
+                                <div class="col-xs-2 col-md-3">
+                                    <a href="#" class="thumbnail" >
+                                        <img src="Standard%20textures/snow.jpg" class="img-rounded inline-block texture" alt="snow.jpg" >
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+
 
                 </div>
 
@@ -139,80 +411,49 @@
                         </ul>
                     </nav>
                     <div id="filler"> </div>
-                    <div class="row">
-                        <div class="col-xs-4 col-md-2">
-                            <a href="#" class="thumbnail" >
-                                <img src="Standard%20textures/sun.jpg" class="img-rounded inline-block" alt="..." >
-                            </a>
+                    <div id="selectable-shapes">
+                        <div class="row">
+                            <div class="col-xs-4 col-md-3">
+                                <a href="#" class="thumbnail" >
+                                    <img src="Shape%20preview/cube.jpg" class="img-rounded inline-block shape" alt="cube" >
+                                </a>
+                            </div>
+                            <div class="col-xs-4 col-md-3">
+                                <a href="#" class="thumbnail" >
+                                    <img src="Shape%20preview/cone.jpg" class="img-rounded inline-block shape" alt="cone" >
+                                </a>
+                            </div>
+                            <div class="col-xs-4 col-md-3">
+                                <a href="#" class="thumbnail" >
+                                    <img src="Shape%20preview/cylinder.jpg" class="img-rounded inline-block shape" alt="cylinder" >
+                                </a>
+                            </div>
+                            <div class="col-xs-4 col-md-3">
+                                <a href="#" class="thumbnail" >
+                                    <img src="Shape%20preview/simple-sphere.jpg" class="img-rounded inline-block shape" alt="simpleSphere" >
+                                </a>
+                            </div>
+                            <div class="col-xs-4 col-md-3">
+                                <a href="#" class="thumbnail" >
+                                    <img src="Shape%20preview/sphere.jpg" class="img-rounded inline-block shape" alt="sphere" >
+                                </a>
+                            </div>
                         </div>
-                        <div class="col-xs-4 col-md-2">
-                            <a href="#" class="thumbnail" >
-                                <img src="Standard%20textures/sun.jpg" class="img-rounded inline-block" alt="..." >
-                            </a>
+                    </div>
+                    <div id="your-selectable-shapes" style="display: none">
+                        <div style="padding: 0 0 0 1%;">
+                            <button class="button add-your-shape-button">Add Shape</button>
                         </div>
-                        <div class="col-xs-4 col-md-2">
-                            <a href="#" class="thumbnail" >
-                                <img src="Standard%20textures/sun.jpg" class="img-rounded inline-block" alt="..." >
-                            </a>
-                        </div>
-                        <div class="col-xs-4 col-md-2">
-                            <a href="#" class="thumbnail" >
-                                <img src="Standard%20textures/sun.jpg" class="img-rounded inline-block" alt="..." >
-                            </a>
-                        </div>
-                        <div class="col-xs-4 col-md-2">
-                            <a href="#" class="thumbnail" >
-                                <img src="Standard%20textures/sun.jpg" class="img-rounded inline-block" alt="..." >
-                            </a>
-                        </div>
-                        <div class="col-xs-4 col-md-2">
-                            <a href="#" class="thumbnail" >
-                                <img src="Standard%20textures/sun.jpg" class="img-rounded inline-block" alt="..." >
-                            </a>
-                        </div>
-                        <div class="col-xs-4 col-md-2">
-                            <a href="#" class="thumbnail" >
-                                <img src="Standard%20textures/sun.jpg" class="img-rounded inline-block" alt="..." >
-                            </a>
-                        </div>
-                        <div class="col-xs-4 col-md-2">
-                            <a href="#" class="thumbnail" >
-                                <img src="Standard%20textures/sun.jpg" class="img-rounded inline-block" alt="..." >
-                            </a>
-                        </div>
-                        <div class="col-xs-4 col-md-2">
-                            <a href="#" class="thumbnail" >
-                                <img src="Standard%20textures/sun.jpg" class="img-rounded inline-block" alt="..." >
-                            </a>
-                        </div>
-                        <div class="col-xs-4 col-md-2">
-                            <a href="#" class="thumbnail" >
-                                <img src="Standard%20textures/sun.jpg" class="img-rounded inline-block" alt="..." >
-                            </a>
-                        </div>
-                        <div class="col-xs-4 col-md-2">
-                            <a href="#" class="thumbnail" >
-                                <img src="Standard%20textures/sun.jpg" class="img-rounded inline-block" alt="..." >
-                            </a>
-                        </div>
-                        <div class="col-xs-4 col-md-2">
-                            <a href="#" class="thumbnail" >
-                                <img src="Standard%20textures/sun.jpg" class="img-rounded inline-block" alt="..." >
-                            </a>
-                        </div>
-                        <div class="col-xs-4 col-md-2">
-                            <a href="#" class="thumbnail" >
-                                <img src="Standard%20textures/sun.jpg" class="img-rounded inline-block" alt="..." >
-                            </a>
-                        </div>
-                        <div class="col-xs-4 col-md-2">
-                            <a href="#" class="thumbnail" >
-                                <img src="Standard%20textures/sun.jpg" class="img-rounded inline-block" alt="..." >
-                            </a>
+                        <div class="row">
+
                         </div>
                     </div>
                 </div>
 
+                <!--CODE zone-->
+                <div id="code-area">
+
+                </div>
 
 
 

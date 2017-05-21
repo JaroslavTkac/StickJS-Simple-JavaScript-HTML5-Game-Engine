@@ -8,7 +8,7 @@ function AmbientLight(r, g, b){
     this.b = b;
 }
 class DirectionalLight{
-    constructor(r, g, b, x, y, z){
+    constructor(r, g, b, x, y, z, createObj){
         this.r = r;
         this.g = g;
         this.b = b;
@@ -16,6 +16,7 @@ class DirectionalLight{
         this.y = y;
         this.z = z;
         this.name = "directional";
+        this.createObj = createObj;
         /*new LoadObject("Scripts/Shapes/sphere1.json", "Standard textures/sun.jpg", {
             "name" : this.name,
             "x": this.x,
@@ -33,9 +34,11 @@ class DirectionalLight{
         });*/
     }
     changePlace(x, y, z){
-       /* modifyObjByName(this.name).x = x;
-        modifyObjByName(this.name).y = y;
-        modifyObjByName(this.name).z = z;*/
+        if(this.createObj) {
+             modifyObjByName(this.name).x = x;
+             modifyObjByName(this.name).y = y;
+             modifyObjByName(this.name).z = z;
+        }
 
         this.x = x;
         this.y = y;
@@ -71,7 +74,7 @@ class PointLight{
                 "yRotSpeed": 45,
                 "animateRotation": true,
                 "lighting": false,
-                "useTexture": false
+                "useTexture": true
             }, saveTo);
         }
     }

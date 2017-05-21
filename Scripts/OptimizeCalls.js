@@ -155,6 +155,7 @@ function glPointLight(webgl, r, g, b, shaderProgram, lastRendered){
     if(lastRendered.pointR !== r || lastRendered.pointG !== g || lastRendered.pointB !== b){
         webgl.uniform3f(shaderProgram.pointLightingColorUniform, r, g, b);
 
+        console.log("do");
         lastRendered.pointR = r;
         lastRendered.pointG = g;
         lastRendered.pointB = b;

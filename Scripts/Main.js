@@ -93,7 +93,7 @@ function drawScene(canvas, webgl, array, mvMatrix, pMatrix, mvMatrixStack, shade
         ]);
         mat4.multiply(mvMatrix, scaleMatrix);
 
-        //array[i].rotation(mvMatrix);
+        array[i].rotation(mvMatrix);
         array[i].draw(webgl, mvMatrix, pMatrix, shaderProgram, ambientLight, directionalLight, pointLightArray);
 
         webgl.drawElements(webgl.TRIANGLES, array[i].vertexIndexBuffer.numItems, webgl.UNSIGNED_SHORT, 0);
@@ -110,9 +110,9 @@ function webGLStart() {
     mainShader();
     //initBuffers();
 
-    ambientLight = new AmbientLight(0.25, 0.25, 0.25);
-    directionalLight = new DirectionalLight(0.15, 0.15, 0.15, 0, 0, 50);
-    pointLightArray.push(new PointLight("sun", 0.6, 0.2, 0.1, -10, 0, -50, 50, 0.025, "objArray", true));
+    ambientLight = new AmbientLight(0.35, 0.35, 0.35);
+    directionalLight = new DirectionalLight(0.05, 0.05, 0.05, 0, 0, 50, false);
+    pointLightArray.push(new PointLight("sun", 0.3, 0.2, 0.1, -10, 0, -50, 50, 0.025, "objArray", true));
 
 
     webgl.clearColor(0, 0, 0, 1.0);
@@ -161,12 +161,13 @@ function webGLStart() {
     //TODO Grupavimas
 
 
-    world(100);
-    //demoPlayer();
+    world(600);
+    demoPlayer();
 
     loaderElement = document.getElementById("loading-progress");
     loaderNode = document.createTextNode("");
     loading();
+
 }
 
 function loading(){
@@ -202,6 +203,7 @@ function render() {
     fpsCounter();
     avgFps();
     renderEditor();
+
 }
 
 function world(size) {
@@ -265,7 +267,7 @@ function world(size) {
             "yRotSpeed": Math.random() * 35,
             "zRotSpeed": Math.random() * 35,
             "animateRotation": Math.random() < 0.95,
-            "useTexture": false,//Math.random() > 0.7,
+            "useTexture": Math.random() > 0.5,
             "alpha" : Math.random() + 0.4
         });
     }
