@@ -75,6 +75,7 @@ function animateEditor(array) {
     lastTime = timeNow;
 }
 function applyTexture(textureSrc){
+    console.log(textureSrc);
     editorObjArray[0].useTexture = true;
     editorObjArray[0].texture = webglE.createTexture();
     editorObjArray[0].initTexture(editorObjArray[0].texture, textureSrc, "editor");
