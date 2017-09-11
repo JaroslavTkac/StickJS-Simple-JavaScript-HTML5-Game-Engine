@@ -2,8 +2,65 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4d98851f-1cbe-463c-84f1-c95cfca61c40" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.gitignore" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/css/styles.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/js/UploadHandler.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/js/UserInterfaceScripts.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/js/bootstrap.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/js/jquery.fileupload.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/js/jquery.iframe-transport.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/js/jquery.knob.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/js/jquery.ui.widget.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/scripts/Animations.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/scripts/EditorMainWindow.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/scripts/Scripts.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/upload.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/user_data" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Awesome Code.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Scripts/Animations.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Scripts/EditorMainWindow.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Shape preview/cone.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Shape preview/cube.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Shape preview/cylinder.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Shape preview/simple-sphere.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Shape preview/sphere.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Styles/styles.css" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Additional/WebglHelper.js" afterPath="$PROJECT_DIR$/assets/js/WebglHelper.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Ataskaita ir kiti dokumentai/Jaroslav Tkačiuk Ataskaita.pdf" afterPath="$PROJECT_DIR$/Ataskaita/Jaroslav Tkačiuk Ataskaita.pdf" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Ataskaita ir kiti dokumentai/Jaroslav Tkačiuk Tiriamasis Seminaras.rar" afterPath="$PROJECT_DIR$/Ataskaita/Jaroslav Tkačiuk Tiriamasis Seminaras.rar" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Library/glMatrix-0.9.5.min.js" afterPath="$PROJECT_DIR$/assets/js/glMatrix-0.9.5.min.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Library/webgl-utils.js" afterPath="$PROJECT_DIR$/assets/js/webgl-utils.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Scripts/Audio.js" afterPath="$PROJECT_DIR$/scripts/Audio.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Scripts/Controls.js" afterPath="$PROJECT_DIR$/scripts/Controls.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Scripts/Group.js" afterPath="$PROJECT_DIR$/scripts/Group.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Scripts/Lightning.js" afterPath="$PROJECT_DIR$/scripts/Lightning.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Scripts/Main.js" afterPath="$PROJECT_DIR$/scripts/Main.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Scripts/OptimizeCalls.js" afterPath="$PROJECT_DIR$/scripts/OptimizeCalls.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Scripts/Scene.js" afterPath="$PROJECT_DIR$/scripts/Scene.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Scripts/Shaders.js" afterPath="$PROJECT_DIR$/scripts/Shaders.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Scripts/Shapes/cone.json" afterPath="$PROJECT_DIR$/shapes/cone.json" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Scripts/Shapes/cube.json" afterPath="$PROJECT_DIR$/shapes/cube.json" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Scripts/Shapes/cylinder.json" afterPath="$PROJECT_DIR$/shapes/cylinder.json" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Scripts/Shapes/simpleSphere.json" afterPath="$PROJECT_DIR$/shapes/simpleSphere.json" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Scripts/Shapes/sphere.json" afterPath="$PROJECT_DIR$/shapes/sphere.json" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Standard sounds/rotation_engine.mp3" afterPath="$PROJECT_DIR$/assets/music/standard_sounds/rotation_engine.mp3" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Standard sounds/space_ambient.mp3" afterPath="$PROJECT_DIR$/assets/music/standard_sounds/space_ambient.mp3" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Standard sounds/space_engine.mp3" afterPath="$PROJECT_DIR$/assets/music/standard_sounds/space_engine.mp3" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Standard textures/asphalt.jpg" afterPath="$PROJECT_DIR$/assets/img/textures/asphalt.jpg" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Standard textures/carbon_fiber.jpg" afterPath="$PROJECT_DIR$/assets/img/textures/carbon_fiber.jpg" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Standard textures/deep_space.jpg" afterPath="$PROJECT_DIR$/assets/img/textures/deep_space.jpg" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Standard textures/glass.jpg" afterPath="$PROJECT_DIR$/assets/img/textures/glass.jpg" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Standard textures/grass.jpg" afterPath="$PROJECT_DIR$/assets/img/textures/grass.jpg" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Standard textures/lava.jpg" afterPath="$PROJECT_DIR$/assets/img/textures/lava.jpg" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Standard textures/leather.jpg" afterPath="$PROJECT_DIR$/assets/img/textures/leather.jpg" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Standard textures/metal.jpg" afterPath="$PROJECT_DIR$/assets/img/textures/metal.jpg" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Standard textures/molten_lava.jpg" afterPath="$PROJECT_DIR$/assets/img/textures/molten_lava.jpg" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Standard textures/snow.jpg" afterPath="$PROJECT_DIR$/assets/img/textures/snow.jpg" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Standard textures/sun.jpg" afterPath="$PROJECT_DIR$/assets/img/textures/sun.jpg" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Standard textures/wood.jpg" afterPath="$PROJECT_DIR$/assets/img/textures/wood.jpg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/StickJS-Simple-JavaScript-HTML5-Game-Engine.iml" afterPath="$PROJECT_DIR$/.idea/StickJS-Simple-JavaScript-HTML5-Game-Engine.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -15,192 +72,117 @@
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
     <favorites_list name="StickJS-Simple-JavaScript-HTML5-Game-Engine" />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/index.html">
+      <file leaf-file-name="editor.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/editor.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1350">
-              <caret line="100" column="25" lean-forward="false" selection-start-line="100" selection-start-column="25" selection-end-line="100" selection-end-column="25" />
+            <state relative-caret-position="510">
+              <caret line="34" column="4" lean-forward="false" selection-start-line="34" selection-start-column="4" selection-end-line="35" selection-end-column="77" />
               <folding>
-                <element signature="e#2310#2785#0" expanded="false" />
-                <element signature="e#7076#7171#0" expanded="false" />
-                <element signature="e#7241#7683#0" expanded="false" />
-                <element signature="e#7748#8001#0" expanded="false" />
-                <element signature="e#9305#9700#0" expanded="false" />
-                <element signature="e#9769#10094#0" expanded="false" />
-                <element signature="e#10147#10666#0" expanded="false" />
-                <element signature="n#style#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-                <element signature="n#style#0;n#nav#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-                <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#2;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#div#2;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-                <element signature="n#style#0;n#input#0;n#div#2;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#p#0;n#div#2;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#2;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#0;n#div#2;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#input#0;n#div#0;n#div#0;n#div#2;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#p#0;n#div#0;n#div#0;n#div#2;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#input#0;n#div#0;n#div#4;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#p#0;n#div#0;n#div#4;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#div#0;n#div#2;n#div#4;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-                <element signature="n#style#0;n#nav#0;n#div#2;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#2;n#div#2;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#2;n#div#2;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#nav#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+                <element signature="n#div#1;n#div#0;n#nav#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+                <element signature="n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
+                <element signature="n#nav#0;n#div#1;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
+                <element signature="n#div#0;n#div#1;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
+                <element signature="n#div#1;n#div#1;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
+                <element signature="n#div#2;n#div#1;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
+                <element signature="n#nav#0;n#div#1;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
+                <element signature="n#div#0;n#div#0;n#div#1;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
+                <element signature="n#div#1;n#div#0;n#div#1;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
+                <element signature="n#div#3;n#div#1;n#div#0;n#div#1;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
+                <element signature="n#div#4;n#div#1;n#div#0;n#div#1;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
+                <element signature="n#div#5;n#div#1;n#div#0;n#div#1;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
+                <element signature="n#div#6;n#div#1;n#div#0;n#div#1;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
+                <element signature="n#div#7;n#div#1;n#div#0;n#div#1;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
+                <element signature="n#div#2;n#div#0;n#div#1;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
+                <element signature="n#div#3;n#div#0;n#div#1;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="styles.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Styles/styles.css">
+      <file leaf-file-name="UploadHandler.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/assets/js/UploadHandler.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="720">
-              <caret line="174" column="19" lean-forward="false" selection-start-line="174" selection-start-column="19" selection-end-line="174" selection-end-column="19" />
+            <state relative-caret-position="407">
+              <caret line="460" column="56" lean-forward="false" selection-start-line="460" selection-start-column="43" selection-end-line="460" selection-end-column="56" />
               <folding>
-                <element signature="e#208#288#0" expanded="false" />
-                <element signature="e#297#331#0" expanded="false" />
-                <element signature="e#343#422#0" expanded="false" />
-                <element signature="e#431#759#0" expanded="false" />
-                <element signature="e#783#866#0" expanded="false" />
-                <element signature="e#896#948#0" expanded="false" />
-                <element signature="e#958#1161#0" expanded="false" />
-                <element signature="e#1170#1221#0" expanded="false" />
-                <element signature="e#1234#1257#0" expanded="false" />
-                <element signature="e#1267#1331#0" expanded="false" />
-                <element signature="e#1365#1638#0" expanded="false" />
-                <element signature="e#1655#1722#0" expanded="false" />
-                <element signature="e#1723#1844#0" expanded="false" />
-                <element signature="e#1845#2048#0" expanded="false" />
-                <element signature="e#2067#2240#0" expanded="false" />
-                <element signature="e#2256#2436#0" expanded="false" />
-                <element signature="e#2450#2534#0" expanded="false" />
-                <element signature="e#2545#2683#0" expanded="false" />
-                <element signature="e#2698#2848#0" expanded="false" />
-                <element signature="e#2865#2948#0" expanded="false" />
-                <element signature="e#2965#3116#0" expanded="false" />
-                <element signature="e#3136#3219#0" expanded="false" />
-                <element signature="e#3663#3684#0" expanded="false" />
-                <element signature="e#4056#4139#0" expanded="false" />
-                <element signature="e#4163#4191#0" expanded="false" />
-                <element signature="e#4211#4235#0" expanded="false" />
-                <element signature="e#4258#4286#0" expanded="false" />
-                <element signature="e#4306#4332#0" expanded="false" />
-                <element signature="e#4355#4383#0" expanded="false" />
-                <element signature="e#4403#4437#0" expanded="false" />
-                <element signature="e#4465#4533#0" expanded="false" />
-                <element signature="e#4558#4643#0" expanded="false" />
-                <element signature="e#4653#4694#0" expanded="false" />
-                <element signature="e#4706#4725#0" expanded="false" />
-                <element signature="e#4734#4802#0" expanded="false" />
-                <element signature="e#4810#4846#0" expanded="false" />
-                <element signature="e#4854#4876#0" expanded="false" />
-                <element signature="e#4889#4917#0" expanded="false" />
-                <element signature="e#4934#4962#0" expanded="false" />
-                <element signature="e#4973#4994#0" expanded="false" />
-                <element signature="e#5005#5033#0" expanded="false" />
+                <element signature="n#!!block;n#loadUserData#0" expanded="false" />
+                <element signature="e#9192#14729#0" expanded="false" />
+                <element signature="n#!!block;n#convert#0" expanded="false" />
+                <element signature="n#!!block;n#saveObject#0" expanded="false" />
+                <element signature="n#!!block;n#initUploadedObject#0" expanded="false" />
+                <element signature="n#!!block;n#deleteFileFromServer#0" expanded="false" />
+                <marker date="1505129819000" expanded="true" signature="4846:4859" ph="..." />
+                <marker date="1505129819000" expanded="true" signature="5905:5918" ph="..." />
+                <marker date="1505129819000" expanded="true" signature="6734:6747" ph="..." />
+                <marker date="1505129819000" expanded="true" signature="7908:7921" ph="..." />
+                <marker date="1505129819000" expanded="true" signature="8335:8348" ph="..." />
+                <marker date="1505129819000" expanded="true" signature="8763:8776" ph="..." />
+                <marker date="1505129819000" expanded="true" signature="12174:12187" ph="..." />
+                <marker date="1505129819000" expanded="true" signature="13974:13987" ph="..." />
+                <marker date="1505129819000" expanded="true" signature="19431:19444" ph="..." />
+                <marker date="1505129819000" expanded="true" signature="22530:22543" ph="..." />
+                <marker date="1505129819000" expanded="true" signature="22839:22852" ph="..." />
+                <marker date="1505129819000" expanded="true" signature="23149:23162" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Shaders.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Scripts/Shaders.js">
+      <file leaf-file-name="UserInterfaceScripts.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/assets/js/UserInterfaceScripts.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="885">
-              <caret line="61" column="44" lean-forward="false" selection-start-line="61" selection-start-column="44" selection-end-line="61" selection-end-column="44" />
+            <state relative-caret-position="328">
+              <caret line="249" column="22" lean-forward="true" selection-start-line="249" selection-start-column="22" selection-end-line="249" selection-end-column="22" />
               <folding>
-                <element signature="e#0#52#0" expanded="false" />
-                <element signature="e#8407#11677#0" expanded="false" />
+                <element signature="e#1758#2727#0" expanded="false" />
+                <element signature="e#2772#3077#0" expanded="false" />
+                <element signature="e#3186#4827#0" expanded="false" />
+                <element signature="e#4032#4452#0" expanded="false" />
+                <element signature="e#4492#4821#0" expanded="false" />
+                <element signature="e#4916#5581#0" expanded="false" />
+                <element signature="e#5718#6719#0" expanded="false" />
+                <element signature="e#6794#6863#0" expanded="false" />
+                <element signature="e#8188#8510#0" expanded="false" />
+                <element signature="e#8563#8738#0" expanded="false" />
+                <element signature="e#9966#10180#0" expanded="false" />
+                <element signature="e#11819#11928#0" expanded="false" />
+                <element signature="e#12013#12230#0" expanded="false" />
+                <element signature="e#13087#13605#0" expanded="false" />
+                <element signature="e#13792#14427#0" expanded="false" />
+                <element signature="e#14513#14776#0" expanded="false" />
+                <element signature="e#15113#15500#0" expanded="false" />
+                <element signature="e#16896#16931#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Main.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Scripts/Main.js">
+      <file leaf-file-name="Scripts.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/scripts/Scripts.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1935">
-              <caret line="129" column="5" lean-forward="false" selection-start-line="129" selection-start-column="5" selection-end-line="129" selection-end-column="5" />
+            <state relative-caret-position="51">
+              <caret line="25" column="9" lean-forward="false" selection-start-line="25" selection-start-column="9" selection-end-line="25" selection-end-column="9" />
               <folding>
-                <element signature="n#!!block;n#demoPlayer#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/README.md">
-          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-            <state split_layout="SPLIT">
-              <first_editor relative-caret-position="105">
-                <caret line="7" column="39" lean-forward="false" selection-start-line="7" selection-start-column="39" selection-end-line="7" selection-end-column="39" />
-                <folding />
-              </first_editor>
-              <second_editor />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="WebglHelper.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Additional/WebglHelper.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="19" column="17" lean-forward="false" selection-start-line="19" selection-start-column="17" selection-end-line="19" selection-end-column="17" />
-              <folding>
-                <element signature="e#0#52#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Animations.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Scripts/Animations.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="17" column="32" lean-forward="false" selection-start-line="17" selection-start-column="32" selection-end-line="17" selection-end-column="32" />
-              <folding>
-                <element signature="n#!!doc;n#orbitLight#0" expanded="false" />
+                <element signature="n#!!block;n#fpsCounter#0" expanded="false" />
+                <element signature="n#!!block;n#avgFps#0" expanded="false" />
+                <element signature="n#!!block;n#getKeyByName#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="EditorMainWindow.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Scripts/EditorMainWindow.js">
+        <entry file="file://$PROJECT_DIR$/scripts/EditorMainWindow.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1155">
-              <caret line="77" column="28" lean-forward="false" selection-start-line="77" selection-start-column="28" selection-end-line="77" selection-end-column="28" />
+            <state relative-caret-position="190">
+              <caret line="32" column="0" lean-forward="false" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Scene.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Scripts/Scene.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1635">
-              <caret line="109" column="25" lean-forward="false" selection-start-line="109" selection-start-column="25" selection-end-line="109" selection-end-column="25" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="OptimizeCalls.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Scripts/OptimizeCalls.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1515">
-              <caret line="103" column="39" lean-forward="false" selection-start-line="103" selection-start-column="39" selection-end-line="103" selection-end-column="39" />
-              <folding>
-                <element signature="n#!!doc;n#LastRendered#0" expanded="false" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -219,26 +201,42 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>mediump</find>
-      <find>mat4.set</find>
-      <find>shaderPr</find>
+      <find>use-animation</find>
+      <find>opacity-slider</find>
+      <find>fps</find>
+      <find>opacity</find>
+      <find>background</find>
+      <find>texture</find>
+      <find>save</find>
+      <find>texture-picker</find>
+      <find>saved-shape</find>
+      <find>hide</find>
+      <find>editor-area</find>
+      <find>saved-shape-canvas-container</find>
+      <find>lastSelectedTexture</find>
+      <find>alig</find>
+      <find>currentlySelectedShape</find>
+      <find>cube</find>
+      <find>$(this).attr(&quot;id&quot;)</find>
       <find>var</find>
-      <find>saveTo</find>
-      <find>pMatrix</find>
-      <find>1</find>
-      <find>shaderProgram</find>
-      <find>webgl</find>
-      <find>scro</find>
+      <find>editor-scen</find>
+      <find>objPreview</find>
       <find>.shape</find>
-      <find>shape</find>
-      <find>alpha</find>
-      <find>uUseLighting</find>
-      <find>add-</find>
+      <find>saved</find>
+      <find>savedShapeImg</find>
+      <find>overlay-btn</find>
+      <find>addShape</find>
+      <find>myModal</find>
+      <find>apply</find>
+      <find>opacitySlider</find>
+      <find>upload</find>
+      <find>savedDataToInit</find>
     </findStrings>
     <replaceStrings>
-      <replace>let</replace>
       <replace>shaderProgramE</replace>
       <replace>webglE</replace>
+      <replace>let</replace>
+      <replace>liveLoadedShapesArr</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -263,23 +261,38 @@
         <option value="$PROJECT_DIR$/Scripts/Shapes/LoadShape.js" />
         <option value="$PROJECT_DIR$/Scripts/LoadShape.js" />
         <option value="$PROJECT_DIR$/Scripts/Shapes/cylinder.json" />
-        <option value="$PROJECT_DIR$/Scripts/Shapes/cube.json" />
         <option value="$PROJECT_DIR$/myLibrary/WebglHelper.js" />
         <option value="$PROJECT_DIR$/Scripts/Camera.js" />
         <option value="$PROJECT_DIR$/Scripts/Group.js" />
         <option value="$PROJECT_DIR$/Scripts/Controls.js" />
-        <option value="$PROJECT_DIR$/Scripts/Audio.js" />
         <option value="$PROJECT_DIR$/Scripts/Animations.js" />
         <option value="$PROJECT_DIR$/Scripts/Lightning.js" />
-        <option value="$PROJECT_DIR$/Additional/WebglHelper.js" />
-        <option value="$PROJECT_DIR$/Scripts/OptimizeCalls.js" />
-        <option value="$PROJECT_DIR$/Scripts/Scene.js" />
-        <option value="$PROJECT_DIR$/Scripts/Shaders.js" />
-        <option value="$PROJECT_DIR$/Styles/styles.css" />
-        <option value="$PROJECT_DIR$/index.html" />
-        <option value="$PROJECT_DIR$/Scripts/EditorMainWindow.js" />
-        <option value="$PROJECT_DIR$/Scripts/Main.js" />
         <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/Scripts/OptimizeCalls.js" />
+        <option value="$PROJECT_DIR$/Scripts/Shaders.js" />
+        <option value="$PROJECT_DIR$/Additional/WebglHelper.js" />
+        <option value="$PROJECT_DIR$/Scripts/Audio.js" />
+        <option value="$PROJECT_DIR$/Scripts/Scene.js" />
+        <option value="$PROJECT_DIR$/Scripts/Shapes/cube.json" />
+        <option value="$PROJECT_DIR$/Scripts/Main.js" />
+        <option value="$PROJECT_DIR$/Scripts/EditorMainWindow.js" />
+        <option value="$PROJECT_DIR$/Styles/styles.css" />
+        <option value="$PROJECT_DIR$/assets/css/styles.css" />
+        <option value="$PROJECT_DIR$/scripts/WebglHelper.js" />
+        <option value="$PROJECT_DIR$/assets/js/WebglHelper.js" />
+        <option value="$PROJECT_DIR$/index.html" />
+        <option value="$PROJECT_DIR$/editor.html" />
+        <option value="$PROJECT_DIR$/upload.php" />
+        <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/scripts/Lightning.js" />
+        <option value="$PROJECT_DIR$/scripts/EditorMainWindow.js" />
+        <option value="$PROJECT_DIR$/scripts/Scripts.js" />
+        <option value="$PROJECT_DIR$/scripts/Main.js" />
+        <option value="$PROJECT_DIR$/scripts/Scene.js" />
+        <option value="$PROJECT_DIR$/assets/js/UploadHandler.js" />
+        <option value="$PROJECT_DIR$/shapes/user_shapes_data/savedShapes.txt" />
+        <option value="$PROJECT_DIR$/shapes/user_shapes_data/liveObjects.txt" />
+        <option value="$PROJECT_DIR$/assets/js/UserInterfaceScripts.js" />
       </list>
     </option>
   </component>
@@ -290,7 +303,7 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" fullScreen="true">
     <option name="width" value="1680" />
     <option name="height" value="1050" />
   </component>
@@ -312,124 +325,52 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="StickJS-Simple-JavaScript-HTML5-Game-Engine" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="StickJS-Simple-JavaScript-HTML5-Game-Engine" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="StickJS-Simple-JavaScript-HTML5-Game-Engine" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="StickJS-Simple-JavaScript-HTML5-Game-Engine" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Styles" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="StickJS-Simple-JavaScript-HTML5-Game-Engine" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="StickJS-Simple-JavaScript-HTML5-Game-Engine" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Standard textures" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="StickJS-Simple-JavaScript-HTML5-Game-Engine" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="StickJS-Simple-JavaScript-HTML5-Game-Engine" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Standard sounds" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="StickJS-Simple-JavaScript-HTML5-Game-Engine" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="StickJS-Simple-JavaScript-HTML5-Game-Engine" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Shape preview" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="StickJS-Simple-JavaScript-HTML5-Game-Engine" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="StickJS-Simple-JavaScript-HTML5-Game-Engine" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Scripts" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="StickJS-Simple-JavaScript-HTML5-Game-Engine" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="StickJS-Simple-JavaScript-HTML5-Game-Engine" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Scripts" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Shapes" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="StickJS-Simple-JavaScript-HTML5-Game-Engine" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="StickJS-Simple-JavaScript-HTML5-Game-Engine" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Additional" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
+          <expand>
+            <path>
+              <item name="StickJS-Simple-JavaScript-HTML5-Game-Engine" type="b2602c69:ProjectViewProjectNode" />
+              <item name="StickJS-Simple-JavaScript-HTML5-Game-Engine" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="StickJS-Simple-JavaScript-HTML5-Game-Engine" type="b2602c69:ProjectViewProjectNode" />
+              <item name="StickJS-Simple-JavaScript-HTML5-Game-Engine" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="assets" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="StickJS-Simple-JavaScript-HTML5-Game-Engine" type="b2602c69:ProjectViewProjectNode" />
+              <item name="StickJS-Simple-JavaScript-HTML5-Game-Engine" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="assets" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="css" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="StickJS-Simple-JavaScript-HTML5-Game-Engine" type="b2602c69:ProjectViewProjectNode" />
+              <item name="StickJS-Simple-JavaScript-HTML5-Game-Engine" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="assets" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="js" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="StickJS-Simple-JavaScript-HTML5-Game-Engine" type="b2602c69:ProjectViewProjectNode" />
+              <item name="StickJS-Simple-JavaScript-HTML5-Game-Engine" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="scripts" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="StickJS-Simple-JavaScript-HTML5-Game-Engine" type="b2602c69:ProjectViewProjectNode" />
+              <item name="StickJS-Simple-JavaScript-HTML5-Game-Engine" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="shapes" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="StickJS-Simple-JavaScript-HTML5-Game-Engine" type="b2602c69:ProjectViewProjectNode" />
+              <item name="StickJS-Simple-JavaScript-HTML5-Game-Engine" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="shapes" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="user_shapes_data" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+          </expand>
+          <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -438,19 +379,21 @@
     <property name="js.eslint.eslintPackage" value="" />
     <property name="HbShouldOpenHtmlAsHb" value="" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
-    <property name="FullScreen" value="true" />
+    <property name="settings.editor.selected.configurable" value="vcs.Git" />
+    <property name="add_unversioned_files" value="true&#10;/Applications/MAMP/htdocs/StickJS-Simple-JavaScript-HTML5-Game-Engine/shapes/user_shapes_data/savedShapes.txt&#10;/Applications/MAMP/htdocs/StickJS-Simple-JavaScript-HTML5-Game-Engine/shapes/user_shapes_data/liveObjects.txt" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/Standard sounds" />
-      <recent name="$PROJECT_DIR$/Standard textures" />
-      <recent name="$PROJECT_DIR$/Scripts/Shapes" />
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/server" />
+      <recent name="$PROJECT_DIR$/assets/js" />
       <recent name="$PROJECT_DIR$/Scripts" />
-      <recent name="$PROJECT_DIR$/myLibrary" />
+      <recent name="$PROJECT_DIR$/assets/img" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/Scripts/Shapes" />
       <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/assets/js" />
+      <recent name="$PROJECT_DIR$/Scripts/Shapes" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -466,24 +409,13 @@
     </option>
   </component>
   <component name="RunManager">
-    <configuration default="true" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application">
-      <method />
-    </configuration>
-    <configuration default="true" type="DartTestRunConfigurationType" factoryName="Dart Test">
-      <method />
-    </configuration>
-    <configuration default="true" type="JavaScriptTestRunnerJest" factoryName="Jest">
-      <node-interpreter value="project" />
-      <working-dir value="" />
+    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <gulpfile />
+      <tasks />
+      <arguments />
       <envs />
-      <scope-kind value="ALL" />
-      <method />
-    </configuration>
-    <configuration default="true" type="JavaScriptTestRunnerKarma" factoryName="Karma">
-      <config-file value="" />
-      <node-interpreter value="project" />
-      <envs />
-      <method />
     </configuration>
     <configuration default="true" type="JavaScriptTestRunnerProtractor" factoryName="Protractor">
       <config-file value="" />
@@ -497,19 +429,19 @@
     <configuration default="true" type="NodeJSConfigurationType" factoryName="Node.js" path-to-node="project" working-dir="">
       <method />
     </configuration>
-    <configuration default="true" type="cucumber.js" factoryName="Cucumber.js">
-      <option name="cucumberJsArguments" value="" />
-      <option name="executablePath" />
-      <option name="filePath" />
+    <configuration default="true" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
+      <TestRunner />
       <method />
     </configuration>
-    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
-      <node-interpreter>project</node-interpreter>
-      <node-options />
-      <gulpfile />
-      <tasks />
-      <arguments />
-      <envs />
+    <configuration default="true" type="PhpBehatConfigurationType" factoryName="Behat">
+      <BehatRunner />
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpLocalRunConfigurationType" factoryName="PHP Console">
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpSpecConfigurationType" factoryName="PHPSpec">
+      <PhpTestRunnerSettings />
       <method />
     </configuration>
     <configuration default="true" type="js.build_tools.npm" factoryName="npm">
@@ -606,20 +538,52 @@
       <workItem from="1495308983107" duration="13841000" />
       <workItem from="1495686444879" duration="472000" />
       <workItem from="1495749472541" duration="141000" />
+      <workItem from="1503045981512" duration="7215000" />
+      <workItem from="1503059872182" duration="5747000" />
+      <workItem from="1503130919902" duration="8952000" />
+      <workItem from="1503305789900" duration="3792000" />
+      <workItem from="1503418926076" duration="40000" />
+      <workItem from="1503481113213" duration="478000" />
+      <workItem from="1503559000023" duration="24014000" />
+      <workItem from="1504115662979" duration="3785000" />
+      <workItem from="1504287639465" duration="872000" />
+      <workItem from="1504288534850" duration="3857000" />
+      <workItem from="1504366600425" duration="5431000" />
+      <workItem from="1504436765079" duration="600000" />
+      <workItem from="1504521263874" duration="41000" />
+      <workItem from="1504526152414" duration="7293000" />
+      <workItem from="1504604133813" duration="5366000" />
+      <workItem from="1504680442151" duration="2105000" />
+      <workItem from="1504682769533" duration="149000" />
+      <workItem from="1504682939208" duration="94000" />
+      <workItem from="1504683081461" duration="14971000" />
+      <workItem from="1504872832543" duration="12385000" />
+      <workItem from="1505028332674" duration="7078000" />
+      <workItem from="1505110670739" duration="7831000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="294945000" />
+    <option name="totallyTimeSpent" value="417044000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15491259" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32906976" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24786325" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32958034" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32959184" sideWeight="0.502442" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32958034" sideWeight="0.497558" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24969475" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
@@ -630,13 +594,30 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32906976" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32857144" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="processedProjectFiles" value="true" />
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="RECENTLY_FILTERED_USER_GROUPS">
+                <collection />
+              </option>
+              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+                <collection />
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="Vcs.Log.UiProperties">
     <option name="RECENTLY_FILTERED_USER_GROUPS">
@@ -651,489 +632,280 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="72" />
+      <option name="time" value="87" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/lesson 4.html" />
-    <entry file="file://$PROJECT_DIR$/Learning WebGL — lesson 4.html" />
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2100">
-          <caret line="140" column="78" lean-forward="false" selection-start-line="140" selection-start-column="78" selection-end-line="140" selection-end-column="78" />
-          <folding>
-            <element signature="e#2310#2785#0" expanded="false" />
-            <element signature="e#7076#7171#0" expanded="false" />
-            <element signature="e#7241#7683#0" expanded="false" />
-            <element signature="e#7748#8001#0" expanded="false" />
-            <element signature="e#9305#9700#0" expanded="false" />
-            <element signature="e#9769#10094#0" expanded="false" />
-            <element signature="e#10147#10666#0" expanded="false" />
-            <element signature="n#style#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#nav#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#2;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#div#2;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#input#0;n#div#2;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#p#0;n#div#2;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#2;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#2;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#input#0;n#div#0;n#div#0;n#div#2;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#p#0;n#div#0;n#div#0;n#div#2;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#input#0;n#div#0;n#div#4;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#p#0;n#div#0;n#div#4;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#div#0;n#div#2;n#div#4;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#nav#0;n#div#2;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#2;n#div#2;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#2;n#div#2;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
+    <entry file="file://$PROJECT_DIR$/assets/img/design/HowToSavedShapes.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lesson 4.html" />
-    <entry file="file://$PROJECT_DIR$/Learning WebGL — lesson 4.html" />
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#2310#2785#0" expanded="false" />
-            <element signature="e#7076#7171#0" expanded="false" />
-            <element signature="e#7241#7683#0" expanded="false" />
-            <element signature="e#7748#8001#0" expanded="false" />
-            <element signature="e#9305#9700#0" expanded="false" />
-            <element signature="e#9769#10094#0" expanded="false" />
-            <element signature="e#10147#10666#0" expanded="false" />
-            <element signature="n#style#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#nav#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#2;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#div#2;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#input#0;n#div#2;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#p#0;n#div#2;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#2;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#2;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#input#0;n#div#0;n#div#0;n#div#2;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#p#0;n#div#0;n#div#0;n#div#2;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#input#0;n#div#0;n#div#4;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#p#0;n#div#0;n#div#4;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#div#0;n#div#2;n#div#4;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#nav#0;n#div#2;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#2;n#div#2;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#2;n#div#2;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#2310#2785#0" expanded="false" />
-            <element signature="e#7076#7171#0" expanded="false" />
-            <element signature="e#7241#7683#0" expanded="false" />
-            <element signature="e#7748#8001#0" expanded="false" />
-            <element signature="e#9305#9700#0" expanded="false" />
-            <element signature="e#9769#10094#0" expanded="false" />
-            <element signature="e#10147#10666#0" expanded="false" />
-            <element signature="n#style#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#nav#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#2;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#div#2;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#input#0;n#div#2;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#p#0;n#div#2;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#2;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#2;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#input#0;n#div#0;n#div#0;n#div#2;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#p#0;n#div#0;n#div#0;n#div#2;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#input#0;n#div#0;n#div#4;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#p#0;n#div#0;n#div#4;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#div#0;n#div#2;n#div#4;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#nav#0;n#div#2;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#2;n#div#2;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#2;n#div#2;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Learning WebGL — lesson 4.html" />
-    <entry file="file://$PROJECT_DIR$/lesson 4.html" />
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1845">
-          <caret line="123" column="59" lean-forward="false" selection-start-line="123" selection-start-column="59" selection-end-line="123" selection-end-column="59" />
-          <folding>
-            <element signature="e#2310#2785#0" expanded="false" />
-            <element signature="e#7076#7171#0" expanded="false" />
-            <element signature="e#7241#7683#0" expanded="false" />
-            <element signature="e#7748#8001#0" expanded="false" />
-            <element signature="e#9305#9700#0" expanded="false" />
-            <element signature="e#9769#10094#0" expanded="false" />
-            <element signature="e#10147#10666#0" expanded="false" />
-            <element signature="n#style#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#nav#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#2;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#div#2;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#input#0;n#div#2;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#p#0;n#div#2;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#2;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#2;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#input#0;n#div#0;n#div#0;n#div#2;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#p#0;n#div#0;n#div#0;n#div#2;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#input#0;n#div#0;n#div#4;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#p#0;n#div#0;n#div#4;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#div#0;n#div#2;n#div#4;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#nav#0;n#div#2;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#2;n#div#2;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#2;n#div#2;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2580">
-          <caret line="172" column="39" lean-forward="false" selection-start-line="172" selection-start-column="34" selection-end-line="172" selection-end-column="39" />
-          <folding>
-            <element signature="e#2310#2785#0" expanded="false" />
-            <element signature="e#7076#7171#0" expanded="false" />
-            <element signature="e#7241#7683#0" expanded="false" />
-            <element signature="e#7748#8001#0" expanded="false" />
-            <element signature="e#9305#9700#0" expanded="false" />
-            <element signature="e#9769#10094#0" expanded="false" />
-            <element signature="e#10147#10666#0" expanded="false" />
-            <element signature="n#style#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#nav#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#2;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#div#2;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#input#0;n#div#2;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#p#0;n#div#2;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#2;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#2;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#input#0;n#div#0;n#div#0;n#div#2;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#p#0;n#div#0;n#div#0;n#div#2;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#input#0;n#div#0;n#div#4;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#p#0;n#div#0;n#div#4;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#div#0;n#div#2;n#div#4;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#nav#0;n#div#2;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#2;n#div#2;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#2;n#div#2;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/webgl-utils.js" />
-    <entry file="file://$PROJECT_DIR$/dirLight.gif" />
-    <entry file="file://$PROJECT_DIR$/glMatrix-0.9.5.min.js" />
-    <entry file="file://$PROJECT_DIR$/Scripts/Shapes/Pyramid.js" />
-    <entry file="file://$PROJECT_DIR$/Scripts/Shapes/Shaders.html" />
-    <entry file="file://$PROJECT_DIR$/Scripts/Shapes/Sphere.js" />
-    <entry file="file://$PROJECT_DIR$/Scripts/Shapes/Plane.js" />
-    <entry file="file://$PROJECT_DIR$/unOptimized.txt" />
-    <entry file="file://$PROJECT_DIR$/shader">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="802">
-          <caret line="67" column="0" lean-forward="false" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Scripts/Shapes/Cube.js" />
-    <entry file="file://$PROJECT_DIR$/Scripts/Shapes/teapot.json" />
-    <entry file="file://$PROJECT_DIR$/Scripts/Scene.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2175">
-          <caret line="184" column="3" lean-forward="false" selection-start-line="184" selection-start-column="3" selection-end-line="184" selection-end-column="3" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Scripts/Shapes/cylinder1.json" />
-    <entry file="file://$PROJECT_DIR$/Scripts/Shapes/cone.json">
+    <entry file="file://$PROJECT_DIR$/assets/js/bootstrap.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Scripts/Shapes/cylinder.json">
+    <entry file="file://$PROJECT_DIR$/shapes/user_saved_shapes/1504548977.jpg" />
+    <entry file="file://$PROJECT_DIR$/shapes/user_saved_shapes/1504549109.jpg" />
+    <entry file="file://$PROJECT_DIR$/shapes/user_saved_shapes/1504549332.jpg" />
+    <entry file="file://$PROJECT_DIR$/shapes/user_saved_shapes/1504552220.jpg" />
+    <entry file="file://$PROJECT_DIR$/shapes/user_saved_shapes/1504552252.jpg" />
+    <entry file="file://$PROJECT_DIR$/assets/img/textures/user_textures/JOI-waifu-wednesday-felix-argyle-3-700x394_1504554551.jpg" />
+    <entry file="file://$PROJECT_DIR$/assets/img/textures/user_textures/wall_1504554831.jpg" />
+    <entry file="file://$PROJECT_DIR$/assets/img/textures/user_textures/wall_1504554881.jpg" />
+    <entry file="file://$PROJECT_DIR$/uploads/wall_1504555000.jpg" />
+    <entry file="file://$PROJECT_DIR$/uploads/name_1504555000.jpg" />
+    <entry file="file://$PROJECT_DIR$/uploads/name_1504555038.jpg" />
+    <entry file="file://$PROJECT_DIR$/uploads/name_1504555106.jpg" />
+    <entry file="file://$PROJECT_DIR$/assets/img/textures/user_textures/JOI-waifu-wednesday-felix-argyle-3-700x394_1504555172.jpg" />
+    <entry file="file://$PROJECT_DIR$/assets/img/textures/user_textures/JOI-waifu-wednesday-felix-argyle-3-700x394_1504555106.jpg" />
+    <entry file="file://$PROJECT_DIR$/shapes/user_saved_shapes/1504621347.jpg" />
+    <entry file="file://$PROJECT_DIR$/shapes/user_saved_shapes/1504621444.jpg" />
+    <entry file="file://$PROJECT_DIR$/shapes/user_saved_shapes/1504621459.jpg" />
+    <entry file="file://$PROJECT_DIR$/shapes/user_saved_shapes/1504621505.png" />
+    <entry file="file://$PROJECT_DIR$/shapes/user_saved_shapes/1504621781.png" />
+    <entry file="file://$PROJECT_DIR$/scripts/Shaders.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="1" lean-forward="false" selection-start-line="4" selection-start-column="1" selection-end-line="4" selection-end-column="1" />
+        <state relative-caret-position="2190">
+          <caret line="146" column="9" lean-forward="false" selection-start-line="146" selection-start-column="9" selection-end-line="146" selection-end-column="9" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Scripts/Shapes/cube.json">
+    <entry file="file://$PROJECT_DIR$/shapes/user_saved_shapes/1504681578.png" />
+    <entry file="file://$PROJECT_DIR$/shapes/user_saved_shapes/1504776815.png" />
+    <entry file="file://$PROJECT_DIR$/shapes/user_saved_shapes/1504776894.png" />
+    <entry file="file://$PROJECT_DIR$/shapes/user_saved_shapes/1504776909.png" />
+    <entry file="file://$PROJECT_DIR$/user_data">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="1" lean-forward="false" selection-start-line="4" selection-start-column="1" selection-end-line="4" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Standard textures/metal.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Scripts/Camera.js" />
-    <entry file="file://$PROJECT_DIR$/Scripts/Shapes/sphere.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-14399">
+        <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Standard textures/carbon_fiber.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Standard textures/deep_space.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Standard textures/leather.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Standard textures/sun.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Standard textures/wood.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Standard textures/metal.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Scripts/Group.js">
+    <entry file="file://$PROJECT_DIR$/assets/css/styles.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="18" column="5" lean-forward="false" selection-start-line="18" selection-start-column="5" selection-end-line="18" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Scripts/Audio.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="495">
-          <caret line="35" column="8" lean-forward="false" selection-start-line="35" selection-start-column="8" selection-end-line="35" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Scripts/Controls.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1125">
-          <caret line="293" column="16" lean-forward="false" selection-start-line="293" selection-start-column="16" selection-end-line="293" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Scripts/Animations.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="17" column="32" lean-forward="false" selection-start-line="17" selection-start-column="32" selection-end-line="17" selection-end-column="32" />
-          <folding>
-            <element signature="n#!!doc;n#orbitLight#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Additional/WebglHelper.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="19" column="17" lean-forward="false" selection-start-line="19" selection-start-column="17" selection-end-line="19" selection-end-column="17" />
-          <folding>
-            <element signature="e#0#52#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Scripts/Lightning.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="460">
-          <caret line="64" column="22" lean-forward="false" selection-start-line="64" selection-start-column="22" selection-end-line="64" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavaScriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/DOMEvents.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="318">
-          <caret line="119" column="0" lean-forward="false" selection-start-line="119" selection-start-column="0" selection-end-line="119" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Scripts/Scene.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1635">
-          <caret line="109" column="25" lean-forward="false" selection-start-line="109" selection-start-column="25" selection-end-line="109" selection-end-column="25" />
+        <state relative-caret-position="301">
+          <caret line="176" column="12" lean-forward="false" selection-start-line="176" selection-start-column="1" selection-end-line="176" selection-end-column="12" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Scripts/OptimizeCalls.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1515">
-          <caret line="103" column="39" lean-forward="false" selection-start-line="103" selection-start-column="39" selection-end-line="103" selection-end-column="39" />
-          <folding>
-            <element signature="n#!!doc;n#LastRendered#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Scripts/Shaders.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="885">
-          <caret line="61" column="44" lean-forward="false" selection-start-line="61" selection-start-column="44" selection-end-line="61" selection-end-column="44" />
-          <folding>
-            <element signature="e#0#52#0" expanded="false" />
-            <element signature="e#8407#11677#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Styles/styles.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="720">
-          <caret line="174" column="19" lean-forward="false" selection-start-line="174" selection-start-column="19" selection-end-line="174" selection-end-column="19" />
-          <folding>
-            <element signature="e#208#288#0" expanded="false" />
-            <element signature="e#297#331#0" expanded="false" />
-            <element signature="e#343#422#0" expanded="false" />
-            <element signature="e#431#759#0" expanded="false" />
-            <element signature="e#783#866#0" expanded="false" />
-            <element signature="e#896#948#0" expanded="false" />
-            <element signature="e#958#1161#0" expanded="false" />
-            <element signature="e#1170#1221#0" expanded="false" />
-            <element signature="e#1234#1257#0" expanded="false" />
-            <element signature="e#1267#1331#0" expanded="false" />
-            <element signature="e#1365#1638#0" expanded="false" />
-            <element signature="e#1655#1722#0" expanded="false" />
-            <element signature="e#1723#1844#0" expanded="false" />
-            <element signature="e#1845#2048#0" expanded="false" />
-            <element signature="e#2067#2240#0" expanded="false" />
-            <element signature="e#2256#2436#0" expanded="false" />
-            <element signature="e#2450#2534#0" expanded="false" />
-            <element signature="e#2545#2683#0" expanded="false" />
-            <element signature="e#2698#2848#0" expanded="false" />
-            <element signature="e#2865#2948#0" expanded="false" />
-            <element signature="e#2965#3116#0" expanded="false" />
-            <element signature="e#3136#3219#0" expanded="false" />
-            <element signature="e#3663#3684#0" expanded="false" />
-            <element signature="e#4056#4139#0" expanded="false" />
-            <element signature="e#4163#4191#0" expanded="false" />
-            <element signature="e#4211#4235#0" expanded="false" />
-            <element signature="e#4258#4286#0" expanded="false" />
-            <element signature="e#4306#4332#0" expanded="false" />
-            <element signature="e#4355#4383#0" expanded="false" />
-            <element signature="e#4403#4437#0" expanded="false" />
-            <element signature="e#4465#4533#0" expanded="false" />
-            <element signature="e#4558#4643#0" expanded="false" />
-            <element signature="e#4653#4694#0" expanded="false" />
-            <element signature="e#4706#4725#0" expanded="false" />
-            <element signature="e#4734#4802#0" expanded="false" />
-            <element signature="e#4810#4846#0" expanded="false" />
-            <element signature="e#4854#4876#0" expanded="false" />
-            <element signature="e#4889#4917#0" expanded="false" />
-            <element signature="e#4934#4962#0" expanded="false" />
-            <element signature="e#4973#4994#0" expanded="false" />
-            <element signature="e#5005#5033#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/shapes/user_saved_shapes/1504976228.png" />
+    <entry file="file://$PROJECT_DIR$/shapes/user_saved_shapes/1504977374.png" />
+    <entry file="file://$PROJECT_DIR$/shapes/user_saved_shapes/1504981866.png" />
+    <entry file="file://$PROJECT_DIR$/shapes/user_saved_shapes/1504981869.png" />
+    <entry file="file://$PROJECT_DIR$/shapes/user_saved_shapes/1504981872.png" />
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1350">
-          <caret line="100" column="25" lean-forward="false" selection-start-line="100" selection-start-column="25" selection-end-line="100" selection-end-column="25" />
-          <folding>
-            <element signature="e#2310#2785#0" expanded="false" />
-            <element signature="e#7076#7171#0" expanded="false" />
-            <element signature="e#7241#7683#0" expanded="false" />
-            <element signature="e#7748#8001#0" expanded="false" />
-            <element signature="e#9305#9700#0" expanded="false" />
-            <element signature="e#9769#10094#0" expanded="false" />
-            <element signature="e#10147#10666#0" expanded="false" />
-            <element signature="n#style#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#nav#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#2;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#div#2;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#input#0;n#div#2;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#p#0;n#div#2;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#2;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#2;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#input#0;n#div#0;n#div#0;n#div#2;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#p#0;n#div#0;n#div#0;n#div#2;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#input#0;n#div#0;n#div#4;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#p#0;n#div#0;n#div#4;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#div#0;n#div#2;n#div#4;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#nav#0;n#div#2;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#2;n#div#2;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#2;n#div#2;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
+        <state relative-caret-position="540">
+          <caret line="144" column="117" lean-forward="false" selection-start-line="144" selection-start-column="117" selection-end-line="144" selection-end-column="117" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Scripts/EditorMainWindow.js">
+    <entry file="file://$PROJECT_DIR$/shapes/user_saved_shapes/1505111647.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shapes/user_shapes_data/liveObjects copy.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1155">
-          <caret line="77" column="28" lean-forward="false" selection-start-line="77" selection-start-column="28" selection-end-line="77" selection-end-column="28" />
+        <state relative-caret-position="0">
+          <caret line="0" column="40" lean-forward="false" selection-start-line="0" selection-start-column="40" selection-end-line="0" selection-end-column="40" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Scripts/Main.js">
+    <entry file="file://$PROJECT_DIR$/shapes/user_shapes_data/savedShapes copy.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1935">
-          <caret line="129" column="5" lean-forward="false" selection-start-line="129" selection-start-column="5" selection-end-line="129" selection-end-column="5" />
+        <state relative-caret-position="0">
+          <caret line="0" column="54" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="1491" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="0" lean-forward="true" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/Lightning.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="630">
+          <caret line="77" column="25" lean-forward="false" selection-start-line="77" selection-start-column="25" selection-end-line="77" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/upload.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="796">
+          <caret line="163" column="21" lean-forward="false" selection-start-line="163" selection-start-column="21" selection-end-line="163" selection-end-column="21" />
           <folding>
+            <element signature="e#3565#4103#0#PHP" expanded="false" />
+            <element signature="e#4152#4527#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/EditorMainWindow.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="32" column="0" lean-forward="false" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/Scene.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="231" column="6" lean-forward="false" selection-start-line="231" selection-start-column="6" selection-end-line="231" selection-end-column="6" />
+          <folding>
+            <element signature="n#!!block;n#constructor#0;n#CreateShape#0" expanded="false" />
+            <element signature="n#!!block;n#draw#0;n#CreateShape#0" expanded="false" />
+            <element signature="e#5873#10378#0" expanded="false" />
+            <element signature="n#!!block;n#rotation#0;n#CreateShape#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/editor.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="34" column="4" lean-forward="false" selection-start-line="34" selection-start-column="4" selection-end-line="35" selection-end-column="77" />
+          <folding>
+            <element signature="n#nav#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#div#1;n#div#0;n#nav#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#div#0;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#nav#0;n#div#1;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#div#0;n#div#1;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#div#1;n#div#1;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#div#2;n#div#1;n#div#0;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#nav#0;n#div#1;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#div#0;n#div#0;n#div#1;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#div#1;n#div#0;n#div#1;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#div#3;n#div#1;n#div#0;n#div#1;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#div#4;n#div#1;n#div#0;n#div#1;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#div#5;n#div#1;n#div#0;n#div#1;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#div#6;n#div#1;n#div#0;n#div#1;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#div#7;n#div#1;n#div#0;n#div#1;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#div#2;n#div#0;n#div#1;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#div#3;n#div#0;n#div#1;n#div#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shapes/user_saved_shapes/1505123099.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shapes/user_shapes_data/savedShapes.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shapes/user_shapes_data/liveObjects.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/Scripts.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="25" column="9" lean-forward="false" selection-start-line="25" selection-start-column="9" selection-end-line="25" selection-end-column="9" />
+          <folding>
+            <element signature="n#!!block;n#fpsCounter#0" expanded="false" />
+            <element signature="n#!!block;n#avgFps#0" expanded="false" />
+            <element signature="n#!!block;n#getKeyByName#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/WebglHelper.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="279">
+          <caret line="66" column="14" lean-forward="true" selection-start-line="66" selection-start-column="14" selection-end-line="66" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/Main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="179">
+          <caret line="109" column="23" lean-forward="false" selection-start-line="109" selection-start-column="23" selection-end-line="109" selection-end-column="23" />
+          <folding>
+            <element signature="e#4156#5204#0" expanded="false" />
+            <element signature="n#!!block;n#world#0" expanded="false" />
             <element signature="n#!!block;n#demoPlayer#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="105">
-            <caret line="7" column="39" lean-forward="false" selection-start-line="7" selection-start-column="39" selection-end-line="7" selection-end-column="39" />
-            <folding />
-          </first_editor>
-          <second_editor />
+    <entry file="file://$PROJECT_DIR$/assets/js/UserInterfaceScripts.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="328">
+          <caret line="249" column="22" lean-forward="true" selection-start-line="249" selection-start-column="22" selection-end-line="249" selection-end-column="22" />
+          <folding>
+            <element signature="e#1758#2727#0" expanded="false" />
+            <element signature="e#2772#3077#0" expanded="false" />
+            <element signature="e#3186#4827#0" expanded="false" />
+            <element signature="e#4032#4452#0" expanded="false" />
+            <element signature="e#4492#4821#0" expanded="false" />
+            <element signature="e#4916#5581#0" expanded="false" />
+            <element signature="e#5718#6719#0" expanded="false" />
+            <element signature="e#6794#6863#0" expanded="false" />
+            <element signature="e#8188#8510#0" expanded="false" />
+            <element signature="e#8563#8738#0" expanded="false" />
+            <element signature="e#9966#10180#0" expanded="false" />
+            <element signature="e#11819#11928#0" expanded="false" />
+            <element signature="e#12013#12230#0" expanded="false" />
+            <element signature="e#13087#13605#0" expanded="false" />
+            <element signature="e#13792#14427#0" expanded="false" />
+            <element signature="e#14513#14776#0" expanded="false" />
+            <element signature="e#15113#15500#0" expanded="false" />
+            <element signature="e#16896#16931#0" expanded="false" />
+          </folding>
         </state>
       </provider>
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/UploadHandler.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="407">
+          <caret line="460" column="56" lean-forward="false" selection-start-line="460" selection-start-column="43" selection-end-line="460" selection-end-column="56" />
+          <folding>
+            <element signature="n#!!block;n#loadUserData#0" expanded="false" />
+            <element signature="e#9192#14729#0" expanded="false" />
+            <element signature="n#!!block;n#convert#0" expanded="false" />
+            <element signature="n#!!block;n#saveObject#0" expanded="false" />
+            <element signature="n#!!block;n#initUploadedObject#0" expanded="false" />
+            <element signature="n#!!block;n#deleteFileFromServer#0" expanded="false" />
+            <marker date="1505129819000" expanded="true" signature="4846:4859" ph="..." />
+            <marker date="1505129819000" expanded="true" signature="5905:5918" ph="..." />
+            <marker date="1505129819000" expanded="true" signature="6734:6747" ph="..." />
+            <marker date="1505129819000" expanded="true" signature="7908:7921" ph="..." />
+            <marker date="1505129819000" expanded="true" signature="8335:8348" ph="..." />
+            <marker date="1505129819000" expanded="true" signature="8763:8776" ph="..." />
+            <marker date="1505129819000" expanded="true" signature="12174:12187" ph="..." />
+            <marker date="1505129819000" expanded="true" signature="13974:13987" ph="..." />
+            <marker date="1505129819000" expanded="true" signature="19431:19444" ph="..." />
+            <marker date="1505129819000" expanded="true" signature="22530:22543" ph="..." />
+            <marker date="1505129819000" expanded="true" signature="22839:22852" ph="..." />
+            <marker date="1505129819000" expanded="true" signature="23149:23162" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>

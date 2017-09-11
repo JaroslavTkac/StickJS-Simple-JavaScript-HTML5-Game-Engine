@@ -1,0 +1,242 @@
+body {
+    background-color: #f5f5f5;
+}
+p{
+    font-size: 1em;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.nav.navbar-nav li a {
+    color: #f5f5f5;
+}
+.my{
+    margin: auto;
+    padding-bottom: 15px;
+    padding-top: 15px;
+}
+.my a{
+    color: #f5f5f5;
+}
+.my a:hover{
+    color: #ea640b;
+    text-decoration: none;
+}
+/* Login window */
+
+/* Carousel Styling */
+.slide1{
+    background-image: url('/StickJS-New/Images/Demo.jpg');
+    height: 550px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+.slide2{
+    background-image: url('/StickJS-New/Images/Update.png');
+    height: 550px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+.carousel-caption h1{
+    font-size: 5.6em;
+    font-family: 'Pacifico', cursive;
+    padding-bottom: .4em;
+}
+.carousel-caption h3{
+    font-size: 2em;
+    font-family: 'Pacifico',cursive;
+    padding-bottom: .4em;
+}
+.carousel-caption p{
+    font-size: 2em;
+    font-family: 'Pacifico',cursive;
+}
+
+/* About StickJS*/
+.title{
+    font-family: 'Pacifico', cursive;
+    text-align: center;
+    font-size: 2.2em;
+}
+.about{
+    background-color: #c3d7df;
+    margin-bottom: 0;
+}
+.creator{
+    background-color: #6991ac;
+    margin-bottom: 0;
+}
+.update{
+    margin-bottom: 0;
+}
+#update-log ul li{
+    text-align: left;
+    font-size: 1em;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+#update-log h2{
+    text-align: center;
+}
+.update-hr{
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #6991ac;
+    margin: 1em 0;
+    padding: 0;
+}
+hr{
+    display: block;
+    border: 0;
+    border-top: 2px solid #67727a;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding: 0;
+}
+footer p{
+    text-align: center;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+canvas {
+    width: 100%;
+    height: auto;
+}
+/* Editor page */
+/* Coloring */
+
+/* Small devices (tablets, 768px and up) */
+@media screen and (min-width: 1280px) { /* TODO on small screen do not display splitter line*/
+    #editor-logic-sound {
+        border-left: 20px red double;
+
+    }
+}
+#editor-logic-sound{
+    border-left: 4px #ea640b double;
+}
+#color-picker{
+    border-radius: 2%;
+}
+/* TODO: color theme for editor background with gradient */
+#texture-picker{
+    overflow-y: scroll;
+    border-radius: 2%;
+
+}
+#saved-shape-canvas-container{
+    overflow-y: scroll;
+    width: 100%;
+    border-radius: 2%;
+    border: 1px #ea640b solid;
+}
+#selectable-shapes{
+    overflow-y: scroll;
+    max-height: 300px;
+    border-radius: 2%;
+    border: 2px #ea640b solid;
+    margin-bottom: 1%;
+}
+#selectable-music{
+    overflow-y: scroll;
+    max-height: 300px;
+    border-radius: 2%;
+    border: 2px #ea640b solid;
+    margin-bottom: 1%;
+}
+#selectable-textures{
+    overflow-y: scroll;
+    max-height: 300px;
+    border-radius: 2%;
+    border: 2px #ea640b solid;
+    margin-bottom: 1%;
+}
+
+
+
+#spacer{
+   padding-bottom: 3%;
+}
+
+.thumbnail{
+    border:none !important;
+    background: transparent !important;
+    box-shadow:none !important;
+    margin: 4% 1% 0 1%;
+}
+#radioBtn .notActive{
+    color: #3276b1;
+    background-color: #fff;
+}
+.dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
+    background-image:none !important;
+}
+.dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
+    color:#ea640b;
+}
+
+.overlay-btn{
+    margin-top: -5%;
+}
+
+/* SLIDERS */
+
+#RC .slider-selection {
+    background: #FF8282;
+}
+#RC .slider-handle {
+    background: red;
+}
+#GC .slider-selection {
+    background: #428041;
+}
+#GC .slider-handle {
+    background: green;
+}
+#BC .slider-selection {
+    background: #8283FF;
+}
+#BC .slider-handle {
+    border-bottom-color: blue;
+}
+#combined .slider-selection{
+    background: #535CA3;
+}
+#combined .slider-handle{
+    background: #7C8BFF;
+}
+/* Opacity slider */
+.rs-bg-color{
+    background: #e3eef4;
+}
+.rs-range-color {
+    background: darkred;
+}
+.rs-border{
+    border: none;
+}
+.rs-handle{
+    background: #2364ce;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

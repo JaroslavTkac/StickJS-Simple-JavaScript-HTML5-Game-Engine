@@ -1,0 +1,7 @@
+/* Ignore temp user files */
+shapes/user_saved_shapes/*
+assets/music/user_music/*
+assets/img/textures/user_textures/*
+shapes/user_shapes/*
+shapes/user_shapes_data/*
+
