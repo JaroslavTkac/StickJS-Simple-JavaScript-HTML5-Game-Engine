@@ -22,6 +22,12 @@ function getSavedShapeElementIndex(name){
             return i;
     }
 }
+function getObjByName(name){
+    for (let i = 0; i < objArr.length; i++){
+        if (objArr[i].name === name)
+            return objArr[i];
+    }
+}
 // Some sort of call back (waiting for savedShapeImg value)
 function waitUntilCanvasImgUploading(){
     if (savedShapeImg === ""){
@@ -77,8 +83,18 @@ function waitUntilCanvasImgUploading(){
 
 
     savedShapeImg = "";
+    saveData();
 }
-
+// Will remove all falsy values: undefined, null, 0, false, NaN and "" (empty string)
+function cleanArray(actual) {
+    let newArray = new Array();
+    for (let i = 0; i < actual.length; i++) {
+        if (actual[i]) {
+            newArray.push(actual[i]);
+        }
+    }
+    return newArray;
+}
 function fpsCounter() {
     let delta = (Date.now() - lastCalledTime) / 1000;
     lastCalledTime = Date.now();

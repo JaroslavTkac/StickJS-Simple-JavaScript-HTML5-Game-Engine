@@ -6,7 +6,7 @@
 function animate(array) {
     let timeNow = new Date().getTime();
     if (lastTime !== 0) {
-        let elapsed = timeNow - lastTime;
+        elapsed = timeNow - lastTime;
         for(let i in array){
             if(array[i].animateRotation){
                 array[i].xRot += (array[i].xRotSpeed * elapsed) / 1000.0;
@@ -14,41 +14,10 @@ function animate(array) {
                 array[i].zRot += (array[i].zRotSpeed * elapsed) / 1000.0;
             }
         }
-        spaceImitation();
+        orbitLight(pointLightArray);
     }
     lastTime = timeNow;
 }
-let pyramidVertexPositionBuffer;
-
-function initBuffers1() {
-    pyramidVertexPositionBuffer = webgl.createBuffer();
-    webgl.bindBuffer(webgl.ARRAY_BUFFER, pyramidVertexPositionBuffer);
-    let vertices = [
-        // Front face
-        0.0,  1.0,  0.0,
-        -1.0, -1.0,  1.0,
-        1.0, -1.0,  1.0,
-
-        // Right face
-        0.0,  1.0,  0.0,
-        1.0, -1.0,  1.0,
-        1.0, -1.0, -1.0,
-
-        // Back face
-        0.0,  1.0,  0.0,
-        1.0, -1.0, -1.0,
-        -1.0, -1.0, -1.0,
-
-        // Left face
-        0.0,  1.0,  0.0,
-        -1.0, -1.0, -1.0,
-        -1.0, -1.0,  1.0
-    ];
-    webgl.bufferData(webgl.ARRAY_BUFFER, new Float32Array(vertices), webgl.STATIC_DRAW);
-    pyramidVertexPositionBuffer.itemSize = 3;
-    pyramidVertexPositionBuffer.numItems = 12;
-}
-
 
 function drawScene(canvas, webgl, array, mvMatrix, pMatrix, mvMatrixStack, shaderProgram, ambientLight, directionalLight, pointLightArray) {
     resize(canvas, webgl);
@@ -58,20 +27,6 @@ function drawScene(canvas, webgl, array, mvMatrix, pMatrix, mvMatrixStack, shade
     mat4.perspective(60, webgl.viewportWidth / webgl.viewportHeight, 0.1, 800.0, pMatrix);
 
     mat4.identity(mvMatrix);
-
-
-    //------
-    /*mat4.translate(mvMatrix, [0.0, 0.0, -4.0]);
-
-    webgl.bindBuffer(webgl.ARRAY_BUFFER, pyramidVertexPositionBuffer);
-    webgl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, pyramidVertexPositionBuffer.itemSize, webgl.FLOAT, false, 0, 0);
-
-    webgl.uniform4f(shaderProgram.colorUniform, redChange, greenChange, blueChange, 1);
-    webgl.uniformMatrix4fv(shaderProgram.pMatrixUniform, false, pMatrix);
-    webgl.uniformMatrix4fv(shaderProgram.mvMatrixUniform, false, mvMatrix);
-
-    webgl.drawArrays(webgl.TRIANGLES, 0, pyramidVertexPositionBuffer.numItems);*/
-    //----
 
     for (let i in array){
         mvPushMatrix(mvMatrix, mvMatrixStack);
@@ -107,7 +62,6 @@ function webGLStart() {
     //loaderPlace.style.left = canvas.width;
     //loaderPlace.style.top = canvas.height/2;
     initGLForScene(canvas);
-    console.log(webgl);
     mainShader();
 
     ambientLight = new AmbientLight(0.35, 0.35, 0.35);
@@ -124,6 +78,9 @@ function webGLStart() {
 
     keyboard = new KeyboardPresets("wasd", 0.5, 1.4);
     keyboard.shooterControls();
+
+
+
 
 
 
@@ -158,15 +115,72 @@ function webGLStart() {
     getKeyByName("space").useSong = true;
 */
 
-    //TODO Grupavimas
+
+
 
 
     //world(100);
     //demoPlayer();
 
+    /*new LoadObject("shapes/cube.json", "assets/img/textures/sun.jpg", {
+            "name": "test",
+            "x": -4,
+            "y": 0,
+            "z": -5,
+            "sx": 1,
+            "sy": 1,
+            "sz": 2,
+            "yRot": -10,
+            "xRot": -20,
+            "yRotSpeed": 100,
+            "xRotSpeed": 50,
+            "useTexture": true,
+            "animateRotation": true,
+            "type": "cube"
+        },
+    );
+    new LoadObject("shapes/cube.json", "assets/img/textures/sun.jpg", {
+            "name": "test2",
+            "x": 0,
+            "y": -1,
+            "z": -8,
+            "sx": 2,
+            "sy": 2,
+            "sz": 2,
+            "yRot": 40,
+            "yRotSpeed": 50,
+            "useTexture": true,
+            "animateRotation": false,
+            "type": "cube"
+        },
+    );*/
+
+
+
+
+
+
+
+
+
     //loaderElement = document.getElementById("loading-progress");
     //loaderNode = document.createTextNode("");
+    startEditorWindow();
     loading();
+
+}
+function userCode() {
+    //Here will be imported user code
+
+
+    //changeSx("test", 3);
+    //changeSz("test2", 0.5);
+    //changeSy("test", 0.2);
+
+
+
+
+
 
 }
 
@@ -183,9 +197,13 @@ function loading(){
         //avgFpsNode = document.createTextNode("");
         console.log("Objects loaded in scene: " + objArr.length);
         lastRenderedMainScene = new LastRendered();
-        lastRenderedEditorScene = new LastRendered();
-        startEditorWindow();
+        //lastRenderedEditorScene = new LastRendered();
+
+
+
         render();
+
+        userCode();
     }
     else{
         //loaderElement.appendChild(loaderNode);

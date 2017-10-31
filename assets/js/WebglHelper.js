@@ -58,6 +58,7 @@ let canvas;
 //let editorCanvas;
 let canvasEditorArr = [];
 
+let elapsed = 0;
 //Change Colour in Editor
 let redChange = 0.5, blueChange = 0.5, greenChange = 0.5,
     redAChange = 0.5, blueAChange = 0.5, greenAChange = 0.5,

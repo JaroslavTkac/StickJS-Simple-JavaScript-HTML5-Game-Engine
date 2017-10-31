@@ -5,6 +5,9 @@ p{
     font-size: 1em;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
+.btn{
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
 .nav.navbar-nav li a {
     color: #f5f5f5;
 }
@@ -23,15 +26,18 @@ p{
 /* Login window */
 
 /* Carousel Styling */
+#theCarousel{
+    margin-top: 3%;
+}
 .slide1{
-    background-image: url('/StickJS-New/Images/Demo.jpg');
+    background-image: url('../img/design/Demo.jpg');
     height: 550px;
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
 }
 .slide2{
-    background-image: url('/StickJS-New/Images/Update.png');
+    background-image: url('../img/design/Update.png');
     height: 550px;
     background-repeat: no-repeat;
     background-position: center;
@@ -57,6 +63,7 @@ p{
     font-family: 'Pacifico', cursive;
     text-align: center;
     font-size: 2.2em;
+    margin-top: -2%
 }
 .about{
     background-color: #c3d7df;

@@ -206,13 +206,13 @@ $(document).ready(function() {
             "g": greenChange,
             "b": blueChange,
             "yRot": 50,
-            "yRotSpeed": 275,
+            "yRotSpeed": 40,
             "lighting": isLightWillBeUsed,
             "animateRotation": true,
             "useTexture": isTextureWillBeUsed,
             "useCamera": true,
             "transparency": true,
-            "alpha": opacitySlider.option("value")
+            "alpha": opacitySlider.option("value"),
         }, "editor", webglEditorArr[0]);
     });
 
@@ -253,13 +253,13 @@ $(document).ready(function() {
             //console.log("Modified object index in array: " + getSavedShapeElementIndex("shapes/user_saved_shapes/" + nameOfPngFile));
             // delete object from array with same key
             savedShapesArr.splice(getSavedShapeElementIndex("shapes/user_saved_shapes/" + nameOfPngFile), 1);
-
             waitUntilCanvasImgUploading();
             //console.log(savedShapesArr);
         }
         else{
             saveCanvasImg();
             waitUntilCanvasImgUploading();
+            console.log(savedShapesArr);
         }
 
 
@@ -294,6 +294,9 @@ $(document).ready(function() {
         }
         else{
             //everything alright
+            //get type from obj url
+            let tmp = objToAdd.shape.split("/");
+            let type = tmp[tmp.length - 1].split(".")[0];
             new LoadObject(objToAdd.shape, objToAdd.texture, {
                 "name": name,
                 "savedShapeName": objName,
@@ -310,10 +313,14 @@ $(document).ready(function() {
                 "animateRotation": objToAdd.animateRotation,
                 "useTexture": objToAdd.useTexture,
                 "transparency": objToAdd.transparency,
-                "alpha": objToAdd.alpha
+                "alpha": objToAdd.alpha,
+                "type": type
             }, objToAdd.saveTo);
 
             $('#add-name-modal').modal('toggle');
+            setTimeout(function () {
+                saveData();
+            }, 1000);
         }
     });
     //Detect key input (delete error signs in Modal window)
@@ -361,13 +368,14 @@ $(document).ready(function() {
             "g": objToEdit.g,
             "b": objToEdit.b,
             "yRot": 50,
-            "yRotSpeed": 275,
+            "yRotSpeed": 40,
             "lighting": objToEdit.lighting,
             "animateRotation": objToEdit.animateRotation,
             "useTexture": objToEdit.useTexture,
             "useCamera": true,
             "transparency": objToEdit.transparency,
-            "alpha": objToEdit.alpha
+            "alpha": objToEdit.alpha,
+            "type": objToEdit.type,
         }, "editor", webglEditorArr[0]);
 
         waitUntilEditorShapeLoading();
@@ -391,8 +399,8 @@ $(document).ready(function() {
             blue.setValue(loadedB, true, true);
             //set opacity
             opacitySlider.setValue(loadedAlpha);
-
         }
+        saveData();
     }
 
     /* Sliders */
@@ -450,15 +458,118 @@ $(document).ready(function() {
     $(document).on('click', '.overlay-btn-del', function(e) {
         e.preventDefault();
         let file_path = $(this).find('.delete_path').text();
+        //let id = $(this).attr("id"); // need get canvas id
         deleteFileFromServer(file_path);
 
-        $(this).parent().remove();
-        $('img').each(function(){
+        /*console.log("saved shape arr");
+        console.log(savedShapesArr);
+        console.log("live obk arr");
+        console.log(objArr);*/
+
+        //
+        console.log(objArr);
+
+        deleteSavedImg(file_path);
+
+        /*$('img').each(function(){
+            //If deleted image is pointing to saved object so deleting this element from everything on delete
             if($(this).attr("alt") === file_path){
                 $(this).parent().parent().remove();
+                //on saved shape image delete remove from live obj array and saved_shape array
+                //console.log("file_path: " + file_path);
+                let dataLen = savedShapesArr.length;
+                let i = 0;
+                while (i < dataLen){
+                    if(savedShapesArr[i].link === file_path){
+                        savedShapesArr.splice(i, 1);
+                        i = 0;
+                        dataLen = savedShapesArr.length;
+                    }
+                    else{
+                        i++;
+                    }
+                }
+                i = 0;
+                dataLen = objArr.length;
+                while (i < dataLen){
+                    console.log(i + " < " + dataLen);
+                    if(objArr[i].savedShapeName === file_path){
+                        objArr.splice(i, 1);
+                        i = 0;
+                        dataLen = objArr.length;
+                    }
+                    else{
+                        i++;
+                    }
+                }
+
+            }
+        });*/
+
+        $('canvas').each(function () {
+            //console.log(id);
+            //if(id !== undefined && id.includes("shapes/user_shapes")) {
+            if(file_path.includes("shapes/user_shapes")) {
+                let savedImgArr = [];
+                for (let i = 0; i < savedShapesArr.length; i++) {
+                    if ((savedShapesArr[i].value).shape === file_path)
+                        savedImgArr.push(savedShapesArr[i].link);
+                }
+
+                console.log(savedImgArr);
+
+                for (let i = 0; i < savedImgArr.length; i++){
+                    deleteSavedImg(savedImgArr[i]);
+                    deleteFileFromServer(savedImgArr[i]);
+                }
+            }
+
+
+
+           //TODO HERE
+        });
+        $(this).parent().remove();
+        saveData();
+
+    });
+
+
+    function deleteSavedImg(file_path) {
+        //If deleted image is pointing to saved object so deleting this element from everything on delete
+        $('img').each(function() {
+            if($(this).attr("alt") === file_path){
+                $(this).parent().parent().remove();
+                //on saved shape image delete remove from live obj array and saved_shape array
+                //console.log("file_path: " + file_path);
+                let dataLen = savedShapesArr.length;
+                let i = 0;
+                while (i < dataLen){
+                    if(savedShapesArr[i].link === file_path){
+                        savedShapesArr.splice(i, 1);
+                        i = 0;
+                        dataLen = savedShapesArr.length;
+                    }
+                    else{
+                        i++;
+                    }
+                }
+                i = 0;
+                dataLen = objArr.length;
+                while (i < dataLen){
+                    console.log(i + " < " + dataLen);
+                    if(objArr[i].savedShapeName === file_path){
+                        objArr.splice(i, 1);
+                        i = 0;
+                        dataLen = objArr.length;
+                    }
+                    else{
+                        i++;
+                    }
+                }
             }
         });
-    });
+    }
+
     //Prevent jumping to page beginning
     $(document).on('click', 'img', function(e) {
         e.preventDefault();

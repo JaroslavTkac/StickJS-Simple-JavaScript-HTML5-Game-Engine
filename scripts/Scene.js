@@ -5,16 +5,15 @@
 
 class LoadObject{
     constructor(shapeSrc, imageSrc, properties, saveTo, webglParam){
-        if(!(saveTo === "editor") && !(saveTo === "preview"))
-            totalObjects ++;
+        //if(!(saveTo === "editor") && !(saveTo === "preview"))
+        totalObjects ++;
         this.shape = null;
+
         this.loadJSON(shapeSrc, imageSrc, this, properties, saveTo, webglParam);
     }
     loadJSON(shapeSrc, imageSrc, object, properties, saveTo, webglParam) {
         let request = new XMLHttpRequest();
         request.open("GET", shapeSrc);
-
-        console.log("shapesrc: " + shapeSrc);
 
         request.onreadystatechange = function () {
             if (request.readyState === 4) {
@@ -72,6 +71,7 @@ class CreateShape{
         this.r = 0.5;
         this.g = 0.5;
         this.b = 0.5;
+        this.type = "none";
         if(saveTo === "objArr") {
             this.lastRendered = "main";
             this.texture = webglParam.createTexture();
@@ -211,16 +211,16 @@ class CreateShape{
         setMatrixUniforms(webgl, shaderProgram, mvMatrix, pMatrix);
     }
     rotation(mvMatrix) {
-        if(!this.animateRotation) {
+        //if(!this.animateRotation) {
             mat4.rotate(mvMatrix, degToRad(this.xRot), [true, false, false]);
             mat4.rotate(mvMatrix, degToRad(this.yRot), [false, true, false]);
             mat4.rotate(mvMatrix, degToRad(this.zRot), [false, false, true]);
-        }
+       /* }
         else {
             mat4.rotate(mvMatrix, degToRad(this.xRot), [true, false, false]);
             mat4.rotate(mvMatrix, degToRad(this.yRot), [false, true, false]);
             mat4.rotate(mvMatrix, degToRad(this.zRot), [false, false, true]);
-        }
+        }*/
     }
 }
 function initBuffers(object, webgl) {
@@ -319,21 +319,26 @@ function initProperties(object, properties, saveTo){
         object.transparency = properties["transparency"];
     if(properties["lighting"] !== undefined)
         object.lighting = properties["lighting"];
+    if(properties["type"] !== undefined)
+        object.type = properties["type"];
 
 
     if(saveTo === "objArr") {
         objArr.push(object);
         loadedObjects++;
-        console.log(object.name);
-        console.log(object.savedShapeName);
+        console.log("name: " + object.name);
+        console.log("savedShapeName: " + object.savedShapeName);
+        console.log("type: " + object.type);
     }
     if(saveTo === "editor") {
         objEditorArr.push(object);
+        loadedObjects++;
         editorObjectLoaded = true;
         //console.log("Editor obj size: " + objEditorArr.length);
     }
     if(saveTo === "preview"){
         objPreviewArr.push(object);
+        loadedObjects++;
         //console.log("Preview obj size: " + objPreviewArr.length);
     }
 }

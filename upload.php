@@ -32,6 +32,7 @@ if (isset($_POST['callResizeImage'])) {
 //Image resize to 128x128 to do not break css
 
 //TODO IMG resize to squere
+
 function resizeImage($file, $w, $h, $crop=TRUE) {
     list($width, $height) = getimagesize($file);
     $r = $width / $height;
@@ -132,7 +133,7 @@ if (isset($_POST['imgBase64'])){
         $fileName = "shapes/user_saved_shapes/" . $_POST['imgName'];
     }
     else {
-        $fileName = "shapes/user_saved_shapes/" . mktime() . ".png";
+        $fileName = "shapes/user_saved_shapes/" . time() . ".png";
     }
 
 

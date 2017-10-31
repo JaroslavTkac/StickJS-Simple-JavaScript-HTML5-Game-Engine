@@ -16,7 +16,7 @@ function orbitLight(pointLightArray){
 
 function spaceImitation(){
     orbitLight(pointLightArray);
-    chaos();
+    //chaos();
 }
 
 
@@ -48,4 +48,10 @@ function chaos(){
         }
     }
 }
+
+
+
+
+
+
 

@@ -31,13 +31,7 @@ function loadUserObjectFiles(file, dir){
                     for(let i = 0; i < savedDataToInit.length; i++){
                         liveLoadedShapesArr.push(savedDataToInit[i]);
                     }
-                    //console.log(savedDataToInit);
-                    //TODO init loaded data
-                    //calling Load shape in for
                     waitUntilWebglInitialized();
-                    //get JSON path to saved shape
-
-
                 }
             }
 
@@ -77,7 +71,8 @@ function waitUntilWebglInitialized(){
             "textureSrc": liveLoadedShapesArr[i].textureSrc,
             "useCamera": liveLoadedShapesArr[i].useCamera,
             "transparency": liveLoadedShapesArr[i].transparency,
-            "alpha": liveLoadedShapesArr[i].alpha
+            "alpha": liveLoadedShapesArr[i].alpha,
+            "type": liveLoadedShapesArr[i].type
         }, liveLoadedShapesArr[i].saveTo);
 
     }
@@ -95,6 +90,10 @@ function loadUserData(dir, type){
             let data = "";
 
             //after successful file location change appending html document
+            console.log("Type: " + type);
+            for(let i = 0; i < content['data'].length; i++) {
+                console.log("found: " + content['data'][i]);
+            }
             for(let i = 2; i < content['data'].length; i++) {
                 console.log(content['data'][i]);
                 if(type === "image") {
@@ -109,7 +108,7 @@ function loadUserData(dir, type){
                                 "<a href=\"#\" class=\"thumbnail\" >" +
                                     "<img src=\"assets/img/textures/user_textures/" + content['data'][i] + "\" class=\"img-rounded inline-block\" " +
                                         "alt=" + content['data'][i] + "\">" +
-                                "<a href=\"#\" class=\"btn btn-md overlay-btn\">" +
+                                "<a href=\"#\" class=\"btn btn-md overlay-btn-del\">" +
                                     "<span class=\"glyphicon glyphicon-trash\"></span>" +
                                     "<span class=\"delete_path\" style=\"display: none\">assets/img/textures/user_textures/" + content['data'][i] + "</span></a>" +
                                 "</a>" +
@@ -123,7 +122,7 @@ function loadUserData(dir, type){
                                         "alt=\"assets/img/design/audio_file.png\">" +
                                 "</a>" +
                                 "<p>" + getOriginalFileName(content['data'][i]) + ".mp3" +  "</p>" +
-                                "<a href=\"#\" class=\"btn btn-md overlay-btn\">" +
+                                "<a href=\"#\" class=\"btn btn-md overlay-btn-del\">" +
                                     "<span class=\"glyphicon glyphicon-trash\"></span>" +
                                     "<span class=\"delete_path\" style=\"display: none\">assets/music/user_music/" + content['data'][i] + "</span></a>" +
                             "</div>";
@@ -179,7 +178,7 @@ function loadUserData(dir, type){
 $(function () {
     'use strict';
     // Change this to the location of your server-side uploads handler:
-    let url = window.location.hostname === 'stickjs.lt' ?
+    let url = window.location.hostname === 'stickjs.com' ?
         'upload.php' : 'upload.php';
     $('#upload').fileupload({
         url: 'upload.php',
@@ -224,12 +223,13 @@ $(function () {
                                         "<a href=\"#\" class=\"thumbnail\" >" +
                                             "<img src=\"assets/img/textures/user_textures/" + imgName + "\" class=\"img-rounded inline-block\" " +
                                                 "alt=" + imgName + "\">" +
-                                        "<a href=\"#\" class=\"btn btn-md overlay-btn\">" +
+                                        "<a href=\"#\" class=\"btn btn-md overlay-btn-del\">" +
                                             "<span class=\"glyphicon glyphicon-trash\"></span>" +
                                             "<span class=\"delete_path\" style=\"display: none\">assets/img/textures/user_textures/" + imgName + "</span></a>" +
                                         "</a>" +
                                    "</div>";
                         $('#selectable-textures-row').append(data);
+                        saveData();
                     }
                 });
             }
@@ -251,14 +251,16 @@ $(function () {
                                                 "alt=\"assets/img/design/audio_file.png\">" +
                                         "</a>" +
                                         "<p>" + getOriginalFileName(musicName) + ".mp3" + "</p>" +
-                                        "<a href=\"#\" class=\"btn btn-md overlay-btn\">" +
+                                        "<a href=\"#\" class=\"btn btn-md overlay-btn-del\">" +
                                             "<span class=\"glyphicon glyphicon-trash\"></span>" +
                                             "<span class=\"delete_path\" style=\"display: none\">assets/music/user_music/" + musicName + "</span></a>" +
                                    "</div>";
                         $('#selectable-music-row').append(data);
+                        saveData();
                     }
                 });
             }
+
         },
         progressall: function (e, data) {
             console.log("UPLOAD");
@@ -369,7 +371,6 @@ function convert(file_path) {
 
 //Save converted object to shapes folder & call deletion of uploaded .obj file
 function saveObject(file_path){
-
     let tmpFile_name = file_path.split("/");
     let file_name = tmpFile_name[tmpFile_name.length-1].substring(0, tmpFile_name[tmpFile_name.length-1].length-4);
     //console.log(file_name);
@@ -394,6 +395,8 @@ function saveObject(file_path){
             initUploadedObject(JSON.parse(response)['name']);
              
             deleteFileFromServer("uploads/" + uploaded['name']);
+
+            saveData();
         }
     });
 }
@@ -413,7 +416,7 @@ function initUploadedObject(file_path) {
         "name": "forPreview",
         "z": -4,
         "yRot": 50,
-        "yRotSpeed": 275,
+        "yRotSpeed": 40,
         "animateRotation": true,
         "useTexture": false,
         "useCamera": true,
@@ -454,6 +457,7 @@ function saveCanvasImg(imgName) {
             imgName: imgName
         }
     }).done(function(response) {
+        console.log(response);
         console.log(JSON.parse(response));
         savedShapeImg = JSON.parse(response)['name'];
         if(!(imgName === undefined)){
@@ -489,12 +493,17 @@ function saveCanvasImg(imgName) {
                 "</div>";
             $('#saved-shape-canvas-container').append(data);
         }
-
+        saveData();
     });
 }
 
-//Sending every 3 sec user data to server
+//Sending every 60 sec user data to server
 setInterval(function () {
+    //console.log("Saving");
+    saveData();
+}, 60000); // every 60 sec*/
+
+function saveData(){
     //Send to server user object data
     let saved_data = JSON.stringify(savedShapesArr);
     let obj_data = JSON.stringify(objArr);
@@ -509,10 +518,11 @@ setInterval(function () {
         },
     }).done(function(response) {
         console.log("user data saved");
+        //console.log(JSON.parse(response));
+    }).error(function (res) {
+        console.log("error");
     });
-}, 3000); // every 3 sec
-
-
+}
 
 //Get original file name
 function getOriginalFileName(current_file_name) {

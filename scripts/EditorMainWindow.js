@@ -30,7 +30,6 @@ function startEditorWindow(){
     // Init loaded user objects
     setTimeout(function () {
         loadUserData("shapes/user_shapes", "object"); //TODO need callback
-
     }, 2200);
 
 
@@ -43,19 +42,20 @@ function initEditorEnvironment() {
         "name": "forEditor",
         "z": -4,
         "yRot": 50,
-        "yRotSpeed": 275,
+        "yRotSpeed": 40,
         "animateRotation": true,
         "useTexture": false,
         "useCamera": true,
         "transparency": false,
-        "alpha": 1.0
+        "alpha": 1.0,
+        "type": "cube"
     }, "editor", webglEditorArr[0]);
     for(let i = 1; i < 6; i++){
         new LoadObject(srcArr[i-1], "assets/img/textures/sun.jpg", {
             "name": "forPreview",
             "z": -3.5,
             "yRot": 50,
-            "yRotSpeed": 275,
+            "yRotSpeed": 40,
             "animateRotation": true,
             "useTexture": false,
             "useCamera": true,
@@ -81,6 +81,8 @@ function renderPreview() {
         drawScene(canvasEditorArr[i], webglEditorArr[i], objPreviewArr.slice(i-1,i), mvMatrixE, pMatrixE, mvMatrixStackE, shaderProgramEditorArr[i],
             ambientLightE, directionalLightE, pointLightArrayE);
     }
+    //drawScene(canvasEditorArr[1], webglEditorArr[1], objPreviewArr.slice(0,1), mvMatrixE, pMatrixE, mvMatrixStackE, shaderProgramEditorArr[1],
+      //    ambientLightE, directionalLightE, pointLightArrayE);
     animateEditor(objPreviewArr);
 }
 function changeColour(){
@@ -117,17 +119,19 @@ function copyEditorToPreview(){
 function animateEditor(array) {
     let timeNow = new Date().getTime();
     if (lastTime !== 0) {
-        let elapsed = timeNow - lastTime;
+        //let elapsed = timeNow - lastTime;
         for(let i in array){
             if(array[i].animateRotation){
                 array[i].xRot += (array[i].xRotSpeed * elapsed) / 1000.0;
                 array[i].yRot += (array[i].yRotSpeed * elapsed) / 1000.0;
                 array[i].zRot += (array[i].zRotSpeed * elapsed) / 1000.0;
+
             }
         }
         orbitLight(pointLightArrayE);
     }
     lastTime = timeNow;
+
 }
 function applyTexture(textureSrc){
     //console.log(textureSrc);
