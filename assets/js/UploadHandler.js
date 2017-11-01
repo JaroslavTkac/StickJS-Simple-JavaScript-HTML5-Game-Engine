@@ -88,13 +88,97 @@ function loadUserData(dir, type){
         success: function(response) {
             let content = JSON.parse(response);
             let data = "";
+            let folderContent = [];
+            let tmp;
+
+            //getting array of ACTUAL files in folder
+            for(let i = 0; i < content['data'].length; i++) {
+                tmp = content['data'][i].split('.');
+                if(tmp[tmp.length-1] === "png" || tmp[tmp.length-1] === "jpg" ||
+                    tmp[tmp.length-1] === "mp3" || tmp[tmp.length-1] === "json")
+                folderContent.push(content['data'][i]);
+            }
+            console.log("Type: " + type);
+            console.log(folderContent);
+
+
 
             //after successful file location change appending html document
-            console.log("Type: " + type);
-            for(let i = 0; i < content['data'].length; i++) {
-                console.log("found: " + content['data'][i]);
+            for(let i = 0; i < folderContent.length; i++) {
+                //console.log(content['data'][i]);
+                if(type === "image") {
+                    $('#texture-picker-row').append(
+                        "<div class=\"col-lg-3 col-md-3 col-sm-4 col-xs-6\">" +
+                        "<a href=\"#\" class=\"thumbnail\" >" +
+                        "<img src=\"assets/img/textures/user_textures/" + folderContent[i] + "\" class=\"img-rounded inline-block texture\" " +
+                        "alt=\"assets/img/textures/user_textures/" + folderContent[i] + "\">" +
+                        "</a>" +
+                        "</div>");
+                    data = "<div align=\"center\" class=\"col-lg-3 col-md-4 col-sm-4 col-xs-6\">" +
+                        "<a href=\"#\" class=\"thumbnail\" >" +
+                        "<img src=\"assets/img/textures/user_textures/" + folderContent[i] + "\" class=\"img-rounded inline-block\" " +
+                        "alt=" + folderContent[i] + "\">" +
+                        "<a href=\"#\" class=\"btn btn-md overlay-btn-del\">" +
+                        "<span class=\"glyphicon glyphicon-trash\"></span>" +
+                        "<span class=\"delete_path\" style=\"display: none\">assets/img/textures/user_textures/" + folderContent[i] + "</span></a>" +
+                        "</a>" +
+                        "</div>";
+                    $('#selectable-textures-row').append(data);
+                }
+                if(type === "music"){
+                    data = "<div align=\"center\" class=\"col-lg-3 col-md-3 col-sm-4 col-xs-6\">" +
+                        "<a href=\"#\" class=\"thumbnail\" >" +
+                        "<img src=\"assets/img/design/audio_file.png\" class=\"img-rounded inline-block\" " +
+                        "alt=\"assets/img/design/audio_file.png\">" +
+                        "</a>" +
+                        "<p>" + getOriginalFileName(folderContent[i]) + ".mp3" +  "</p>" +
+                        "<a href=\"#\" class=\"btn btn-md overlay-btn-del\">" +
+                        "<span class=\"glyphicon glyphicon-trash\"></span>" +
+                        "<span class=\"delete_path\" style=\"display: none\">assets/music/user_music/" + folderContent[i] + "</span></a>" +
+                        "</div>";
+                    $('#selectable-music-row').append(data);
+                }
+                if(type === "object"){
+                    data = "<div align=\"center\" class=\"col-lg3 col-md-4 col-sm-4 col-xs-6\">" +
+                        "<a href=\"#\" class=\"thumbnail\">" +
+                        "<canvas class=\"preview-scene shape\" id=\"" + "shapes/user_shapes/" + folderContent[i] + "\" ></canvas>" +
+                        "<a href=\"#\" class=\"btn btn-md overlay-btn overlay-btn-del\">" +
+                        "<span class=\"glyphicon glyphicon-trash\"></span>" +
+                        "<span class=\"delete_path\" style=\"display: none\">shapes/user_shapes/" + folderContent[i] + "</span></a>" +
+                        "</a>" +
+                        "</div>";
+                    $('#selectable-shapes-row').append(data);
+
+                    //init every object for webgl here
+
+                    initUploadedObject("shapes/user_shapes/" + folderContent[i]);
+                }
+                if(type === "savedShapes"){
+                    data = "<div align=\"center\">" +
+                        "<a href=\"#\" class=\"thumbnail\" >" +
+                        "<img src=\"shapes/user_saved_shapes/" + folderContent[i] + "\" class=\"img-rounded inline-block\" " +
+                        "alt=\"shapes/user_saved_shapes/" + folderContent[i] + "\">" +
+                        "</a>" +
+                        // Add btn
+                        "<a href=\"#\" class=\"btn btn-md overlay-btn overlay-btn-add\">" +
+                        "<span class=\"glyphicon glyphicon-plus\"></span>" +
+                        "<span class=\"add_shape\" style=\"display: none\">shapes/user_saved_shapes/" + folderContent[i] + "</span>" +
+                        "</a>" +
+                        // Edit btn
+                        "<a href=\"#\" class=\"btn btn-md overlay-btn overlay-btn-edit\">" +
+                        "<span class=\"glyphicon glyphicon-wrench\"></span>" +
+                        "<span class=\"edit_shape\" style=\"display: none\">shapes/user_saved_shapes/" + folderContent[i] + "</span>" +
+                        "</a>" +
+                        // Delete btn
+                        "<a href=\"#\" class=\"btn btn-md overlay-btn overlay-btn-del\">" +
+                        "<span class=\"glyphicon glyphicon-trash\"></span>" +
+                        "<span class=\"delete_path\" style=\"display: none\">shapes/user_saved_shapes/" + folderContent[i] + "</span>" +
+                        "</a>" +
+                        "</div>";
+                    $('#saved-shape-canvas-container').append(data);
+                }
             }
-            for(let i = 2; i < content['data'].length; i++) {
+            /*for(let i = 2; i < content['data'].length; i++) {
                 console.log(content['data'][i]);
                 if(type === "image") {
                     $('#texture-picker-row').append(
@@ -167,11 +251,10 @@ function loadUserData(dir, type){
                             "</div>";
                     $('#saved-shape-canvas-container').append(data);
                 }
-            }
+            }*/
         }
     });
 }
-//TODO Kai objektas trinamas paleisti scripta kuris patikrina ar sis objektas nera naudojamas (**)
 
 
 //Upload file (images/sound/object)

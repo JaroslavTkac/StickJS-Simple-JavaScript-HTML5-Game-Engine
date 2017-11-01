@@ -454,61 +454,17 @@ $(document).ready(function() {
     let combinedALight = $("#combined-light").slider().on('slide', RGBAmbientChange).data('slider');
     // END
 
-    //Deleting from html document now unavailable/deleted shapes music or textures
+    //Deleting on trash bin icon click
     $(document).on('click', '.overlay-btn-del', function(e) {
         e.preventDefault();
         let file_path = $(this).find('.delete_path').text();
-        //let id = $(this).attr("id"); // need get canvas id
         deleteFileFromServer(file_path);
-
-        /*console.log("saved shape arr");
-        console.log(savedShapesArr);
-        console.log("live obk arr");
-        console.log(objArr);*/
-
         //
         console.log(objArr);
 
         deleteSavedImg(file_path);
 
-        /*$('img').each(function(){
-            //If deleted image is pointing to saved object so deleting this element from everything on delete
-            if($(this).attr("alt") === file_path){
-                $(this).parent().parent().remove();
-                //on saved shape image delete remove from live obj array and saved_shape array
-                //console.log("file_path: " + file_path);
-                let dataLen = savedShapesArr.length;
-                let i = 0;
-                while (i < dataLen){
-                    if(savedShapesArr[i].link === file_path){
-                        savedShapesArr.splice(i, 1);
-                        i = 0;
-                        dataLen = savedShapesArr.length;
-                    }
-                    else{
-                        i++;
-                    }
-                }
-                i = 0;
-                dataLen = objArr.length;
-                while (i < dataLen){
-                    console.log(i + " < " + dataLen);
-                    if(objArr[i].savedShapeName === file_path){
-                        objArr.splice(i, 1);
-                        i = 0;
-                        dataLen = objArr.length;
-                    }
-                    else{
-                        i++;
-                    }
-                }
-
-            }
-        });*/
-
         $('canvas').each(function () {
-            //console.log(id);
-            //if(id !== undefined && id.includes("shapes/user_shapes")) {
             if(file_path.includes("shapes/user_shapes")) {
                 let savedImgArr = [];
                 for (let i = 0; i < savedShapesArr.length; i++) {
@@ -523,10 +479,6 @@ $(document).ready(function() {
                     deleteFileFromServer(savedImgArr[i]);
                 }
             }
-
-
-
-           //TODO HERE
         });
         $(this).parent().remove();
         saveData();
