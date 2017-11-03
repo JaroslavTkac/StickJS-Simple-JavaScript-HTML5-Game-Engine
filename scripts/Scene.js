@@ -141,7 +141,6 @@ class CreateShape{
         }
         else{
             //glBindVertexBuffer(webgl, this.vertexPositionBuffer, shaderProgram, lastRenderedEditorScene);
-
             webgl.bindBuffer(webgl.ARRAY_BUFFER, this.vertexPositionBuffer);
             webgl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, this.vertexPositionBuffer.itemSize, webgl.FLOAT, false, 0, 0);
 
@@ -333,12 +332,14 @@ function initProperties(object, properties, saveTo){
     if(saveTo === "editor") {
         objEditorArr.push(object);
         loadedObjects++;
-        editorObjectLoaded = true;
+        //editorObjectLoaded = true;
         //console.log("Editor obj size: " + objEditorArr.length);
     }
     if(saveTo === "preview"){
         objPreviewArr.push(object);
         loadedObjects++;
+        previewObjects++;
+        console.log("loaded preview object: " + previewObjects);
         //console.log("Preview obj size: " + objPreviewArr.length);
     }
 }

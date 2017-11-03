@@ -221,7 +221,7 @@ function render() {
     //fpsCounter();
     //avgFps();
     renderEditor();
-    renderPreview();
+    //renderPreview();
 
 }
 

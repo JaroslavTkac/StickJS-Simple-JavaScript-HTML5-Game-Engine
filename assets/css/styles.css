@@ -23,11 +23,17 @@ p{
     color: #ea640b;
     text-decoration: none;
 }
+.affix {
+    top: 0;
+    width: 100%;
+    z-index: 9999 !important;
+}
+
 /* Login window */
 
 /* Carousel Styling */
 #theCarousel{
-    margin-top: 3%;
+
 }
 .slide1{
     background-image: url('../img/design/Demo.jpg');

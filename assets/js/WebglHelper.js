@@ -19,7 +19,7 @@ let shaderProgramE;
 let mvMatrixE = mat4.create();
 let mvMatrixStackE = [];
 let pMatrixE = mat4.create();
-let editorObjectLoaded = false;
+//let editorObjectLoaded = false;
 let opacitySlider;
 // Animation
 let lastTime = 0;
@@ -50,6 +50,7 @@ let keysArray = [];
 let keyboard;
 //Loading
 let loadedObjects = 0;
+let previewObjects = 0;
 let totalObjects = 0;
 let loaderElement;
 let loaderNode;

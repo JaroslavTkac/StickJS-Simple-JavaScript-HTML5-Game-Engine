@@ -11,11 +11,15 @@ function startEditorWindow(){
     canvasEditorArr.push(document.getElementById("shapes/cylinder.json"));
     canvasEditorArr.push(document.getElementById("shapes/simpleSphere.json"));
 
-    for(let i in canvasEditorArr)
+    for(let i in canvasEditorArr){
         initGLForEditor(canvasEditorArr[i]);
+        //console.log(webglEditorArr[i]);
+    }
 
-    for(let i in webglEditorArr)
+    for(let i in webglEditorArr) {
         editorShader(webglEditorArr[i]);
+        //console.log(shaderProgramEditorArr[i])
+    }
 
     ambientLightE = new AmbientLight(redAChange, greenAChange, blueAChange);
     directionalLightE = new DirectionalLight(0, 0, 0, 0, 0, 50, false);
@@ -27,10 +31,8 @@ function startEditorWindow(){
     }
 
     initEditorEnvironment();
-    // Init loaded user objects
-    setTimeout(function () {
-        loadUserData("shapes/user_shapes", "object"); //TODO need callback
-    }, 2200);
+
+
 
 
 }
@@ -50,40 +52,115 @@ function initEditorEnvironment() {
         "alpha": 1.0,
         "type": "cube"
     }, "editor", webglEditorArr[0]);
-    for(let i = 1; i < 6; i++){
-        new LoadObject(srcArr[i-1], "assets/img/textures/sun.jpg", {
-            "name": "forPreview",
-            "z": -3.5,
-            "yRot": 50,
-            "yRotSpeed": 40,
-            "animateRotation": true,
-            "useTexture": false,
-            "useCamera": true,
-            "transparency": false,
-            "alpha": 1.0
-        }, "preview", webglEditorArr[i]);
+
+    new LoadObject(srcArr[0], "assets/img/textures/sun.jpg", {
+        "name": srcArr[0],
+        "z": -3.5,
+        "yRot": 50,
+        "yRotSpeed": 40,
+        "animateRotation": true,
+        "useTexture": false,
+        "useCamera": true,
+        "transparency": false,
+        "alpha": 1.0
+    }, "preview", webglEditorArr[1]);
+
+    for(let i = 2; i < 6; i++){
+        initPreview(i);
     }
 
 }
+
+function initPreview(i){
+    let srcArr = ["shapes/cube.json", "shapes/sphere.json", "shapes/cone.json",
+        "shapes/cylinder.json", "shapes/simpleSphere.json"];
+
+    if (((i-1) - previewObjects) !== 0){
+        setTimeout(function(){
+            initPreview(i)
+        }, 50);
+        return;
+    }
+    //if older object initialized -> init new object
+    new LoadObject(srcArr[i - 1], "assets/img/textures/sun.jpg", {
+        "name": srcArr[i - 1],
+        "z": -3.5,
+        "yRot": 50,
+        "yRotSpeed": 40,
+        "animateRotation": true,
+        "useTexture": false,
+        "useCamera": true,
+        "transparency": false,
+        "alpha": 1.0
+    }, "preview", webglEditorArr[i]);
+
+    // Init loaded user objects
+    if(i === 5){
+        setTimeout(function () {
+            loadUserData("shapes/user_shapes", "object");
+        }, 50);
+    }
+}
+
 
 function renderEditor() {
-    if (editorObjectLoaded){
-        drawScene(canvasEditorArr[0], webglEditorArr[0], objEditorArr, mvMatrixE, pMatrixE, mvMatrixStackE, shaderProgramEditorArr[0],
-            ambientLightE, directionalLightE, pointLightArrayE);
-        animateEditor(objEditorArr);
 
-        changeColour();
-    }
-}
-function renderPreview() {
+    //if (editorObjectLoaded){
+    drawScene(canvasEditorArr[0], webglEditorArr[0], objEditorArr, mvMatrixE, pMatrixE, mvMatrixStackE, shaderProgramEditorArr[0],
+            ambientLightE, directionalLightE, pointLightArrayE);
+    animateEditor(objEditorArr);
+    changeColour();
+    //}
+
+
     copyEditorToPreview();
+
     for(let i = 1; i < webglEditorArr.length; i++) {
+        //console.log("i: " + i);
+        /*if(objPreviewArr.slice(i-1,i)[0].name !== undefined){
+            console.log("render obj: " + objPreviewArr.slice(i-1,i)[0].name);
+        }
+        else{
+            console.log(undefined);
+        }*/
         drawScene(canvasEditorArr[i], webglEditorArr[i], objPreviewArr.slice(i-1,i), mvMatrixE, pMatrixE, mvMatrixStackE, shaderProgramEditorArr[i],
             ambientLightE, directionalLightE, pointLightArrayE);
     }
-    //drawScene(canvasEditorArr[1], webglEditorArr[1], objPreviewArr.slice(0,1), mvMatrixE, pMatrixE, mvMatrixStackE, shaderProgramEditorArr[1],
-      //    ambientLightE, directionalLightE, pointLightArrayE);
+
+    /*let i = 1;
+    drawScene(canvasEditorArr[i], webglEditorArr[i], objPreviewArr.slice(i-1,i), mvMatrixE, pMatrixE, mvMatrixStackE, shaderProgramEditorArr[i],
+        ambientLightE, directionalLightE, pointLightArrayE);
+    i = 2;
+    drawScene(canvasEditorArr[i], webglEditorArr[i], objPreviewArr.slice(i-1,i), mvMatrixE, pMatrixE, mvMatrixStackE, shaderProgramEditorArr[i],
+        ambientLightE, directionalLightE, pointLightArrayE);
+
+    //kaip pridedam papildomai vikas tvarkoj
+    setTimeout(function () {
+        drawScene(canvasEditorArr[6], webglEditorArr[6], objPreviewArr.slice(5,6), mvMatrixE, pMatrixE, mvMatrixStackE, shaderProgramEditorArr[6],
+            ambientLightE, directionalLightE, pointLightArrayE);
+    },2500);*/
+
     animateEditor(objPreviewArr);
+
+}
+function renderPreview() {
+    /*copyEditorToPreview();
+    for(let i = 1; i < webglEditorArr.length; i++) {
+        //drawScene(canvasEditorArr[i], webglEditorArr[i], objPreviewArr.slice(i-1,i), mvMatrixE, pMatrixE, mvMatrixStackE, shaderProgramEditorArr[i],
+           // ambientLightE, directionalLightE, pointLightArrayE);
+    }
+    let i = 1;
+    drawScene(canvasEditorArr[i], webglEditorArr[i], objPreviewArr.slice(i-1,i), mvMatrixE, pMatrixE, mvMatrixStackE, shaderProgramEditorArr[i],
+        ambientLightE, directionalLightE, pointLightArrayE);
+
+
+    //kaip pridedam papildomai vikas tvarkoj
+    setTimeout(function () {
+        drawScene(canvasEditorArr[6], webglEditorArr[6], objPreviewArr.slice(5,6), mvMatrixE, pMatrixE, mvMatrixStackE, shaderProgramEditorArr[6],
+            ambientLightE, directionalLightE, pointLightArrayE);
+    },2500);
+
+    animateEditor(objPreviewArr);*/
 }
 function changeColour(){
     for(let i in objEditorArr) {
