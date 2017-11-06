@@ -53,8 +53,8 @@ $(document).ready(function() {
 
     //On How To click open modal with instructions
     $('.nav.navbar-nav > li a').on('click', function () {
-       console.log($(this).text());
-        $('#how-to-modal').modal('show');
+       if($(this).text() === "How To")
+           $('#how-to-modal').modal('show');
     });
 
 
@@ -80,6 +80,7 @@ $(document).ready(function() {
             $('#opacity').css('display', 'none');
             $('#light-control').css('display', 'none');
             $('#light-control-additional').css('display', 'none');
+            $('#rotation-control').css('display', '');
         }
         if(sel === "Texture"){
             $('#texture-picker').css('display', '');
@@ -91,22 +92,25 @@ $(document).ready(function() {
             $('#opacity').css('display', 'none');
             $('#light-control').css('display', 'none');
             $('#light-control-additional').css('display', 'none');
+            $('#rotation-control').css('display', '');
         }
         if(sel === "Opacity"){
             $('#color-picker').css('display', 'none');
             $('#texture-picker').css('display', 'none');
             $('#light-control').css('display', 'none');
             $('#light-control-additional').css('display', 'none');
+            $('#rotation-control').css('display', '');
+            $('#rotation-control').css('margin-top', '8%');
             $('#opacity').css('display', '');
         }
         if(sel === "Lightning"){
             $('#color-picker').css('display', 'none');
             $('#texture-picker').css('display', 'none');
             $('#opacity').css('display', 'none');
+            $('#rotation-control').css('display', 'none');
             $('#light-control').css('display', '');
             $('#light-control-additional').css('display', '');
         }
-
 
     });
 
