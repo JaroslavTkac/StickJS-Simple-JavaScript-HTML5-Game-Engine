@@ -52,6 +52,7 @@ let keyboard;
 let loadedObjects = 0;
 let previewObjects = 0;
 let totalObjects = 0;
+let editorObjectLoaded = false;
 let loaderElement;
 let loaderNode;
 

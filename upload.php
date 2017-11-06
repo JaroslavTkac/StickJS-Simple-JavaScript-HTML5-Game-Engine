@@ -9,13 +9,13 @@ if(isset($_FILES['upl']) && $_FILES['upl']['error'] == 0){
     $path_parts = pathinfo($_FILES['upl']['name']);
 
 	if(!in_array(strtolower($extension), $allowed)){
-		echo json_encode( array( 'status' => "error") );
+		echo json_encode(array('status' => "error"));
 		exit;
 	}
 
     $file_name = $path_parts['filename'].'_'.time().'.'.$path_parts['extension'];
 	if(move_uploaded_file($_FILES['upl']['tmp_name'], 'uploads/' . $file_name)){
-        echo json_encode( array( 'extension' => $extension, 'name' => $file_name) );
+        echo json_encode(array('extension' => $extension, 'name' => $file_name));
 		exit;
 	}
 
@@ -24,38 +24,52 @@ if(isset($_FILES['upl']) && $_FILES['upl']['error'] == 0){
 
 //Call of image resize
 if (isset($_POST['callResizeImage'])) {
-    $img = resizeImage($_POST['callResizeImage'][0], $_POST['callResizeImage'][1], $_POST['callResizeImage'][2], TRUE);
-    imagejpeg($img, "uploads/" . $_POST['callResizeImage'][0] . '_' .time() . ".jpg");
-    echo "image resized";
+    $img = resizeImage($_POST['callResizeImage'][0], $_POST['callResizeImage'][1]/*, $_POST['callResizeImage'][2]*/);
+    imagejpeg($img, $_POST['callResizeImage'][0]);
+    echo "Image is resized";
 }
 
-//Image resize to 128x128 to do not break css
-
-//TODO IMG resize to squere
-
-function resizeImage($file, $w, $h, $crop=TRUE) {
+function resizeImage($file, $extension) {
     list($width, $height) = getimagesize($file);
+
     $r = $width / $height;
-    if ($crop) {
+    $ratioTest = $width - $height;
+
+    //by default 128x128
+    $w = 128;
+    $h = 128;
+    //if file w and h <= 256
+    if($width >= 256 && $height >= 256){
+        $w = 256;
+        $h = 256;
+    }
+
+    if($ratioTest != 0){
+        //Then image not 128x128 or etc.
+        //Croping image
         if ($width > $height) {
             $width = ceil($width-($width*abs($r-$w/$h)));
         } else {
             $height = ceil($height-($height*abs($r-$w/$h)));
         }
-        $newwidth = $w;
-        $newheight = $h;
+        $newWidth = $w;
+        $newHeight = $h;
     } else {
         if ($w/$h > $r) {
-            $newwidth = $h*$r;
-            $newheight = $h;
+            $newWidth = $h*$r;
+            $newHeight = $h;
         } else {
-            $newheight = $w/$r;
-            $newwidth = $w;
+            $newHeight = $w/$r;
+            $newWidth = $w;
         }
     }
-    $src = imagecreatefromjpeg($file);
-    $dst = imagecreatetruecolor($newwidth, $newheight);
-    imagecopyresampled($dst, $src, 0, 0, 0, 0, $newwidth, $newheight, $width, $height);
+    //check png or jpg and select correct one
+    if($extension == "jpg")
+        $src = imagecreatefromjpeg($file);
+    else
+        $src = imagecreatefrompng($file);
+    $dst = imagecreatetruecolor($newWidth, $newHeight);
+    imagecopyresampled($dst, $src, 0, 0, 0, 0, $newWidth, $newHeight, $width, $height);
 
     return $dst;
 }

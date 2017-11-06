@@ -332,7 +332,7 @@ function initProperties(object, properties, saveTo){
     if(saveTo === "editor") {
         objEditorArr.push(object);
         loadedObjects++;
-        //editorObjectLoaded = true;
+        editorObjectLoaded = true;
         //console.log("Editor obj size: " + objEditorArr.length);
     }
     if(saveTo === "preview"){

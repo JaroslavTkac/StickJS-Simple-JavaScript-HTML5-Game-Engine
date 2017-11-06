@@ -386,7 +386,8 @@ $(document).ready(function() {
             setTimeout(waitUntilEditorShapeLoading, 50);
             return;
         }
-        //console.log(editorObjectLoaded);
+        console.log(editorObjectLoaded);
+        console.log(objEditorArr);
         if(objEditorArr[0].useTexture){
             $('#texture-radioBtn').click();
             //set opacity

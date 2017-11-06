@@ -256,7 +256,7 @@ function loadUserData(dir, type){
     });
 }
 
-
+//TODO kai istriname tekstura o yra objektas naudojantis ta tekstura, pakeisti defaultine reikia manau
 //Upload file (images/sound/object)
 $(function () {
     'use strict';
@@ -282,39 +282,40 @@ $(function () {
                  $.ajax({
                      url: 'upload.php',
                      type: 'post',
-                     data: { "callResizeImage": ["uploads/" + imgName, 128, 128]},
+                     data: { "callResizeImage": ["uploads/" + imgName, uploaded['extension']]},
                      success: function(response) {
                         console.log(response);
+                         $.ajax({
+                             url: 'upload.php',
+                             type: 'post',
+                             data: {"callMoveFile": ["uploads/" + imgName, "assets/img/textures/user_textures/" + imgName]},
+                             success: function (response) {
+                                 //console.log(response);
+                                 //after successful file location change appending html document
+                                 $('#texture-picker-row').append(
+                                     "<div class=\"col-lg-3 col-md-3 col-sm-4 col-xs-6\">" +
+                                     "<a href=\"#\" class=\"thumbnail\" >" +
+                                     "<img src=\"assets/img/textures/user_textures/" + imgName + "\" class=\"img-rounded inline-block texture\" " +
+                                     "alt=\"assets/img/textures/user_textures/" + imgName + "\">" +
+                                     "</a>" +
+                                     "</div>");
+                                 let data = "<div align=\"center\" class=\"col-lg-3 col-md-4 col-sm-4 col-xs-6\">" +
+                                     "<a href=\"#\" class=\"thumbnail\" >" +
+                                     "<img src=\"assets/img/textures/user_textures/" + imgName + "\" class=\"img-rounded inline-block\" " +
+                                     "alt=" + imgName + "\">" +
+                                     "<a href=\"#\" class=\"btn btn-md overlay-btn-del\">" +
+                                     "<span class=\"glyphicon glyphicon-trash\"></span>" +
+                                     "<span class=\"delete_path\" style=\"display: none\">assets/img/textures/user_textures/" + imgName + "</span></a>" +
+                                     "</a>" +
+                                     "</div>";
+                                 $('#selectable-textures-row').append(data);
+                                 saveData();
+                             }
+                         });
                      }
                  });
                 //transferring image to destination location
-                $.ajax({
-                    url: 'upload.php',
-                    type: 'post',
-                    data: {"callMoveFile": ["uploads/" + imgName, "assets/img/textures/user_textures/" + imgName]},
-                    success: function (response) {
-                        //console.log(response);
-                        //after successful file location change appending html document
-                        $('#texture-picker-row').append(
-                            "<div class=\"col-lg-3 col-md-3 col-sm-4 col-xs-6\">" +
-                                "<a href=\"#\" class=\"thumbnail\" >" +
-                                    "<img src=\"assets/img/textures/user_textures/" + imgName + "\" class=\"img-rounded inline-block texture\" " +
-                                        "alt=\"assets/img/textures/user_textures/" + imgName + "\">" +
-                                "</a>" +
-                            "</div>");
-                        let data = "<div align=\"center\" class=\"col-lg-3 col-md-4 col-sm-4 col-xs-6\">" +
-                                        "<a href=\"#\" class=\"thumbnail\" >" +
-                                            "<img src=\"assets/img/textures/user_textures/" + imgName + "\" class=\"img-rounded inline-block\" " +
-                                                "alt=" + imgName + "\">" +
-                                        "<a href=\"#\" class=\"btn btn-md overlay-btn-del\">" +
-                                            "<span class=\"glyphicon glyphicon-trash\"></span>" +
-                                            "<span class=\"delete_path\" style=\"display: none\">assets/img/textures/user_textures/" + imgName + "</span></a>" +
-                                        "</a>" +
-                                   "</div>";
-                        $('#selectable-textures-row').append(data);
-                        saveData();
-                    }
-                });
+
             }
             //if music run php script to relocate file to user_music
             //and appending html document
