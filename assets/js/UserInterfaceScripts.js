@@ -51,6 +51,13 @@ $(document).ready(function() {
     loadUserObjectFiles("liveObjects.txt", "shapes/user_shapes_data/");
 
 
+    //On How To click open modal with instructions
+    $('.nav.navbar-nav > li a').on('click', function () {
+       console.log($(this).text());
+        $('#how-to-modal').modal('show');
+    });
+
+
     //Texture & Color toggle
     $('#radioBtn a').on('click', function(){
         //console.log("click");

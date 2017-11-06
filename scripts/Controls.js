@@ -42,7 +42,7 @@ class KeyboardPresets{
     }
     shooterControls(){ //TODO Q/E movement
         this.shooterControlsEnabled = true;
-        let w, s, a, d;
+        let w, s, a, d, q, e;
         if(this.controlsType === "arrows") {
             w = new Key("uarrow");
             w.z = this.speed;
@@ -52,6 +52,10 @@ class KeyboardPresets{
             a.yRot = -this.rotationSpeed;
             d = new Key("rarrow");
             d.yRot = this.rotationSpeed;
+            q = new Key("q");
+            q.x = this.speed;
+            e = new Key("e");
+            e.x = -this.speed;
         }
         else{
             w = new Key("w");
@@ -63,12 +67,16 @@ class KeyboardPresets{
             a.yRot = -this.rotationSpeed;
             d = new Key("d");
             d.yRot = this.rotationSpeed;
+            q = new Key("q");
+            q.x = this.speed;
+            e = new Key("e");
+            e.x = -this.speed;
         }
         let space = new Key("space");
         space.y = -this.speed;
         let shift = new Key("shift");
         shift.y = this.speed;
-        keysArray.push(w, s, a , d, space, shift);
+        keysArray.push(w, s, a , d, q, e, space, shift);
     }
 
 }
