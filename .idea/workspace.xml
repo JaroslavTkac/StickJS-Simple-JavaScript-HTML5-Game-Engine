@@ -3,12 +3,15 @@
   <component name="ChangeListManager">
     <list default="true" id="4d98851f-1cbe-463c-84f1-c95cfca61c40" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/css/styles.css" afterPath="$PROJECT_DIR$/assets/css/styles.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/js/UploadHandler.js" afterPath="$PROJECT_DIR$/assets/js/UploadHandler.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/js/UserInterfaceScripts.js" afterPath="$PROJECT_DIR$/assets/js/UserInterfaceScripts.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/js/WebglHelper.js" afterPath="$PROJECT_DIR$/assets/js/WebglHelper.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/editor.html" afterPath="$PROJECT_DIR$/editor.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/Controls.js" afterPath="$PROJECT_DIR$/scripts/Controls.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/EditorMainWindow.js" afterPath="$PROJECT_DIR$/scripts/EditorMainWindow.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/Scene.js" afterPath="$PROJECT_DIR$/scripts/Scene.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/upload.php" afterPath="$PROJECT_DIR$/upload.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -28,32 +31,30 @@
       <file leaf-file-name="UploadHandler.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/assets/js/UploadHandler.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15">
-              <caret line="257" column="0" lean-forward="false" selection-start-line="257" selection-start-column="0" selection-end-line="257" selection-end-column="0" />
+            <state relative-caret-position="-1725">
+              <caret line="301" column="126" lean-forward="false" selection-start-line="301" selection-start-column="126" selection-end-line="301" selection-end-column="126" />
               <folding>
                 <element signature="n#!!block;n#loadUserObjectFiles#0" expanded="false" />
                 <element signature="n#!!block;n#waitUntilWebglInitialized#0" expanded="false" />
-                <element signature="n#!!block;n#loadUserData#0" expanded="false" />
-                <element signature="e#8904#14412#0" expanded="false" />
+                <element signature="e#8936#14444#0" expanded="false" />
                 <element signature="n#!!block;n#convert#0" expanded="false" />
-                <element signature="n#!!block;n#initUploadedObject#0" expanded="false" />
                 <element signature="n#!!block;n#saveCanvasImg#0" expanded="false" />
                 <element signature="n#!!block;n#getOriginalFileName#0" expanded="false" />
                 <element signature="n#!!block;n#getPngFileName#0" expanded="false" />
-                <marker date="1509900949700" expanded="true" signature="5141:5154" ph="..." />
-                <marker date="1509900949700" expanded="true" signature="6104:6117" ph="..." />
-                <marker date="1509900949700" expanded="true" signature="6861:6874" ph="..." />
-                <marker date="1509900949700" expanded="true" signature="7893:7906" ph="..." />
-                <marker date="1509900949700" expanded="true" signature="8270:8283" ph="..." />
-                <marker date="1509900949700" expanded="true" signature="8648:8661" ph="..." />
-                <marker date="1509900949700" expanded="true" signature="10232:10245" ph="..." />
-                <marker date="1509900949700" expanded="true" signature="11295:11308" ph="..." />
-                <marker date="1509900949700" expanded="true" signature="17551:17564" ph="..." />
-                <marker date="1509900949700" expanded="true" signature="19532:19545" ph="..." />
-                <marker date="1509900949700" expanded="true" signature="25025:25038" ph="..." />
-                <marker date="1509900949700" expanded="true" signature="28179:28192" ph="..." />
-                <marker date="1509900949700" expanded="true" signature="28488:28501" ph="..." />
-                <marker date="1509900949700" expanded="true" signature="28798:28811" ph="..." />
+                <marker date="1509984360639" expanded="true" signature="5173:5186" ph="..." />
+                <marker date="1509984360639" expanded="true" signature="6136:6149" ph="..." />
+                <marker date="1509984360639" expanded="true" signature="6893:6906" ph="..." />
+                <marker date="1509984360639" expanded="true" signature="7925:7938" ph="..." />
+                <marker date="1509984360639" expanded="true" signature="8302:8315" ph="..." />
+                <marker date="1509984360639" expanded="true" signature="8680:8693" ph="..." />
+                <marker date="1509984360639" expanded="true" signature="10264:10277" ph="..." />
+                <marker date="1509984360639" expanded="true" signature="11327:11340" ph="..." />
+                <marker date="1509984360639" expanded="true" signature="17615:17628" ph="..." />
+                <marker date="1509984360639" expanded="true" signature="19596:19609" ph="..." />
+                <marker date="1509984360639" expanded="true" signature="25089:25102" ph="..." />
+                <marker date="1509984360639" expanded="true" signature="28243:28256" ph="..." />
+                <marker date="1509984360639" expanded="true" signature="28552:28565" ph="..." />
+                <marker date="1509984360639" expanded="true" signature="28862:28875" ph="..." />
               </folding>
             </state>
           </provider>
@@ -62,8 +63,21 @@
       <file leaf-file-name="UserInterfaceScripts.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/assets/js/UserInterfaceScripts.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="989">
-              <caret line="392" column="25" lean-forward="true" selection-start-line="392" selection-start-column="25" selection-end-line="392" selection-end-column="25" />
+            <state relative-caret-position="434">
+              <caret line="33" column="67" lean-forward="false" selection-start-line="33" selection-start-column="67" selection-end-line="33" selection-end-column="67" />
+              <folding>
+                <element signature="e#11326#11540#0" expanded="false" />
+                <element signature="e#11624#13404#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="styles.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/assets/css/styles.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="406">
+              <caret line="144" column="21" lean-forward="true" selection-start-line="144" selection-start-column="21" selection-end-line="144" selection-end-column="21" />
               <folding />
             </state>
           </provider>
@@ -72,8 +86,8 @@
       <file leaf-file-name="Scene.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/scripts/Scene.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="600">
-              <caret line="334" column="8" lean-forward="false" selection-start-line="334" selection-start-column="8" selection-end-line="334" selection-end-column="8" />
+            <state relative-caret-position="615">
+              <caret line="335" column="37" lean-forward="false" selection-start-line="335" selection-start-column="37" selection-end-line="335" selection-end-column="37" />
               <folding>
                 <element signature="e#3731#5840#0" expanded="false" />
                 <element signature="n#!!block;n#initBuffers#0" expanded="false" />
@@ -85,18 +99,18 @@
       <file leaf-file-name="WebglHelper.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/assets/js/WebglHelper.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="810">
-              <caret line="54" column="31" lean-forward="false" selection-start-line="54" selection-start-column="31" selection-end-line="54" selection-end-column="31" />
+            <state relative-caret-position="466">
+              <caret line="68" column="51" lean-forward="false" selection-start-line="68" selection-start-column="51" selection-end-line="68" selection-end-column="51" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="upload.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/upload.php">
+      <file leaf-file-name="Controls.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/scripts/Controls.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="660">
-              <caret line="44" column="5" lean-forward="false" selection-start-line="44" selection-start-column="5" selection-end-line="44" selection-end-column="5" />
+            <state relative-caret-position="198">
+              <caret line="42" column="42" lean-forward="false" selection-start-line="42" selection-start-column="42" selection-end-line="42" selection-end-column="42" />
               <folding />
             </state>
           </provider>
@@ -116,18 +130,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>myModal</find>
-      <find>apply</find>
-      <find>opacitySlider</find>
-      <find>savedDataToInit</find>
-      <find>splice</find>
-      <find>shapesrc</find>
-      <find>overlay-btn</find>
-      <find>shape</find>
-      <find>saveData()</find>
-      <find>getFile</find>
-      <find>savedO</find>
-      <find>user_shapes</find>
       <find>LoadObject</find>
       <find>LoadObjec</find>
       <find>objTOAdd</find>
@@ -137,7 +139,6 @@
       <find>examp</find>
       <find>ali</find>
       <find>savedShapesArr</find>
-      <find>upload</find>
       <find>edit</find>
       <find>yRotSpeed</find>
       <find>del</find>
@@ -146,6 +147,19 @@
       <find>last</find>
       <find>callDeleteFile</find>
       <find>//Ed</find>
+      <find>textu</find>
+      <find>upload</find>
+      <find>border</find>
+      <find>navbar</find>
+      <find>saved-sha</find>
+      <find>editor-</find>
+      <find>saved</find>
+      <find>selecta</find>
+      <find>thum</find>
+      <find>img</find>
+      <find>texture-picker</find>
+      <find>saved-shape</find>
+      <find>texture</find>
     </findStrings>
     <replaceStrings>
       <replace>shaderProgramE</replace>
@@ -196,21 +210,21 @@
         <option value="$PROJECT_DIR$/scripts/WebglHelper.js" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/scripts/Lightning.js" />
-        <option value="$PROJECT_DIR$/scripts/Controls.js" />
         <option value="$PROJECT_DIR$/scripts/UserFunctions.js" />
         <option value="$PROJECT_DIR$/scripts/Animations.js" />
         <option value="$PROJECT_DIR$/scripts/Scripts.js" />
-        <option value="$PROJECT_DIR$/shapes/user_shapes_data/savedShapes.txt" />
-        <option value="$PROJECT_DIR$/shapes/user_shapes_data/liveObjects.txt" />
-        <option value="$PROJECT_DIR$/assets/css/styles.css" />
         <option value="$PROJECT_DIR$/scripts/Main.js" />
+        <option value="$PROJECT_DIR$/upload.php" />
+        <option value="$PROJECT_DIR$/scripts/Controls.js" />
+        <option value="$PROJECT_DIR$/assets/js/WebglHelper.js" />
+        <option value="$PROJECT_DIR$/shapes/user_shapes_data/liveObjects.txt" />
+        <option value="$PROJECT_DIR$/shapes/user_shapes_data/savedShapes.txt" />
+        <option value="$PROJECT_DIR$/scripts/Scene.js" />
         <option value="$PROJECT_DIR$/scripts/EditorMainWindow.js" />
+        <option value="$PROJECT_DIR$/assets/js/UploadHandler.js" />
         <option value="$PROJECT_DIR$/editor.html" />
         <option value="$PROJECT_DIR$/index.html" />
-        <option value="$PROJECT_DIR$/upload.php" />
-        <option value="$PROJECT_DIR$/assets/js/UploadHandler.js" />
-        <option value="$PROJECT_DIR$/scripts/Scene.js" />
-        <option value="$PROJECT_DIR$/assets/js/WebglHelper.js" />
+        <option value="$PROJECT_DIR$/assets/css/styles.css" />
         <option value="$PROJECT_DIR$/assets/js/UserInterfaceScripts.js" />
       </list>
     </option>
@@ -292,12 +306,6 @@
               <item name="StickJS-Simple-JavaScript-HTML5-Game-Engine" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="shapes" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
-            <path>
-              <item name="StickJS-Simple-JavaScript-HTML5-Game-Engine" type="b2602c69:ProjectViewProjectNode" />
-              <item name="StickJS-Simple-JavaScript-HTML5-Game-Engine" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="shapes" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="user_shapes_data" type="2a2b976b:PhpTreeStructureProvider$1" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -312,7 +320,7 @@
     <property name="HbShouldOpenHtmlAsHb" value="" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="settings.editor.selected.configurable" value="vcs.Git" />
-    <property name="add_unversioned_files" value="true&#10;/Applications/MAMP/htdocs/StickJS-Simple-JavaScript-HTML5-Game-Engine/shapes/user_shapes_data/savedShapes.txt&#10;/Applications/MAMP/htdocs/StickJS-Simple-JavaScript-HTML5-Game-Engine/shapes/user_shapes_data/liveObjects.txt" />
+    <property name="add_unversioned_files" value="true&#10;/Applications/MAMP/htdocs/StickJS-Simple-JavaScript-HTML5-Game-Engine/assets/img/textures/user_textures/Megushira_1509985389.png&#10;/Applications/MAMP/htdocs/StickJS-Simple-JavaScript-HTML5-Game-Engine/shapes/user_shapes_data/savedShapes.txt&#10;/Applications/MAMP/htdocs/StickJS-Simple-JavaScript-HTML5-Game-Engine/shapes/user_shapes_data/liveObjects.txt" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -503,12 +511,12 @@
       <workItem from="1509554563919" duration="2837000" />
       <workItem from="1509620068121" duration="10252000" />
       <workItem from="1509895749146" duration="4682000" />
-      <workItem from="1509956441626" duration="435000" />
+      <workItem from="1509956441626" duration="10432000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="466027000" />
+    <option name="totallyTimeSpent" value="476024000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -589,41 +597,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/assets/img/textures/molten_lava.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/img/textures/metal.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/img/textures/leather.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/img/textures/lava.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/img/textures/grass.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/img/textures/carbon_fiber.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/img/textures/asphalt.jpg">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/assets/img/design/audio_file.png">
       <provider selected="true" editor-type-id="images">
         <state />
@@ -678,49 +651,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/editor.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1050">
-          <caret line="70" column="70" lean-forward="true" selection-start-line="70" selection-start-column="70" selection-end-line="70" selection-end-column="70" />
-          <folding>
-            <element signature="n#style#0;n#img#0;n#a#0;n#div#0;n#div#0;n#nav#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#nav#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#1;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#2;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#nav#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#0;n#div#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#3;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#4;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#5;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#6;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#7;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#2;n#div#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-            <element signature="n#div#3;n#div#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="339">
-          <caret line="135" column="96" lean-forward="false" selection-start-line="135" selection-start-column="96" selection-end-line="135" selection-end-column="96" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/EditorMainWindow.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="96" column="31" lean-forward="false" selection-start-line="96" selection-start-column="31" selection-end-line="96" selection-end-column="31" />
-          <folding>
-            <element signature="n#!!block;n#changeColour#0" expanded="false" />
-            <element signature="n#!!block;n#animateEditor#0" expanded="false" />
-            <element signature="n#!!block;n#applyTexture#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/assets/img/textures/user_textures/Megushira_1509896012.png" />
     <entry file="file://$PROJECT_DIR$/uploads/Megushira_1509897573.png" />
     <entry file="file://$PROJECT_DIR$/uploads/Megushira_1509897711.png" />
@@ -755,10 +685,42 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/Controls.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="42" column="42" lean-forward="false" selection-start-line="42" selection-start-column="42" selection-end-line="42" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/WebglHelper.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="466">
+          <caret line="68" column="51" lean-forward="false" selection-start-line="68" selection-start-column="51" selection-end-line="68" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shapes/user_shapes_data/liveObjects.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shapes/user_shapes_data/savedShapes.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/scripts/Scene.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="600">
-          <caret line="334" column="8" lean-forward="false" selection-start-line="334" selection-start-column="8" selection-end-line="334" selection-end-column="8" />
+        <state relative-caret-position="615">
+          <caret line="335" column="37" lean-forward="false" selection-start-line="335" selection-start-column="37" selection-end-line="335" selection-end-column="37" />
           <folding>
             <element signature="e#3731#5840#0" expanded="false" />
             <element signature="n#!!block;n#initBuffers#0" expanded="false" />
@@ -766,51 +728,118 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/UploadHandler.js">
+    <entry file="file://$PROJECT_DIR$/scripts/EditorMainWindow.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="257" column="0" lean-forward="false" selection-start-line="257" selection-start-column="0" selection-end-line="257" selection-end-column="0" />
+        <state relative-caret-position="999">
+          <caret line="126" column="0" lean-forward="false" selection-start-line="126" selection-start-column="0" selection-end-line="126" selection-end-column="0" />
           <folding>
-            <element signature="n#!!block;n#loadUserObjectFiles#0" expanded="false" />
-            <element signature="n#!!block;n#waitUntilWebglInitialized#0" expanded="false" />
-            <element signature="n#!!block;n#loadUserData#0" expanded="false" />
-            <element signature="e#8904#14412#0" expanded="false" />
-            <element signature="n#!!block;n#convert#0" expanded="false" />
-            <element signature="n#!!block;n#initUploadedObject#0" expanded="false" />
-            <element signature="n#!!block;n#saveCanvasImg#0" expanded="false" />
-            <element signature="n#!!block;n#getOriginalFileName#0" expanded="false" />
-            <element signature="n#!!block;n#getPngFileName#0" expanded="false" />
-            <marker date="1509900949700" expanded="true" signature="5141:5154" ph="..." />
-            <marker date="1509900949700" expanded="true" signature="6104:6117" ph="..." />
-            <marker date="1509900949700" expanded="true" signature="6861:6874" ph="..." />
-            <marker date="1509900949700" expanded="true" signature="7893:7906" ph="..." />
-            <marker date="1509900949700" expanded="true" signature="8270:8283" ph="..." />
-            <marker date="1509900949700" expanded="true" signature="8648:8661" ph="..." />
-            <marker date="1509900949700" expanded="true" signature="10232:10245" ph="..." />
-            <marker date="1509900949700" expanded="true" signature="11295:11308" ph="..." />
-            <marker date="1509900949700" expanded="true" signature="17551:17564" ph="..." />
-            <marker date="1509900949700" expanded="true" signature="19532:19545" ph="..." />
-            <marker date="1509900949700" expanded="true" signature="25025:25038" ph="..." />
-            <marker date="1509900949700" expanded="true" signature="28179:28192" ph="..." />
-            <marker date="1509900949700" expanded="true" signature="28488:28501" ph="..." />
-            <marker date="1509900949700" expanded="true" signature="28798:28811" ph="..." />
+            <element signature="n#!!block;n#animateEditor#0" expanded="false" />
+            <element signature="n#!!block;n#applyTexture#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/WebglHelper.js">
+    <entry file="file://$PROJECT_DIR$/assets/js/UploadHandler.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="810">
-          <caret line="54" column="31" lean-forward="false" selection-start-line="54" selection-start-column="31" selection-end-line="54" selection-end-column="31" />
+        <state relative-caret-position="-1725">
+          <caret line="301" column="126" lean-forward="false" selection-start-line="301" selection-start-column="126" selection-end-line="301" selection-end-column="126" />
+          <folding>
+            <element signature="n#!!block;n#loadUserObjectFiles#0" expanded="false" />
+            <element signature="n#!!block;n#waitUntilWebglInitialized#0" expanded="false" />
+            <element signature="e#8936#14444#0" expanded="false" />
+            <element signature="n#!!block;n#convert#0" expanded="false" />
+            <element signature="n#!!block;n#saveCanvasImg#0" expanded="false" />
+            <element signature="n#!!block;n#getOriginalFileName#0" expanded="false" />
+            <element signature="n#!!block;n#getPngFileName#0" expanded="false" />
+            <marker date="1509984360639" expanded="true" signature="5173:5186" ph="..." />
+            <marker date="1509984360639" expanded="true" signature="6136:6149" ph="..." />
+            <marker date="1509984360639" expanded="true" signature="6893:6906" ph="..." />
+            <marker date="1509984360639" expanded="true" signature="7925:7938" ph="..." />
+            <marker date="1509984360639" expanded="true" signature="8302:8315" ph="..." />
+            <marker date="1509984360639" expanded="true" signature="8680:8693" ph="..." />
+            <marker date="1509984360639" expanded="true" signature="10264:10277" ph="..." />
+            <marker date="1509984360639" expanded="true" signature="11327:11340" ph="..." />
+            <marker date="1509984360639" expanded="true" signature="17615:17628" ph="..." />
+            <marker date="1509984360639" expanded="true" signature="19596:19609" ph="..." />
+            <marker date="1509984360639" expanded="true" signature="25089:25102" ph="..." />
+            <marker date="1509984360639" expanded="true" signature="28243:28256" ph="..." />
+            <marker date="1509984360639" expanded="true" signature="28552:28565" ph="..." />
+            <marker date="1509984360639" expanded="true" signature="28862:28875" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/img/textures/user_textures/Diffuse128x_1509984375.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/img/textures/user_textures/Diffuse128x_1509984379.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/img/textures/user_textures/Megushira_1509985389.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="600">
+          <caret line="40" column="45" lean-forward="false" selection-start-line="40" selection-start-column="45" selection-end-line="40" selection-end-column="45" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/css/styles.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="406">
+          <caret line="144" column="21" lean-forward="true" selection-start-line="144" selection-start-column="21" selection-end-line="144" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/editor.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="444">
+          <caret line="54" column="27" lean-forward="false" selection-start-line="54" selection-start-column="27" selection-end-line="54" selection-end-column="27" />
+          <folding>
+            <element signature="n#style#0;n#img#0;n#a#0;n#div#0;n#div#0;n#nav#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#nav#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#nav#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#form#0;n#ul#1;n#div#1;n#div#0;n#nav#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#label#0;n#form#0;n#ul#1;n#div#1;n#div#0;n#nav#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#div#1;n#div#1;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#nav#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#nav#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#div#1;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#div#2;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#div#3;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#div#0;n#div#3;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#div#4;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#div#5;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#div#6;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#div#7;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#div#8;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#div#2;n#div#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="n#div#3;n#div#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/js/UserInterfaceScripts.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="989">
-          <caret line="392" column="25" lean-forward="true" selection-start-line="392" selection-start-column="25" selection-end-line="392" selection-end-column="25" />
-          <folding />
+        <state relative-caret-position="434">
+          <caret line="33" column="67" lean-forward="false" selection-start-line="33" selection-start-column="67" selection-end-line="33" selection-end-column="67" />
+          <folding>
+            <element signature="e#11326#11540#0" expanded="false" />
+            <element signature="e#11624#13404#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -104,65 +104,22 @@ function initPreview(i){
 
 
 function renderEditor() {
-
-    //if (editorObjectLoaded){
     drawScene(canvasEditorArr[0], webglEditorArr[0], objEditorArr, mvMatrixE, pMatrixE, mvMatrixStackE, shaderProgramEditorArr[0],
             ambientLightE, directionalLightE, pointLightArrayE);
     animateEditor(objEditorArr);
-    changeColour();
-    //}
-
+    changeEditorShapeColor();
 
     copyEditorToPreview();
 
     for(let i = 1; i < webglEditorArr.length; i++) {
-        //console.log("i: " + i);
-        /*if(objPreviewArr.slice(i-1,i)[0].name !== undefined){
-            console.log("render obj: " + objPreviewArr.slice(i-1,i)[0].name);
-        }
-        else{
-            console.log(undefined);
-        }*/
         drawScene(canvasEditorArr[i], webglEditorArr[i], objPreviewArr.slice(i-1,i), mvMatrixE, pMatrixE, mvMatrixStackE, shaderProgramEditorArr[i],
             ambientLightE, directionalLightE, pointLightArrayE);
     }
 
-    /*let i = 1;
-    drawScene(canvasEditorArr[i], webglEditorArr[i], objPreviewArr.slice(i-1,i), mvMatrixE, pMatrixE, mvMatrixStackE, shaderProgramEditorArr[i],
-        ambientLightE, directionalLightE, pointLightArrayE);
-    i = 2;
-    drawScene(canvasEditorArr[i], webglEditorArr[i], objPreviewArr.slice(i-1,i), mvMatrixE, pMatrixE, mvMatrixStackE, shaderProgramEditorArr[i],
-        ambientLightE, directionalLightE, pointLightArrayE);
-
-    //kaip pridedam papildomai vikas tvarkoj
-    setTimeout(function () {
-        drawScene(canvasEditorArr[6], webglEditorArr[6], objPreviewArr.slice(5,6), mvMatrixE, pMatrixE, mvMatrixStackE, shaderProgramEditorArr[6],
-            ambientLightE, directionalLightE, pointLightArrayE);
-    },2500);*/
-
     animateEditor(objPreviewArr);
-
 }
-function renderPreview() {
-    /*copyEditorToPreview();
-    for(let i = 1; i < webglEditorArr.length; i++) {
-        //drawScene(canvasEditorArr[i], webglEditorArr[i], objPreviewArr.slice(i-1,i), mvMatrixE, pMatrixE, mvMatrixStackE, shaderProgramEditorArr[i],
-           // ambientLightE, directionalLightE, pointLightArrayE);
-    }
-    let i = 1;
-    drawScene(canvasEditorArr[i], webglEditorArr[i], objPreviewArr.slice(i-1,i), mvMatrixE, pMatrixE, mvMatrixStackE, shaderProgramEditorArr[i],
-        ambientLightE, directionalLightE, pointLightArrayE);
 
-
-    //kaip pridedam papildomai vikas tvarkoj
-    setTimeout(function () {
-        drawScene(canvasEditorArr[6], webglEditorArr[6], objPreviewArr.slice(5,6), mvMatrixE, pMatrixE, mvMatrixStackE, shaderProgramEditorArr[6],
-            ambientLightE, directionalLightE, pointLightArrayE);
-    },2500);
-
-    animateEditor(objPreviewArr);*/
-}
-function changeColour(){
+function changeEditorShapeColor(){
     for(let i in objEditorArr) {
         objEditorArr[i].r = redChange;
         objEditorArr[i].g = greenChange;
@@ -181,11 +138,21 @@ function changeColour(){
     pointLightArrayE[0].b = bluePChange;
 
 }
+function changeEditorShapeRotAngle(){
+    for(let i in objEditorArr) {
+        objEditorArr[i].xRot = xRotSlider;
+        objEditorArr[i].yRot = yRotSlider;
+        objEditorArr[i].zRot = zRotSlider;
+    }
+}
 function copyEditorToPreview(){
     for(let i in objPreviewArr){
         objPreviewArr[i].r = objEditorArr[0].r;
         objPreviewArr[i].g = objEditorArr[0].g;
         objPreviewArr[i].b = objEditorArr[0].b;
+        objPreviewArr[i].xRot = objEditorArr[0].xRot;
+        objPreviewArr[i].yRot = objEditorArr[0].yRot;
+        objPreviewArr[i].zRot = objEditorArr[0].zRot;
         objPreviewArr[i].alpha = objEditorArr[0].alpha;
         objPreviewArr[i].useTexture = objEditorArr[0].useTexture;
         objPreviewArr[i].textureSrc = objEditorArr[0].textureSrc;

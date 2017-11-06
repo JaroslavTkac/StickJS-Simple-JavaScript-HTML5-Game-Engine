@@ -40,7 +40,7 @@ class KeyboardPresets{
         e.yRot = this.rotationSpeed;
         keysArray.push(w, s, a , d, space, shift, q, e);
     }
-    shooterControls(){
+    shooterControls(){ //TODO Q/E movement
         this.shooterControlsEnabled = true;
         let w, s, a, d;
         if(this.controlsType === "arrows") {

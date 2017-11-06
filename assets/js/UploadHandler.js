@@ -108,13 +108,13 @@ function loadUserData(dir, type){
                 //console.log(content['data'][i]);
                 if(type === "image") {
                     $('#texture-picker-row').append(
-                        "<div class=\"col-lg-3 col-md-3 col-sm-4 col-xs-6\">" +
+                        "<div class=\"col-lg-4 col-md-4 col-sm-4 col-xs-6 texture-padding\">" +
                         "<a href=\"#\" class=\"thumbnail\" >" +
                         "<img src=\"assets/img/textures/user_textures/" + folderContent[i] + "\" class=\"img-rounded inline-block texture\" " +
                         "alt=\"assets/img/textures/user_textures/" + folderContent[i] + "\">" +
                         "</a>" +
                         "</div>");
-                    data = "<div align=\"center\" class=\"col-lg-3 col-md-4 col-sm-4 col-xs-6\">" +
+                    data = "<div align=\"center\" class=\"col-lg-4 col-md-4 col-sm-4 col-xs-6 texture-padding\">" +
                         "<a href=\"#\" class=\"thumbnail\" >" +
                         "<img src=\"assets/img/textures/user_textures/" + folderContent[i] + "\" class=\"img-rounded inline-block\" " +
                         "alt=" + folderContent[i] + "\">" +
@@ -293,13 +293,13 @@ $(function () {
                                  //console.log(response);
                                  //after successful file location change appending html document
                                  $('#texture-picker-row').append(
-                                     "<div class=\"col-lg-3 col-md-3 col-sm-4 col-xs-6\">" +
+                                     "<div class=\"col-lg-4 col-md-4 col-sm-4 col-xs-6 texture-padding\">" +
                                      "<a href=\"#\" class=\"thumbnail\" >" +
                                      "<img src=\"assets/img/textures/user_textures/" + imgName + "\" class=\"img-rounded inline-block texture\" " +
                                      "alt=\"assets/img/textures/user_textures/" + imgName + "\">" +
                                      "</a>" +
                                      "</div>");
-                                 let data = "<div align=\"center\" class=\"col-lg-3 col-md-4 col-sm-4 col-xs-6\">" +
+                                 let data = "<div align=\"center\" class=\"col-lg-3 col-md-4 col-sm-4 col-xs-6 texture-padding\">" +
                                      "<a href=\"#\" class=\"thumbnail\" >" +
                                      "<img src=\"assets/img/textures/user_textures/" + imgName + "\" class=\"img-rounded inline-block\" " +
                                      "alt=" + imgName + "\">" +

@@ -56,7 +56,7 @@
 
 
      <!-- .navbar-fixed-top, or .navbar-fixed-bottom can be added to keep the nav bar fixed on the screen -->
-    <nav class="navbar navbar-default navbar-static-top" data-spy="affix" data-offset-top="50" style="margin-bottom: 0">
+    <nav class="navbar navbar-default navbar-static-top" data-spy="affix" data-offset-top="120" style="margin-bottom: 0">
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
@@ -78,7 +78,7 @@
                         <li><a href="../#creator-info">About</a></li>
                     </ul>
                     <form class="navbar-right my">
-                        <a href="#" class="">Login</a>
+                        <a href="#" class=""></a>
                     </form>
                 </div>
         </div>
@@ -87,9 +87,8 @@
 
     <div class="container-fluid" style="background: #e3eef4">
         <div class="row">
-
             <!-- Main Scene & Importer -->
-            <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+            <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12" style="padding: 0 0 0 0">
                 <!-- WEB GL Canvas area -->
                 <canvas id="Scene" style="border: 3pt black solid"></canvas>
 
@@ -117,7 +116,7 @@
 
                 <!-- Upload and selection navigation bar -->
                 <div >
-                    <nav class="navbar navbar-default " style="margin-bottom: 0">
+                    <nav class="navbar navbar-default navbar-static-top" style="margin: 0 0 0 0;">
                         <div class="container-fluid">
                             <div class="navbar-header">
                                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-3" aria-expanded="false">
@@ -199,8 +198,8 @@
             </div>
 
             <!-- Nav Bar Editor/Logic/Sound -->
-            <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12" id="editor-logic-sound">
-                <nav class="navbar navbar-default ">
+            <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12" id="editor-logic-sound" style="padding: 0 0 0 0">
+                <nav class="navbar navbar-default navbar-static-top" style="margin-bottom: 0">
                     <div class="container-fluid">
                         <div class="navbar-header">
                             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2" aria-expanded="false">
@@ -230,6 +229,7 @@
 
                         </div>
                     </div>
+
                     <!-- Editor-preview window Color & Texture pickers and more -->
                     <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9" id="editor-container">
                         <!-- WEB GL Canvas editor area -->
@@ -237,13 +237,15 @@
                             <canvas id="editor-scene"></canvas>
                         </div>
 
-                        <!-- Selector between Texture and color picker -->
+                        <!-- Selector between Texture, Color picker and Light setter -->
                         <div align="center" class="form-group" style="padding-bottom: 5%">
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <div class="input-group">
                                     <div id="radioBtn" class="btn-group">
                                         <a class="btn btn-primary btn-sm active" id="color-radioBtn" data-toggle="picker" data-title="Color">Color</a>
                                         <a class="btn btn-primary btn-sm notActive" id="texture-radioBtn" data-toggle="picker" data-title="Texture">Texture</a>
+                                        <a class="btn btn-primary btn-sm notActive" id="opacity-radioBtn" data-toggle="picker" data-title="Opacity">Opacity</a>
+                                        <a class="btn btn-primary btn-sm notActive" id="lightning-radioBtn" data-toggle="picker" data-title="Lightning">Lightning</a>
                                     </div>
                                     <input type="hidden" name="editor-picker" id="picker">
                                 </div>
@@ -251,7 +253,7 @@
                         </div>
 
                         <!-- Color picker -->
-                        <div align="center" class="col-lg-8 col-md-8 col-sm-12 col-xs-12" id="color-picker">
+                        <div align="center" class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="color-picker">
                             <h4>Color</h4>
                             <p>R <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="1" data-slider-step="0.025" data-slider-value="0.5" data-slider-id="RC" id="R" data-slider-tooltip="hide" data-slider-handle="square"   /></p>
                             <p>G <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="1" data-slider-step="0.025" data-slider-value="0.5" data-slider-id="GC" id="G" data-slider-tooltip="hide" data-slider-handle="square" /></p>
@@ -259,60 +261,60 @@
                         </div>
 
                         <!-- Texture picker -->
-                        <div align="center" class="col-lg-8 col-md-8 col-sm-12 col-xs-12" id="texture-picker" style="display: none;"  >
+                        <div align="center" class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="texture-picker" style="display: none;"  >
                             <h4>Textures</h4>
                             <div class="row" id="texture-picker-row">
-                                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6 texture-padding">
                                     <a href="#" class="thumbnail" >
                                         <img src="assets/img/textures/sun.jpg" class="img-rounded inline-block texture" alt="assets/img/textures/sun.jpg" >
                                     </a>
                                 </div>
-                                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6 texture-padding">
                                     <a href="#" class="thumbnail" >
                                         <img src="assets/img/textures/metal.jpg" class="img-rounded inline-block texture" alt="assets/img/textures/metal.jpg" >
                                     </a>
                                 </div>
-                                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6 texture-padding">
                                     <a href="#" class="thumbnail" >
                                         <img src="assets/img/textures/carbon_fiber.jpg" class="img-rounded inline-block texture" alt="assets/img/textures/carbon_fiber.jpg" >
                                     </a>
                                 </div>
-                                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6 texture-padding">
                                     <a href="#" class="thumbnail" >
                                         <img src="assets/img/textures/wood.jpg" class="img-rounded inline-block texture" alt="assets/img/textures/wood.jpg" >
                                     </a>
                                 </div>
-                                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6 texture-padding">
                                     <a href="#" class="thumbnail" >
                                         <img src="assets/img/textures/leather.jpg" class="img-rounded inline-block texture" alt="assets/img/textures/leather.jpg" >
                                     </a>
                                 </div>
-                                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6 texture-padding">
                                     <a href="#" class="thumbnail" >
                                         <img src="assets/img/textures/asphalt.jpg" class="img-rounded inline-block texture" alt="assets/img/textures/asphalt.jpg" >
                                     </a>
                                 </div>
-                                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6 texture-padding">
                                     <a href="#" class="thumbnail" >
                                         <img src="assets/img/textures/glass.jpg" class="img-rounded inline-block texture" alt="assets/img/textures/glass.jpg" >
                                     </a>
                                 </div>
-                                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6 texture-padding">
                                     <a href="#" class="thumbnail" >
                                         <img src="assets/img/textures/grass.jpg" class="img-rounded inline-block texture" alt="assets/img/textures/grass.jpg" >
                                     </a>
                                 </div>
-                                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6 texture-padding">
                                     <a href="#" class="thumbnail" >
                                         <img src="assets/img/textures/lava.jpg" class="img-rounded inline-block texture" alt="assets/img/textures/lava.jpg" >
                                     </a>
                                 </div>
-                                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6 texture-padding">
                                     <a href="#" class="thumbnail" >
                                         <img src="assets/img/textures/molten_lava.jpg" class="img-rounded inline-block texture" alt="assets/img/textures/molten_lava.jpg" >
                                     </a>
                                 </div>
-                                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6 texture-padding">
                                     <a href="#" class="thumbnail" >
                                         <img src="assets/img/textures/snow.jpg" class="img-rounded inline-block texture" alt="assets/img/textures/snow.jpg" >
                                     </a>
@@ -321,7 +323,7 @@
                         </div>
 
                         <!-- Opacity slider -->
-                        <div align="center" class="col-lg-4 col-md-4 col-sm-12 col-xs-12" id="opacity">
+                        <div align="center" class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="opacity">
                             <h4>Opacity</h4>
                             <div id="opacity-slider" class=".rs-bg-color .rs-range-color .rs-border .rs-handle"></div>
                         </div>
@@ -362,6 +364,14 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>
+
+                        <!-- Rotation sliders -->
+                        <div align="center" class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12" id="rotation-control">
+                            <h4>Shape rotation</h4>
+                            <p>X <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="360" data-slider-step="2" data-slider-value="0" data-slider-id="XC" id="X-RotationSlider" data-slider-handle="round" /></p>
+                            <p>Y <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="360" data-slider-step="2" data-slider-value="40" data-slider-id="XC" id="Y-RotationSlider" data-slider-handle="round" /></p>
+                            <p>Z <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="360" data-slider-step="2" data-slider-value="0" data-slider-id="XC" id="Z-RotationSlider" data-slider-handle="round" /></p>
                         </div>
 
                         <!-- Button to save object -->

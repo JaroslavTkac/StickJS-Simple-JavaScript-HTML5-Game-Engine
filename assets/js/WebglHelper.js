@@ -65,6 +65,8 @@ let elapsed = 0;
 let redChange = 0.5, blueChange = 0.5, greenChange = 0.5,
     redAChange = 0.5, blueAChange = 0.5, greenAChange = 0.5,
     redPChange = 0.2, bluePChange = 0.2, greenPChange = 0.2;
+//Rotation Sliders
+let xRotSlider = 0, yRotSlider = 0, zRotSlider = 0;
 
 
 function initGLForScene(canvas) {

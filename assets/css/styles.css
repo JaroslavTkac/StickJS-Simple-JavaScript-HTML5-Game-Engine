@@ -116,16 +116,15 @@ canvas {
 }
 /* Editor page */
 /* Coloring */
-
-/* Small devices (tablets, 768px and up) */
-@media screen and (min-width: 1280px) { /* TODO on small screen do not display splitter line*/
-    #editor-logic-sound {
-        border-left: 20px red double;
-
-    }
-}
 #editor-logic-sound{
-    border-left: 4px #ea640b double;
+
+}
+#editor-area{
+    padding: 0 0 0 0;
+}
+#editor-container{
+    padding-left: 4px;
+    padding-right: 4px;
 }
 #color-picker{
     border-radius: 2%;
@@ -133,48 +132,44 @@ canvas {
 /* TODO: color theme for editor background with gradient */
 #texture-picker{
     overflow-y: scroll;
+    max-height: 300px;
     border-radius: 2%;
-
+}
+#saved-shape-container{
+    padding: 0 0 0 0;
 }
 #saved-shape-canvas-container{
     overflow-y: scroll;
     width: 100%;
     border-radius: 2%;
-    border: 1px #ea640b solid;
+    padding: 0 0 0 0;
+    border: 1px #6991ac solid;
 }
 #selectable-shapes{
     overflow-y: scroll;
     max-height: 300px;
-    border-radius: 2%;
-    border: 2px #ea640b solid;
+    border: 2px #6991ac solid;
     margin-bottom: 1%;
 }
 #selectable-music{
     overflow-y: scroll;
     max-height: 300px;
-    border-radius: 2%;
-    border: 2px #ea640b solid;
+    border: 2px #6991ac solid;
     margin-bottom: 1%;
 }
 #selectable-textures{
     overflow-y: scroll;
     max-height: 300px;
-    border-radius: 2%;
-    border: 2px #ea640b solid;
+    border: 2px #6991ac solid;
     margin-bottom: 1%;
 }
-
-
-
-#spacer{
-   padding-bottom: 3%;
-}
-
 .thumbnail{
     border:none !important;
     background: transparent !important;
     box-shadow:none !important;
-    margin: 4% 1% 0 1%;
+    margin: 1% 1% 0 1%;
+    padding-left: 0;
+    padding-right: 0;
 }
 #radioBtn .notActive{
     color: #3276b1;
@@ -191,6 +186,16 @@ canvas {
     margin-top: -5%;
 }
 
+#code-blocks-container{
+    padding: 0 0 0 0;
+}
+
+.texture-padding{
+    padding: 0 1% 0 1%;
+}
+.texture{
+    margin: 0 0 0 0;
+}
 /* SLIDERS */
 
 #RC .slider-selection {

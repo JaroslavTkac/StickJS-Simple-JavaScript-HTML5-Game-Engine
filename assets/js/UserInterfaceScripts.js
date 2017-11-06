@@ -26,8 +26,14 @@ $(document).ready(function() {
     $('#code-blocks-container').css('display', 'none');
     $('#code-scene').css('display', 'none');
 
-    $('#saved-shape-container').css('height', (editorBlockHeight * 0.76));
-    $('#saved-shape-canvas-container').css('height', (editorBlockHeight * 0.76));
+    //lightning and opacity
+    $('#opacity').css('display', 'none');
+    $('#light-control').css('display', 'none');
+    $('#light-control-additional').css('display', 'none');
+
+    $('#saved-shape-container').css('height', (editorHeight * 2.76));
+    $('#saved-shape-canvas-container').css('height', (editorHeight * 2.76));
+
 
     // Get user content and append page with got data
     //Textures
@@ -54,7 +60,7 @@ $(document).ready(function() {
 
         $('a[data-toggle="'+tog+'"]').not('[data-title="'+sel+'"]').removeClass('active').addClass('notActive');
         $('a[data-toggle="'+tog+'"][data-title="'+sel+'"]').removeClass('notActive').addClass('active');
-        //console.log(sel);
+        console.log(sel);
         if(sel === "Color"){
             objEditorArr[0].useTexture = false;
             for(let i in objPreviewArr){
@@ -63,13 +69,37 @@ $(document).ready(function() {
             $('#color-picker').css('display', '');
             $('#texture-picker').css('display', 'none');
 
+            //lightning and opacity
+            $('#opacity').css('display', 'none');
+            $('#light-control').css('display', 'none');
+            $('#light-control-additional').css('display', 'none');
         }
-        else{
+        if(sel === "Texture"){
             $('#texture-picker').css('display', '');
-            $('#texture-picker').css('height', $('#color-picker').height());
+            //$('#texture-picker').css('height', $('#color-picker').height());
             $('#color-picker').css('display', 'none');
             applyTexture(lastSelectedTexture);
+
+            //lightning and opacity
+            $('#opacity').css('display', 'none');
+            $('#light-control').css('display', 'none');
+            $('#light-control-additional').css('display', 'none');
         }
+        if(sel === "Opacity"){
+            $('#color-picker').css('display', 'none');
+            $('#texture-picker').css('display', 'none');
+            $('#light-control').css('display', 'none');
+            $('#light-control-additional').css('display', 'none');
+            $('#opacity').css('display', '');
+        }
+        if(sel === "Lightning"){
+            $('#color-picker').css('display', 'none');
+            $('#texture-picker').css('display', 'none');
+            $('#opacity').css('display', 'none');
+            $('#light-control').css('display', '');
+            $('#light-control-additional').css('display', '');
+        }
+
 
     });
 
@@ -205,7 +235,9 @@ $(document).ready(function() {
             "r": redChange,
             "g": greenChange,
             "b": blueChange,
-            "yRot": 50,
+            "xRot": xRotSlider,
+            "yRot": yRotSlider,
+            "zRot": zRotSlider,
             "yRotSpeed": 40,
             "lighting": isLightWillBeUsed,
             "animateRotation": true,
@@ -307,7 +339,9 @@ $(document).ready(function() {
                 "r": objToAdd.r,
                 "g": objToAdd.g,
                 "b": objToAdd.b,
+                "xRot": objToAdd.xRot,
                 "yRot": objToAdd.yRot,
+                "zRot": objToAdd.zRot,
                 "yRotSpeed": objToAdd.yRotSpeed,
                 "lighting": objToAdd.lighting,
                 "animateRotation": objToAdd.animateRotation,
@@ -338,7 +372,7 @@ $(document).ready(function() {
     // END
 
     //Edit shape
-    let loadedR, loadedG, loadedB, loadedAlpha;
+    let loadedR, loadedG, loadedB, loadedAlpha, loadedX, loadedY, loadedZ;
     //Load Shape to Editor
     $(document).on('click', '.overlay-btn-edit', function (e) {
         e.preventDefault();
@@ -359,6 +393,9 @@ $(document).ready(function() {
         loadedG = objToEdit.g;
         loadedB = objToEdit.b;
         loadedAlpha = objToEdit.alpha;
+        loadedX = objToEdit.xRot;
+        loadedY = objToEdit.yRot;
+        loadedZ = objToEdit.zRot;
 
         new LoadObject(currentlySelectedShape, lastSelectedTexture, {
             "name": "forEditor",
@@ -367,7 +404,9 @@ $(document).ready(function() {
             "r": objToEdit.r,
             "g": objToEdit.g,
             "b": objToEdit.b,
-            "yRot": 50,
+            "xRot": loadedX,
+            "yRot": loadedY,
+            "zRot": loadedZ,
             "yRotSpeed": 40,
             "lighting": objToEdit.lighting,
             "animateRotation": objToEdit.animateRotation,
@@ -400,6 +439,10 @@ $(document).ready(function() {
             blue.setValue(loadedB, true, true);
             //set opacity
             opacitySlider.setValue(loadedAlpha);
+            //set xyz rotation
+            xSlider.setValue(loadedX, true, true);
+            ySlider.setValue(loadedY, true, true);
+            zSlider.setValue(loadedZ, true, true);
         }
         saveData();
     }
@@ -412,7 +455,8 @@ $(document).ready(function() {
         max: 1.0,
         step: 0.025,
         radius: 90,
-        circleShape: "quarter-top-left",
+        startAngle: 315,
+        circleShape: "pie",
         showTooltip: false,
         handleShape: "square",
         width: 12,
@@ -439,6 +483,14 @@ $(document).ready(function() {
             blueAChange = blueA.getValue();
         }
     };
+    let rotateShape = function () {
+        xRotSlider = xSlider.getValue();
+        yRotSlider = ySlider.getValue();
+        zRotSlider = zSlider.getValue();
+
+        console.log("x: " + xRotSlider + " y: " + yRotSlider + " z: " + zRotSlider);
+        changeEditorShapeRotAngle();
+    };
 
     let red = $('#R').slider().on('slide', RGBChange).data('slider');
     let green = $('#G').slider().on('slide', RGBChange).data('slider');
@@ -451,6 +503,11 @@ $(document).ready(function() {
     let redP = $("#R-point").slider().on('slide', RGBChange).data('slider');
     let greenP = $("#G-point").slider().on('slide', RGBChange).data('slider');
     let blueP = $("#B-point").slider().on('slide', RGBChange).data('slider');
+
+    let xSlider = $("#X-RotationSlider").slider().on('slide', rotateShape).data('slider');
+    let ySlider = $("#Y-RotationSlider").slider().on('slide', rotateShape).data('slider');
+    let zSlider = $("#Z-RotationSlider").slider().on('slide', rotateShape).data('slider');
+
 
     let combinedALight = $("#combined-light").slider().on('slide', RGBAmbientChange).data('slider');
     // END
