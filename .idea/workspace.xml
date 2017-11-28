@@ -2,37 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4d98851f-1cbe-463c-84f1-c95cfca61c40" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/assets/img/design/Update91.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/scripts/BlocksToCode.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/scripts/CodeBlocks.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/scripts/UserConvertedCode.js" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/img/design/Update.png" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/img/design/Author.jpg" afterPath="$PROJECT_DIR$/assets/img/design/Author.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/img/design/Demo.jpg" afterPath="$PROJECT_DIR$/assets/img/design/Demo.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/img/design/SelectIcon.png" afterPath="$PROJECT_DIR$/assets/img/design/SelectIcon.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/img/design/SettingsIcon.png" afterPath="$PROJECT_DIR$/assets/img/design/SettingsIcon.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/img/design/StickJSlogo.png" afterPath="$PROJECT_DIR$/assets/img/design/StickJSlogo.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/img/textures/asphalt.jpg" afterPath="$PROJECT_DIR$/assets/img/textures/asphalt.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/img/textures/carbon_fiber.jpg" afterPath="$PROJECT_DIR$/assets/img/textures/carbon_fiber.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/img/textures/glass.jpg" afterPath="$PROJECT_DIR$/assets/img/textures/glass.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/img/textures/grass.jpg" afterPath="$PROJECT_DIR$/assets/img/textures/grass.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/img/textures/lava.jpg" afterPath="$PROJECT_DIR$/assets/img/textures/lava.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/img/textures/leather.jpg" afterPath="$PROJECT_DIR$/assets/img/textures/leather.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/img/textures/metal.jpg" afterPath="$PROJECT_DIR$/assets/img/textures/metal.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/img/textures/molten_lava.jpg" afterPath="$PROJECT_DIR$/assets/img/textures/molten_lava.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/img/textures/snow.jpg" afterPath="$PROJECT_DIR$/assets/img/textures/snow.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/img/textures/sun.jpg" afterPath="$PROJECT_DIR$/assets/img/textures/sun.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/img/textures/wood.jpg" afterPath="$PROJECT_DIR$/assets/img/textures/wood.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/css/styles.css" afterPath="$PROJECT_DIR$/assets/css/styles.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/js/UploadHandler.js" afterPath="$PROJECT_DIR$/assets/js/UploadHandler.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/js/UserInterfaceScripts.js" afterPath="$PROJECT_DIR$/assets/js/UserInterfaceScripts.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/assets/js/WebglHelper.js" afterPath="$PROJECT_DIR$/assets/js/WebglHelper.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/editor.html" afterPath="$PROJECT_DIR$/editor.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/Main.js" afterPath="$PROJECT_DIR$/scripts/Main.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/scripts/UserFunctions.js" afterPath="$PROJECT_DIR$/scripts/UserFunctions.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/upload.php" afterPath="$PROJECT_DIR$/upload.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -173,9 +143,12 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
-              <caret line="149" column="73" lean-forward="true" selection-start-line="147" selection-start-column="24" selection-end-line="149" selection-end-column="73" />
-              <folding />
+            <state relative-caret-position="583">
+              <caret line="112" column="20" lean-forward="false" selection-start-line="112" selection-start-column="20" selection-end-line="112" selection-end-column="20" />
+              <folding>
+                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#p#0;n#div#0;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -323,13 +296,13 @@
         <option value="$PROJECT_DIR$/shapes/user_shapes_data/liveObjects.txt" />
         <option value="$PROJECT_DIR$/scripts/Main.js" />
         <option value="$PROJECT_DIR$/scripts/UserFunctions.js" />
-        <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/assets/js/UploadHandler.js" />
         <option value="$PROJECT_DIR$/upload.php" />
         <option value="$PROJECT_DIR$/scripts/BlocksToCode.js" />
         <option value="$PROJECT_DIR$/assets/js/UserInterfaceScripts.js" />
         <option value="$PROJECT_DIR$/editor.html" />
         <option value="$PROJECT_DIR$/assets/css/styles.css" />
+        <option value="$PROJECT_DIR$/index.html" />
       </list>
     </option>
   </component>
@@ -627,12 +600,12 @@
       <workItem from="1510060329176" duration="40000" />
       <workItem from="1510781391332" duration="952000" />
       <workItem from="1511786665514" duration="593000" />
-      <workItem from="1511862553676" duration="14968000" />
+      <workItem from="1511862553676" duration="15318000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="496004000" />
+    <option name="totallyTimeSpent" value="496354000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -991,9 +964,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="149" column="73" lean-forward="true" selection-start-line="147" selection-start-column="24" selection-end-line="149" selection-end-column="73" />
-          <folding />
+        <state relative-caret-position="583">
+          <caret line="112" column="20" lean-forward="false" selection-start-line="112" selection-start-column="20" selection-end-line="112" selection-end-column="20" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#div#0;n#div#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
