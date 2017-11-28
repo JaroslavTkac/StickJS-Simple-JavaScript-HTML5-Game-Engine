@@ -24,7 +24,7 @@ function drawScene(canvas, webgl, array, mvMatrix, pMatrix, mvMatrixStack, shade
     webgl.viewport(0, 0, webgl.viewportWidth, webgl.viewportHeight);
     webgl.clear(webgl.COLOR_BUFFER_BIT | webgl.DEPTH_BUFFER_BIT);
 
-    mat4.perspective(60, webgl.viewportWidth / webgl.viewportHeight, 0.1, 800.0, pMatrix);
+    mat4.perspective(60, webgl.viewportWidth / webgl.viewportHeight, 0.1, 1200.0, pMatrix);
 
     mat4.identity(mvMatrix);
 
@@ -81,7 +81,9 @@ function webGLStart() {
 
 
 
-
+    setTimeout(function () {
+        console.log(objArr);
+    },4000);
 
 
     /*sound = new Sound();
@@ -169,20 +171,7 @@ function webGLStart() {
     loading();
 
 }
-function userCode() {
-    //Here will be imported user code
 
-
-    //changeSx("test", 3);
-    //changeSz("test2", 0.5);
-    //changeSy("test", 0.2);
-
-
-
-
-
-
-}
 
 function loading(){
     console.log(loadedObjects + " / " + totalObjects);
@@ -221,7 +210,6 @@ function render() {
     //fpsCounter();
     //avgFps();
     renderEditor();
-    //renderPreview();
 
 }
 
@@ -306,7 +294,7 @@ function demoPlayer() {
         "yRotSpeed": 10,
         "useTexture": true,
         "useCamera": true
-    },);
+    });
     new LoadObject("shapes/cube.json", "assets/img/textures/metal.jpg", {
         "name": "wingL",
         "x": -0.8,

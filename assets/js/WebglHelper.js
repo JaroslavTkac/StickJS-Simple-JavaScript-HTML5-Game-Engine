@@ -68,6 +68,15 @@ let redChange = 0.5, blueChange = 0.5, greenChange = 0.5,
 //Rotation Sliders
 let xRotSlider = 0, yRotSlider = 0, zRotSlider = 0;
 
+//Code Blocks variables
+let selectedElement;
+let currentX = 0;
+let currentY = 0;
+let currentMatrix = [];
+let childMatrix = [];
+let svgIntersectArr = [], codeArray = [];
+let tmpTotalDx, tmpTotalDy;
+let tmpMatrixX, tmpMatrixY;
 
 function initGLForScene(canvas) {
     try {

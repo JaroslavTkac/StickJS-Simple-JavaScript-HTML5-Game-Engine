@@ -520,6 +520,10 @@ function deleteFileFromServer(file_path) {
         success: function(response) {
             console.log("Successfully deleted");
             console.log(response);
+        },
+        error: function (response) {
+            console.log("Error on deleting");
+            console.log(response);
         }
     });
 }

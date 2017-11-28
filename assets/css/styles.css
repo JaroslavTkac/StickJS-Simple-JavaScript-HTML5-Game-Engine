@@ -36,14 +36,21 @@ p{
 
 }
 .slide1{
-    background-image: url('../img/design/Demo.jpg');
+    background-image: url('../img/design/Update91.jpg');
     height: 550px;
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
 }
 .slide2{
-    background-image: url('../img/design/Update.png');
+    background-image: url('../img/design/Demo.jpg');
+    height: 550px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+.slide3{
+    background-image: url('../img/design/Update.jpg');
     height: 550px;
     background-repeat: no-repeat;
     background-position: center;
@@ -238,6 +245,64 @@ canvas {
 
 
 
+/* Code Blocks */
+.draggable {
+    cursor: grab;
+}
+.noselect {
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+}
+svg text {
+    cursor: grab;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+svg text::selection {
+    cursor: grab;
+    background: none;
+}
+svg g path:hover {
+    cursor: grab;
+}
+.code-id,
+.myFather,
+.myChild,
+.mktime{
+    visibility: hidden;
+    display: none;
+}
+#code-logic-selector{
+    padding: 0 0 0 0;
+}
+#code-logic-scene{
+    padding: 0 0 0 0;
+}
+.basic-text-over-svg{
+    fill: white;
+}
+#code-blocks-div{
+    border: 1px solid #3276b1;
+    border-radius: 4px;
+    padding: 0 0 0 0;
+    overflow: scroll;
+}
+#code-scene-div{
+    border: 1px solid #3276b1;
+    border-radius: 4px;
+    padding: 0 0 0 0;
+    overflow: scroll;
+}
+input[type=text]{
+    border-radius: 12%;
+    width: 50px;
+}
 
 
 

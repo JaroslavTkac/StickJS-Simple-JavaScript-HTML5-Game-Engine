@@ -47,6 +47,9 @@
     <script type="text/javascript" src="scripts/Lightning.js"></script>
     <script type="text/javascript" src="scripts/Animations.js"></script>
     <script type="text/javascript" src="scripts/UserFunctions.js"></script>
+    <script type="text/javascript" src="scripts/CodeBlocks.js"></script>
+    <script type="text/javascript" src="scripts/BlocksToCode.js"></script>
+    <script type="text/javascript" src="scripts/UserConvertedCode.js"></script>
     <script type="text/javascript" src="scripts/EditorMainWindow.js"></script>
     <script type="text/javascript" src="scripts/Main.js"></script>
 
@@ -118,7 +121,7 @@
     <div class="container-fluid" style="background: #e3eef4">
         <div class="row">
             <!-- Main Scene & Importer -->
-            <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12" style="padding: 0 0 0 0">
+            <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12" id="right-window" style="padding: 0 0 0 0">
                 <!-- WEB GL Canvas area -->
                 <canvas id="Scene" style="border: 3pt black solid"></canvas>
 
@@ -134,7 +137,7 @@
                                 <form>
                                     <div id="add-shape-name-form" class="form-group ">
                                         <label for="usr-shape-name">Name</label>
-                                        <input type="text" class="form-control" id="usr-shape-name">
+                                        <input type="text" class="form-control" id="usr-shape-name" style="width: 100%; border-radius: 2px">
                                         <p id="error-explanation"></p>
                                     </div>
                                     <button class="btn btn-primary" id="add-shape-name">Submit</button>
@@ -413,13 +416,767 @@
                     <!-- END EDITOR -->
 
                     <!-- LOGIC -->
-                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" id="code-blocks-container">
-                        <canvas id="code-templates" style="border: 1px solid royalblue"></canvas>
+
+                    <!-- CODE BLOCKS -->
+                    <div id="code-blocks-div" class="col-lg-3 col-md-4 col-sm-3 col-xs-3" style="display: none">
+                        <!-- SELECTION BOX -->
+                        <svg id="code-logic-selector"
+                             xmlns="http://www.w3.org/2000/svg"
+                             version="1.1"
+                             width="250px" height="1900px">
+
+                            <!-- TRIGGERS -->
+                            <text x="45" y="15" fill="#ea640b" transform="scale(1.5)">Triggers</text>
+                            <!-- On Start Click -->
+                            <g transform="matrix(1 0 0 1 0 30)"
+                               class="trigger">
+                                <path d="M 0 34.652 L 199.879 34.73 C 258.782 34.137 245.231
+                                     -0.498 200 0.005 L 31.522 0.005 L 0 34.652 Z" fill="green" stroke="black" stroke-width="2"></path>
+                                <text class="basic-text-over-svg" x="50" y="24" font-size="20">
+                                    On Start Click
+                                </text>
+                                <text class="code-id"
+                                      x="0" y="0">on start</text>
+                                <text class="mktime"
+                                      x="0" y="0"></text>
+                                <text class="myChild"
+                                      x="0" y="0"></text>
+                                <text class="myFather"
+                                      x="0" y="0"></text>
+                            </g>
+                            <!-- On Frame Start -->
+                            <g transform="matrix(1 0 0 1 0 90)"
+                               class="trigger">
+                                <path d="M 0 34.652 L 199.879 34.73 C 258.782 34.137 245.231
+                                     -0.498 200 0.005 L 31.522 0.005 L 0 34.652 Z" fill="green" stroke="black" stroke-width="2"></path>
+                                <text class="basic-text-over-svg" x="50" y="24" font-size="20">
+                                    On Frame
+                                </text>
+                                <foreignObject x="150" y="4" width="60" height="30">
+                                    <form>
+                                        <input class="code-input" title="frame" type="text" value="0"/>
+                                    </form>
+                                </foreignObject>
+                                <text class="code-id"
+                                      x="0" y="0">on frame</text>
+                                <text class="mktime"
+                                      x="0" y="0"></text>
+                                <text class="myChild"
+                                      x="0" y="0"></text>
+                                <text class="myFather"
+                                      x="0" y="0"></text>
+                            </g>
+                            <!-- On Key press -->
+                            <g transform="matrix(1 0 0 1 0 150)"
+                               class="trigger">
+                                <path d="M 0 34.652 L 199.879 34.73 C 258.782 34.137 245.231
+                                     -0.498 200 0.005 L 31.522 0.005 L 0 34.652 Z" fill="green" stroke="black" stroke-width="2"></path>
+                                <text class="basic-text-over-svg" x="50" y="24" font-size="20">
+                                    On Key
+                                </text>
+                                <foreignObject x="135" y="6" width="90" height="30">
+                                    <select class="code-selection" title="Key selection">
+                                        <option value="w">W</option>
+                                        <option value="a">A</option>
+                                        <option value="s">S</option>
+                                        <option value="d">D</option>
+                                        <option value="q">Q</option>
+                                        <option value="e">E</option>
+                                        <option value="lshift">Lshift</option>
+                                        <option value="space">Space</option>
+                                    </select>
+                                </foreignObject>
+                                <text class="code-id"
+                                      x="0" y="0">on key</text>
+                                <text class="mktime"
+                                      x="0" y="0"></text>
+                                <text class="myChild"
+                                      x="0" y="0"></text>
+                                <text class="myFather"
+                                      x="0" y="0"></text>
+                            </g>
+                            <!-- On X -->
+                            <g transform="matrix(1 0 0 1 0 210)"
+                               class="trigger">
+                                <path d="M 0 34.652 L 199.879 34.73 C 258.782 34.137 245.231
+                                     -0.498 200 0.005 L 31.522 0.005 L 0 34.652 Z" fill="green" stroke="black" stroke-width="2"></path>
+                                <text class="basic-text-over-svg" x="50" y="24" font-size="20">
+                                    On X
+                                </text>
+                                <foreignObject x="150" y="4" width="60" height="30">
+                                    <form>
+                                        <input class="code-input" title="coordinate" type="text" value="0"/>
+                                    </form>
+                                </foreignObject>
+                                <text class="code-id"
+                                      x="0" y="0">on x</text>
+                                <text class="mktime"
+                                      x="0" y="0"></text>
+                                <text class="myChild"
+                                      x="0" y="0"></text>
+                                <text class="myFather"
+                                      x="0" y="0"></text>
+                            </g>
+                            <!-- On Y -->
+                            <g transform="matrix(1 0 0 1 0 270)"
+                               class="trigger">
+                                <path d="M 0 34.652 L 199.879 34.73 C 258.782 34.137 245.231
+                                     -0.498 200 0.005 L 31.522 0.005 L 0 34.652 Z" fill="green" stroke="black" stroke-width="2"></path>
+                                <text class="basic-text-over-svg" x="50" y="24" font-size="20">
+                                    On Y
+                                </text>
+                                <foreignObject x="150" y="4" width="60" height="30">
+                                    <form>
+                                        <input class="code-input" title="coordinate" type="text" value="0"/>
+                                    </form>
+                                </foreignObject>
+                                <text class="code-id"
+                                      x="0" y="0">on y</text>
+                                <text class="mktime"
+                                      x="0" y="0"></text>
+                                <text class="myChild"
+                                      x="0" y="0"></text>
+                                <text class="myFather"
+                                      x="0" y="0"></text>
+                            </g>
+                            <!-- On Z -->
+                            <g transform="matrix(1 0 0 1 0 330)"
+                               class="trigger">
+                                <path d="M 0 34.652 L 199.879 34.73 C 258.782 34.137 245.231
+                                     -0.498 200 0.005 L 31.522 0.005 L 0 34.652 Z" fill="green" stroke="black" stroke-width="2"></path>
+                                <text class="basic-text-over-svg" x="50" y="24" font-size="20">
+                                    On Z
+                                </text>
+                                <foreignObject x="150" y="4" width="60" height="30">
+                                    <form>
+                                        <input class="code-input" title="coordinate" type="text" value="0"/>
+                                    </form>
+                                </foreignObject>
+                                <text class="code-id"
+                                      x="0" y="0">on z</text>
+                                <text class="mktime"
+                                      x="0" y="0"></text>
+                                <text class="myChild"
+                                      x="0" y="0"></text>
+                                <text class="myFather"
+                                      x="0" y="0"></text>
+                            </g>
+                            <!-- END TRIGGERS -->
+
+                            <!-- LOOPS -->
+                            <text x="45" y="260" fill="#ea640b" transform="scale(1.5)">Loops</text>
+                            <!-- For every element -->
+                            <g transform="matrix(1 0 0 1 0 400)"
+                               class="">
+                                <path d="M 12.062 34.73 L 215.922 34.154 C 245.481 33.561 240.969
+                                     -0.498 215.922 0.005 L 0 0.416 L 12.062 34.73 Z" fill="#7673d6" stroke="black" stroke-width="2"></path>
+                                <text class="basic-text-over-svg" x="20" y="24" font-size="20">
+                                    For Every Shape
+                                </text>
+                                <text class="code-id"
+                                      x="0" y="0">for all</text>
+                                <text class="mktime"
+                                      x="0" y="0"></text>
+                                <text class="myChild"
+                                      x="0" y="0"></text>
+                                <text class="myFather"
+                                      x="0" y="0"></text>
+                            </g>
+                            <!-- For every specific type of element -->
+                            <g transform="matrix(1 0 0 1 0 460)"
+                               class="">
+                                <path d="M 12.062 34.73 L 215.922 34.154 C 245.481 33.561 240.969
+                                     -0.498 215.922 0.005 L 0 0.416 L 12.062 34.73 Z" fill="#7673d6" stroke="black" stroke-width="2"></path>
+                                <text class="basic-text-over-svg" x="20" y="24" font-size="20">
+                                    For Every
+                                </text>
+                                <foreignObject x="135" y="6" width="90" height="30">
+                                    <select class="code-selection" title="Select Shape Type">
+                                        <option value="cube">Cube</option>
+                                        <option value="sphere">Sphere</option>
+                                        <option value="s.sphere">S.Sphere</option>
+                                        <option value="cone">Cone</option>
+                                        <option value="cylinder">Cylinder</option>
+                                    </select>
+                                </foreignObject>
+                                <text class="code-id"
+                                      x="0" y="0">for specific</text>
+                                <text class="mktime"
+                                      x="0" y="0"></text>
+                                <text class="myChild"
+                                      x="0" y="0"></text>
+                                <text class="myFather"
+                                      x="0" y="0"></text>
+                            </g>
+                            <!-- For every element with specific name -->
+                            <g transform="matrix(1 0 0 1 0 520)"
+                               class="">
+                                <path d="M 12.062 34.73 L 215.922 34.154 C 245.481 33.561 240.969
+                                     -0.498 215.922 0.005 L 0 0.416 L 12.062 34.73 Z" fill="#7673d6" stroke="black" stroke-width="2"></path>
+                                <text class="basic-text-over-svg" x="20" y="24" font-size="20">
+                                    For Specific
+                                </text>
+                                <foreignObject x="135" y="6" width="90" height="30">
+                                    <select class="code-selection" title="Select Shape Name">
+                                        <option value="name">Name</option>
+                                    </select>
+                                </foreignObject>
+                                <text class="code-id"
+                                      x="0" y="0">for name</text>
+                                <text class="mktime"
+                                      x="0" y="0"></text>
+                                <text class="myChild"
+                                      x="0" y="0"></text>
+                                <text class="myFather"
+                                      x="0" y="0"></text>
+                            </g>
+                            <!-- END LOOPS -->
+
+                            <!-- SETTERS -->
+                            <text x="45" y="385" fill="#ea640b" transform="scale(1.5)">Setters</text>
+                            <!-- Set X -->
+                            <g transform="matrix(1 0 0 1 0 590)"
+                               class="">
+                                <path d="M 7.625 34.731 L 136.49 34.155 C 155.176 33.562 152.324
+                                    -0.496 136.49 0.006 L 0 0.418 L 7.625 34.731 Z" fill="#d068f9" stroke="black" stroke-width="2"></path>
+                                <text class="basic-text-over-svg" x="20" y="24" font-size="20">
+                                    Set X
+                                </text>
+                                <foreignObject x="80" y="4" width="60" height="30">
+                                    <form>
+                                        <input class="code-input" title="coordinate" type="text" value="0"/>
+                                    </form>
+                                </foreignObject>
+                                <text class="code-id"
+                                      x="0" y="0">set x</text>
+                                <text class="mktime"
+                                      x="0" y="0"></text>
+                                <text class="myChild"
+                                      x="0" y="0"></text>
+                                <text class="myFather"
+                                      x="0" y="0"></text>
+                            </g>
+                            <!-- Set Y -->
+                            <g transform="matrix(1 0 0 1 0 650)"
+                               class="">
+                                <path d="M 7.625 34.731 L 136.49 34.155 C 155.176 33.562 152.324
+                                    -0.496 136.49 0.006 L 0 0.418 L 7.625 34.731 Z" fill="#d068f9" stroke="black" stroke-width="2"></path>
+                                <text class="basic-text-over-svg" x="20" y="24" font-size="20">
+                                    Set Y
+                                </text>
+                                <foreignObject x="80" y="4" width="60" height="30">
+                                    <form>
+                                        <input class="code-input" title="coordinate" type="text" value="0"/>
+                                    </form>
+                                </foreignObject>
+                                <text class="code-id"
+                                      x="0" y="0">set y</text>
+                                <text class="mktime"
+                                      x="0" y="0"></text>
+                                <text class="myChild"
+                                      x="0" y="0"></text>
+                                <text class="myFather"
+                                      x="0" y="0"></text>
+                            </g>
+                            <!-- Set Z -->
+                            <g transform="matrix(1 0 0 1 0 710)"
+                               class="">
+                                <path d="M 7.625 34.731 L 136.49 34.155 C 155.176 33.562 152.324
+                                    -0.496 136.49 0.006 L 0 0.418 L 7.625 34.731 Z" fill="#d068f9" stroke="black" stroke-width="2"></path>
+                                <text class="basic-text-over-svg" x="20" y="24" font-size="20">
+                                    Set Z
+                                </text>
+                                <foreignObject x="80" y="4" width="60" height="30">
+                                    <form>
+                                        <input class="code-input" title="coordinate" type="text" value="0"/>
+                                    </form>
+                                </foreignObject>
+                                <text class="code-id"
+                                      x="0" y="0">set z</text>
+                                <text class="mktime"
+                                      x="0" y="0"></text>
+                                <text class="myChild"
+                                      x="0" y="0"></text>
+                                <text class="myFather"
+                                      x="0" y="0"></text>
+                            </g>
+                            <!-- Set SX -->
+                            <g transform="matrix(1 0 0 1 0 770)"
+                               class="">
+                                <path d="M 7.625 34.731 L 136.49 34.155 C 155.176 33.562 152.324
+                                    -0.496 136.49 0.006 L 0 0.418 L 7.625 34.731 Z" fill="#4da558" stroke="black" stroke-width="2"></path>
+                                <text class="basic-text-over-svg" x="20" y="24" font-size="20">
+                                    Set SX
+                                </text>
+                                <foreignObject x="85" y="4" width="60" height="30">
+                                    <form>
+                                        <input class="code-input" title="size" type="text" value="0"/>
+                                    </form>
+                                </foreignObject>
+                                <text class="code-id"
+                                      x="0" y="0">set sx</text>
+                                <text class="mktime"
+                                      x="0" y="0"></text>
+                                <text class="myChild"
+                                      x="0" y="0"></text>
+                                <text class="myFather"
+                                      x="0" y="0"></text>
+                            </g>
+                            <!-- Set SY -->
+                            <g transform="matrix(1 0 0 1 0 830)"
+                               class="">
+                                <path d="M 7.625 34.731 L 136.49 34.155 C 155.176 33.562 152.324
+                                    -0.496 136.49 0.006 L 0 0.418 L 7.625 34.731 Z" fill="#4da558" stroke="black" stroke-width="2"></path>
+                                <text class="basic-text-over-svg" x="20" y="24" font-size="20">
+                                    Set SY
+                                </text>
+                                <foreignObject x="85" y="4" width="60" height="30">
+                                    <form>
+                                        <input class="code-input" title="size" type="text" value="0"/>
+                                    </form>
+                                </foreignObject>
+                                <text class="code-id"
+                                      x="0" y="0">set sy</text>
+                                <text class="mktime"
+                                      x="0" y="0"></text>
+                                <text class="myChild"
+                                      x="0" y="0"></text>
+                                <text class="myFather"
+                                      x="0" y="0"></text>
+                            </g>
+                            <!-- Set SZ -->
+                            <g transform="matrix(1 0 0 1 0 890)"
+                               class="">
+                                <path d="M 7.625 34.731 L 136.49 34.155 C 155.176 33.562 152.324
+                                    -0.496 136.49 0.006 L 0 0.418 L 7.625 34.731 Z" fill="#4da558" stroke="black" stroke-width="2"></path>
+                                <text class="basic-text-over-svg" x="20" y="24" font-size="20">
+                                    Set SZ
+                                </text>
+                                <foreignObject x="85" y="4" width="60" height="30">
+                                    <form>
+                                        <input class="code-input" title="size" type="text" value="0"/>
+                                    </form>
+                                </foreignObject>
+                                <text class="code-id"
+                                      x="0" y="0">set sz</text>
+                                <text class="mktime"
+                                      x="0" y="0"></text>
+                                <text class="myChild"
+                                      x="0" y="0"></text>
+                                <text class="myFather"
+                                      x="0" y="0"></text>
+                            </g>
+                            <!-- Set XRot -->
+                            <g transform="matrix(1 0 0 1 0 950)"
+                               class="">
+                                <path d="M 10.197 34.73 L 182.538 34.154 C 207.527 33.561 203.713
+                                    -0.497 182.538 0.005 L 0 0.417 L 10.197 34.73 Z" fill="orange" stroke="black" stroke-width="2"></path>
+                                <text class="basic-text-over-svg" x="20" y="24" font-size="20">
+                                    X Rotation
+                                </text>
+                                <foreignObject x="120" y="4" width="60" height="30">
+                                    <form>
+                                        <input class="code-input" title="value" type="text" value="0"/>
+                                    </form>
+                                </foreignObject>
+                                <text class="code-id"
+                                      x="0" y="0">set xrot</text>
+                                <text class="mktime"
+                                      x="0" y="0"></text>
+                                <text class="myChild"
+                                      x="0" y="0"></text>
+                                <text class="myFather"
+                                      x="0" y="0"></text>
+                            </g>
+                            <!-- Set YRot -->
+                            <g transform="matrix(1 0 0 1 0 1010)"
+                               class="">
+                                <path d="M 10.197 34.73 L 182.538 34.154 C 207.527 33.561 203.713
+                                    -0.497 182.538 0.005 L 0 0.417 L 10.197 34.73 Z" fill="orange" stroke="black" stroke-width="2"></path>
+                                <text class="basic-text-over-svg" x="20" y="24" font-size="20">
+                                    Y Rotation
+                                </text>
+                                <foreignObject x="120" y="4" width="60" height="30">
+                                    <form>
+                                        <input class="code-input" title="value" type="text" value="0"/>
+                                    </form>
+                                </foreignObject>
+                                <text class="code-id"
+                                      x="0" y="0">set yrot</text>
+                                <text class="mktime"
+                                      x="0" y="0"></text>
+                                <text class="myChild"
+                                      x="0" y="0"></text>
+                                <text class="myFather"
+                                      x="0" y="0"></text>
+                            </g>
+                            <!-- Set ZRot -->
+                            <g transform="matrix(1 0 0 1 0 1070)"
+                               class="">
+                                <path d="M 10.197 34.73 L 182.538 34.154 C 207.527 33.561 203.713
+                                    -0.497 182.538 0.005 L 0 0.417 L 10.197 34.73 Z" fill="orange" stroke="black" stroke-width="2"></path>
+                                <text class="basic-text-over-svg" x="20" y="24" font-size="20">
+                                    Z Rotation
+                                </text>
+                                <foreignObject x="120" y="4" width="60" height="30">
+                                    <form>
+                                        <input class="code-input" title="value" type="text" value="0"/>
+                                    </form>
+                                </foreignObject>
+                                <text class="code-id"
+                                      x="0" y="0">set zrot</text>
+                                <text class="mktime"
+                                      x="0" y="0"></text>
+                                <text class="myChild"
+                                      x="0" y="0"></text>
+                                <text class="myFather"
+                                      x="0" y="0"></text>
+                            </g>
+                            <!-- Set Opacity -->
+                            <g transform="matrix(1 0 0 1 0 1130)"
+                               class="">
+                                <path d="M 10.197 34.73 L 182.538 34.154 C 207.527 33.561 203.713
+                                    -0.497 182.538 0.005 L 0 0.417 L 10.197 34.73 Z" fill="#3cc6d8" stroke="black" stroke-width="2"></path>
+                                <text class="basic-text-over-svg" x="20" y="24" font-size="20">
+                                    Opacity
+                                </text>
+                                <foreignObject x="120" y="4" width="60" height="30">
+                                    <form>
+                                        <input class="code-input" title="value" type="text" value="0"/>
+                                    </form>
+                                </foreignObject>
+                                <text class="code-id"
+                                      x="0" y="0">set opacity</text>
+                                <text class="mktime"
+                                      x="0" y="0"></text>
+                                <text class="myChild"
+                                      x="0" y="0"></text>
+                                <text class="myFather"
+                                      x="0" y="0"></text>
+                            </g>
+                            <!-- Set R -->
+                            <g transform="matrix(1 0 0 1 0 1190)"
+                               class="">
+                                <path d="M 7.625 34.731 L 136.49 34.155 C 155.176 33.562 152.324
+                                    -0.496 136.49 0.006 L 0 0.418 L 7.625 34.731 Z" fill="#c10023" stroke="black" stroke-width="2"></path>
+                                <text class="basic-text-over-svg" x="20" y="24" font-size="20">
+                                    Set R
+                                </text>
+                                <foreignObject x="80" y="4" width="60" height="30">
+                                    <form>
+                                        <input class="code-input" title="value" type="text" value="0"/>
+                                    </form>
+                                </foreignObject>
+                                <text class="code-id"
+                                      x="0" y="0">set r</text>
+                                <text class="mktime"
+                                      x="0" y="0"></text>
+                                <text class="myChild"
+                                      x="0" y="0"></text>
+                                <text class="myFather"
+                                      x="0" y="0"></text>
+                            </g>
+                            <!-- Set G -->
+                            <g transform="matrix(1 0 0 1 0 1250)"
+                               class="">
+                                <path d="M 7.625 34.731 L 136.49 34.155 C 155.176 33.562 152.324
+                                    -0.496 136.49 0.006 L 0 0.418 L 7.625 34.731 Z" fill="#009102" stroke="black" stroke-width="2"></path>
+                                <text class="basic-text-over-svg" x="20" y="24" font-size="20">
+                                    Set G
+                                </text>
+                                <foreignObject x="80" y="4" width="60" height="30">
+                                    <form>
+                                        <input class="code-input" title="value" type="text" value="0"/>
+                                    </form>
+                                </foreignObject>
+                                <text class="code-id"
+                                      x="0" y="0">set g</text>
+                                <text class="mktime"
+                                      x="0" y="0"></text>
+                                <text class="myChild"
+                                      x="0" y="0"></text>
+                                <text class="myFather"
+                                      x="0" y="0"></text>
+                            </g>
+                            <!-- Set B -->
+                            <g transform="matrix(1 0 0 1 0 1310)"
+                               class="">
+                                <path d="M 7.625 34.731 L 136.49 34.155 C 155.176 33.562 152.324
+                                    -0.496 136.49 0.006 L 0 0.418 L 7.625 34.731 Z" fill="#036bba" stroke="black" stroke-width="2"></path>
+                                <text class="basic-text-over-svg" x="20" y="24" font-size="20">
+                                    Set B
+                                </text>
+                                <foreignObject x="80" y="4" width="60" height="30">
+                                    <form>
+                                        <input class="code-input" title="value" type="text" value="0"/>
+                                    </form>
+                                </foreignObject>
+                                <text class="code-id"
+                                      x="0" y="0">set b</text>
+                                <text class="mktime"
+                                      x="0" y="0"></text>
+                                <text class="myChild"
+                                      x="0" y="0"></text>
+                                <text class="myFather"
+                                      x="0" y="0"></text>
+                            </g>
+                            <!-- Set to camera -->
+                            <g transform="matrix(1 0 0 1 0 1370)"
+                               class="">
+                                <path d="M 10.197 34.73 L 182.538 34.154 C 207.527 33.561 203.713
+                                    -0.497 182.538 0.005 L 0 0.417 L 10.197 34.73 Z" fill="#7b7c7c" stroke="black" stroke-width="2"></path>
+                                <text class="basic-text-over-svg" x="20" y="24" font-size="20">
+                                    Assign Camera
+                                </text>
+                                <text class="code-id"
+                                      x="0" y="0">set camera</text>
+                                <text class="mktime"
+                                      x="0" y="0"></text>
+                                <text class="myChild"
+                                      x="0" y="0"></text>
+                                <text class="myFather"
+                                      x="0" y="0"></text>
+                            </g>
+                            <!-- Set Ambient R -->
+                            <g transform="matrix(1 0 0 1 0 1430)"
+                               class="">
+                                <path d="M 12.062 34.73 L 215.922 34.154 C 245.481 33.561 240.969
+                                     -0.498 215.922 0.005 L 0 0.416 L 12.062 34.73 Z" fill="#c10023" stroke="black" stroke-width="2"></path>
+                                <text class="basic-text-over-svg" x="20" y="24" font-size="20">
+                                    Set Ambient R
+                                </text>
+                                <foreignObject x="160" y="4" width="60" height="30">
+                                    <form>
+                                        <input class="code-input" title="value" type="text" value="0" />
+                                    </form>
+                                </foreignObject>
+                                <text class="code-id"
+                                      x="0" y="0">set ambientr</text>
+                                <text class="mktime"
+                                      x="0" y="0"></text>
+                                <text class="myChild"
+                                      x="0" y="0"></text>
+                                <text class="myFather"
+                                      x="0" y="0"></text>
+                            </g>
+                            <!-- Set Ambient G -->
+                            <g transform="matrix(1 0 0 1 0 1490)"
+                               class="">
+                                <path d="M 12.062 34.73 L 215.922 34.154 C 245.481 33.561 240.969
+                                     -0.498 215.922 0.005 L 0 0.416 L 12.062 34.73 Z" fill="#009102" stroke="black" stroke-width="2"></path>
+                                <text class="basic-text-over-svg" x="20" y="24" font-size="20">
+                                    Set Ambient G
+                                </text>
+                                <foreignObject x="160" y="4" width="60" height="30">
+                                    <form>
+                                        <input class="code-input" title="value" type="text" value="0" />
+                                    </form>
+                                </foreignObject>
+                                <text class="code-id"
+                                      x="0" y="0">set ambientg</text>
+                                <text class="mktime"
+                                      x="0" y="0"></text>
+                                <text class="myChild"
+                                      x="0" y="0"></text>
+                                <text class="myFather"
+                                      x="0" y="0"></text>
+                            </g>
+                            <!-- Set Ambient B -->
+                            <g transform="matrix(1 0 0 1 0 1550)"
+                               class="">
+                                <path d="M 12.062 34.73 L 215.922 34.154 C 245.481 33.561 240.969
+                                     -0.498 215.922 0.005 L 0 0.416 L 12.062 34.73 Z" fill="#036bba" stroke="black" stroke-width="2"></path>
+                                <text class="basic-text-over-svg" x="20" y="24" font-size="20">
+                                    Set Ambient B
+                                </text>
+                                <foreignObject x="160" y="4" width="60" height="30">
+                                    <form>
+                                        <input class="code-input" title="value" type="text" value="0"/>
+                                    </form>
+                                </foreignObject>
+                                <text class="code-id"
+                                      x="0" y="0">set ambientb</text>
+                                <text class="mktime"
+                                      x="0" y="0"></text>
+                                <text class="myChild"
+                                      x="0" y="0"></text>
+                                <text class="myFather"
+                                      x="0" y="0"></text>
+                            </g>
+                            <!-- Set X Rotation Speed -->
+                            <g transform="matrix(1 0 0 1 0 1610)"
+                               class="">
+                                <path d="M 12.062 34.73 L 215.922 34.154 C 245.481 33.561 240.969
+                                     -0.498 215.922 0.005 L 0 0.416 L 12.062 34.73 Z" fill="#a86508" stroke="black" stroke-width="2"></path>
+                                <text class="basic-text-over-svg" x="20" y="24" font-size="20">
+                                    X Rot. Speed
+                                </text>
+                                <foreignObject x="160" y="4" width="60" height="30">
+                                    <form>
+                                        <input class="code-input" title="value" type="text" value="0" />
+                                    </form>
+                                </foreignObject>
+                                <text class="code-id"
+                                      x="0" y="0">set xrotspeed</text>
+                                <text class="mktime"
+                                      x="0" y="0"></text>
+                                <text class="myChild"
+                                      x="0" y="0"></text>
+                                <text class="myFather"
+                                      x="0" y="0"></text>
+                            </g>
+                            <!-- Set Y Rotation Speed -->
+                            <g transform="matrix(1 0 0 1 0 1670)"
+                               class="">
+                                <path d="M 12.062 34.73 L 215.922 34.154 C 245.481 33.561 240.969
+                                     -0.498 215.922 0.005 L 0 0.416 L 12.062 34.73 Z" fill="#a86508" stroke="black" stroke-width="2"></path>
+                                <text class="basic-text-over-svg" x="20" y="24" font-size="20">
+                                    Y Rot. Speed
+                                </text>
+                                <foreignObject x="160" y="4" width="60" height="30">
+                                    <form>
+                                        <input class="code-input" title="value" type="text" value="0" />
+                                    </form>
+                                </foreignObject>
+                                <text class="code-id"
+                                      x="0" y="0">set yrotspeed</text>
+                                <text class="mktime"
+                                      x="0" y="0"></text>
+                                <text class="myChild"
+                                      x="0" y="0"></text>
+                                <text class="myFather"
+                                      x="0" y="0"></text>
+                            </g>
+                            <!-- Set Z Rotation Speed -->
+                            <g transform="matrix(1 0 0 1 0 1730)"
+                               class="">
+                                <path d="M 12.062 34.73 L 215.922 34.154 C 245.481 33.561 240.969
+                                     -0.498 215.922 0.005 L 0 0.416 L 12.062 34.73 Z" fill="#a86508" stroke="black" stroke-width="2"></path>
+                                <text class="basic-text-over-svg" x="20" y="24" font-size="20">
+                                    Z Rot. Speed
+                                </text>
+                                <foreignObject x="160" y="4" width="60" height="30">
+                                    <form>
+                                        <input class="code-input" title="value" type="text" value="0"/>
+                                    </form>
+                                </foreignObject>
+                                <text class="code-id"
+                                      x="0" y="0">set zrotspeed</text>
+                                <text class="mktime"
+                                      x="0" y="0"></text>
+                                <text class="myChild"
+                                      x="0" y="0"></text>
+                                <text class="myFather"
+                                      x="0" y="0"></text>
+                            </g>
+                            <!-- Use animation -->
+                            <g transform="matrix(1 0 0 1 0 1790)"
+                               class="">
+                                <path d="M 12.062 34.73 L 215.922 34.154 C 245.481 33.561 240.969
+                                     -0.498 215.922 0.005 L 0 0.416 L 12.062 34.73 Z" fill="#7b7c7c" stroke="black" stroke-width="2"></path>
+                                <text class="basic-text-over-svg" x="20" y="24" font-size="20">
+                                    Don't Use Animation
+                                </text>
+                                <text class="code-id"
+                                      x="0" y="0">set animationfalse</text>
+                                <text class="mktime"
+                                      x="0" y="0"></text>
+                                <text class="myChild"
+                                      x="0" y="0"></text>
+                                <text class="myFather"
+                                      x="0" y="0"></text>
+                            </g>
+
+
+                            <!-- END SETTERS -->
+                        </svg>
                     </div>
 
-                    <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9" id="code-area">
-                        <canvas id="code-scene" style="border: 1px solid royalblue"></canvas>
+                    <!-- CODE SCENE-->
+                    <div id="code-scene-div" class="col-lg-9 col-md-8 col-sm-9 col-xs-9" style="display: none">
+                        <svg id="code-logic-scene"
+                             xmlns="http://www.w3.org/2000/svg"
+                             version="1.1"
+                             width="1000px" height="2000px">
+
+
+
+                            <g class="nonjoinable trash-bin" transform="matrix(1 0 0 1 0 -20)" stroke="black" stroke-width="2" style="position: absolute">
+                                <path transform="scale(1.0)" d="M50,32.319c5.584,0,11.004,0.191,16.11,0.568c4.538,0.335,8.688,0.807,12.335,1.403c0.187,0.031,0.371,0.061,0.555,0.092
+                                    l-4.644,56.935c-5.156,0.662-10.919,1.095-17.117,1.284H42.793c-6.229-0.189-11.992-0.622-17.148-1.284L21,34.382
+                                    c0.184-0.031,0.369-0.062,0.556-0.092c3.645-0.596,7.794-1.067,12.333-1.403C38.994,32.51,44.415,32.319,50,32.319 M49.998,53.771
+                                    l-9.977-9.96c-1.075-1.072-2.503-1.663-4.022-1.663s-2.947,0.59-4.022,1.663c-1.075,1.074-1.667,2.501-1.667,4.02
+                                    c0,1.517,0.592,2.943,1.667,4.016l9.974,9.957l-9.974,9.956c-1.075,1.073-1.667,2.5-1.667,4.017c0,1.518,0.592,2.944,1.667,4.019
+                                    c1.075,1.072,2.504,1.663,4.023,1.663c1.518,0,2.946-0.591,4.021-1.663l9.976-9.958l9.979,9.958
+                                    c1.076,1.072,2.505,1.663,4.024,1.663s2.947-0.591,4.021-1.663c1.076-1.074,1.668-2.501,1.668-4.019
+                                    c0-1.517-0.592-2.943-1.668-4.018l-9.975-9.955l9.975-9.957c1.075-1.072,1.668-2.499,1.668-4.016c0-1.518-0.592-2.946-1.668-4.02
+                                    c-1.074-1.072-2.503-1.663-4.022-1.663s-2.948,0.59-4.022,1.663L49.998,53.771 M50,31.319c-5.645,0-11.119,0.197-16.185,0.571
+                                    c-4.522,0.334-8.721,0.809-12.42,1.413c-0.498,0.081-0.986,0.165-1.465,0.252l4.785,58.648c4.94,0.666,10.983,1.183,18.048,1.398
+                                    h14.476c7.063-0.216,13.107-0.732,18.048-1.398l4.783-58.648c-0.479-0.087-0.966-0.171-1.465-0.252
+                                    c-3.699-0.604-7.896-1.079-12.422-1.413C61.117,31.516,55.645,31.319,50,31.319L50,31.319z M49.998,55.185l10.685-10.666
+                                    c0.916-0.914,2.116-1.371,3.316-1.371s2.4,0.457,3.316,1.371c1.832,1.829,1.832,4.792,0,6.62L56.632,61.804l10.684,10.663
+                                    c1.832,1.829,1.832,4.791,0,6.62c-0.915,0.914-2.115,1.371-3.314,1.371c-1.201,0-2.401-0.457-3.318-1.371L49.998,68.424
+                                    L39.315,79.087C38.399,80.001,37.2,80.458,36,80.458c-1.201,0-2.401-0.457-3.317-1.371c-1.831-1.829-1.831-4.791,0-6.62
+                                    l10.683-10.663L32.684,51.139c-1.831-1.827-1.831-4.791,0-6.62c0.916-0.914,2.115-1.371,3.315-1.371c1.2,0,2.4,0.457,3.316,1.371
+                                    L49.998,55.185L49.998,55.185z"></path>
+                                <text class="code-id"
+                                      x="50" y="50">TRASHBIN</text>
+                                <text class="mktime"
+                                      x="50" y="50">trashbin</text>
+                                <text class="myChild"
+                                      x="50" y="50"></text>
+                                <text class="myFather"
+                                      x="50" y="50"></text>
+                            </g>
+
+
+
+                            <g transform="matrix(1 0 0 1 28 237)" class="trigger joinable draggable" onmousedown="selectElement(evt)">
+                                <path d="M 0 34.652 L 199.879 34.73 C 258.782 34.137 245.231
+                                     -0.498 200 0.005 L 31.522 0.005 L 0 34.652 Z" fill="green" stroke="black" stroke-width="2" opacity="1" stroke-dasharray="0"></path>
+                                <text class="basic-text-over-svg" x="50" y="24" font-size="20">
+                                    On Start Click
+                                </text>
+                                <text class="code-id" x="0" y="0">on start</text>
+                                <text class="mktime" x="0" y="0">1511868147907</text>
+                                <text class="myChild" x="0" y="0">1511868150092,1511868156814</text>
+                                <text class="myFather" x="0" y="0"></text>
+                            </g>
+                            <g transform="matrix(1 0 0 1 28 272)" class=" joinable draggable" onmousedown="selectElement(evt)">
+                                <path d="M 12.062 34.73 L 215.922 34.154 C 245.481 33.561 240.969
+                                     -0.498 215.922 0.005 L 0 0.416 L 12.062 34.73 Z" fill="#7673d6" stroke="black" stroke-width="2" opacity="1" stroke-dasharray="0"></path>
+                                <text class="basic-text-over-svg" x="20" y="24" font-size="20">
+                                    For Every Shape
+                                </text>
+                                <text class="code-id" x="0" y="0">for all</text>
+                                <text class="mktime" x="0" y="0">1511868150092</text>
+                                <text class="myChild" x="0" y="0">1511868156814</text>
+                                <text class="myFather" x="0" y="0"></text>
+                            </g>
+                            <g transform="matrix(1 0 0 1 28 307)" class=" joinable draggable" onmousedown="selectElement(evt)">
+                                <path d="M 7.625 34.731 L 136.49 34.155 C 155.176 33.562 152.324
+                                    -0.496 136.49 0.006 L 0 0.418 L 7.625 34.731 Z" fill="#d068f9" stroke="black" stroke-width="2" opacity="1" stroke-dasharray="0"></path>
+                                <text class="basic-text-over-svg" x="20" y="24" font-size="20">
+                                    Set X
+                                </text>
+                                <foreignObject x="80" y="4" width="60" height="30">
+                                    <form>
+                                        <input class="code-input" title="coordinate" type="text" value="0">
+                                    </form>
+                                </foreignObject>
+                                <text class="code-id" x="0" y="0">set x</text>
+                                <text class="mktime" x="0" y="0">1511868156814</text>
+                                <text class="myChild" x="0" y="0"></text>
+                                <text class="myFather" x="0" y="0"></text>
+                            </g>
+
+
+
+                        </svg>
                     </div>
+                    <label class="btn btn-primary" id="push-code" style="display: none">
+                        <span class="glyphicon glyphicon-floppy-save"></span> Save Code
+                    </label>
                     <!-- END LOGIC -->
 
                 </div><!-- Editor area closing tag -->

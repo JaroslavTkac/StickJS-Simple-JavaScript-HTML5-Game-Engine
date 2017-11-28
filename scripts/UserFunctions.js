@@ -14,7 +14,7 @@ function changeZ(name, value) {
     getObjByName(name).z = value;
 }
 
-//Translations
+//Scaling
 function changeSx(name, value){
     getObjByName(name).sx = value;
 }
@@ -51,7 +51,19 @@ function changeZRotationSpeed(name, value) {
 function useAnimation(name, value) {
     getObjByName(name).animateRotation = value;
 }
-
+//Opacity and color
+function changeR(name, value) {
+    getObjByName(name).r = value;
+}
+function changeG(name, value) {
+    getObjByName(name).g = value;
+}
+function changeB(name, value) {
+    getObjByName(name).b = value;
+}
+function changeOpacity(name, value) {
+    getObjByName(name).alpha = value;
+}
 //Waiting before animation start
 function waitBeforeAnimationStart(value){
 
@@ -64,24 +76,61 @@ function assignCameraToObj(name, value){
 
 //Apply changes to all objects
 function applyChangesToAll(x, y, z, sx, sy, sz, xRot, yRot, zRot,
-                           xRotSpeed, yRotSpeed, zRotSpeed, animateRotation){
+                           xRotSpeed, yRotSpeed, zRotSpeed, r, g, b,
+                           ambientR, ambientG, ambientB, animateRotation, useCamera, opacity, transparency){
+
+
+    console.log("Going to apply changes");
+
+    if(ambientR !== null)
+        ambientLight.r = parseFloat(ambientR);
+    if(ambientG !== null)
+        ambientLight.g = parseFloat(ambientG);
+    if(ambientB !== null)
+        ambientLight.b = parseFloat(ambientB);
+
 
     for (let i = 0; i < objArr.length; i++){
-        //if values not provided ignore them
-        //need to check values ...
-        objArr[i].x = x;
-        objArr[i].y = y;
-        objArr[i].z = z;
-        objArr[i].sx = sx;
-        objArr[i].sy = sy;
-        objArr[i].sz = sz;
-        objArr[i].xRot = xRot;
-        objArr[i].yRot = yRot;
-        objArr[i].zRot = zRot;
-        objArr[i].xRotSpeed = xRotSpeed;
-        objArr[i].yRotSpeed = yRotSpeed;
-        objArr[i].zRotSpeed = zRotSpeed;
-        objArr[i].animateRotation = animateRotation;
+        if(x !== null)
+            objArr[i].x = parseFloat(x);
+        if(y !== null)
+            objArr[i].y = parseFloat(y);
+        if(z !== null)
+            objArr[i].z = parseFloat(z);
+        if(sx !== null)
+            objArr[i].sx = parseFloat(sx);
+        if(sy !== null)
+            objArr[i].sy = parseFloat(sy);
+        if(sz !== null)
+            objArr[i].sz = parseFloat(sz);
+        if(r !== null)
+            objArr[i].r = parseFloat(r);
+        if(g !== null)
+            objArr[i].g = parseFloat(g);
+        if(b !== null)
+            objArr[i].b = parseFloat(b);
+        if(xRot !== null)
+            objArr[i].xRot = parseFloat(xRot);
+        if(yRot !== null)
+            objArr[i].yRot = parseFloat(yRot);
+        if(zRot !== null)
+            objArr[i].zRot = parseFloat(zRot);
+        if(xRotSpeed !== null)
+            objArr[i].xRotSpeed = parseFloat(xRotSpeed);
+        if(yRotSpeed !== null)
+            objArr[i].yRotSpeed = parseFloat(yRotSpeed);
+        if(zRotSpeed !== null)
+            objArr[i].zRotSpeed = parseFloat(zRotSpeed);
+        if(animateRotation !== null)
+            objArr[i].animateRotation = animateRotation;
+        if(transparency !== null)
+            objArr[i].transparency = parseFloat(transparency);
+        if(opacity !== null)
+            objArr[i].alpha = parseFloat(opacity);
+        if(useCamera !== null)
+            objArr[i].useCamera = useCamera;
 
     }
+
+    console.log(objArr);
 }

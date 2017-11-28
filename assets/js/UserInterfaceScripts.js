@@ -15,6 +15,7 @@ $(document).ready(function() {
     let previewShapesHeight = $('.shape').height();
     let SceneHeight =  $('#Scene').height();
     let editorBlockHeight = $('#editor-area').height();
+    let rightWindowHeight = $('#right-window').height();
     let objectIsEditing = false;
     let nameOfPngFile = "";
 
@@ -33,6 +34,10 @@ $(document).ready(function() {
 
     $('#saved-shape-container').css('height', (editorHeight * 2.76));
     $('#saved-shape-canvas-container').css('height', (editorHeight * 2.76));
+
+    //Change code logic height
+    $('#code-blocks-div').css('height', rightWindowHeight * 0.885);
+    $('#code-scene-div').css('height', rightWindowHeight * 0.885);
 
 
     // Get user content and append page with got data
@@ -57,6 +62,20 @@ $(document).ready(function() {
            $('#how-to-modal').modal('show');
     });
 
+    //Preparing page for code blocks
+    $(window).keydown(function(event){
+        if(event.keyCode === 13) {
+            event.preventDefault();
+            return false;
+        }
+    });
+    //timeStampAll();
+    intersectArrInit();
+    previewGroupSelection();
+    addSvgElementToScene();
+    /*$('#push-code').click(function () {
+        getDataOfSvgInScene();
+    });*/
 
     //Texture & Color toggle
     $('#radioBtn a').on('click', function(){
@@ -133,9 +152,9 @@ $(document).ready(function() {
 
 
         if($(this).text() === "Editor"){
-            $('#code-area').css('display', 'none');
-            $('#code-blocks-container').css('display', 'none');
-            $('#code-scene').css('display', 'none');
+            $('#push-code').css('display', 'none');
+            $('#code-scene-div').css('display', 'none');
+            $('#code-blocks-div').css('display', 'none');
             $('#saved-shape-container').css('display', '');
             $('#editor-container').css('display', '');
 
@@ -153,9 +172,9 @@ $(document).ready(function() {
 
             $('#saved-shape-container').css('display', 'none');
             $('#editor-container').css('display', 'none');
-            $('#code-area').css('display', '');
-            $('#code-blocks-container').css('display', '');
-            $('#code-scene').css('display', '');
+            $('#code-blocks-div').css('display', '');
+            $('#code-scene-div').css('display', '');
+            $('#push-code').css('display', '');
 
             // $('#code-area').css('height', editorHeight);
 
@@ -186,6 +205,10 @@ $(document).ready(function() {
         $('#saved-shape-container').css('height', (editorBlockHeight * 0.9));
         $('#saved-shape-canvas-container').css('height', (editorBlockHeight * 0.9));
         console.log($('#saved-shape-container').css('height').valueOf());
+
+        rightWindowHeight = $('#right-window').height();
+        $('#code-blocks-div').css('height', rightWindowHeight * 0.885);
+        $('#code-scene-div').css('height', rightWindowHeight * 0.885);
     };
 
     //Drop down menu for selecting what to display (Shapes/Music/Textures)

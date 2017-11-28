@@ -80,8 +80,14 @@ if (isset($_POST['callDeleteFile'])) {
 }
 
 //Delete file from server
+//TODO Allow to delete only png files from allowed folder
 function deleteFile($file_path) {
+    $allowed = array('png', 'jpg', 'obj', 'mp3', 'json');
     $file = $file_path;
+    $ext = pathinfo($file, PATHINFO_EXTENSION);
+    if(!in_array(strtolower($ext), $allowed)){
+        return "Error, cannot delete file: " . $file;
+    }
     if (!unlink($file))
         return "Error deleting file: $file";
     else
@@ -180,3 +186,6 @@ function getFiles($file, $dir){
 
     return json_encode( array('data' => $fileData, 'status' => $status) );
 }
+
+
+//Clearing UserConvertedCode file and filling with saved blocks data
