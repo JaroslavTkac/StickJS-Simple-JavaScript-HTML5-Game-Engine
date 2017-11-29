@@ -334,7 +334,7 @@ function addSvgElementToScene() {
         let dataArr = [];
 
         //Saving already created data
-        for(i = 0; i < svgArr.length; i++){
+        for(let i = 0; i < svgArr.length; i++){
             if(getmktime(svgArr[i]) !== "trashbin")
                 dataArr.push({
                     "name" : getmktime(svgArr[i]),

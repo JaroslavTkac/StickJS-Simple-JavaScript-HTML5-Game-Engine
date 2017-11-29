@@ -95,6 +95,8 @@ $(document).ready(function() {
         getDataOfSvgInScene();
     });*/
 
+
+
     //Texture & Color toggle
     $('#radioBtn a').on('click', function(){
         //console.log("click");
@@ -187,9 +189,7 @@ $(document).ready(function() {
         }
         if($(this).text() === "Logic"){
             //let currEditorHeight = $('#editor-area').height();
-            intersectArrInit();
-            previewGroupSelection();
-            addSvgElementToScene();
+
             $('#saved-shape-container').css('display', 'none');
             $('#editor-container').css('display', 'none');
             $('#code-blocks-div').css('display', '');
@@ -197,6 +197,8 @@ $(document).ready(function() {
             $('#push-code').css('display', '');
 
             // $('#code-area').css('height', editorHeight);
+
+            intersectArrInit();
 
 
         }
@@ -207,10 +209,15 @@ $(document).ready(function() {
             $('#code-area').css('display', 'none');
             $('#code-blocks-container').css('display', 'none');
             $('#code-scene').css('display', 'none');
+            $('#code-blocks-div').css('display', 'none');
+            $('#code-scene-div').css('display', 'none');
+            $('#push-code').css('display', 'none');
             //Sound divs
 
         }
     });
+    previewGroupSelection();
+    addSvgElementToScene();
 
     //On window resize, properly resize canvas areas
     window.onresize = function(){
