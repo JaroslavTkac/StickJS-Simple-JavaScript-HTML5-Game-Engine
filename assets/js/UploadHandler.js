@@ -7,6 +7,7 @@ let uploaded;
 let savedShapeImg = "";
 let savedShapesArr = [];
 let liveLoadedShapesArr = [];
+let sceneToLoadArr = [];
 
 function loadUserObjectFiles(file, dir){
     $.ajax({
@@ -32,6 +33,15 @@ function loadUserObjectFiles(file, dir){
                         liveLoadedShapesArr.push(savedDataToInit[i]);
                     }
                     waitUntilWebglInitialized();
+                }
+                if(file === "savedScene.txt"){
+                    console.log("Parsing SCENE data");
+                    sceneToLoadArr = JSON.parse(content['data']);
+                    console.log(sceneToLoadArr);
+                    console.log("sceneToLoadArr.lenght: " + sceneToLoadArr.length);
+                    if(sceneToLoadArr.length === 0)
+                        sceneToLoadArr = null;
+
                 }
             }
 
@@ -609,6 +619,22 @@ function saveData(){
         //console.log(JSON.parse(response));
     }).error(function (res) {
         console.log("error");
+    });
+}
+function saveScene(){
+    let obj_data = JSON.stringify(objArr);
+    //ajax send to php
+    $.ajax({
+        type: "POST",
+        url: "upload.php",
+        data: {
+            sceneToSave: obj_data
+        },
+    }).done(function(response) {
+        console.log("Scene succ. saved");
+        //console.log(JSON.parse(response));
+    }).error(function (res) {
+        console.log("error on scene saving");
     });
 }
 

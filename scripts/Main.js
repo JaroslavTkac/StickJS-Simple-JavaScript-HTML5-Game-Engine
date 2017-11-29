@@ -81,10 +81,6 @@ function webGLStart() {
 
 
 
-    setTimeout(function () {
-        console.log(objArr);
-    },4000);
-
 
     /*sound = new Sound();
     sound.addSong(new Song("standard_sounds/rotation_engine.mp3", "rotationEngine"));

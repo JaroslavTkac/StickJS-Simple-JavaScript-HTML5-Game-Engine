@@ -28,6 +28,48 @@ function getObjByName(name){
             return objArr[i];
     }
 }
+//Callback for reset scene function
+function waitUntilSavedSceneDataLoads() {
+    if ((sceneToLoadArr !== null) && (sceneToLoadArr.length === 0)) {
+        setTimeout(waitUntilSavedSceneDataLoads, 50);
+        return;
+    }
+    if((sceneToLoadArr !== null)) {
+        for (let i = 0; i < sceneToLoadArr.length; i++) {
+            //init objects
+            new LoadObject(sceneToLoadArr[i].jsonPath, sceneToLoadArr[i].textureSrc, {
+                "name": sceneToLoadArr[i].name,
+                "savedShapeName": sceneToLoadArr[i].savedShapeName,
+                "jsonPath": sceneToLoadArr[i].jsonPath,
+                "x": sceneToLoadArr[i].x,
+                "y": sceneToLoadArr[i].y,
+                "z": sceneToLoadArr[i].z,
+                "sx": sceneToLoadArr[i].sx,
+                "sy": sceneToLoadArr[i].sy,
+                "sz": sceneToLoadArr[i].sz,
+                "r": sceneToLoadArr[i].r,
+                "g": sceneToLoadArr[i].g,
+                "b": sceneToLoadArr[i].b,
+                "xRot": sceneToLoadArr[i].xRot,
+                "xRotSpeed": sceneToLoadArr[i].xRotSpeed,
+                "yRot": sceneToLoadArr[i].yRot,
+                "yRotSpeed": sceneToLoadArr[i].yRotSpeed,
+                "zRot": sceneToLoadArr[i].zRot,
+                "zRotSpeed": sceneToLoadArr[i].zRotSpeed,
+                "lighting": sceneToLoadArr[i].lighting,
+                "animateRotation": sceneToLoadArr[i].animateRotation,
+                "useTexture": sceneToLoadArr[i].useTexture,
+                "textureSrc": sceneToLoadArr[i].textureSrc,
+                "useCamera": sceneToLoadArr[i].useCamera,
+                "transparency": sceneToLoadArr[i].transparency,
+                "alpha": sceneToLoadArr[i].alpha,
+                "type": sceneToLoadArr[i].type
+            }, sceneToLoadArr[i].saveTo);
+        }
+    }
+    saveData();
+}
+
 // Some sort of call back (waiting for savedShapeImg value)
 function waitUntilCanvasImgUploading(){
     if (savedShapeImg === ""){

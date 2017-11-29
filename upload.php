@@ -171,6 +171,15 @@ if (isset($_POST['savedShape'])){
 
     echo json_encode( array('savedData' => $savedShapeData, 'objectData' => $objectData) );
 }
+//Saving scene
+if (isset($_POST['sceneToSave'])){
+    $sceneData = $_POST['sceneToSave'];
+
+    file_put_contents("shapes/user_shapes_data/savedScene.txt", "");
+    file_put_contents("shapes/user_shapes_data/savedScene.txt", $sceneData);
+
+    echo json_encode( array('savedScene' => $sceneData) );
+}
 
 if (isset($_POST['callGetObjectFiles'])){
     echo getFiles($_POST['callGetObjectFiles'][0], $_POST['callGetObjectFiles'][1]);

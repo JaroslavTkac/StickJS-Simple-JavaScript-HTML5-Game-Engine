@@ -121,7 +121,7 @@
     <div class="container-fluid" style="background: #e3eef4">
         <div class="row">
             <!-- Main Scene & Importer -->
-            <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12" id="right-window" style="padding: 0 0 0 0">
+            <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12" id="left-window" style="padding: 0 0 0 0">
                 <!-- WEB GL Canvas area -->
                 <canvas id="Scene" style="border: 3pt black solid"></canvas>
 
@@ -168,14 +168,41 @@
                                             <li><a href="#">Music</a></li>
                                             <li><a href="#">Textures</a></li>
                                         </ul>
+
                                     </li>
-                                </ul>
-                                <ul class="navbar-right">
-                                    <form id="upload" method="post" action="upload.php" style="padding-top: 10%" >
-                                        <label class="btn btn-primary"><span class="glyphicon glyphicon-save-file"></span> Upload
-                                            <input type="file" name="upl" accept="image/png/jpg/obj/mp3" style="display: none;">
+                                    <li>
+                                        <label class="btn btn-primary" id="aspect-ratio" style="margin-top: 8px;">
+                                            <span class="glyphicon glyphicon-retweet"></span> Aspect Ratio
                                         </label>
-                                    </form>
+                                    </li>
+                                    <li>
+                                        <label class="btn btn-primary" id="save-scene-btn" style="margin-top: 8px; margin-left: 5px">
+                                            <span class="glyphicon glyphicon-floppy-save"></span> Save
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <label class="btn btn-primary" id="reset-scene-btn" style="margin-top: 8px; margin-left: 5px">
+                                            <span class="glyphicon glyphicon-refresh"></span> Reset
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <label class="btn btn-primary" id="clear-scene-btn" style="margin-top: 8px; margin-left: 5px">
+                                            <span class="glyphicon glyphicon-remove"></span> Clear
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <label class="btn btn-primary" id="start-frame-btn" style="margin-top: 8px; margin-left: 5px">
+                                            <span class="glyphicon glyphicon-play"></span> Play Frames
+                                        </label>
+                                    </li>
+                                    <li>
+                                        <form id="upload" method="post" action="upload.php" >
+                                            <label class="btn btn-primary" style="margin-top: 8px; margin-left: 5px">
+                                                <span class="glyphicon glyphicon-save-file"></span> Upload
+                                                <input type="file" name="upl" accept="image/png/jpg/obj/mp3" style="display: none;">
+                                            </label>
+                                        </form>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -231,7 +258,7 @@
             </div>
 
             <!-- Nav Bar Editor/Logic/Sound -->
-            <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12" id="editor-logic-sound" style="padding: 0 0 0 0">
+            <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12" id="right-window" style="padding: 0 0 0 0">
                 <nav class="navbar navbar-default navbar-static-top" style="margin-bottom: 0">
                     <div class="container-fluid">
                         <div class="navbar-header">
@@ -427,13 +454,13 @@
 
                             <!-- TRIGGERS -->
                             <text x="45" y="15" fill="#ea640b" transform="scale(1.5)">Triggers</text>
-                            <!-- On Start Click -->
+                            <!-- On Save Code -->
                             <g transform="matrix(1 0 0 1 0 30)"
                                class="trigger">
                                 <path d="M 0 34.652 L 199.879 34.73 C 258.782 34.137 245.231
                                      -0.498 200 0.005 L 31.522 0.005 L 0 34.652 Z" fill="green" stroke="black" stroke-width="2"></path>
                                 <text class="basic-text-over-svg" x="50" y="24" font-size="20">
-                                    On Start Click
+                                    On Save Code
                                 </text>
                                 <text class="code-id"
                                       x="0" y="0">on start</text>
@@ -1135,7 +1162,7 @@
                                 <path d="M 0 34.652 L 199.879 34.73 C 258.782 34.137 245.231
                                      -0.498 200 0.005 L 31.522 0.005 L 0 34.652 Z" fill="green" stroke="black" stroke-width="2" opacity="1" stroke-dasharray="0"></path>
                                 <text class="basic-text-over-svg" x="50" y="24" font-size="20">
-                                    On Start Click
+                                    On Save Code
                                 </text>
                                 <text class="code-id" x="0" y="0">on start</text>
                                 <text class="mktime" x="0" y="0">1511868147907</text>

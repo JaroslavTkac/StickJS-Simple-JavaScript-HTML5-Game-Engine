@@ -124,7 +124,7 @@ function applyChangesToAll(x, y, z, sx, sy, sz, xRot, yRot, zRot,
         if(animateRotation !== null)
             objArr[i].animateRotation = animateRotation;
         if(transparency !== null)
-            objArr[i].transparency = parseFloat(transparency);
+            objArr[i].transparency = transparency;
         if(opacity !== null)
             objArr[i].alpha = parseFloat(opacity);
         if(useCamera !== null)

@@ -149,7 +149,13 @@ function analyzingCodeCluster(index, cluster, value) {
                     case "set opacity":
                         console.log("set opacity");
                         opacity = Math.abs(cluster[i].value);
-                        transparency = opacity >= 0 && opacity < 1;
+                        console.log("op: " + opacity);
+                        transparency = ((opacity >= 0) && (opacity < 1));
+                        //if((opacity >= 0) && (opacity < 1))
+                          //  transparency = false;
+                        //else
+                          //  transparency = true;
+                        console.log(transparency);
                         break;
                     case "set camera":
                         console.log("set camera");
@@ -188,7 +194,7 @@ function analyzingCodeCluster(index, cluster, value) {
             else{
                 //Saving all gained data
                 applyChangesToAll(x, y, z, sx, sy, sz, xRot, yRot, zRot, xRotSpeed, yRotSpeed, zRotSpeed, r, g, b,
-                    ambientR, ambientG, ambientB, useAnimation, useAnimation, opacity, transparency);
+                    ambientR, ambientG, ambientB, useAnimation, camera, opacity, transparency);
                 /*x = null; y = null; z = null;
                 sx = null; sy = null; sz = null;
                 xRot = null; yRot = null; zRot = null;
@@ -210,7 +216,7 @@ function analyzingCodeCluster(index, cluster, value) {
             }
             else{
                 applyChangesToAll(x, y, z, sx, sy, sz, xRot, yRot, zRot, xRotSpeed, yRotSpeed, zRotSpeed, r, g, b,
-                    ambientR, ambientG, ambientB, useAnimation, useAnimation, opacity, transparency);
+                    ambientR, ambientG, ambientB, useAnimation, camera, opacity, transparency);
                 alreadyApplied = true;
                 searchingFirstLoop(cluster, i);
             }
@@ -219,7 +225,7 @@ function analyzingCodeCluster(index, cluster, value) {
 
     if(!alreadyApplied)
         applyChangesToAll(x, y, z, sx, sy, sz, xRot, yRot, zRot, xRotSpeed, yRotSpeed, zRotSpeed, r, g, b,
-            ambientR, ambientG, ambientB, useAnimation, useAnimation, opacity, transparency);
+            ambientR, ambientG, ambientB, useAnimation, camera, opacity, transparency);
 }
 
 function isLoop(block){

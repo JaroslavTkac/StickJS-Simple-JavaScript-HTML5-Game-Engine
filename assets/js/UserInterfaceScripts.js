@@ -6,6 +6,7 @@ let lastSelectedTexture = "assets/img/textures/sun.jpg";
 let currentlySelectedShape = "shapes/cube.json";
 let isTextureWillBeUsed;
 let isLightWillBeUsed;
+let aspectR = true;
 
 
 $(document).ready(function() {
@@ -15,7 +16,7 @@ $(document).ready(function() {
     let previewShapesHeight = $('.shape').height();
     let SceneHeight =  $('#Scene').height();
     let editorBlockHeight = $('#editor-area').height();
-    let rightWindowHeight = $('#right-window').height();
+    let rightWindowHeight = $('#left-window').height();
     let objectIsEditing = false;
     let nameOfPngFile = "";
 
@@ -55,6 +56,23 @@ $(document).ready(function() {
     //Init on page reload objects that was loaded in scene
     loadUserObjectFiles("liveObjects.txt", "shapes/user_shapes_data/");
 
+    //On ascpect ration button click
+    $('#aspect-ratio').click(function () {
+        let left = $('#left-window')[0];
+        let right = $('#right-window')[0];
+        if(aspectR) {
+            left.setAttribute("class", "col-lg-5 col-md-5 col-sm-12 col-xs-12");
+            right.setAttribute("class", "col-lg-7 col-md-7 col-sm-12 col-xs-12");
+            aspectR = false;
+            $(window).trigger('resize');
+        }
+        else{
+            left.setAttribute("class", "col-lg-7 col-md-7 col-sm-12 col-xs-12");
+            right.setAttribute("class", "col-lg-5 col-md-5 col-sm-12 col-xs-12");
+            aspectR = true;
+            $(window).trigger('resize');
+        }
+    });
 
     //On How To click open modal with instructions
     $('.nav.navbar-nav > li a').on('click', function () {
@@ -70,9 +88,9 @@ $(document).ready(function() {
         }
     });
     //timeStampAll();
-    intersectArrInit();
+    /*intersectArrInit();
     previewGroupSelection();
-    addSvgElementToScene();
+    addSvgElementToScene();*/
     /*$('#push-code').click(function () {
         getDataOfSvgInScene();
     });*/
@@ -169,7 +187,9 @@ $(document).ready(function() {
         }
         if($(this).text() === "Logic"){
             //let currEditorHeight = $('#editor-area').height();
-
+            intersectArrInit();
+            previewGroupSelection();
+            addSvgElementToScene();
             $('#saved-shape-container').css('display', 'none');
             $('#editor-container').css('display', 'none');
             $('#code-blocks-div').css('display', '');
@@ -206,7 +226,7 @@ $(document).ready(function() {
         $('#saved-shape-canvas-container').css('height', (editorBlockHeight * 0.9));
         console.log($('#saved-shape-container').css('height').valueOf());
 
-        rightWindowHeight = $('#right-window').height();
+        rightWindowHeight = $('#left-window').height();
         $('#code-blocks-div').css('height', rightWindowHeight * 0.885);
         $('#code-scene-div').css('height', rightWindowHeight * 0.885);
     };
@@ -315,12 +335,9 @@ $(document).ready(function() {
             // if editing save
             saveCanvasImg(nameOfPngFile);
 
-            //console.log(savedShapesArr);
-            //console.log("Modified object index in array: " + getSavedShapeElementIndex("shapes/user_saved_shapes/" + nameOfPngFile));
             // delete object from array with same key
             savedShapesArr.splice(getSavedShapeElementIndex("shapes/user_saved_shapes/" + nameOfPngFile), 1);
             waitUntilCanvasImgUploading();
-            //console.log(savedShapesArr);
         }
         else{
             saveCanvasImg();
@@ -613,6 +630,27 @@ $(document).ready(function() {
             }
         });
     }
+    //Save scene
+    $('#save-scene-btn').click(function () {
+        saveScene();
+    });
+
+    //Reset scene
+    $('#reset-scene-btn').click(function () {
+        //clearing scene array
+        objArr = [];
+        //load saved scene
+        loadUserObjectFiles("savedScene.txt", "shapes/user_shapes_data/");
+
+        console.log(sceneToLoadArr);
+        //wait until loaded
+        waitUntilSavedSceneDataLoads();
+    });
+    //Clear scene
+    $('#clear-scene-btn').click(function () {
+        objArr = [];
+        saveData();
+    });
 
     //Prevent jumping to page beginning
     $(document).on('click', 'img', function(e) {
