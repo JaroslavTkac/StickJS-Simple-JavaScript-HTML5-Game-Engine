@@ -333,7 +333,7 @@ function initProperties(object, properties, saveTo){
         objEditorArr.push(object);
         loadedObjects++;
         editorObjectLoaded = true;
-        console.log(objEditorArr[0]);
+        //console.log(objEditorArr[0]);
         //console.log("Editor obj size: " + objEditorArr.length);
     }
     if(saveTo === "preview"){

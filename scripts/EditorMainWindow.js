@@ -24,6 +24,7 @@ function startEditorWindow(){
     ambientLightE = new AmbientLight(redAChange, greenAChange, blueAChange);
     directionalLightE = new DirectionalLight(0, 0, 0, 0, 0, 50, false);
     pointLightArrayE.push(new PointLight("lamp", redPChange, greenPChange, bluePChange, 0, 0, -4, 15, 0.02, "editor", false));
+    //pointLightArrayE.push(new PointLight("lamp2", 0.3, 0, 0, 0, 0, 4, 0, 0, "editor", false));
 
     for(let i in webglEditorArr) {
         webglEditorArr[i].clearColor(0, 0, 0, 1.0);

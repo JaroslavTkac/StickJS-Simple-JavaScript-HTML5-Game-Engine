@@ -88,7 +88,32 @@ function waitUntilWebglInitialized(){
     }
 
 }
+function getShapesNameInFolder(dir){
+    $.ajax({
+        url: 'upload.php',
+        type: 'post',
+        data: {"callLoadUserData": dir},
+        success: function (response) {
+            console.log(response);
+            let content = JSON.parse(response);
+            ///let data = "";
+            let folderContent = [];
+            let tmp;
 
+            //getting array of ACTUAL files in folder
+            for (let i = 0; i < content['data'].length; i++) {
+                tmp = content['data'][i].split('.');
+                if (tmp[tmp.length - 1] === "json")
+                    folderContent.push(tmp[0]);
+            }
+            console.log("FOLDER:");
+            console.log(folderContent);
+            userUploadedShapesNamesArray = folderContent;
+            updateAllForSpecificBlocks();
+        }
+    });
+
+}
 
 function loadUserData(dir, type){
     $.ajax({
@@ -162,6 +187,8 @@ function loadUserData(dir, type){
                     //init every object for webgl here
 
                     initUploadedObject("shapes/user_shapes/" + folderContent[i]);
+                    //Getting user saved shapes names for code blocks
+                    getShapesNameInFolder("shapes/user_shapes");
                 }
                 if(type === "savedShapes"){
                     data = "<div align=\"center\">" +
@@ -188,80 +215,7 @@ function loadUserData(dir, type){
                     $('#saved-shape-canvas-container').append(data);
                 }
             }
-            /*for(let i = 2; i < content['data'].length; i++) {
-                console.log(content['data'][i]);
-                if(type === "image") {
-                    $('#texture-picker-row').append(
-                        "<div class=\"col-lg-3 col-md-3 col-sm-4 col-xs-6\">" +
-                            "<a href=\"#\" class=\"thumbnail\" >" +
-                                "<img src=\"assets/img/textures/user_textures/" + content['data'][i] + "\" class=\"img-rounded inline-block texture\" " +
-                                    "alt=\"assets/img/textures/user_textures/" + content['data'][i] + "\">" +
-                            "</a>" +
-                        "</div>");
-                    data = "<div align=\"center\" class=\"col-lg-3 col-md-4 col-sm-4 col-xs-6\">" +
-                                "<a href=\"#\" class=\"thumbnail\" >" +
-                                    "<img src=\"assets/img/textures/user_textures/" + content['data'][i] + "\" class=\"img-rounded inline-block\" " +
-                                        "alt=" + content['data'][i] + "\">" +
-                                "<a href=\"#\" class=\"btn btn-md overlay-btn-del\">" +
-                                    "<span class=\"glyphicon glyphicon-trash\"></span>" +
-                                    "<span class=\"delete_path\" style=\"display: none\">assets/img/textures/user_textures/" + content['data'][i] + "</span></a>" +
-                                "</a>" +
-                            "</div>";
-                    $('#selectable-textures-row').append(data);
-                }
-                if(type === "music"){
-                    data = "<div align=\"center\" class=\"col-lg-3 col-md-3 col-sm-4 col-xs-6\">" +
-                                "<a href=\"#\" class=\"thumbnail\" >" +
-                                    "<img src=\"assets/img/design/audio_file.png\" class=\"img-rounded inline-block\" " +
-                                        "alt=\"assets/img/design/audio_file.png\">" +
-                                "</a>" +
-                                "<p>" + getOriginalFileName(content['data'][i]) + ".mp3" +  "</p>" +
-                                "<a href=\"#\" class=\"btn btn-md overlay-btn-del\">" +
-                                    "<span class=\"glyphicon glyphicon-trash\"></span>" +
-                                    "<span class=\"delete_path\" style=\"display: none\">assets/music/user_music/" + content['data'][i] + "</span></a>" +
-                            "</div>";
-                    $('#selectable-music-row').append(data);
-                }
-                if(type === "object"){
-                    data = "<div align=\"center\" class=\"col-lg3 col-md-4 col-sm-4 col-xs-6\">" +
-                                "<a href=\"#\" class=\"thumbnail\">" +
-                                    "<canvas class=\"preview-scene shape\" id=\"" + "shapes/user_shapes/" + content['data'][i] + "\" ></canvas>" +
-                                    "<a href=\"#\" class=\"btn btn-md overlay-btn overlay-btn-del\">" +
-                                        "<span class=\"glyphicon glyphicon-trash\"></span>" +
-                                        "<span class=\"delete_path\" style=\"display: none\">shapes/user_shapes/" + content['data'][i] + "</span></a>" +
-                                "</a>" +
-                            "</div>";
-                    $('#selectable-shapes-row').append(data);
 
-                    //init every object for webgl here
-
-                    initUploadedObject("shapes/user_shapes/" + content['data'][i]);
-                }
-                if(type === "savedShapes" && content['data'][i] !== ".DS_Store"){
-                    data = "<div align=\"center\">" +
-                                "<a href=\"#\" class=\"thumbnail\" >" +
-                                    "<img src=\"shapes/user_saved_shapes/" + content['data'][i] + "\" class=\"img-rounded inline-block\" " +
-                                        "alt=\"shapes/user_saved_shapes/" + content['data'][i] + "\">" +
-                                "</a>" +
-                                // Add btn
-                                "<a href=\"#\" class=\"btn btn-md overlay-btn overlay-btn-add\">" +
-                                    "<span class=\"glyphicon glyphicon-plus\"></span>" +
-                                    "<span class=\"add_shape\" style=\"display: none\">shapes/user_saved_shapes/" + content['data'][i] + "</span>" +
-                                "</a>" +
-                                // Edit btn
-                                "<a href=\"#\" class=\"btn btn-md overlay-btn overlay-btn-edit\">" +
-                                    "<span class=\"glyphicon glyphicon-wrench\"></span>" +
-                                    "<span class=\"edit_shape\" style=\"display: none\">shapes/user_saved_shapes/" + content['data'][i] + "</span>" +
-                                "</a>" +
-                                // Delete btn
-                                "<a href=\"#\" class=\"btn btn-md overlay-btn overlay-btn-del\">" +
-                                    "<span class=\"glyphicon glyphicon-trash\"></span>" +
-                                    "<span class=\"delete_path\" style=\"display: none\">shapes/user_saved_shapes/" + content['data'][i] + "</span>" +
-                                "</a>" +
-                            "</div>";
-                    $('#saved-shape-canvas-container').append(data);
-                }
-            }*/
         }
     });
 }
@@ -490,10 +444,14 @@ function saveObject(file_path){
              
             deleteFileFromServer("uploads/" + uploaded['name']);
 
+            getShapesNameInFolder("shapes/user_shapes");
+
             saveData();
         }
     });
 }
+
+
 
 //
 function initUploadedObject(file_path) {
@@ -601,6 +559,10 @@ setInterval(function () {
     saveData();
 }, 60000); // every 60 sec*/
 
+setInterval(function () {
+    saveSvgCodeScene();
+}, 5000); // every 5 sec*/
+
 function saveData(){
     //Send to server user object data
     let saved_data = JSON.stringify(savedShapesArr);
@@ -637,6 +599,72 @@ function saveScene(){
         console.log("error on scene saving");
     });
 }
+
+//Saving svg code scene
+function saveSvgCodeScene(){
+    let svgCodeScene = [];
+    let svgArr = document.getElementById("code-logic-scene").children;
+
+    for (let i = 0; i < svgArr.length; i++){
+        if(getmktime(svgArr[i]) !== "trashbin"){
+            svgCodeScene.push({data: svgArr[i].outerHTML, value: getDataFromSvgForm(svgArr[i])});
+        }
+    }
+    let data = JSON.stringify(svgCodeScene);
+
+    $.ajax({
+        type: "POST",
+        url: "upload.php",
+        data: {
+            sceneToSave: data
+        },
+    }).done(function(response) {
+        console.log("SVG CODE saved.");
+    }).error(function (res) {
+        console.log("error on svg code scene saving");
+    });
+}
+//Load svg code from server
+function loadSvgCode(){
+    $.ajax({
+        url: "upload.php",
+        type: "POST",
+        data: "getSvgCodeScene",
+        success: function(response) {
+            let content = JSON.parse(response);
+            let data = JSON.parse(content['data']);
+            console.log(data);
+
+            let svgArr = document.getElementById("code-logic-scene").children;
+            //cleaning old svg elements
+            while(svgArr.length !== 1){
+                for (let i = 0; i < svgArr.length; i++){
+                    if(getmktime(svgArr[i]) !== "trashbin"){
+                        $(svgArr[i]).remove().end();
+                    }
+                }
+                svgArr = document.getElementById("code-logic-scene").children;
+            }
+
+            for(let i = 0; i < data.length; i++){
+                $("#code-logic-scene").append(data[i].data).html($("#code-logic-scene").html());
+            }
+            //Restoring data
+            svgArr = document.getElementById("code-logic-scene").children;
+            for(let i = 1; i < svgArr.length; i++){
+                console.log(data[i - 1]);
+                console.log(data[i - 1].value);
+                if(data[i - 1].value !== undefined){
+                    if(svgArr[i].getElementsByClassName("code-selection").length > 0)
+                        setSelectedValue(svgArr[i].getElementsByClassName("code-selection")[0], data[i - 1].value);
+                    if(svgArr[i].getElementsByClassName("code-input").length > 0)
+                        svgArr[i].getElementsByClassName("code-input")[0].value = data[i - 1].value;
+                }
+            }
+        },
+    });
+}
+
 
 //Get original file name
 function getOriginalFileName(current_file_name) {

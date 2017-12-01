@@ -80,7 +80,7 @@ function applyChangesToAll(x, y, z, sx, sy, sz, xRot, yRot, zRot,
                            ambientR, ambientG, ambientB, animateRotation, useCamera, opacity, transparency){
 
 
-    console.log("Going to apply changes");
+    console.log("Going to apply changes TO ALL");
 
     if(ambientR !== null)
         ambientLight.r = parseFloat(ambientR);
@@ -134,3 +134,124 @@ function applyChangesToAll(x, y, z, sx, sy, sz, xRot, yRot, zRot,
 
     console.log(objArr);
 }
+//Apply changes to specific type of objects
+function applyChangesToSpecificType(objectType, x, y, z, sx, sy, sz, xRot, yRot, zRot,
+                           xRotSpeed, yRotSpeed, zRotSpeed, r, g, b,
+                           ambientR, ambientG, ambientB, animateRotation, useCamera, opacity, transparency){
+
+
+    console.log("Going to apply changes TO: " + objectType);
+
+    if(ambientR !== null)
+        ambientLight.r = parseFloat(ambientR);
+    if(ambientG !== null)
+        ambientLight.g = parseFloat(ambientG);
+    if(ambientB !== null)
+        ambientLight.b = parseFloat(ambientB);
+
+
+    for (let i = 0; i < objArr.length; i++){
+        if(objArr[i].type === objectType) {
+            if (x !== null)
+                objArr[i].x = parseFloat(x);
+            if (y !== null)
+                objArr[i].y = parseFloat(y);
+            if (z !== null)
+                objArr[i].z = parseFloat(z);
+            if (sx !== null)
+                objArr[i].sx = parseFloat(sx);
+            if (sy !== null)
+                objArr[i].sy = parseFloat(sy);
+            if (sz !== null)
+                objArr[i].sz = parseFloat(sz);
+            if (r !== null)
+                objArr[i].r = parseFloat(r);
+            if (g !== null)
+                objArr[i].g = parseFloat(g);
+            if (b !== null)
+                objArr[i].b = parseFloat(b);
+            if (xRot !== null)
+                objArr[i].xRot = parseFloat(xRot);
+            if (yRot !== null)
+                objArr[i].yRot = parseFloat(yRot);
+            if (zRot !== null)
+                objArr[i].zRot = parseFloat(zRot);
+            if (xRotSpeed !== null)
+                objArr[i].xRotSpeed = parseFloat(xRotSpeed);
+            if (yRotSpeed !== null)
+                objArr[i].yRotSpeed = parseFloat(yRotSpeed);
+            if (zRotSpeed !== null)
+                objArr[i].zRotSpeed = parseFloat(zRotSpeed);
+            if (animateRotation !== null)
+                objArr[i].animateRotation = animateRotation;
+            if (transparency !== null)
+                objArr[i].transparency = transparency;
+            if (opacity !== null)
+                objArr[i].alpha = parseFloat(opacity);
+            if (useCamera !== null)
+                objArr[i].useCamera = useCamera;
+        }
+    }
+
+    console.log(objArr);
+}
+//Apply changes to specific type of objects
+function applyChangesToSpecificObject(name, x, y, z, sx, sy, sz, xRot, yRot, zRot,
+                                    xRotSpeed, yRotSpeed, zRotSpeed, r, g, b,
+                                    ambientR, ambientG, ambientB, animateRotation, useCamera, opacity, transparency){
+
+
+    console.log("Going to apply changes TO: " + name);
+
+    if(ambientR !== null)
+        ambientLight.r = parseFloat(ambientR);
+    if(ambientG !== null)
+        ambientLight.g = parseFloat(ambientG);
+    if(ambientB !== null)
+        ambientLight.b = parseFloat(ambientB);
+
+    let object = getObjByName(name);
+
+    if(x !== null)
+        object.x = parseFloat(x);
+    if(y !== null)
+        object.y = parseFloat(y);
+    if(z !== null)
+        object.z = parseFloat(z);
+    if(sx !== null)
+        object.sx = parseFloat(sx);
+    if(sy !== null)
+        object.sy = parseFloat(sy);
+    if(sz !== null)
+        object.sz = parseFloat(sz);
+    if(r !== null)
+        object.r = parseFloat(r);
+    if(g !== null)
+        object.g = parseFloat(g);
+    if(b !== null)
+        object.b = parseFloat(b);
+    if(xRot !== null)
+        object.xRot = parseFloat(xRot);
+    if(yRot !== null)
+        object.yRot = parseFloat(yRot);
+    if(zRot !== null)
+        object.zRot = parseFloat(zRot);
+    if(xRotSpeed !== null)
+        object.xRotSpeed = parseFloat(xRotSpeed);
+    if(yRotSpeed !== null)
+        object.yRotSpeed = parseFloat(yRotSpeed);
+    if(zRotSpeed !== null)
+        object.zRotSpeed = parseFloat(zRotSpeed);
+    if(animateRotation !== null)
+        object.animateRotation = animateRotation;
+    if(transparency !== null)
+        object.transparency = transparency;
+    if(opacity !== null)
+        object.alpha = parseFloat(opacity);
+    if(useCamera !== null)
+        object.useCamera = useCamera;
+
+
+    console.log(object);
+}
+

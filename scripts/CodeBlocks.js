@@ -263,6 +263,9 @@ function deselectElement(evt) {
     selectedElement = 0;
     tmpTotalDx = 0;
     tmpTotalDy = 0;
+
+    //saving all written code to server
+    saveSvgCodeScene();
 }
 /**
  * Reverting changes with selected element moving
@@ -341,7 +344,7 @@ function addSvgElementToScene() {
                     "value" : getDataFromSvgForm(svgArr[i])
                 })
         }
-        console.log(dataArr);
+        //console.log(dataArr);
 
 
         //Add to main scene
@@ -353,6 +356,57 @@ function addSvgElementToScene() {
         element.setAttribute("class", baseClass + " joinable draggable");
         element.setAttributeNS(null, "onmousedown", "selectElement(evt)");
         element.getElementsByClassName("mktime")[0].innerHTML = mktime();
+        //if have selection field prepare values for selecting
+        //console.log(getmktime(element));
+        if(getSvgCodeId(element) === "for specific"){
+            console.log("for specific");
+            let select = element.getElementsByClassName("select-specific-svg")[0];
+            $(select).find('option').remove().end();
+
+            let items = [{
+                    value: "cube",
+                    text: "Cube"
+                }, {
+                    value: "sphere",
+                    text: "Sphere"
+                }, {
+                    value: "simpleSphere",
+                    text: "S.Sphere"
+                }, {
+                    value: "cone",
+                    text: "Cone"
+                }, {
+                    value: "cylinder",
+                    text: "Cylinder"
+                }];
+            for (let i = 0; i < userUploadedShapesNamesArray.length; i++){
+                items.push({value: userUploadedShapesNamesArray[i], text: userUploadedShapesNamesArray[i]})
+            }
+
+            for(let i = 0; i < items.length; i++)
+                $(select).append(new Option(items[i].text, items[i].value));
+
+        }
+        if(getSvgCodeId(element) === "for name"){
+            console.log("for name");
+            let select = element.getElementsByClassName("select-name-svg")[0];
+            $(select).find('option').remove().end();
+
+            let items = [];
+
+            for(let i = 0; i < objArr.length; i++){
+                let name = objArr[i].name;
+                if(objArr[i].name.length >= 10)
+                    name = objArr[i].name.substr(0, 9) + "...";
+
+                items.push({value: objArr[i].name, text: name});
+            }
+
+            for(let i = 0; i < items.length; i++)
+                $(select).append(new Option(items[i].text, items[i].value));
+
+        }
+
 
         intersectArrInit();
         //Restoring data
@@ -369,7 +423,65 @@ function addSvgElementToScene() {
                     }
                 }
         }
+
+        //saving all written code to server
+        saveSvgCodeScene();
+
     });
+
+}
+function updateAllForNameBlocks() {
+    let svgArr = document.getElementById("code-logic-scene").children;
+
+    for (let j = 0; j < svgArr.length; j++) {
+        let select = svgArr[j].getElementsByClassName("select-name-svg")[0];
+        if(select !== undefined) {
+            $(select).find('option').remove().end();
+            let items = [];
+
+            for (let i = 0; i < objArr.length; i++) {
+                let name = objArr[i].name;
+                if (objArr[i].name.length >= 10)
+                    name = objArr[i].name.substr(0, 9) + "...";
+
+                items.push({value: objArr[i].name, text: name});
+            }
+            for (let i = 0; i < items.length; i++)
+                $(select).append(new Option(items[i].text, items[i].value));
+        }
+    }
+}
+function updateAllForSpecificBlocks() {
+    let svgArr = document.getElementById("code-logic-scene").children;
+
+    for (let j = 0; j < svgArr.length; j++) {
+        let select = svgArr[j].getElementsByClassName("select-specific-svg")[0];
+        $(select).find('option').remove().end();
+
+        let items = [{
+            value: "cube",
+            text: "Cube"
+        }, {
+            value: "sphere",
+            text: "Sphere"
+        }, {
+            value: "simpleSphere",
+            text: "S.Sphere"
+        }, {
+            value: "cone",
+            text: "Cone"
+        }, {
+            value: "cylinder",
+            text: "Cylinder"
+        }];
+        console.log(userUploadedShapesNamesArray);
+        for (let i = 0; i < userUploadedShapesNamesArray.length; i++){
+            items.push({value: userUploadedShapesNamesArray[i], text: userUploadedShapesNamesArray[i]})
+        }
+
+        for(let i = 0; i < items.length; i++)
+            $(select).append(new Option(items[i].text, items[i].value));
+    }
 }
 /**
  * Setting selectable value
@@ -591,6 +703,9 @@ function deleteSvgElement(element){
 
     intersectArrInit();
 
+    //saving all written code to server
+    saveSvgCodeScene();
+
     for(let i = 0; i < svgIntersectArr.length; i++)
         if(svgIntersectArr[i].trashbin)
             getGelementByName(svgIntersectArr[i].mktime).firstElementChild.setAttribute("transform", "scale(1.0)");
@@ -638,6 +753,8 @@ function intersectArrInit(){
         });
     }
     console.log(svgIntersectArr);
+
+
 }
 /**
  * Updating intersection array with selected svg element

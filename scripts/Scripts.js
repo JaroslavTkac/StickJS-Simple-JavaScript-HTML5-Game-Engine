@@ -68,6 +68,7 @@ function waitUntilSavedSceneDataLoads() {
         }
     }
     saveData();
+    updateAllForNameBlocks();
 }
 
 // Some sort of call back (waiting for savedShapeImg value)
@@ -142,8 +143,11 @@ function fpsCounter() {
     lastCalledTime = Date.now();
     fps = 1 / delta;
     fpsSum += fps;
-    fpsElement.appendChild(fpsNode);
-    fpsNode.nodeValue = "Current fps: " + fps.toFixed(2);
+    //console.log("Fps total: " + fpsSum);
+    //console.log("Current fps: " + fps.toFixed(2))
+
+    //fpsElement.appendChild(fpsNode);
+    //fpsNode.nodeValue = "Current fps: " + fps.toFixed(2);
 }
 function avgFps(){
     framesPassed++;

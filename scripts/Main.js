@@ -120,7 +120,7 @@ function webGLStart() {
     //world(100);
     //demoPlayer();
 
-    /*new LoadObject("shapes/cube.json", "assets/img/textures/sun.jpg", {
+   /* new LoadObject("shapes/cube.json", "assets/img/textures/sun.jpg", {
             "name": "test",
             "x": -4,
             "y": 0,
@@ -132,7 +132,7 @@ function webGLStart() {
             "xRot": -20,
             "yRotSpeed": 100,
             "xRotSpeed": 50,
-            "useTexture": true,
+            "useTexture": false,
             "animateRotation": true,
             "type": "cube"
         },
@@ -147,7 +147,7 @@ function webGLStart() {
             "sz": 2,
             "yRot": 40,
             "yRotSpeed": 50,
-            "useTexture": true,
+            "useTexture": false,
             "animateRotation": false,
             "type": "cube"
         },
@@ -203,7 +203,7 @@ function render() {
     drawScene(canvas, webgl, objArr, mvMatrix, pMatrix, mvMatrixStack, shaderProgram,
         ambientLight, directionalLight, pointLightArray);
     animate(objArr);
-    //fpsCounter();
+    fpsCounter();
     //avgFps();
     renderEditor();
 

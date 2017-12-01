@@ -77,6 +77,7 @@ let childMatrix = [];
 let svgIntersectArr = [], codeArray = [];
 let tmpTotalDx, tmpTotalDy;
 let tmpMatrixX, tmpMatrixY;
+let userUploadedShapesNamesArray = [];
 
 function initGLForScene(canvas) {
     try {

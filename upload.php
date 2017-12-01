@@ -180,6 +180,22 @@ if (isset($_POST['sceneToSave'])){
 
     echo json_encode( array('savedScene' => $sceneData) );
 }
+//Saving SVG Code Scene
+if (isset($_POST['sceneToSave'])) {
+    $sceneData = $_POST['sceneToSave'];
+
+    file_put_contents("shapes/user_shapes_data/savedSvgCodeScene.txt", "");
+    file_put_contents("shapes/user_shapes_data/savedSvgCodeScene.txt", $sceneData);
+
+    echo json_encode(array('savedSvgCodeScene' => $sceneData));
+}
+//Loading SVG Code Scene
+if (isset($_POST['getSvgCodeScene'])) {
+    $dir = "shapes/user_shapes_data/";
+    $file = "savedSvgCodeScene.txt";
+
+    echo getFiles($file, $dir);
+}
 
 if (isset($_POST['callGetObjectFiles'])){
     echo getFiles($_POST['callGetObjectFiles'][0], $_POST['callGetObjectFiles'][1]);
@@ -198,3 +214,4 @@ function getFiles($file, $dir){
 
 
 //Clearing UserConvertedCode file and filling with saved blocks data
+

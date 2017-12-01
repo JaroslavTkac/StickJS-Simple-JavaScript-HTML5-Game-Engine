@@ -56,6 +56,9 @@ $(document).ready(function() {
     //Init on page reload objects that was loaded in scene
     loadUserObjectFiles("liveObjects.txt", "shapes/user_shapes_data/");
 
+    //Loading User SVG blockly code
+    loadSvgCode();
+
     //On ascpect ration button click
     $('#aspect-ratio').click(function () {
         let left = $('#left-window')[0];
@@ -87,14 +90,6 @@ $(document).ready(function() {
             return false;
         }
     });
-    //timeStampAll();
-    /*intersectArrInit();
-    previewGroupSelection();
-    addSvgElementToScene();*/
-    /*$('#push-code').click(function () {
-        getDataOfSvgInScene();
-    });*/
-
 
 
     //Texture & Color toggle
@@ -175,6 +170,9 @@ $(document).ready(function() {
             $('#push-code').css('display', 'none');
             $('#code-scene-div').css('display', 'none');
             $('#code-blocks-div').css('display', 'none');
+            $('#clear-code-btn').css('display', 'none');
+            $('#upload-code-btn').css('display', 'none');
+            $('#push-code-btn').css('display', 'none');
             $('#saved-shape-container').css('display', '');
             $('#editor-container').css('display', '');
 
@@ -188,17 +186,24 @@ $(document).ready(function() {
             console.log(editorBlockHeight);
         }
         if($(this).text() === "Logic"){
-            //let currEditorHeight = $('#editor-area').height();
-
             $('#saved-shape-container').css('display', 'none');
             $('#editor-container').css('display', 'none');
             $('#code-blocks-div').css('display', '');
             $('#code-scene-div').css('display', '');
-            $('#push-code').css('display', '');
+            $('#push-code-btn').css('display', '');
+            $('#clear-code-btn').css('display', '');
+            $('#upload-code-btn').css('display', '');
 
-            // $('#code-area').css('height', editorHeight);
+
 
             intersectArrInit();
+            updateAllForNameBlocks();
+
+            let svgArr = document.getElementById("code-logic-scene").children;
+
+            for (let i = 0; i < svgArr.length; i++){
+                getGelementByName(getmktime(svgArr[i])).firstElementChild.setAttribute("opacity", "1");
+            }
 
 
         }
@@ -212,6 +217,8 @@ $(document).ready(function() {
             $('#code-blocks-div').css('display', 'none');
             $('#code-scene-div').css('display', 'none');
             $('#push-code').css('display', 'none');
+            $('#clear-code-btn').css('display', 'none');
+            $('#upload-code-btn').css('display', 'none');
             //Sound divs
 
         }
@@ -598,7 +605,8 @@ $(document).ready(function() {
         });
         $(this).parent().remove();
         saveData();
-
+        updateAllForNameBlocks();
+        getShapesNameInFolder("shapes/user_shapes");
     });
 
 
@@ -657,6 +665,7 @@ $(document).ready(function() {
     $('#clear-scene-btn').click(function () {
         objArr = [];
         saveData();
+        updateAllForNameBlocks();
     });
 
     //Prevent jumping to page beginning
