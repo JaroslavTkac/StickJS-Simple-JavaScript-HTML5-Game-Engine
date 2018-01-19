@@ -1,12 +1,20 @@
 /**
  * Created by jaroslavtkaciuk on 06/04/2017.
  */
+
+
+
+
 class KeyboardPresets{
     constructor(controlsType, speed, rotationSpeed){
         this.controlsType = controlsType;
         this.speed = speed;
         this.rotationSpeed = rotationSpeed;
         this.shooterControlsEnabled = false;
+    }
+    initAllKeyboard(){ //TODO INIT all possible keys
+
+
     }
     simpleControls(){
         let w, s, a, d;
@@ -40,7 +48,7 @@ class KeyboardPresets{
         e.yRot = this.rotationSpeed;
         keysArray.push(w, s, a , d, space, shift, q, e);
     }
-    shooterControls(){ //TODO Q/E movement
+    shooterControls(){
         this.shooterControlsEnabled = true;
         let w, s, a, d, q, e;
         if(this.controlsType === "arrows") {
@@ -150,7 +158,6 @@ class Key{
             "z": 90
         };
     }
-
     playSound(){
         if(sound !== undefined)
             if(sound.getSongByName(this.songName) !== undefined)
@@ -161,7 +168,6 @@ class Key{
             if(sound.getSongByName(this.songName) !== undefined)
                 sound.getSongByName(this.songName).stop();
     }
-
     doAction(){
         if(this.keyPressed) {
             if(keyboard.shooterControlsEnabled)
@@ -172,8 +178,8 @@ class Key{
             xRotation += this.xRot;
             yRotation += this.yRot;
             zRotation += this.zRot;
-            if(this.useSong)
-                this.playSound();
+            //if(this.useSong)
+                //this.playSound();
         }
     }
     shooterControlsValidation(speed, type){
@@ -284,12 +290,15 @@ class Key{
         }
     }
 }
+
+
 function handleKeyDown(event) {
     for (let i in keysArray) {
         if (keysArray[i].keyCode === event.keyCode) {
             keysArray[i].keyPressed = true;
-            if(keysArray[i].useSong)
-                keysArray[i].playSound();
+            //console.log("keyPressed: " + keysArray[i].keyName);
+            //if(keysArray[i].useSong)
+                //keysArray[i].playSound();
         }
     }
 }
@@ -297,8 +306,8 @@ function handleKeyUp(event) {
     for (let i in keysArray) {
         if (keysArray[i].keyCode === event.keyCode) {
             keysArray[i].keyPressed = false;
-            if(keysArray[i].useSong)
-                keysArray[i].doNotPlaySound();
+            //if(keysArray[i].useSong)
+                //keysArray[i].doNotPlaySound();
         }
     }
 }

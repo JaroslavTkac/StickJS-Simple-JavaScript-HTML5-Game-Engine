@@ -718,7 +718,8 @@ function getDataFromSvgForm(element) {
     let data, e;
     if(element.getElementsByClassName("code-selection").length > 0) {
         e = element.getElementsByClassName("code-selection")[0];
-        data = e.options[e.selectedIndex].value;
+        if(e.options[e.selectedIndex] !== undefined)
+            data = e.options[e.selectedIndex].value;
     }
     if(element.getElementsByClassName("code-input").length > 0) {
         e = element.getElementsByClassName("code-input")[0];

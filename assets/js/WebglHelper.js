@@ -78,10 +78,11 @@ let svgIntersectArr = [], codeArray = [];
 let tmpTotalDx, tmpTotalDy;
 let tmpMatrixX, tmpMatrixY;
 let userUploadedShapesNamesArray = [];
+let playFrames = false;
 
 function initGLForScene(canvas) {
     try {
-        webgl = canvas.getContext("experimental-webgl");
+        webgl = canvas.getContext("experimental-webgl", {antialias: false});
         webgl.viewportWidth = canvas.width;
         webgl.viewportHeight = canvas.height;
     } catch (e) {
@@ -93,7 +94,7 @@ function initGLForScene(canvas) {
 function initGLForEditor(canvas) {
     try {
         if(webglEditorArr.length === 0)
-            webglE = canvas.getContext("experimental-webgl", {preserveDrawingBuffer: true});
+            webglE = canvas.getContext("experimental-webgl", {preserveDrawingBuffer: true, antialias: false});
         else
             webglE = canvas.getContext("experimental-webgl");
         webglE.viewportWidth = canvas.width;
@@ -133,7 +134,6 @@ function handleLoadedTextureMain(texture) {
     webgl.bindTexture(webgl.TEXTURE_2D, null);
 }
 function handleLoadedTextureEditor(texture, webglParam) {
-    //for (let i in webglEditorArr) {
     webglParam.pixelStorei(webglParam.UNPACK_FLIP_Y_WEBGL, true);
 
     webglParam.bindTexture(webglParam.TEXTURE_2D, texture);
@@ -143,8 +143,6 @@ function handleLoadedTextureEditor(texture, webglParam) {
     webglParam.generateMipmap(webglParam.TEXTURE_2D);
 
     webglParam.bindTexture(webglParam.TEXTURE_2D, null);
-    //}
-
 }
 function mvPushMatrix(mvMatrix, mvMatrixStack) {
     let copy = mat4.create();

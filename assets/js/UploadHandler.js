@@ -516,12 +516,18 @@ function saveCanvasImg(imgName) {
         console.log(response);
         console.log(JSON.parse(response));
         savedShapeImg = JSON.parse(response)['name'];
+
+
+        //Change old previewed image to new
         if(!(imgName === undefined)){
+
             $('img').each(function(){
                 if($(this).attr("src") === savedShapeImg){
-                    //console.log($(this).parent().parent().remove());
                     $(this).attr('src', '');
                     $(this).attr('src', savedShapeImg);
+                    //let tmpImg = $(this);
+                    //let tmpImg = $(this).parent().parent();
+                    //$(this).parent().parent().remove();
                 }
             });
         }
@@ -563,6 +569,7 @@ setInterval(function () {
     saveSvgCodeScene();
 }, 5000); // every 5 sec*/
 
+//Saving main important data
 function saveData(){
     //Send to server user object data
     let saved_data = JSON.stringify(savedShapesArr);
@@ -583,6 +590,8 @@ function saveData(){
         console.log("error");
     });
 }
+
+//Saving WebGL main scene
 function saveScene(){
     let obj_data = JSON.stringify(objArr);
     //ajax send to php
@@ -594,6 +603,7 @@ function saveScene(){
         },
     }).done(function(response) {
         console.log("Scene succ. saved");
+        //console.log(response);
         //console.log(JSON.parse(response));
     }).error(function (res) {
         console.log("error on scene saving");
@@ -616,7 +626,7 @@ function saveSvgCodeScene(){
         type: "POST",
         url: "upload.php",
         data: {
-            sceneToSave: data
+            svgSceneToSave: data
         },
     }).done(function(response) {
         console.log("SVG CODE saved.");

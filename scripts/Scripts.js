@@ -100,11 +100,12 @@ function waitUntilCanvasImgUploading(){
         alpha: opacitySlider.option("value"),
         saveTo: "objArr"
     };
+    //console.log("Saved shape ARR in wait until");
     //console.log(savedShapeImg);
     savedShapesArr.push({link : savedShapeImg, value : objValues});
 
-    //console.log(savedShapesArr);
-    //console.log(getSavedShapeByName(savedShapeImg));
+    console.log(savedShapesArr);
+   // console.log(getSavedShapeByName(savedShapeImg));
 
     //Modify all shapes that use same base object
     for (let i = 0; i < objArr.length; i++){
@@ -123,8 +124,6 @@ function waitUntilCanvasImgUploading(){
             }
         }
     }
-
-
     savedShapeImg = "";
     saveData();
 }
@@ -143,12 +142,14 @@ function fpsCounter() {
     lastCalledTime = Date.now();
     fps = 1 / delta;
     fpsSum += fps;
+
     //console.log("Fps total: " + fpsSum);
     //console.log("Current fps: " + fps.toFixed(2))
 
     //fpsElement.appendChild(fpsNode);
     //fpsNode.nodeValue = "Current fps: " + fps.toFixed(2);
 }
+
 function avgFps(){
     framesPassed++;
     avgFpsElement.appendChild(avgFpsNode);

@@ -72,6 +72,7 @@ class CreateShape{
         this.g = 0.5;
         this.b = 0.5;
         this.type = "none";
+        //this.textureLoading = false;
         if(saveTo === "objArr") {
             this.lastRendered = "main";
             this.texture = webglParam.createTexture();

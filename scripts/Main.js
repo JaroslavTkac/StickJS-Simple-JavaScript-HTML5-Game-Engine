@@ -24,7 +24,7 @@ function drawScene(canvas, webgl, array, mvMatrix, pMatrix, mvMatrixStack, shade
     webgl.viewport(0, 0, webgl.viewportWidth, webgl.viewportHeight);
     webgl.clear(webgl.COLOR_BUFFER_BIT | webgl.DEPTH_BUFFER_BIT);
 
-    mat4.perspective(60, webgl.viewportWidth / webgl.viewportHeight, 0.1, 1200.0, pMatrix);
+    mat4.perspective(75, webgl.viewportWidth / webgl.viewportHeight, 0.1, 1200.0, pMatrix);
 
     mat4.identity(mvMatrix);
 
@@ -77,7 +77,9 @@ function webGLStart() {
 
 
     keyboard = new KeyboardPresets("wasd", 0.5, 1.4);
-    keyboard.shooterControls();
+    //keyboard.shooterControls();
+    keyboard.initAllKeyboard();
+
 
 
 
@@ -188,7 +190,7 @@ function loading(){
 
         render();
 
-        userCode();
+
     }
     else{
         //loaderElement.appendChild(loaderNode);
@@ -197,16 +199,20 @@ function loading(){
     }
 }
 
+
 function render() {
     requestAnimationFrame(render);
+    fpsSum += 1;
     handleKeys();
     drawScene(canvas, webgl, objArr, mvMatrix, pMatrix, mvMatrixStack, shaderProgram,
         ambientLight, directionalLight, pointLightArray);
     animate(objArr);
-    fpsCounter();
+    //fpsCounter();
     //avgFps();
+
     renderEditor();
 
+    userCode();
 }
 
 function world(size) {

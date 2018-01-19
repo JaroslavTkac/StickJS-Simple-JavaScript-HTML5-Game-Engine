@@ -645,12 +645,12 @@ $(document).ready(function() {
             }
         });
     }
-    //Save scene
+    //Save WebGL scene
     $('#save-scene-btn').click(function () {
         saveScene();
     });
 
-    //Reset scene
+    //Reset WebGL scene
     $('#reset-scene-btn').click(function () {
         //clearing scene array
         objArr = [];
@@ -661,7 +661,7 @@ $(document).ready(function() {
         //wait until loaded
         waitUntilSavedSceneDataLoads();
     });
-    //Clear scene
+    //Clear WebGL scene
     $('#clear-scene-btn').click(function () {
         objArr = [];
         saveData();

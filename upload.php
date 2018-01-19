@@ -181,8 +181,8 @@ if (isset($_POST['sceneToSave'])){
     echo json_encode( array('savedScene' => $sceneData) );
 }
 //Saving SVG Code Scene
-if (isset($_POST['sceneToSave'])) {
-    $sceneData = $_POST['sceneToSave'];
+if (isset($_POST['svgSceneToSave'])) {
+    $sceneData = $_POST['svgSceneToSave'];
 
     file_put_contents("shapes/user_shapes_data/savedSvgCodeScene.txt", "");
     file_put_contents("shapes/user_shapes_data/savedSvgCodeScene.txt", $sceneData);
