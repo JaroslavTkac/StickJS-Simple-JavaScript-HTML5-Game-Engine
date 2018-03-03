@@ -78,6 +78,7 @@ let svgIntersectArr = [], codeArray = [];
 let tmpTotalDx, tmpTotalDy;
 let tmpMatrixX, tmpMatrixY;
 let userUploadedShapesNamesArray = [];
+let codeBlocksDataStateArray = [];
 let playFrames = false;
 
 function initGLForScene(canvas) {

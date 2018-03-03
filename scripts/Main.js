@@ -58,9 +58,6 @@ function drawScene(canvas, webgl, array, mvMatrix, pMatrix, mvMatrixStack, shade
 
 function webGLStart() {
     canvas = document.getElementById("Scene");
-    //let loaderPlace = document.getElementById("loading");
-    //loaderPlace.style.left = canvas.width;
-    //loaderPlace.style.top = canvas.height/2;
     initGLForScene(canvas);
     mainShader();
 
@@ -76,9 +73,6 @@ function webGLStart() {
     document.onkeyup = handleKeyUp;
 
 
-    keyboard = new KeyboardPresets("wasd", 0.5, 1.4);
-    //keyboard.shooterControls();
-    keyboard.initAllKeyboard();
 
 
 
@@ -119,52 +113,12 @@ function webGLStart() {
 
 
 
-    //world(100);
-    //demoPlayer();
-
-   /* new LoadObject("shapes/cube.json", "assets/img/textures/sun.jpg", {
-            "name": "test",
-            "x": -4,
-            "y": 0,
-            "z": -5,
-            "sx": 1,
-            "sy": 1,
-            "sz": 2,
-            "yRot": -10,
-            "xRot": -20,
-            "yRotSpeed": 100,
-            "xRotSpeed": 50,
-            "useTexture": false,
-            "animateRotation": true,
-            "type": "cube"
-        },
-    );
-    new LoadObject("shapes/cube.json", "assets/img/textures/sun.jpg", {
-            "name": "test2",
-            "x": 0,
-            "y": -1,
-            "z": -8,
-            "sx": 2,
-            "sy": 2,
-            "sz": 2,
-            "yRot": 40,
-            "yRotSpeed": 50,
-            "useTexture": false,
-            "animateRotation": false,
-            "type": "cube"
-        },
-    );*/
 
 
 
 
 
 
-
-
-
-    //loaderElement = document.getElementById("loading-progress");
-    //loaderNode = document.createTextNode("");
     startEditorWindow();
     loading();
 

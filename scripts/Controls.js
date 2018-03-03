@@ -12,10 +12,78 @@ class KeyboardPresets{
         this.rotationSpeed = rotationSpeed;
         this.shooterControlsEnabled = false;
     }
-    initAllKeyboard(){ //TODO INIT all possible keys
+    static initAllKeyboard(){
+        for (let i = 97; i < 123; i++)
+            keysArray.push(new Key(String.fromCharCode(i)));
+        keysArray.push(new Key("space"), new Key("shift"));
 
-
+        console.log("Key Array:");
+        console.log(keysArray);
     }
+    enableStandardControls(){
+        this.shooterControlsEnabled = true;
+        for(let i = 0; i < keysArray.length; i++)
+            switch (keysArray[i].keyName){
+                case "w":
+                    keysArray[i].z = parseFloat(this.speed);
+                    break;
+                case "s":
+                    keysArray[i].z = parseFloat(-this.speed);
+                    break;
+                case "a":
+                    keysArray[i].yRot = parseFloat(-this.rotationSpeed);
+                    break;
+                case "d":
+                    keysArray[i].yRot = parseFloat(this.rotationSpeed);
+                    break;
+                case "q":
+                    keysArray[i].x = parseFloat(this.speed);
+                    break;
+                case "e":
+                    keysArray[i].x = parseFloat(-this.speed);
+                    break;
+                case "space":
+                    keysArray[i].y = parseFloat(-this.speed);
+                    break;
+                case "shift":
+                    keysArray[i].y = parseFloat(this.speed);
+                    break;
+            }
+    }
+    disableStandardControls(){
+        this.shooterControlsEnabled = false;
+        for(let i = 0; i < keysArray.length; i++)
+            switch (keysArray[i].keyName){
+                case "w":
+                    keysArray[i].z = 0;
+                    break;
+                case "s":
+                    keysArray[i].z = 0;
+                    break;
+                case "a":
+                    keysArray[i].yRot = 0;
+                    break;
+                case "d":
+                    keysArray[i].yRot = 0;
+                    break;
+                case "q":
+                    keysArray[i].x = 0;
+                    break;
+                case "e":
+                    keysArray[i].x = 0;
+                    break;
+                case "space":
+                    keysArray[i].y = 0;
+                    break;
+                case "shift":
+                    keysArray[i].y = 0;
+                    break;
+            }
+    }
+
+
+
+
     simpleControls(){
         let w, s, a, d;
         if(this.controlsType === "arrows") {
@@ -48,7 +116,7 @@ class KeyboardPresets{
         e.yRot = this.rotationSpeed;
         keysArray.push(w, s, a , d, space, shift, q, e);
     }
-    shooterControls(){
+    shooterControlsV2(){
         this.shooterControlsEnabled = true;
         let w, s, a, d, q, e;
         if(this.controlsType === "arrows") {
@@ -84,13 +152,14 @@ class KeyboardPresets{
         space.y = -this.speed;
         let shift = new Key("shift");
         shift.y = this.speed;
-        keysArray.push(w, s, a , d, q, e, space, shift);
+        keysArray.push(w, s, a, d, q, e, space, shift);
     }
 
 }
 class Key{
     constructor(name){
         this.keyPressed = false;
+        this.keyUp = false;
         this.keyName = "undefined";
         this.keyCode = -1;
         this.initializeKeyboardCodes();
@@ -296,6 +365,8 @@ function handleKeyDown(event) {
     for (let i in keysArray) {
         if (keysArray[i].keyCode === event.keyCode) {
             keysArray[i].keyPressed = true;
+
+
             //console.log("keyPressed: " + keysArray[i].keyName);
             //if(keysArray[i].useSong)
                 //keysArray[i].playSound();
@@ -306,6 +377,9 @@ function handleKeyUp(event) {
     for (let i in keysArray) {
         if (keysArray[i].keyCode === event.keyCode) {
             keysArray[i].keyPressed = false;
+            keysArray[i].keyUp = true;
+
+
             //if(keysArray[i].useSong)
                 //keysArray[i].doNotPlaySound();
         }

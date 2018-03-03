@@ -196,7 +196,7 @@
                                         </label>
                                     </li>
                                     <li>
-                                        <form id="upload" method="post" action="upload.php" >
+                                        <form id="upload" method="post" action="php/upload.php" >
                                             <label class="btn btn-primary" style="margin-top: 8px; margin-left: 5px">
                                                 <span class="glyphicon glyphicon-save-file"></span> Upload
                                                 <input type="file" name="upl" accept="image/png/jpg/obj/mp3" style="display: none;">
@@ -493,15 +493,15 @@
                                 <text class="myFather"
                                       x="0" y="0"></text>
                             </g>
-                            <!-- On Key press -->
+                            <!-- On Key Down -->
                             <g transform="matrix(1 0 0 1 0 150)"
                                class="trigger">
                                 <path d="M 0 34.652 L 199.879 34.73 C 258.782 34.137 245.231
                                      -0.498 200 0.005 L 31.522 0.005 L 0 34.652 Z" fill="green" stroke="black" stroke-width="2"></path>
                                 <text class="basic-text-over-svg" x="50" y="24" font-size="20">
-                                    On Key
+                                    Key Down
                                 </text>
-                                <foreignObject x="135" y="6" width="90" height="30">
+                                <foreignObject x="155" y="6" width="90" height="30">
                                     <select class="code-selection" title="Key selection">
                                         <option value="w">W</option>
                                         <option value="a">A</option>
@@ -522,8 +522,37 @@
                                 <text class="myFather"
                                       x="0" y="0"></text>
                             </g>
-                            <!-- On every Frame Repeat -->
+                            <!-- On Key Up -->
                             <g transform="matrix(1 0 0 1 0 210)"
+                               class="trigger">
+                                <path d="M 0 34.652 L 199.879 34.73 C 258.782 34.137 245.231
+                                     -0.498 200 0.005 L 31.522 0.005 L 0 34.652 Z" fill="green" stroke="black" stroke-width="2"></path>
+                                <text class="basic-text-over-svg" x="50" y="24" font-size="20">
+                                    Key Up
+                                </text>
+                                <foreignObject x="155" y="6" width="90" height="30">
+                                    <select class="code-selection" title="Key selection">
+                                        <option value="w">W</option>
+                                        <option value="a">A</option>
+                                        <option value="s">S</option>
+                                        <option value="d">D</option>
+                                        <option value="q">Q</option>
+                                        <option value="e">E</option>
+                                        <option value="lshift">Lshift</option>
+                                        <option value="space">Space</option>
+                                    </select>
+                                </foreignObject>
+                                <text class="code-id"
+                                      x="0" y="0">on keyup</text>
+                                <text class="mktime"
+                                      x="0" y="0"></text>
+                                <text class="myChild"
+                                      x="0" y="0"></text>
+                                <text class="myFather"
+                                      x="0" y="0"></text>
+                            </g>
+                            <!-- On every Frame Repeat -->
+                            <g transform="matrix(1 0 0 1 0 270)"
                                class="trigger">
                                 <path d="M 0 34.652 L 199.879 34.73 C 258.782 34.137 245.231
                                      -0.498 200 0.005 L 31.522 0.005 L 0 34.652 Z" fill="green" stroke="black" stroke-width="2"></path>
@@ -552,7 +581,17 @@
                                 <text class="basic-text-over-svg" x="50" y="24" font-size="20">
                                     On X
                                 </text>
-                                <foreignObject x="150" y="4" width="60" height="30">
+                                <foreignObject x="100" y="6" width="60" height="30">
+                                    <select class="code-selection-inequality-operator" title="Key selection">
+                                        <option value=">">></option>
+                                        <option value="<"><</option>
+                                        <option value="!==">!==</option>
+                                        <option value="===">===</option>
+                                        <option value=">=">>=</option>
+                                        <option value="<="><=</option>
+                                    </select>
+                                </foreignObject>
+                                <foreignObject x="160" y="4" width="60" height="30">
                                     <form>
                                         <input class="code-input" title="coordinate" type="text" value="0"/>
                                     </form>
@@ -574,7 +613,17 @@
                                 <text class="basic-text-over-svg" x="50" y="24" font-size="20">
                                     On Y
                                 </text>
-                                <foreignObject x="150" y="4" width="60" height="30">
+                                <foreignObject x="100" y="6" width="60" height="30">
+                                    <select class="code-selection-inequality-operator" title="Key selection">
+                                        <option value=">">></option>
+                                        <option value="<"><</option>
+                                        <option value="!==">!==</option>
+                                        <option value="===">===</option>
+                                        <option value=">=">>=</option>
+                                        <option value="<="><=</option>
+                                    </select>
+                                </foreignObject>
+                                <foreignObject x="160" y="4" width="60" height="30">
                                     <form>
                                         <input class="code-input" title="coordinate" type="text" value="0"/>
                                     </form>
@@ -596,7 +645,17 @@
                                 <text class="basic-text-over-svg" x="50" y="24" font-size="20">
                                     On Z
                                 </text>
-                                <foreignObject x="150" y="4" width="60" height="30">
+                                <foreignObject x="100" y="6" width="60" height="30">
+                                    <select class="code-selection-inequality-operator" title="Key selection">
+                                        <option value=">">></option>
+                                        <option value="<"><</option>
+                                        <option value="!==">!==</option>
+                                        <option value="===">===</option>
+                                        <option value=">=">>=</option>
+                                        <option value="<="><=</option>
+                                    </select>
+                                </foreignObject>
+                                <foreignObject x="160" y="4" width="60" height="30">
                                     <form>
                                         <input class="code-input" title="coordinate" type="text" value="0"/>
                                     </form>
@@ -1197,7 +1256,7 @@
                         <svg id="code-logic-scene"
                              xmlns="http://www.w3.org/2000/svg"
                              version="1.1"
-                             width="1000px" height="2000px">
+                             width="1000px" height="3000px">
 
                             <g class="nonjoinable trash-bin" transform="matrix(1 0 0 1 0 -20)" stroke="black" stroke-width="2" style="position: absolute">
                                 <path transform="scale(1.0)" d="M50,32.319c5.584,0,11.004,0.191,16.11,0.568c4.538,0.335,8.688,0.807,12.335,1.403c0.187,0.031,0.371,0.061,0.555,0.092
@@ -1230,15 +1289,29 @@
                         </svg>
                     </div>
                     <div align="center">
-                        <label class="btn btn-primary" id="push-code-btn" style="display: none">
-                            <span class="glyphicon glyphicon-floppy-save"></span> Apply Code
-                        </label>
-                        <label class="btn btn-primary" id="upload-code-btn" style="display: none">
-                            <span class="glyphicon glyphicon-save-file"></span> Upload Code
-                        </label>
-                        <label class="btn btn-primary" id="clear-code-btn" style="display: none">
-                            <span class="glyphicon glyphicon-remove"></span> Clear All
-                        </label>
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <label class="btn btn-primary" id="push-code-btn" data-toggle="tooltip" data-placement="top" title="Apply your code" style="display: none">
+                                <span class="glyphicon glyphicon-floppy-save"></span>
+                            </label>
+                            <label class="btn btn-primary" id="upload-code-btn" data-toggle="tooltip" data-placement="top" title="Upload your code to server" style="display: none">
+                                <span class="glyphicon glyphicon-save-file"></span>
+                            </label>
+                            <label class="btn btn-primary" id="clear-code-btn" data-toggle="tooltip" data-placement="top" title="Clear code area" style="display: none">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </label>
+
+                            <label id="checkbox-label" class="form-check-speed-usage" for="checkSpeed" style="display: none">Standard Movement</label>
+                            <input type="checkbox" class="form-check-speed-usage" id="checkSpeed" style="display: none" checked>
+
+                            <label id="basic-speed-label" for="basic-speed-input" style="display: none">Speed:</label>
+                            <input class="rounded-input" id="basic-speed-input" value="0.5" placeholder="1.2" style="display: none">
+
+                            <label id="rotation-speed-label" for="rotation-speed-input" style="display: none">Rot Speed:</label>
+                            <input class="rounded-input" id="rotation-speed-input" value="1.4" placeholder="0.2" style="display: none">
+
+                        </div>
+
+
                     </div>
                     <!-- END LOGIC -->
 
@@ -1246,6 +1319,39 @@
 
             </div><!-- Nav Bar Editor area closing tag -->
 
+
+
+            <!--
+
+
+             <label class="btn btn-primary" id="push-code-btn" style="display: none">
+                                <span class="glyphicon glyphicon-floppy-save"></span> Apply Code
+                            </label>
+                            <label class="btn btn-primary" id="upload-code-btn" style="display: none">
+                                <span class="glyphicon glyphicon-save-file"></span> Upload Code
+                            </label>
+                            <label class="btn btn-primary" id="clear-code-btn" style="display: none">
+                                <span class="glyphicon glyphicon-remove"></span> Clear All
+                            </label>
+
+
+
+
+            <div class="form-check col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                <label class="form-check-speed-usage" for="checkSpeed">Use Standard Movement</label>
+                                <input type="checkbox" class="form-check-speed-usage" id="checkSpeed">
+                            </div>
+                            <label for="basic-speed-input" class="col-lg-2 col-md-2 col-sm-2 col-xs-2">Speed:</label>
+                            <input class="col-lg-1 col-md-1 col-sm-1 col-xs-1" id="basic-speed-input" placeholder="1.2" style="width: 60px">
+
+                            <label for="rotation-speed-input" class="col-lg-2 col-md-2 col-sm-2 col-xs-2" >Rot Speed:</label>
+                            <input class="col-lg-1 col-md-1 col-sm-1 col-xs-1"  id="rotation-speed-input" placeholder="0.2" style="width: 60px">
+
+                            <label class="btn btn-primary" id="clear-code1-btn">
+                                <span class="glyphicon glyphicon-remove"></span> Clear All
+                            </label>
+
+            -->
 
 
 

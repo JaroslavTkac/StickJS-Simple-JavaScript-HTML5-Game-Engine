@@ -46,10 +46,12 @@ $(document).ready(function() {
 });
 
 
-let codeToAdd = "function userCode() { ";
+let codeToAdd = "function userCode() {\n    ";
+let tempCodeToAddArr = "";
 
 function parsingBlocks() {
     let cluster = [];
+    //let isClosingBracketNeeded = false;
 
     //going through clusters of blocks
     for (let i = 0; i < codeArray.length; i++){
@@ -64,31 +66,58 @@ function parsingBlocks() {
                 console.log("--On Frame--");
                 console.log(cluster);
                 console.log(cluster[0].value);
-                searchingFirstLoopWithCodeUploading(cluster, 1, cluster[0].value, "onFrame");
+                searchingFirstLoopWithCodeUploading(cluster, 1, [cluster[0].value], "onFrame", i);
                 break;
             case "on repeat":
                 console.log("--On Repeat--");
                 console.log(cluster);
                 console.log(cluster[0].value);
-                searchingFirstLoopWithCodeUploading(cluster, 1, cluster[0].value, "onRepeat");
+                searchingFirstLoopWithCodeUploading(cluster, 1, [cluster[0].value], "onRepeat", i);
                 break;
             case "on key":
-                console.log("--On Key--");
-                searchingFirstLoopWithCodeUploading(cluster, 1, cluster[0].value, "onKey");
+                console.log("--On Key DOWN--");
+                console.log(cluster);
+                console.log(cluster[0].value);
+                searchingFirstLoopWithCodeUploading(cluster, 1, [cluster[0].value], "onKeyDown", i);
+                break;
+            case "on keyup":
+                console.log("--On Key UP--");
+                console.log(cluster);
+                console.log(cluster[0].value);
+                searchingFirstLoopWithCodeUploading(cluster, 1, [cluster[0].value], "onKeyUp", i);
                 break;
             case "on x":
                 console.log("--On X--");
-                searchingFirstLoopWithCodeUploading(cluster, 1, cluster[0].value, "onX");
+                console.log(cluster);
+                console.log(cluster[0].value);
+                console.log(cluster[0].value2);
+                searchingFirstLoopWithCodeUploading(cluster, 1, [cluster[0].value, cluster[0].value2], "onX", i);
                 break;
             case "on y":
                 console.log("--On Y--");
-                searchingFirstLoopWithCodeUploading(cluster, 1, cluster[0].value, "onY");
+                console.log(cluster);
+                console.log(cluster[0].value);
+                console.log(cluster[0].value2);
+                searchingFirstLoopWithCodeUploading(cluster, 1, [cluster[0].value, cluster[0].value2], "onY", i);
                 break;
             case "on z":
                 console.log("--On Z--");
-                searchingFirstLoopWithCodeUploading(cluster, 1, cluster[0].value, "onZ");
+                console.log(cluster);
+                console.log(cluster[0].value);
+                console.log(cluster[0].value2);
+                searchingFirstLoopWithCodeUploading(cluster, 1, [cluster[0].value, cluster[0].value2], "onZ", i);
                 break;
         }
+        //when recursion finished appending string with closing bracket
+        //closing if statement of trigger
+        if(tempCodeToAddArr !== "")
+            codeToAdd += tempCodeToAddArr + "\n    }";
+        //if on Key trigger
+        if(tempCodeToAddArr !== "" && tempCodeToAddArr.indexOf("for (let i in keysArray)") !== -1)
+            codeToAdd += "\n        }\n";
+
+        tempCodeToAddArr = "";
+        console.log(codeToAdd);
     }
 
 }
@@ -624,16 +653,32 @@ function analyzingCodeClusterForUploading(index, cluster, loopType, value, trigg
                 }
             }
             else{
-                //if found loop block ->
-                //Saving all gained data into string
-
-
                 functionToPass = parseDataForFunctionToPass("applyChangesToAll(", x, y, z, sx, sy, sz, xRot, yRot, zRot, xRotSpeed,
                     yRotSpeed, zRotSpeed, r, g, b, ambientR, ambientG, ambientB, useAnimation, camera, opacity, transparency, sumAllValues);
-                //DAUG SKIRTINGU TRIGERIU IFU
-                if(triggerType === "onFrame")
-                    onFrameConvert(triggerValue, functionToPass);
 
+                switch (triggerType){
+                    case "onFrame":
+                        onFrameConvert(triggerValue, functionToPass);
+                        break;
+                    case "onRepeat":
+                        onFrameRepeatConvert(triggerValue, functionToPass);
+                        break;
+                    case "onKeyDown":
+                        onKeyDownPressConvert(triggerValue, functionToPass);
+                        break;
+                    case "onKeyUp":
+                        onKeyUpPressConvert(triggerValue, functionToPass);
+                        break;
+                    case "onX":
+                        onCoordinateConvert(triggerValue, functionToPass, "x");
+                        break;
+                    case "onY":
+                        onCoordinateConvert(triggerValue, functionToPass, "y");
+                        break;
+                    case "onZ":
+                        onCoordinateConvert(triggerValue, functionToPass, "z");
+                        break;
+                }
 
                 alreadyApplied = true;
                 searchingFirstLoopWithCodeUploading(cluster, i, triggerValue, triggerType);
@@ -750,8 +795,30 @@ function analyzingCodeClusterForUploading(index, cluster, loopType, value, trigg
 
                 functionToPass = parseDataForFunctionToPass("applyChangesToSpecificType(", x, y, z, sx, sy, sz, xRot, yRot, zRot, xRotSpeed,
                     yRotSpeed, zRotSpeed, r, g, b, ambientR, ambientG, ambientB, useAnimation, camera, opacity, transparency, value, sumAllValues);
-                if(triggerType === "onFrame")
-                    onFrameConvert(triggerValue, functionToPass);
+
+                switch (triggerType){
+                    case "onFrame":
+                        onFrameConvert(triggerValue, functionToPass);
+                        break;
+                    case "onRepeat":
+                        onFrameRepeatConvert(triggerValue, functionToPass);
+                        break;
+                    case "onKeyDown":
+                        onKeyDownPressConvert(triggerValue, functionToPass);
+                        break;
+                    case "onKeyUp":
+                        onKeyUpPressConvert(triggerValue, functionToPass);
+                        break;
+                    case "onX":
+                        onCoordinateConvert(triggerValue, functionToPass, "x");
+                        break;
+                    case "onY":
+                        onCoordinateConvert(triggerValue, functionToPass, "y");
+                        break;
+                    case "onZ":
+                        onCoordinateConvert(triggerValue, functionToPass, "z");
+                        break;
+                }
 
                 alreadyApplied = true;
                 searchingFirstLoopWithCodeUploading(cluster, i, triggerValue, triggerType);
@@ -866,10 +933,31 @@ function analyzingCodeClusterForUploading(index, cluster, loopType, value, trigg
                 //if found loop block ->
                 //Saving all gained data into string
 
-                if (triggerType === "onFrame") {
-                    functionToPass = parseDataForFunctionToPass("applyChangesToSpecificObject(", x, y, z, sx, sy, sz, xRot, yRot, zRot, xRotSpeed,
-                        yRotSpeed, zRotSpeed, r, g, b, ambientR, ambientG, ambientB, useAnimation, camera, opacity, transparency, value, sumAllValues);
-                    onFrameConvert(triggerValue, functionToPass);
+                functionToPass = parseDataForFunctionToPass("applyChangesToSpecificObject(", x, y, z, sx, sy, sz, xRot, yRot, zRot, xRotSpeed,
+                    yRotSpeed, zRotSpeed, r, g, b, ambientR, ambientG, ambientB, useAnimation, camera, opacity, transparency, value, sumAllValues);
+
+                switch (triggerType){
+                    case "onFrame":
+                        onFrameConvert(triggerValue, functionToPass);
+                        break;
+                    case "onRepeat":
+                        onFrameRepeatConvert(triggerValue, functionToPass);
+                        break;
+                    case "onKeyDown":
+                        onKeyDownPressConvert(triggerValue, functionToPass);
+                        break;
+                    case "onKeyUp":
+                        onKeyUpPressConvert(triggerValue, functionToPass);
+                        break;
+                    case "onX":
+                        onCoordinateConvert(triggerValue, functionToPass, "x");
+                        break;
+                    case "onY":
+                        onCoordinateConvert(triggerValue, functionToPass, "y");
+                        break;
+                    case "onZ":
+                        onCoordinateConvert(triggerValue, functionToPass, "z");
+                        break;
                 }
 
                 alreadyApplied = true;
@@ -881,33 +969,98 @@ function analyzingCodeClusterForUploading(index, cluster, loopType, value, trigg
 
     if(!alreadyApplied) {
         if (loopType === "basic"){
-            if (triggerType === "onFrame") {
-                functionToPass = parseDataForFunctionToPass("applyChangesToAll(", x, y, z, sx, sy, sz, xRot, yRot, zRot, xRotSpeed,
-                    yRotSpeed, zRotSpeed, r, g, b, ambientR, ambientG, ambientB, useAnimation, camera, opacity, transparency, sumAllValues);
-
-                onFrameConvert(triggerValue, functionToPass);
-            }
+            functionToPass = parseDataForFunctionToPass("applyChangesToAll(", x, y, z, sx, sy, sz, xRot, yRot, zRot, xRotSpeed,
+                yRotSpeed, zRotSpeed, r, g, b, ambientR, ambientG, ambientB, useAnimation, camera, opacity, transparency, sumAllValues);
+           /* switch (triggerType){
+                case "onFrame":
+                    onFrameConvert(triggerValue, functionToPass);
+                    break;
+                case "onRepeat":
+                    onFrameRepeatConvert(triggerValue, functionToPass);
+                    break;
+                case "onKeyDown":
+                    onKeyDownPressConvert(triggerValue, functionToPass);
+                    break;
+                case "onKeyUp":
+                    onKeyUpPressConvert(triggerValue, functionToPass);
+                    break;
+                case "onX":
+                    onCoordinateConvert(triggerValue, functionToPass, "x");
+                    break;
+                case "onY":
+                    onCoordinateConvert(triggerValue, functionToPass, "y");
+                    break;
+                case "onZ":
+                    onCoordinateConvert(triggerValue, functionToPass, "z");
+                    break;
+            }*/
         }
 
         if (loopType === "specific") {
-            if (triggerType === "onFrame") {
-                functionToPass = parseDataForFunctionToPass("applyChangesToSpecificType(", x, y, z, sx, sy, sz, xRot, yRot, zRot, xRotSpeed,
-                    yRotSpeed, zRotSpeed, r, g, b, ambientR, ambientG, ambientB, useAnimation, camera, opacity, transparency, sumAllValues, value);
-
+            functionToPass = parseDataForFunctionToPass("applyChangesToSpecificType(", x, y, z, sx, sy, sz, xRot, yRot, zRot, xRotSpeed,
+                yRotSpeed, zRotSpeed, r, g, b, ambientR, ambientG, ambientB, useAnimation, camera, opacity, transparency, sumAllValues, value);
+            /*if (triggerType === "onFrame")
                 onFrameConvert(triggerValue, functionToPass);
-            }
+            if (triggerType === "onRepeat")
+                onFrameRepeatConvert(triggerValue, functionToPass);
+            if (triggerType === "onKeyDown")
+                onKeyDownPressConvert(triggerValue, functionToPass);
+            if (triggerType === "onKeyUp")
+                onKeyUpPressConvert(triggerValue, functionToPass);
+            if (triggerType === "onX")
+                onCoordinateConvert(triggerValue, functionToPass, "x");
+            if (triggerType === "onY")
+                onCoordinateConvert(triggerValue, functionToPass, "y");
+            if (triggerType === "onZ")
+                onCoordinateConvert(triggerValue, functionToPass, "z");*/
         }
 
         if (loopType === "name"){
-            if (triggerType === "onFrame") {
-                functionToPass = parseDataForFunctionToPass("applyChangesToSpecificObject(", x, y, z, sx, sy, sz, xRot, yRot, zRot, xRotSpeed,
-                    yRotSpeed, zRotSpeed, r, g, b, ambientR, ambientG, ambientB, useAnimation, camera, opacity, transparency, umAllValues, value);
-
+            functionToPass = parseDataForFunctionToPass("applyChangesToSpecificObject(", x, y, z, sx, sy, sz, xRot, yRot, zRot, xRotSpeed,
+                yRotSpeed, zRotSpeed, r, g, b, ambientR, ambientG, ambientB, useAnimation, camera, opacity, transparency, sumAllValues, value);
+            /*if (triggerType === "onFrame")
                 onFrameConvert(triggerValue, functionToPass);
-            }
+            if (triggerType === "onRepeat")
+                onFrameRepeatConvert(triggerValue, functionToPass);
+            if (triggerType === "onKeyDown")
+                onKeyDownPressConvert(triggerValue, functionToPass);
+            if (triggerType === "onKeyUp")
+                onKeyUpPressConvert(triggerValue, functionToPass);
+            if (triggerType === "onX")
+                onCoordinateConvert(triggerValue, functionToPass, "x");
+            if (triggerType === "onY")
+                onCoordinateConvert(triggerValue, functionToPass, "y");
+            if (triggerType === "onZ")
+                onCoordinateConvert(triggerValue, functionToPass, "z");*/
+        }
+
+        switch (triggerType){
+            case "onFrame":
+                onFrameConvert(triggerValue, functionToPass);
+                break;
+            case "onRepeat":
+                onFrameRepeatConvert(triggerValue, functionToPass);
+                break;
+            case "onKeyDown":
+                onKeyDownPressConvert(triggerValue, functionToPass);
+                break;
+            case "onKeyUp":
+                onKeyUpPressConvert(triggerValue, functionToPass);
+                break;
+            case "onX":
+                onCoordinateConvert(triggerValue, functionToPass, "x");
+                break;
+            case "onY":
+                onCoordinateConvert(triggerValue, functionToPass, "y");
+                break;
+            case "onZ":
+                onCoordinateConvert(triggerValue, functionToPass, "z");
+                break;
         }
     }
 }
+
+
 
 function isLoop(block){
     if(block === "for all"){
@@ -1075,9 +1228,9 @@ function parseDataForFunctionToPass(method, x, y, z, sx, sy, sz, xRot, yRot, zRo
         transparency = "null,";
 
     if(sumAllValues !== null)
-        sumAllValues = sumAllValues.toString() + ",";
+        sumAllValues = sumAllValues.toString();
     else
-        sumAllValues = "null,";
+        sumAllValues = "null";
 
 
 
@@ -1094,12 +1247,67 @@ function parseDataForFunctionToPass(method, x, y, z, sx, sy, sz, xRot, yRot, zRo
     return data;
 }
 function onFrameConvert(triggerValue, functionToPass){
-    let ifStatement = "if(fpsSum ===" + triggerValue + "&& playFrames){ ";
+    let ifStatement = "if ( playFrames && fpsSum === " + triggerValue[0] + " ) {\n        ";
+    let currData = "";
 
-    codeToAdd += ifStatement + functionToPass + "}";
-    console.log(codeToAdd);
+    console.log(triggerValue);
+
+    if(tempCodeToAddArr === "")
+        currData = ifStatement + functionToPass;
+    else
+        currData = "\n        " + functionToPass;
+
+    tempCodeToAddArr += currData;
 }
-function onKeyPressConvert(){
+function onFrameRepeatConvert(triggerValue, functionToPass){
+    let ifStatement = "if ( playFrames && fpsSum % " + triggerValue[0] + " === 0 ) {\n        ";
+    let currData = "";
+
+    if(tempCodeToAddArr === "")
+        currData = ifStatement + functionToPass;
+    else
+        currData = "\n        " + functionToPass;
+
+    tempCodeToAddArr += currData;
+}
+function onKeyDownPressConvert(triggerValue, functionToPass){
+    let ifStatement = "for (let i in keysArray) {\n        " +
+        "if (keysArray[i].keyName === \"" + triggerValue[0] + "\" && keysArray[i].keyPressed) {\n            ";
+    let currData = "";
+
+    if(tempCodeToAddArr === "")
+        currData = ifStatement + functionToPass;
+    else
+        currData = "\n            " + functionToPass;
+
+    tempCodeToAddArr += currData;
 
 }
+function onKeyUpPressConvert(triggerValue, functionToPass){
+    let ifStatement = "for (let i in keysArray) {\n        " +
+        "if (keysArray[i].keyName === \"" + triggerValue[0] + "\" && keysArray[i].keyUp) {\n            " +
+        "keysArray[i].keyUp = false;\n            ";
+    let currData = "";
+
+    if(tempCodeToAddArr === "")
+        currData = ifStatement + functionToPass;
+    else
+        currData = "\n            " + functionToPass;
+
+    tempCodeToAddArr += currData;
+
+}
+
+function onCoordinateConvert(triggerValue, functionToPass, axis){
+    let ifStatement = "if ( " + axis + " " + triggerValue[1] + " " + triggerValue[0] + " ) {\n        ";
+    let currData = "";
+
+    if(tempCodeToAddArr === "")
+        currData = ifStatement + functionToPass;
+    else
+        currData = "\n        " + functionToPass;
+
+    tempCodeToAddArr += currData;
+}
+
 //TODO pries uploada stringo reikia uzmesti } -> skliaustus uzdaryti user code funkcija

@@ -341,7 +341,8 @@ function addSvgElementToScene() {
             if(getmktime(svgArr[i]) !== "trashbin")
                 dataArr.push({
                     "name" : getmktime(svgArr[i]),
-                    "value" : getDataFromSvgForm(svgArr[i])
+                    "value" : getDataFromSvgForm(svgArr[i]),
+                    "value2" : getOperatorDataFromSvgForm(svgArr[i])
                 })
         }
         //console.log(dataArr);
@@ -417,6 +418,8 @@ function addSvgElementToScene() {
                     if(getmktime(svgArr[i]) === dataArr[j].name){
                         if(svgArr[i].getElementsByClassName("code-selection").length > 0)
                             setSelectedValue(svgArr[i].getElementsByClassName("code-selection")[0], dataArr[j].value);
+                        if(svgArr[i].getElementsByClassName("code-selection-inequality-operator").length > 0)
+                            setSelectedValue(svgArr[i].getElementsByClassName("code-selection-inequality-operator")[0], dataArr[j].value2);
                         if(svgArr[i].getElementsByClassName("code-input").length > 0)
                             svgArr[i].getElementsByClassName("code-input")[0].value = dataArr[j].value;
 
@@ -432,9 +435,11 @@ function addSvgElementToScene() {
 }
 function updateAllForNameBlocks() {
     let svgArr = document.getElementById("code-logic-scene").children;
+    saveCodeSelectionFields(svgArr);
 
     for (let j = 0; j < svgArr.length; j++) {
         let select = svgArr[j].getElementsByClassName("select-name-svg")[0];
+
         if(select !== undefined) {
             $(select).find('option').remove().end();
             let items = [];
@@ -450,12 +455,17 @@ function updateAllForNameBlocks() {
                 $(select).append(new Option(items[i].text, items[i].value));
         }
     }
+
+    restoreUpdatedCodeSelectionFields();
 }
+
 function updateAllForSpecificBlocks() {
     let svgArr = document.getElementById("code-logic-scene").children;
+    saveCodeSelectionFields(svgArr);
 
     for (let j = 0; j < svgArr.length; j++) {
         let select = svgArr[j].getElementsByClassName("select-specific-svg")[0];
+
         $(select).find('option').remove().end();
 
         let items = [{
@@ -474,17 +484,35 @@ function updateAllForSpecificBlocks() {
             value: "cylinder",
             text: "Cylinder"
         }];
-        console.log(userUploadedShapesNamesArray);
         for (let i = 0; i < userUploadedShapesNamesArray.length; i++){
             items.push({value: userUploadedShapesNamesArray[i], text: userUploadedShapesNamesArray[i]})
         }
 
         for(let i = 0; i < items.length; i++)
             $(select).append(new Option(items[i].text, items[i].value));
+
+
+        restoreUpdatedCodeSelectionFields();
+    }
+}
+function restoreUpdatedCodeSelectionFields(){
+    let element;
+    for(let i = 0; i < codeBlocksDataStateArray.length; i++){
+        element = getGelementByName(codeBlocksDataStateArray[i].mktime).getElementsByClassName("code-selection")[0];
+        setSelectedValue(element, codeBlocksDataStateArray[i].value);
+    }
+}
+function saveCodeSelectionFields(svgArr){
+    codeBlocksDataStateArray = [];
+    for (let i = 0; i < svgArr.length; i++) {
+        if(svgArr[i].getElementsByClassName("code-selection")[0])
+            codeBlocksDataStateArray.push({mktime: getmktime(svgArr[i]), value: getDataFromSvgForm(svgArr[i])});
     }
 }
 /**
  * Setting selectable value
+ * @param selectObj - <select> html element of svg element
+ * @param valueToSet - String data (basically string value)
  */
 function setSelectedValue(selectObj, valueToSet) {
     for (let i = 0; i < selectObj.options.length; i++) {
@@ -604,6 +632,7 @@ function getDataOfSvgInScene() {
                     mktime: getmktime(svgArr[i]),
                     codeID: getSvgCodeId(svgArr[i]),
                     value: getDataFromSvgForm(svgArr[i]),
+                    value2: getOperatorDataFromSvgForm(svgArr[i]),
                     children: getChildrenData(svgArr[i]),
                     x: getElementXf(svgArr[i]),
                     y: getElementYf(svgArr[i]),
@@ -617,6 +646,7 @@ function getDataOfSvgInScene() {
                         mktime: getmktime(svgArr[i]),
                         codeID: getSvgCodeId(svgArr[i]),
                         value: getDataFromSvgForm(svgArr[i]),
+                        value2: getOperatorDataFromSvgForm(svgArr[i]),
                         children: getChildrenData(svgArr[i]),
                         x: getElementXf(svgArr[i]),
                         y: getElementYf(svgArr[i]),
@@ -724,6 +754,19 @@ function getDataFromSvgForm(element) {
     if(element.getElementsByClassName("code-input").length > 0) {
         e = element.getElementsByClassName("code-input")[0];
         data = e.value;
+    }
+    return data;
+}
+/**
+ * Getting additional data from <select> tag from svg element
+ *  @param element - svg <g> element
+ */
+function getOperatorDataFromSvgForm(element) {
+    let data, e;
+    if (element.getElementsByClassName("code-selection-inequality-operator").length > 0) {
+        e = element.getElementsByClassName("code-selection-inequality-operator")[0];
+        if (e.options[e.selectedIndex] !== undefined)
+            data = e.options[e.selectedIndex].value;
     }
     return data;
 }

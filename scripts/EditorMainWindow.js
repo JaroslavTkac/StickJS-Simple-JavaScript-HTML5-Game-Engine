@@ -98,7 +98,7 @@ function initPreview(i){
     // Init loaded user objects
     if(i === 5){
         setTimeout(function () {
-            loadUserData("shapes/user_shapes", "object");
+            loadUserData("../shapes/user_shapes", "object");
         }, 50);
     }
 }

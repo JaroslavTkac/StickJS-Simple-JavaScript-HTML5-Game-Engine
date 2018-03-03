@@ -300,6 +300,10 @@ input[type=text]{
     border-radius: 12%;
     width: 50px;
 }
+.rounded-input{
+    border-radius: 8%;
+    width: 40px;
+}
 
 
 

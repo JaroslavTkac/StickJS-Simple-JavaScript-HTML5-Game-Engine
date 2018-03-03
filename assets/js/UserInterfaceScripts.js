@@ -42,19 +42,23 @@ $(document).ready(function() {
 
 
     // Get user content and append page with got data
+    // TODO PACIAM PHP PRIE FAILU TURI PRISIDETI USER IR PROJECT ID PAGAL KURIOS BUS SPRENDZIAMA KOKIUS KRAUTI IS SERVERIO
+    console.log("------TEXTURES-----");
+    //Getting all textures on server for init validation
+    getAllAvailableTextures();
     //Textures
-    loadUserData("assets/img/textures/user_textures", "image");
+    loadUserData("../assets/img/textures/user_textures", "image");
     //Music
-    loadUserData("assets/music/user_music", "music");
+    loadUserData("../assets/music/user_music", "music");
     //Saved shapes
-    loadUserData("shapes/user_saved_shapes", "savedShapes");
+    loadUserData("../shapes/user_saved_shapes", "savedShapes");
 
 
     //Might be error if loading user uploaded object -> need to wait until user objects loaded
     //Init on page reload saved shapes
-    loadUserObjectFiles("savedShapes.txt", "shapes/user_shapes_data/");
+    loadUserObjectFiles("savedShapes.txt", "../shapes/user_shapes_data/");
     //Init on page reload objects that was loaded in scene
-    loadUserObjectFiles("liveObjects.txt", "shapes/user_shapes_data/");
+    loadUserObjectFiles("liveObjects.txt", "../shapes/user_shapes_data/");
 
     //Loading User SVG blockly code
     loadSvgCode();
@@ -76,6 +80,36 @@ $(document).ready(function() {
             $(window).trigger('resize');
         }
     });
+
+    //Display tooltip
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    });
+
+    //LOAD from DB data //TODO LOAD DATA FROM DB
+
+
+
+
+    //Apply movement changes on checkbox check ON PAGE LOAD
+    KeyboardPresets.initAllKeyboard();
+    keyboard = new KeyboardPresets("wasd", $('#basic-speed-input').val(), $('#rotation-speed-input').val());
+
+    if($('#checkSpeed').prop('checked') === true)
+        keyboard.enableStandardControls();
+    else
+        keyboard.disableStandardControls();
+
+    //On movement checkbox click
+    $('#checkSpeed').on('click', function () {
+        keyboard.speed = $('#basic-speed-input').val();
+        keyboard.rotationSpeed = $('#rotation-speed-input').val();
+        if($('#checkSpeed').prop('checked') === true)
+            keyboard.enableStandardControls();
+        else
+            keyboard.disableStandardControls();
+    });
+
 
     //On How To click open modal with instructions
     $('.nav.navbar-nav > li a').on('click', function () {
@@ -173,6 +207,15 @@ $(document).ready(function() {
             $('#clear-code-btn').css('display', 'none');
             $('#upload-code-btn').css('display', 'none');
             $('#push-code-btn').css('display', 'none');
+
+            $('#checkSpeed').css('display', 'none');
+            $('#basic-speed-input').css('display', 'none');
+            $('#rotation-speed-input').css('display', 'none');
+
+            $('#basic-speed-label').css('display', 'none');
+            $('#rotation-speed-label').css('display', 'none');
+            $('#checkbox-label').css('display', 'none');
+
             $('#saved-shape-container').css('display', '');
             $('#editor-container').css('display', '');
 
@@ -193,6 +236,16 @@ $(document).ready(function() {
             $('#push-code-btn').css('display', '');
             $('#clear-code-btn').css('display', '');
             $('#upload-code-btn').css('display', '');
+
+
+            $('#checkSpeed').css('display', '');
+            $('#basic-speed-input').css('display', '');
+            $('#rotation-speed-input').css('display', '');
+
+            $('#basic-speed-label').css('display', '');
+            $('#rotation-speed-label').css('display', '');
+            $('#checkbox-label').css('display', '');
+
 
 
 
@@ -219,6 +272,12 @@ $(document).ready(function() {
             $('#push-code').css('display', 'none');
             $('#clear-code-btn').css('display', 'none');
             $('#upload-code-btn').css('display', 'none');
+            $('#checkSpeed').css('display', 'none');
+            $('#basic-speed-input').css('display', 'none');
+            $('#rotation-speed-input').css('display', 'none');
+            $('#basic-speed-label').css('display', 'none');
+            $('#rotation-speed-label').css('display', 'none');
+            $('#checkbox-label').css('display', 'none');
             //Sound divs
 
         }
@@ -281,8 +340,14 @@ $(document).ready(function() {
     //Applying textures to shape in editor scene on click
     $(document).on('click', '.texture', function(e) {
         e.preventDefault();
-        applyTexture($(this).attr("alt"));
-        lastSelectedTexture = $(this).attr("alt");
+        let texture_path = "";$(this).attr("alt").substr(3);
+        if($(this).attr("alt").includes("../"))
+            texture_path = $(this).attr("alt").substr(3);
+        else
+            texture_path = $(this).attr("alt");
+        console.log(texture_path);
+        applyTexture(texture_path);
+        lastSelectedTexture = texture_path;
     });
 
     //Add Shape to Editor
@@ -335,8 +400,6 @@ $(document).ready(function() {
             pointLightArrayE[0].alphaInc = 0.0;
         }
     });
-
-    // TODO ON SAVED SHAPE DELETE DELETE ALL OBJECTS THAT WAS CREATED FROM THAT SHAPE
 
     //Save shape
     $('#saveShape').on('click', function (e) {
@@ -588,35 +651,38 @@ $(document).ready(function() {
         deleteSavedImg(file_path);
 
         $('canvas').each(function () {
+            //going through all canvases elements
+            //to find saved png's from that object and delete them
             if(file_path.includes("shapes/user_shapes")) {
                 let savedImgArr = [];
                 for (let i = 0; i < savedShapesArr.length; i++) {
-                    if ((savedShapesArr[i].value).shape === file_path)
+                    //console.log("saved img: " + (savedShapesArr[i].value).shape + " ===  " + file_path);
+                    if ((savedShapesArr[i].value).shape === file_path.substr(3))
                         savedImgArr.push(savedShapesArr[i].link);
                 }
 
-                console.log(savedImgArr);
-
                 for (let i = 0; i < savedImgArr.length; i++){
-                    deleteSavedImg(savedImgArr[i]);
-                    deleteFileFromServer(savedImgArr[i]);
+                    deleteSavedImg("../" + savedImgArr[i]);
+                    deleteFileFromServer("../" + savedImgArr[i]);
                 }
             }
         });
         $(this).parent().remove();
         saveData();
         updateAllForNameBlocks();
-        getShapesNameInFolder("shapes/user_shapes");
+        getShapesNameInFolder("../shapes/user_shapes");
     });
 
 
     function deleteSavedImg(file_path) {
         //If deleted image is pointing to saved object so deleting this element from everything on delete
+        file_path = file_path.substr(3);
         $('img').each(function() {
             if($(this).attr("alt") === file_path){
                 $(this).parent().parent().remove();
                 //on saved shape image delete remove from live obj array and saved_shape array
-                //console.log("file_path: " + file_path);
+                console.log("file_path: " + file_path);
+
                 let dataLen = savedShapesArr.length;
                 let i = 0;
                 while (i < dataLen){

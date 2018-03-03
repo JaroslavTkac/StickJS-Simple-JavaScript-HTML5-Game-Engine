@@ -326,9 +326,9 @@ function initProperties(object, properties, saveTo){
     if(saveTo === "objArr") {
         objArr.push(object);
         loadedObjects++;
-        console.log("name: " + object.name);
-        console.log("savedShapeName: " + object.savedShapeName);
-        console.log("type: " + object.type);
+        //console.log("name: " + object.name);
+        //console.log("savedShapeName: " + object.savedShapeName);
+        //console.log("type: " + object.type);
     }
     if(saveTo === "editor") {
         objEditorArr.push(object);
@@ -341,7 +341,7 @@ function initProperties(object, properties, saveTo){
         objPreviewArr.push(object);
         loadedObjects++;
         previewObjects++;
-        console.log("loaded preview object: " + previewObjects);
+        //console.log("loaded preview object: " + previewObjects);
         //console.log("Preview obj size: " + objPreviewArr.length);
     }
 }
