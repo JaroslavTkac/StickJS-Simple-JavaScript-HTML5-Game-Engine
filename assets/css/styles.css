@@ -28,7 +28,15 @@ p{
     width: 100%;
     z-index: 9999 !important;
 }
-
+#register-link{
+    color: white;
+    text-decoration: none;
+    margin-left: 15px;
+    margin-right: 15px;
+}
+#register-link:hover{
+    color: #ea640b;
+}
 /* Login window */
 
 /* Carousel Styling */
@@ -120,6 +128,9 @@ footer p{
 canvas {
     width: 100%;
     height: auto;
+}
+.overlay-btn{
+   padding-top: 15px;
 }
 /* Editor page */
 /* Coloring */
@@ -296,10 +307,11 @@ svg g path:hover {
     padding: 0 0 0 0;
     overflow: scroll;
 }
+/*
 input[type=text]{
     border-radius: 12%;
     width: 50px;
-}
+}*/
 .rounded-input{
     border-radius: 8%;
     width: 40px;

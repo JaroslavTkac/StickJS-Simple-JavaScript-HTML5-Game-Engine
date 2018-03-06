@@ -2,8 +2,8 @@
  * Created by jaroslavtkaciuk on 02/09/2017.
  */
 
-let lastSelectedTexture = "assets/img/textures/sun.jpg";
-let currentlySelectedShape = "shapes/cube.json";
+let lastSelectedTexture = "../assets/img/textures/sun.jpg";
+let currentlySelectedShape = "../shapes/cube.json";
 let isTextureWillBeUsed;
 let isLightWillBeUsed;
 let aspectR = true;
@@ -43,7 +43,6 @@ $(document).ready(function() {
 
     // Get user content and append page with got data
     // TODO PACIAM PHP PRIE FAILU TURI PRISIDETI USER IR PROJECT ID PAGAL KURIOS BUS SPRENDZIAMA KOKIUS KRAUTI IS SERVERIO
-    console.log("------TEXTURES-----");
     //Getting all textures on server for init validation
     getAllAvailableTextures();
     //Textures
@@ -53,15 +52,8 @@ $(document).ready(function() {
     //Saved shapes
     loadUserData("../shapes/user_saved_shapes", "savedShapes");
 
-
-    //Might be error if loading user uploaded object -> need to wait until user objects loaded
-    //Init on page reload saved shapes
-    loadUserObjectFiles("savedShapes.txt", "../shapes/user_shapes_data/");
-    //Init on page reload objects that was loaded in scene
-    loadUserObjectFiles("liveObjects.txt", "../shapes/user_shapes_data/");
-
-    //Loading User SVG blockly code
-    loadSvgCode();
+    //Loading all user saved options, code and etc.
+    loadUserProjectData();
 
     //On ascpect ration button click
     $('#aspect-ratio').click(function () {
@@ -85,10 +77,6 @@ $(document).ready(function() {
     $(function () {
         $('[data-toggle="tooltip"]').tooltip()
     });
-
-    //LOAD from DB data //TODO LOAD DATA FROM DB
-
-
 
 
     //Apply movement changes on checkbox check ON PAGE LOAD
@@ -340,13 +328,13 @@ $(document).ready(function() {
     //Applying textures to shape in editor scene on click
     $(document).on('click', '.texture', function(e) {
         e.preventDefault();
-        let texture_path = "";$(this).attr("alt").substr(3);
+        let texture_path = "";
+        $(this).attr("alt").substr(3);
         if($(this).attr("alt").includes("../"))
             texture_path = $(this).attr("alt").substr(3);
         else
             texture_path = $(this).attr("alt");
-        console.log(texture_path);
-        applyTexture(texture_path);
+        applyTexture("../" + texture_path);
         lastSelectedTexture = texture_path;
     });
 
@@ -656,14 +644,14 @@ $(document).ready(function() {
             if(file_path.includes("shapes/user_shapes")) {
                 let savedImgArr = [];
                 for (let i = 0; i < savedShapesArr.length; i++) {
-                    //console.log("saved img: " + (savedShapesArr[i].value).shape + " ===  " + file_path);
-                    if ((savedShapesArr[i].value).shape === file_path.substr(3))
+                    console.log("saved img: " + (savedShapesArr[i].value).shape + " ===  " + file_path);
+                    if ((savedShapesArr[i].value).shape === file_path)
                         savedImgArr.push(savedShapesArr[i].link);
                 }
 
                 for (let i = 0; i < savedImgArr.length; i++){
-                    deleteSavedImg("../" + savedImgArr[i]);
-                    deleteFileFromServer("../" + savedImgArr[i]);
+                    deleteSavedImg(savedImgArr[i]);
+                    deleteFileFromServer(savedImgArr[i]);
                 }
             }
         });
@@ -676,7 +664,6 @@ $(document).ready(function() {
 
     function deleteSavedImg(file_path) {
         //If deleted image is pointing to saved object so deleting this element from everything on delete
-        file_path = file_path.substr(3);
         $('img').each(function() {
             if($(this).attr("alt") === file_path){
                 $(this).parent().parent().remove();
@@ -721,7 +708,7 @@ $(document).ready(function() {
         //clearing scene array
         objArr = [];
         //load saved scene
-        loadUserObjectFiles("savedScene.txt", "shapes/user_shapes_data/");
+        loadScene();
 
         console.log(sceneToLoadArr);
         //wait until loaded

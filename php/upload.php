@@ -81,7 +81,6 @@ if (isset($_POST['callDeleteFile'])) {
 }
 
 //Delete file from server
-//TODO Allow to delete only png files from allowed folder
 function deleteFile($file_path)
 {
     $allowed = array('png', 'jpg', 'obj', 'mp3', 'json');

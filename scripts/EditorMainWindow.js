@@ -5,11 +5,11 @@
 
 function startEditorWindow(){
     canvasEditorArr.push(document.getElementById("editor-scene"));
-    canvasEditorArr.push(document.getElementById("shapes/cube.json"));
-    canvasEditorArr.push(document.getElementById("shapes/sphere.json"));
-    canvasEditorArr.push(document.getElementById("shapes/cone.json"));
-    canvasEditorArr.push(document.getElementById("shapes/cylinder.json"));
-    canvasEditorArr.push(document.getElementById("shapes/simpleSphere.json"));
+    canvasEditorArr.push(document.getElementById("../shapes/cube.json"));
+    canvasEditorArr.push(document.getElementById("../shapes/sphere.json"));
+    canvasEditorArr.push(document.getElementById("../shapes/cone.json"));
+    canvasEditorArr.push(document.getElementById("../shapes/cylinder.json"));
+    canvasEditorArr.push(document.getElementById("../shapes/simpleSphere.json"));
 
     for(let i in canvasEditorArr){
         initGLForEditor(canvasEditorArr[i]);
@@ -38,10 +38,10 @@ function startEditorWindow(){
 
 }
 function initEditorEnvironment() {
-    let srcArr = ["shapes/cube.json", "shapes/sphere.json", "shapes/cone.json",
-        "shapes/cylinder.json", "shapes/simpleSphere.json"];
+    let srcArr = ["../shapes/cube.json", "../shapes/sphere.json", "../shapes/cone.json",
+        "../shapes/cylinder.json", "../shapes/simpleSphere.json"];
 
-    new LoadObject("shapes/cube.json", "assets/img/textures/sun.jpg", {
+    new LoadObject("../shapes/cube.json", "../assets/img/textures/sun.jpg", {
         "name": "forEditor",
         "z": -4,
         "yRot": 50,
@@ -54,7 +54,7 @@ function initEditorEnvironment() {
         "type": "cube"
     }, "editor", webglEditorArr[0]);
 
-    new LoadObject(srcArr[0], "assets/img/textures/sun.jpg", {
+    new LoadObject(srcArr[0], "../assets/img/textures/sun.jpg", {
         "name": srcArr[0],
         "z": -3.5,
         "yRot": 50,
@@ -73,8 +73,8 @@ function initEditorEnvironment() {
 }
 
 function initPreview(i){
-    let srcArr = ["shapes/cube.json", "shapes/sphere.json", "shapes/cone.json",
-        "shapes/cylinder.json", "shapes/simpleSphere.json"];
+    let srcArr = ["../shapes/cube.json", "../shapes/sphere.json", "../shapes/cone.json",
+        "../shapes/cylinder.json", "../shapes/simpleSphere.json"];
 
     if (((i-1) - previewObjects) !== 0){
         setTimeout(function(){
@@ -83,7 +83,7 @@ function initPreview(i){
         return;
     }
     //if older object initialized -> init new object
-    new LoadObject(srcArr[i - 1], "assets/img/textures/sun.jpg", {
+    new LoadObject(srcArr[i - 1], "../assets/img/textures/sun.jpg", {
         "name": srcArr[i - 1],
         "z": -3.5,
         "yRot": 50,
