@@ -107,6 +107,24 @@ $(document).ready(function () {
         }).error(function (response) {
             console.log(response);
         });
+
+
+        $.ajax({
+            type: "POST",
+            url: "../php/upload.php",
+            data: {
+                cleanFolders: true,
+                projectId: projectId,
+                userId: userId
+            },
+        }).done(function (response) {
+            //console.log("Searching for files");
+            //console.log(response);
+            console.log(JSON.parse(response)['data']);
+            console.log(JSON.parse(response)['info']);
+        }).error(function (response) {
+            //console.log(response);
+        });
     });
 
 

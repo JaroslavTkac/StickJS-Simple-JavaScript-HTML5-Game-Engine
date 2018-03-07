@@ -218,6 +218,7 @@ if (isset($_POST['imgBase64'])) {
 if (isset($_POST['callGetObjectFiles'])) {
     echo getFiles($_POST['callGetObjectFiles'][0], $_POST['callGetObjectFiles'][1]);
 }
+
 //Get data from files
 function getFiles($file, $dir)
 {
@@ -229,4 +230,63 @@ function getFiles($file, $dir)
         $status = "OK";
 
     return json_encode(array('data' => $fileData, 'status' => $status));
+}
+
+//On project delete cleaning all saved user files
+if (isset($_POST['userId']) && isset($_POST['cleanFolders']) && isset($_POST['projectId'])) {
+    $userId = $_POST['userId'];
+    $projectId = $_POST['projectId'];
+    $folderContentToDelete = array();
+
+    //preparing textures paths for deleting
+    $rawData = getFilesInFolder("../assets/img/textures/user_textures/", $userId, $projectId);
+    //$rawData = getFilesInFolder("php/", $userId, $projectId);
+
+    foreach ($rawData as $item) {
+        array_push($folderContentToDelete, $item);
+    }
+
+    //preparing json's paths for deleting
+    $rawData = getFilesInFolder("../shapes/user_shapes/", $userId, $projectId);
+
+    foreach ($rawData as $item) {
+        array_push($folderContentToDelete, $item);
+    }
+
+    //preparing savedShapes paths for deleting
+    $rawData = getFilesInFolder("../shapes/user_saved_shapes/", $userId, $projectId);
+
+    foreach ($rawData as $item) {
+        array_push($folderContentToDelete, $item);
+    }
+
+    //preparing music paths for deleting
+    $rawData = getFilesInFolder("../assets/music/user_music/", $userId, $projectId);
+
+    foreach ($rawData as $item) {
+        array_push($folderContentToDelete, $item);
+    }
+
+    $infoArr = array();
+    foreach ($folderContentToDelete as $item) {
+        array_push($infoArr, deleteFile($item));
+    }
+
+    echo json_encode(array('data' => $folderContentToDelete, 'info' => $infoArr));
+}
+
+function getFilesInFolder($dir, $userId, $projectId)
+{
+    $folder = array();
+    if (is_dir($dir)) {
+        if ($dh = opendir($dir)) {
+            while (($file = readdir($dh)) !== false) {
+                if (isFileOwner($file, $userId, $projectId)) {
+                    array_push($folder, $dir . $file);
+                }
+            }
+            closedir($dh);
+        }
+    }
+    return $folder;
 }
