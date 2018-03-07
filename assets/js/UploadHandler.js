@@ -10,45 +10,6 @@ let liveLoadedShapesArr = [];
 let sceneToLoadArr = [];
 let availableTexturesOnServer = [];
 
-function loadUserObjectFiles(file, dir) {
-    $.ajax({
-        url: "../php/upload.php",
-        type: "POST",
-        data: {"callGetObjectFiles": [file, dir]},
-        success: function (response) {
-            let content = JSON.parse(response);
-
-            if (content['status'] === "OK") {
-                if (file === "savedShapes.txt") {
-                    let savedDataToInit = JSON.parse(content['data']);
-
-                    for (let i = 0; i < savedDataToInit.length; i++) {
-                        savedShapesArr.push(savedDataToInit[i]);
-                    }
-                    console.log("savedShapeArr");
-                    console.log(savedShapesArr);
-                }
-                if (file === "liveObjects.txt") {
-                    let savedDataToInit = JSON.parse(content['data']);
-                    for (let i = 0; i < savedDataToInit.length; i++) {
-                        liveLoadedShapesArr.push(savedDataToInit[i]);
-                    }
-                    waitUntilWebglInitialized();
-                }
-                if (file === "savedScene.txt") {
-                    console.log("Parsing SCENE data");
-                    sceneToLoadArr = JSON.parse(content['data']);
-                    console.log(sceneToLoadArr);
-                    console.log("sceneToLoadArr.lenght: " + sceneToLoadArr.length);
-                    if (sceneToLoadArr.length === 0)
-                        sceneToLoadArr = null;
-
-                }
-            }
-
-        },
-    });
-}
 
 // Some sort of call back (waiting for editor shape loading)
 function waitUntilWebglInitialized() {
@@ -108,7 +69,11 @@ function getShapesNameInFolder(dir) {
     $.ajax({
         url: "../php/upload.php",
         type: "POST",
-        data: {"callLoadUserData": dir},
+        data: {
+            callLoadUserData: dir,
+            projectId: projectId,
+            userId: userId
+        },
         success: function (response) {
             let content = JSON.parse(response);
             ///let data = "";
@@ -136,7 +101,9 @@ function getAllAvailableTextures() {
         type: "POST",
         url: "../php/upload.php",
         data: {
-            texturePaths: ["../assets/img/textures", "../assets/img/textures/user_textures"]
+            texturePaths: ["../assets/img/textures", "../assets/img/textures/user_textures"],
+            projectId: projectId,
+            userId: userId
         },
         success: function (response) {
             let content = JSON.parse(response);
@@ -157,12 +124,15 @@ function getAllAvailableTextures() {
     });
 }
 
-// TODO Bus upgreidinama kad tikrintu pagal user id ir projekto id kokius krauti
 function loadUserData(dir, type) {
     $.ajax({
         url: "../php/upload.php",
         type: "POST",
-        data: {"callLoadUserData": dir},
+        data: {
+            callLoadUserData: dir,
+            projectId: projectId,
+            userId: userId
+        },
         success: function (response) {
             let content = JSON.parse(response);
             let data = "";
@@ -178,6 +148,7 @@ function loadUserData(dir, type) {
             }
             console.log("Type: " + type);
             console.log(folderContent);
+            console.log(content);
 
 
             //after successful file location change appending html document
@@ -241,12 +212,12 @@ function loadUserData(dir, type) {
                         // Add btn
                         "<a href=\"#\" class=\"btn btn-md overlay-btn overlay-btn-add\">" +
                         "<span class=\"glyphicon glyphicon-plus\"></span>" +
-                        "<span class=\"add_shape\" style=\"display: none\">shapes/user_saved_shapes/" + folderContent[i] + "</span>" +
+                        "<span class=\"add_shape\" style=\"display: none\">../shapes/user_saved_shapes/" + folderContent[i] + "</span>" +
                         "</a>" +
                         // Edit btn
                         "<a href=\"#\" class=\"btn btn-md overlay-btn overlay-btn-edit\">" +
                         "<span class=\"glyphicon glyphicon-wrench\"></span>" +
-                        "<span class=\"edit_shape\" style=\"display: none\">shapes/user_saved_shapes/" + folderContent[i] + "</span>" +
+                        "<span class=\"edit_shape\" style=\"display: none\">../shapes/user_saved_shapes/" + folderContent[i] + "</span>" +
                         "</a>" +
                         // Delete btn
                         "<a href=\"#\" class=\"btn btn-md overlay-btn overlay-btn-del\">" +
@@ -268,6 +239,10 @@ $(function () {
     $('#upload').fileupload({
         url: "../php/upload.php",
         dataType: 'json',
+        formData: {
+            projectId: projectId,
+            userId: userId
+        },
         done: function (e, data) {
             console.log(data);
             uploaded = JSON.parse(JSON.stringify(data.result));
@@ -351,6 +326,7 @@ $(function () {
         error: function (e, data) {
             console.log("error");
             console.log(data);
+            console.log(e);
         }
     })
 });
@@ -537,7 +513,9 @@ function saveCanvasImg(imgName) {
         url: "../php/upload.php",
         data: {
             imgBase64: imgData,
-            imgName: imgName
+            imgName: imgName,
+            projectId: projectId,
+            userId: userId
         }
     }).done(function (response) {
         console.log(response);
@@ -606,7 +584,7 @@ function saveData() {
 }
 
 //Load all user projects data
-function loadUserProjectData(){
+function loadUserProjectData() {
     loadSavedShapes();
     loadUserLiveObjects();
     loadSvgCodeScene();
@@ -615,10 +593,10 @@ function loadUserProjectData(){
 
 
 //Saving user project movement config
-function saveMovementConfig(){
+function saveMovementConfig() {
     let useMovement;
 
-    if($('#checkSpeed').prop('checked') === true)
+    if ($('#checkSpeed').prop('checked') === true)
         useMovement = 1;
     else
         useMovement = 0;
@@ -632,23 +610,24 @@ function saveMovementConfig(){
             movementSpeed: $('#basic-speed-input').val(),
             movementRotation: $('#rotation-speed-input').val()
         },
-        success: function(response) {
+        success: function (response) {
             //console.log(response);
         }
     });
 }
+
 //Loading user project selected movement config
-function loadMovementConfig(){
+function loadMovementConfig() {
     $.ajax({
         url: "../php/get_movement_config.php",
         type: "POST",
         data: {
             projectId: projectId
         },
-        success: function(response) {
+        success: function (response) {
             let data = JSON.parse(response);
 
-            if(data[0].useMovement === 1){
+            if (data[0].useMovement === 1) {
                 $('#checkSpeed').prop('checked', true);
             }
             else {
@@ -662,14 +641,16 @@ function loadMovementConfig(){
 }
 
 //Saving all SVG SCENE elements
-function saveSvgCodeScene(){
+function saveSvgCodeScene() {
     let svgCodeScene = [];
     let svgArr = document.getElementById("code-logic-scene").children;
 
-    for (let i = 0; i < svgArr.length; i++){
-        if(getmktime(svgArr[i]) !== "trashbin"){
-            svgCodeScene.push({data: svgArr[i].outerHTML, value: getDataFromSvgForm(svgArr[i]),
-                value2: getOperatorDataFromSvgForm(svgArr[i])});
+    for (let i = 0; i < svgArr.length; i++) {
+        if (getmktime(svgArr[i]) !== "trashbin") {
+            svgCodeScene.push({
+                data: svgArr[i].outerHTML, value: getDataFromSvgForm(svgArr[i]),
+                value2: getOperatorDataFromSvgForm(svgArr[i])
+            });
         }
     }
     let data = JSON.stringify(svgCodeScene);
@@ -681,45 +662,46 @@ function saveSvgCodeScene(){
             projectId: projectId,
             saved_svg_scene: data
         },
-        success: function(response) {
+        success: function (response) {
             //console.log(response);
         }
     });
 }
+
 //Loading saved SVG SCENE elements
-function loadSvgCodeScene(){
+function loadSvgCodeScene() {
     $.ajax({
         url: "../php/get_saved_svg_scene.php",
         type: "POST",
         data: {
             projectId: projectId
         },
-        success: function(response) {
+        success: function (response) {
             let data = JSON.parse(response);
 
             let svgArr = document.getElementById("code-logic-scene").children;
             //cleaning old svg elements
-            while(svgArr.length !== 1){
-                for (let i = 0; i < svgArr.length; i++){
-                    if(getmktime(svgArr[i]) !== "trashbin"){
+            while (svgArr.length !== 1) {
+                for (let i = 0; i < svgArr.length; i++) {
+                    if (getmktime(svgArr[i]) !== "trashbin") {
                         $(svgArr[i]).remove().end();
                     }
                 }
                 svgArr = document.getElementById("code-logic-scene").children;
             }
 
-            for(let i = 0; i < data.length; i++){
+            for (let i = 0; i < data.length; i++) {
                 $("#code-logic-scene").append(data[i].data).html($("#code-logic-scene").html());
             }
             //Restoring data
             svgArr = document.getElementById("code-logic-scene").children;
-            for(let i = 1; i < svgArr.length; i++){
-                if(data[i - 1].value !== undefined){
-                    if(svgArr[i].getElementsByClassName("code-selection").length > 0)
+            for (let i = 1; i < svgArr.length; i++) {
+                if (data[i - 1].value !== undefined) {
+                    if (svgArr[i].getElementsByClassName("code-selection").length > 0)
                         setSelectedValue(svgArr[i].getElementsByClassName("code-selection")[0], data[i - 1].value);
-                    if(svgArr[i].getElementsByClassName("code-selection-inequality-operator").length > 0)
+                    if (svgArr[i].getElementsByClassName("code-selection-inequality-operator").length > 0)
                         setSelectedValue(svgArr[i].getElementsByClassName("code-selection-inequality-operator")[0], data[i - 1].value2);
-                    if(svgArr[i].getElementsByClassName("code-input").length > 0)
+                    if (svgArr[i].getElementsByClassName("code-input").length > 0)
                         svgArr[i].getElementsByClassName("code-input")[0].value = data[i - 1].value;
                 }
             }
@@ -728,7 +710,7 @@ function loadSvgCodeScene(){
 }
 
 //Saving scene by btn click for multiple use dooring project -> Saving WebGL main scene
-function saveScene(){
+function saveScene() {
     //Send to server user object data
     let obj_data = JSON.stringify(objArr);
 
@@ -739,24 +721,27 @@ function saveScene(){
             projectId: projectId,
             saved_scene_json_data: obj_data
         },
-        success: function(response) {
+        success: function (response) {
+            //console.log("saved scene");
             //console.log(response);
         }
     });
 }
+
 //Loading from DB user saved scene by btn click
-function loadScene(){
+function loadScene() {
     $.ajax({
         url: "../php/get_saved_scene.php",
         type: "POST",
         data: {
             projectId: projectId
         },
-        success: function(response) {
+        success: function (response) {
+            //console.log("load saved scene from db");
             //console.log(response);
             sceneToLoadArr = JSON.parse(response);
 
-            if(sceneToLoadArr.length === 0) {
+            if (sceneToLoadArr.length === 0) {
                 sceneToLoadArr = null;
             }
         }
@@ -764,7 +749,7 @@ function loadScene(){
 }
 
 //Saving all user saved shapes -> basically references of object parameters for images
-function saveSavedShapes(){
+function saveSavedShapes() {
     //Send to server user object data
     let saved_data = JSON.stringify(savedShapesArr);
 
@@ -775,33 +760,34 @@ function saveSavedShapes(){
             projectId: projectId,
             saved_shapes_json_data: saved_data
         },
-        success: function(response) {
+        success: function (response) {
             //console.log(response);
         }
     });
 }
+
 //Loading from DB all user saved shapes -> references for saved canvas IMGs
-function loadSavedShapes(){
+function loadSavedShapes() {
     $.ajax({
         url: "../php/get_saved_shapes.php",
         type: "POST",
         data: {
             projectId: projectId
         },
-        success: function(response) {
+        success: function (response) {
             let savedDataToInit = JSON.parse(response);
 
-            for(let i = 0; i < savedDataToInit.length; i++){
+            for (let i = 0; i < savedDataToInit.length; i++) {
                 savedShapesArr.push(savedDataToInit[i]);
             }
-            //console.log("savedShapeArr");
-            //console.log(savedShapesArr);
+            console.log("savedShapeArr");
+            console.log(savedShapesArr);
         }
     });
 }
 
 //Saving user live objects -> objects that are init'ed in scene
-function saveLiveObjects(){
+function saveLiveObjects() {
     //Send to server user object data
     let obj_data = JSON.stringify(objArr);
 
@@ -812,24 +798,25 @@ function saveLiveObjects(){
             projectId: projectId,
             live_objects_json_data: obj_data
         },
-        success: function(response) {
+        success: function (response) {
             //console.log(response);
         }
     });
 }
+
 //Loading from DB all user live objects
-function loadUserLiveObjects(){
+function loadUserLiveObjects() {
     $.ajax({
         url: "../php/get_live_objects.php",
         type: "POST",
         data: {
             projectId: projectId
         },
-        success: function(response) {
+        success: function (response) {
             //console.log(response);
             let savedDataToInit = JSON.parse(response);
 
-            for(let i = 0; i < savedDataToInit.length; i++){
+            for (let i = 0; i < savedDataToInit.length; i++) {
                 liveLoadedShapesArr.push(savedDataToInit[i]);
             }
             waitUntilWebglInitialized();
@@ -841,7 +828,7 @@ function loadUserLiveObjects(){
 function getOriginalFileName(current_file_name) {
     let tmpName = current_file_name.split("_");
     let getFileOriginalName = "";
-    for (let k = 0; k < tmpName.length - 1; k++) {
+    for (let k = 0; k < tmpName.length - 3; k++) {
         getFileOriginalName += tmpName[k];
     }
     return getFileOriginalName;

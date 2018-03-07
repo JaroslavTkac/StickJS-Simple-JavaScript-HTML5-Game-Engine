@@ -17,7 +17,7 @@ if(isset($_POST['projectId']) && isset($_POST['saved_scene_json_data'])){
         $stmt->bind_param("ss", $param_json_data, $param_project_id);
         //Setting parameters
         $param_project_id = $_POST['projectId'];
-        $param_json_data = $_POST['live_objects_json_data'];
+        $param_json_data = $_POST['saved_scene_json_data'];
 
         //Executing SQL
         if($stmt->execute()){

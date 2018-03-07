@@ -9,12 +9,12 @@ let isLightWillBeUsed;
 let aspectR = true;
 
 
-$(document).ready(function() {
+$(document).ready(function () {
     let windowWidth = $(window).width();
     let windowHeight = $(window).height();
     let editorHeight = $('#editor-scene').height();
     let previewShapesHeight = $('.shape').height();
-    let SceneHeight =  $('#Scene').height();
+    let SceneHeight = $('#Scene').height();
     let editorBlockHeight = $('#editor-area').height();
     let rightWindowHeight = $('#left-window').height();
     let objectIsEditing = false;
@@ -59,13 +59,13 @@ $(document).ready(function() {
     $('#aspect-ratio').click(function () {
         let left = $('#left-window')[0];
         let right = $('#right-window')[0];
-        if(aspectR) {
+        if (aspectR) {
             left.setAttribute("class", "col-lg-5 col-md-5 col-sm-12 col-xs-12");
             right.setAttribute("class", "col-lg-7 col-md-7 col-sm-12 col-xs-12");
             aspectR = false;
             $(window).trigger('resize');
         }
-        else{
+        else {
             left.setAttribute("class", "col-lg-7 col-md-7 col-sm-12 col-xs-12");
             right.setAttribute("class", "col-lg-5 col-md-5 col-sm-12 col-xs-12");
             aspectR = true;
@@ -83,7 +83,7 @@ $(document).ready(function() {
     KeyboardPresets.initAllKeyboard();
     keyboard = new KeyboardPresets("wasd", $('#basic-speed-input').val(), $('#rotation-speed-input').val());
 
-    if($('#checkSpeed').prop('checked') === true)
+    if ($('#checkSpeed').prop('checked') === true)
         keyboard.enableStandardControls();
     else
         keyboard.disableStandardControls();
@@ -92,7 +92,7 @@ $(document).ready(function() {
     $('#checkSpeed').on('click', function () {
         keyboard.speed = $('#basic-speed-input').val();
         keyboard.rotationSpeed = $('#rotation-speed-input').val();
-        if($('#checkSpeed').prop('checked') === true)
+        if ($('#checkSpeed').prop('checked') === true)
             keyboard.enableStandardControls();
         else
             keyboard.disableStandardControls();
@@ -101,13 +101,13 @@ $(document).ready(function() {
 
     //On How To click open modal with instructions
     $('.nav.navbar-nav > li a').on('click', function () {
-       if($(this).text() === "How To")
-           $('#how-to-modal').modal('show');
+        if ($(this).text() === "How To")
+            $('#how-to-modal').modal('show');
     });
 
     //Preparing page for code blocks
-    $(window).keydown(function(event){
-        if(event.keyCode === 13) {
+    $(window).keydown(function (event) {
+        if (event.keyCode === 13) {
             event.preventDefault();
             return false;
         }
@@ -115,18 +115,18 @@ $(document).ready(function() {
 
 
     //Texture & Color toggle
-    $('#radioBtn a').on('click', function(){
+    $('#radioBtn a').on('click', function () {
         //console.log("click");
         let sel = $(this).data('title');
         let tog = $(this).data('toggle');
-        $('#'+tog).prop('value', sel);
+        $('#' + tog).prop('value', sel);
 
-        $('a[data-toggle="'+tog+'"]').not('[data-title="'+sel+'"]').removeClass('active').addClass('notActive');
-        $('a[data-toggle="'+tog+'"][data-title="'+sel+'"]').removeClass('notActive').addClass('active');
+        $('a[data-toggle="' + tog + '"]').not('[data-title="' + sel + '"]').removeClass('active').addClass('notActive');
+        $('a[data-toggle="' + tog + '"][data-title="' + sel + '"]').removeClass('notActive').addClass('active');
         console.log(sel);
-        if(sel === "Color"){
+        if (sel === "Color") {
             objEditorArr[0].useTexture = false;
-            for(let i in objPreviewArr){
+            for (let i in objPreviewArr) {
                 objPreviewArr[i].useTexture = false;
             }
             $('#color-picker').css('display', '');
@@ -138,7 +138,7 @@ $(document).ready(function() {
             $('#light-control-additional').css('display', 'none');
             $('#rotation-control').css('display', '');
         }
-        if(sel === "Texture"){
+        if (sel === "Texture") {
             $('#texture-picker').css('display', '');
             //$('#texture-picker').css('height', $('#color-picker').height());
             $('#color-picker').css('display', 'none');
@@ -150,7 +150,7 @@ $(document).ready(function() {
             $('#light-control-additional').css('display', 'none');
             $('#rotation-control').css('display', '');
         }
-        if(sel === "Opacity"){
+        if (sel === "Opacity") {
             $('#color-picker').css('display', 'none');
             $('#texture-picker').css('display', 'none');
             $('#light-control').css('display', 'none');
@@ -159,7 +159,7 @@ $(document).ready(function() {
             $('#rotation-control').css('margin-top', '8%');
             $('#opacity').css('display', '');
         }
-        if(sel === "Lightning"){
+        if (sel === "Lightning") {
             $('#color-picker').css('display', 'none');
             $('#texture-picker').css('display', 'none');
             $('#opacity').css('display', 'none');
@@ -188,7 +188,7 @@ $(document).ready(function() {
         $(this).addClass('active');
 
 
-        if($(this).text() === "Editor"){
+        if ($(this).text() === "Editor") {
             $('#push-code').css('display', 'none');
             $('#code-scene-div').css('display', 'none');
             $('#code-blocks-div').css('display', 'none');
@@ -207,16 +207,16 @@ $(document).ready(function() {
             $('#saved-shape-container').css('display', '');
             $('#editor-container').css('display', '');
 
-            if(windowHeight === $(document).height() && windowWidth === $(document).width()){
+            if (windowHeight === $(document).height() && windowWidth === $(document).width()) {
                 $('#editor-scene').css('height', editorHeight);
             }
-            else{
+            else {
                 $('#editor-scene').css('height', ($('#editor-scene').width() / 2));
             }
 
             console.log(editorBlockHeight);
         }
-        if($(this).text() === "Logic"){
+        if ($(this).text() === "Logic") {
             $('#saved-shape-container').css('display', 'none');
             $('#editor-container').css('display', 'none');
             $('#code-blocks-div').css('display', '');
@@ -235,21 +235,19 @@ $(document).ready(function() {
             $('#checkbox-label').css('display', '');
 
 
-
-
             intersectArrInit();
             updateAllForNameBlocks();
 
             let svgArr = document.getElementById("code-logic-scene").children;
 
-            for (let i = 0; i < svgArr.length; i++){
+            for (let i = 0; i < svgArr.length; i++) {
                 getGelementByName(getmktime(svgArr[i])).firstElementChild.setAttribute("opacity", "1");
             }
 
 
         }
 
-        if($(this).text() === "Sound"){
+        if ($(this).text() === "Sound") {
             $('#saved-shape-container').css('display', 'none');
             $('#editor-container').css('display', 'none');
             $('#code-area').css('display', 'none');
@@ -274,10 +272,10 @@ $(document).ready(function() {
     addSvgElementToScene();
 
     //On window resize, properly resize canvas areas
-    window.onresize = function(){
+    window.onresize = function () {
         $('.shape').css('height', ($('.shape').width() / 2));
         $('#editor-scene').css('height', ($('#editor-scene').width() / 2));
-        SceneHeight =  $('#Scene').height();
+        SceneHeight = $('#Scene').height();
         $('#selectable-shapes').css('height', SceneHeight);
         $('#selectable-textures').css('height', SceneHeight);
         $('#selectable-music').css('height', SceneHeight);
@@ -293,27 +291,27 @@ $(document).ready(function() {
     };
 
     //Drop down menu for selecting what to display (Shapes/Music/Textures)
-    $('#select-dropdown-value li a').on('click', function(){
+    $('#select-dropdown-value li a').on('click', function () {
         console.log($(this).text());
-        if($(this).text() === "Shapes"){
+        if ($(this).text() === "Shapes") {
             $('#selectable-music').css('display', 'none');
             $('#selectable-textures').css('display', 'none');
             $('#selectable-shapes').css('display', '');
             $('.shape').css('height', ($('.shape').width() / 2));
-            if(windowHeight === $(document).height() && windowWidth === $(document).width()){
+            if (windowHeight === $(document).height() && windowWidth === $(document).width()) {
                 $('.shape').css('height', previewShapesHeight);
             }
-            else{
+            else {
 
             }
 
         }
-        if($(this).text() === "Music"){
+        if ($(this).text() === "Music") {
             $('#selectable-textures').css('display', 'none');
             $('#selectable-shapes').css('display', 'none');
             $('#selectable-music').css('display', '');
         }
-        if($(this).text() === "Textures"){
+        if ($(this).text() === "Textures") {
             $('#selectable-music').css('display', 'none');
             $('#selectable-shapes').css('display', 'none');
             $('#selectable-textures').css('display', '');
@@ -326,11 +324,11 @@ $(document).ready(function() {
     });
 
     //Applying textures to shape in editor scene on click
-    $(document).on('click', '.texture', function(e) {
+    $(document).on('click', '.texture', function (e) {
         e.preventDefault();
         let texture_path = "";
         $(this).attr("alt").substr(3);
-        if($(this).attr("alt").includes("../"))
+        if ($(this).attr("alt").includes("../"))
             texture_path = $(this).attr("alt").substr(3);
         else
             texture_path = $(this).attr("alt");
@@ -370,21 +368,21 @@ $(document).ready(function() {
     });
 
     $('#use-combine-ambient').on('click', function (e) {
-        if($(this).prop("checked")){
+        if ($(this).prop("checked")) {
             $('#ambient-light-full').css('display', 'none');
             $('#ambient-light-combined').css('display', '');
         }
-        else{
+        else {
             $('#ambient-light-combined').css('display', 'none');
             $('#ambient-light-full').css('display', '');
         }
     });
 
     $('#use-animation').on('click', function (e) {
-        if($(this).prop("checked")){
+        if ($(this).prop("checked")) {
             pointLightArrayE[0].alphaInc = 0.02;
         }
-        else{
+        else {
             pointLightArrayE[0].alphaInc = 0.0;
         }
     });
@@ -395,7 +393,7 @@ $(document).ready(function() {
         isLightWillBeUsed = !!$('#use-light').prop("checked");
 
         //if shape is edited saving image with existing name
-        if(objectIsEditing){
+        if (objectIsEditing) {
             console.log(nameOfPngFile);
             // if editing save
             saveCanvasImg(nameOfPngFile);
@@ -404,7 +402,7 @@ $(document).ready(function() {
             savedShapesArr.splice(getSavedShapeElementIndex("shapes/user_saved_shapes/" + nameOfPngFile), 1);
             waitUntilCanvasImgUploading();
         }
-        else{
+        else {
             saveCanvasImg();
             waitUntilCanvasImgUploading();
             console.log(savedShapesArr);
@@ -430,17 +428,17 @@ $(document).ready(function() {
         e.preventDefault();
         let name = $(document).find('#usr-shape-name').val();
 
-        if(name === ""){
+        if (name === "") {
             //empty name
             $('#add-shape-name-form').addClass('has-error');
             $('#error-explanation').html("Empty name is not allowed");
         }
-        else if(findDuplicateName(name)){
+        else if (findDuplicateName(name)) {
             //name already exist
             $('#add-shape-name-form').addClass('has-error');
             $('#error-explanation').html("Name already exist");
         }
-        else{
+        else {
             //everything alright
             //get type from obj url
             let tmp = objToAdd.shape.split("/");
@@ -474,7 +472,7 @@ $(document).ready(function() {
         }
     });
     //Detect key input (delete error signs in Modal window)
-    $('#usr-shape-name').bind('input', function() {
+    $('#usr-shape-name').bind('input', function () {
         $('#add-shape-name-form').removeClass('has-error');
         $('#error-explanation').html("");
     });
@@ -535,20 +533,21 @@ $(document).ready(function() {
 
         waitUntilEditorShapeLoading();
     });
+
     // Some sort of call back (waiting for editor shape loading)
-    function waitUntilEditorShapeLoading(){
-        if (editorObjectLoaded === false){
+    function waitUntilEditorShapeLoading() {
+        if (editorObjectLoaded === false) {
             setTimeout(waitUntilEditorShapeLoading, 50);
             return;
         }
         console.log(editorObjectLoaded);
         console.log(objEditorArr);
-        if(objEditorArr[0].useTexture){
+        if (objEditorArr[0].useTexture) {
             $('#texture-radioBtn').click();
             //set opacity
             opacitySlider.setValue(loadedAlpha);
         }
-        else{
+        else {
             $('#color-radioBtn').click();
             red.setValue(loadedR, true, true);
             green.setValue(loadedG, true, true);
@@ -579,7 +578,7 @@ $(document).ready(function() {
         handleSize: "+8"
     }).data("roundSlider");
 
-    let RGBChange = function() {
+    let RGBChange = function () {
         redChange = red.getValue();
         greenChange = green.getValue();
         blueChange = blue.getValue();
@@ -588,12 +587,12 @@ $(document).ready(function() {
         bluePChange = blueP.getValue();
     };
     let RGBAmbientChange = function () {
-        if($('#use-combine-ambient').prop("checked")){
+        if ($('#use-combine-ambient').prop("checked")) {
             redAChange = combinedALight.getValue();
             greenAChange = combinedALight.getValue();
             blueAChange = combinedALight.getValue();
         }
-        else{
+        else {
             redAChange = redA.getValue();
             greenAChange = greenA.getValue();
             blueAChange = blueA.getValue();
@@ -604,7 +603,7 @@ $(document).ready(function() {
         yRotSlider = ySlider.getValue();
         zRotSlider = zSlider.getValue();
 
-        console.log("x: " + xRotSlider + " y: " + yRotSlider + " z: " + zRotSlider);
+        //console.log("x: " + xRotSlider + " y: " + yRotSlider + " z: " + zRotSlider);
         changeEditorShapeRotAngle();
     };
 
@@ -629,7 +628,7 @@ $(document).ready(function() {
     // END
 
     //Deleting on trash bin icon click
-    $(document).on('click', '.overlay-btn-del', function(e) {
+    $(document).on('click', '.overlay-btn-del', function (e) {
         e.preventDefault();
         let file_path = $(this).find('.delete_path').text();
         deleteFileFromServer(file_path);
@@ -641,7 +640,7 @@ $(document).ready(function() {
         $('canvas').each(function () {
             //going through all canvases elements
             //to find saved png's from that object and delete them
-            if(file_path.includes("shapes/user_shapes")) {
+            if (file_path.includes("shapes/user_shapes")) {
                 let savedImgArr = [];
                 for (let i = 0; i < savedShapesArr.length; i++) {
                     console.log("saved img: " + (savedShapesArr[i].value).shape + " ===  " + file_path);
@@ -649,7 +648,7 @@ $(document).ready(function() {
                         savedImgArr.push(savedShapesArr[i].link);
                 }
 
-                for (let i = 0; i < savedImgArr.length; i++){
+                for (let i = 0; i < savedImgArr.length; i++) {
                     deleteSavedImg(savedImgArr[i]);
                     deleteFileFromServer(savedImgArr[i]);
                 }
@@ -664,40 +663,41 @@ $(document).ready(function() {
 
     function deleteSavedImg(file_path) {
         //If deleted image is pointing to saved object so deleting this element from everything on delete
-        $('img').each(function() {
-            if($(this).attr("alt") === file_path){
+        $('img').each(function () {
+            if ($(this).attr("alt") === file_path) {
                 $(this).parent().parent().remove();
                 //on saved shape image delete remove from live obj array and saved_shape array
                 console.log("file_path: " + file_path);
 
                 let dataLen = savedShapesArr.length;
                 let i = 0;
-                while (i < dataLen){
-                    if(savedShapesArr[i].link === file_path){
+                while (i < dataLen) {
+                    if (savedShapesArr[i].link === file_path) {
                         savedShapesArr.splice(i, 1);
                         i = 0;
                         dataLen = savedShapesArr.length;
                     }
-                    else{
+                    else {
                         i++;
                     }
                 }
                 i = 0;
                 dataLen = objArr.length;
-                while (i < dataLen){
+                while (i < dataLen) {
                     console.log(i + " < " + dataLen);
-                    if(objArr[i].savedShapeName === file_path){
+                    if (objArr[i].savedShapeName === file_path) {
                         objArr.splice(i, 1);
                         i = 0;
                         dataLen = objArr.length;
                     }
-                    else{
+                    else {
                         i++;
                     }
                 }
             }
         });
     }
+
     //Save WebGL scene
     $('#save-scene-btn').click(function () {
         saveScene();
@@ -722,11 +722,11 @@ $(document).ready(function() {
     });
 
     //Prevent jumping to page beginning
-    $(document).on('click', 'img', function(e) {
+    $(document).on('click', 'img', function (e) {
         e.preventDefault();
     });
     //Prevent page scroll down on space key
-    window.onkeydown = function(e) {
+    window.onkeydown = function (e) {
         if (e.keyCode === 32 && e.target === document.body) {
             e.preventDefault();
         }

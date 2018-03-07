@@ -2,20 +2,23 @@
  * Created by jaroslavtkaciuk on 28/11/2017.
  */
 
-$(document).ready(function() {
+$(document).ready(function () {
 
     //Apply Code Button
     $('#push-code-btn').click(function () {
         getDataOfSvgInScene();
         parsingBlocks();
-        saveData();
         saveSvgCodeScene();
         codeToAdd = "function userCode() { ";
     });
 
     //Upload Code Button
     $('#upload-code-btn').click(function () {
+        getDataOfSvgInScene();
+        parsingBlocks();
         saveSvgCodeScene();
+        codeToAdd += "\n}";
+        console.log(codeToAdd);
         codeToAdd = "function userCode() { ";
     });
 
@@ -30,9 +33,9 @@ $(document).ready(function() {
     $('#clear-code-btn').click(function () {
         let svgArr = document.getElementById("code-logic-scene").children;
         //cleaning old svg elements
-        while(svgArr.length !== 1){
-            for (let i = 0; i < svgArr.length; i++){
-                if(getmktime(svgArr[i]) !== "trashbin"){
+        while (svgArr.length !== 1) {
+            for (let i = 0; i < svgArr.length; i++) {
+                if (getmktime(svgArr[i]) !== "trashbin") {
                     $(svgArr[i]).remove().end();
                 }
             }
@@ -40,7 +43,6 @@ $(document).ready(function() {
         }
         saveSvgCodeScene();
     });
-
 
 
 });
@@ -53,8 +55,10 @@ function parsingBlocks() {
     let cluster = [];
     //let isClosingBracketNeeded = false;
 
+    console.log("codeArray");
+    console.log(codeArray);
     //going through clusters of blocks
-    for (let i = 0; i < codeArray.length; i++){
+    for (let i = 0; i < codeArray.length; i++) {
         //getting first cluster
         cluster = codeArray[i];
         switch (cluster[0].codeID) {
@@ -110,51 +114,53 @@ function parsingBlocks() {
         }
         //when recursion finished appending string with closing bracket
         //closing if statement of trigger
-        if(tempCodeToAddArr !== "")
+        if (tempCodeToAddArr !== "")
             codeToAdd += tempCodeToAddArr + "\n    }";
         //if on Key trigger
-        if(tempCodeToAddArr !== "" && tempCodeToAddArr.indexOf("for (let i in keysArray)") !== -1)
+        if (tempCodeToAddArr !== "" && tempCodeToAddArr.indexOf("for (let i in keysArray)") !== -1)
             codeToAdd += "\n        }\n";
 
         tempCodeToAddArr = "";
-        console.log(codeToAdd);
+        //console.log(codeToAdd);
     }
 
 }
-function searchingFirstLoopWithoutCodeUploading(cluster, index){
-    for(let j = index; j < cluster.length; j++){
+
+function searchingFirstLoopWithoutCodeUploading(cluster, index) {
+    for (let j = index; j < cluster.length; j++) {
         console.log(cluster[j].codeID);
-        if(cluster[j].codeID === "for all"){
+        if (cluster[j].codeID === "for all") {
             console.log("LOOP: for all");
             analyzingCodeCluster(j, cluster, "basic");
             break;
         }
-        if(cluster[j].codeID === "for specific"){
+        if (cluster[j].codeID === "for specific") {
             console.log("LOOP: for specific");
             analyzingCodeCluster(j, cluster, "specific", cluster[j].value);
             break;
         }
-        if(cluster[j].codeID === "for name"){
+        if (cluster[j].codeID === "for name") {
             console.log("LOOP: for name");
             analyzingCodeCluster(j, cluster, "name", cluster[j].value);
             break;
         }
     }
 }
-function searchingFirstLoopWithCodeUploading(cluster, index, triggerValue, triggerType){
-    for(let j = index; j < cluster.length; j++){
+
+function searchingFirstLoopWithCodeUploading(cluster, index, triggerValue, triggerType) {
+    for (let j = index; j < cluster.length; j++) {
         console.log(cluster[j].codeID);
-        if(cluster[j].codeID === "for all"){
+        if (cluster[j].codeID === "for all") {
             console.log("LOOP: for all");
             analyzingCodeClusterForUploading(j, cluster, "basic", undefined, triggerValue, triggerType);
             break;
         }
-        if(cluster[j].codeID === "for specific"){
+        if (cluster[j].codeID === "for specific") {
             console.log("LOOP: for specific");
             analyzingCodeClusterForUploading(j, cluster, "specific", cluster[j].value, triggerValue, triggerType);
             break;
         }
-        if(cluster[j].codeID === "for name"){
+        if (cluster[j].codeID === "for name") {
             console.log("LOOP: for name");
             analyzingCodeClusterForUploading(j, cluster, "name", cluster[j].value, triggerValue, triggerType);
             break;
@@ -177,10 +183,10 @@ function analyzingCodeCluster(index, cluster, loopType, value) {
     console.log("Value: " + value); // value is object type or name
 
     //===Works ONLY one of 3 ifs at one cluster analyzing===
-    if(loopType === "basic") {
+    if (loopType === "basic") {
         //if TRIGGER is On Start & LOOP is For EVERY SHAPE
         for (let i = index + 1; i < cluster.length; i++) {
-            if(!isLoop(cluster[i].codeID)){
+            if (!isLoop(cluster[i].codeID)) {
                 switch (cluster[i].codeID) {
                     case "set x":
                         console.log("set x");
@@ -281,7 +287,7 @@ function analyzingCodeCluster(index, cluster, loopType, value) {
                         break;
                 }
             }
-            else{
+            else {
                 //if found loop block -> applying changes
                 //Saving all gained data
                 applyChangesToAll(x, y, z, sx, sy, sz, xRot, yRot, zRot, xRotSpeed, yRotSpeed, zRotSpeed, r, g, b,
@@ -291,10 +297,10 @@ function analyzingCodeCluster(index, cluster, loopType, value) {
             }
         }
     }
-    if(loopType === "specific") {
+    if (loopType === "specific") {
         //if TRIGGER is On Start & LOOP is For EVERY selected[TYPE]
         for (let i = index + 1; i < cluster.length; i++) {
-            if(!isLoop(cluster[i].codeID)){
+            if (!isLoop(cluster[i].codeID)) {
                 switch (cluster[i].codeID) {
                     case "set x":
                         console.log("set x");
@@ -395,7 +401,7 @@ function analyzingCodeCluster(index, cluster, loopType, value) {
                         break;
                 }
             }
-            else{
+            else {
                 //if found loop block -> applying changes
                 //Saving all gained data
                 applyChangesToSpecificType(value, x, y, z, sx, sy, sz, xRot, yRot, zRot, xRotSpeed, yRotSpeed, zRotSpeed, r, g, b,
@@ -405,10 +411,10 @@ function analyzingCodeCluster(index, cluster, loopType, value) {
             }
         }
     }
-    if(loopType === "name") {
+    if (loopType === "name") {
         //if TRIGGER is On Start & LOOP is For EVERY selected[TYPE]
         for (let i = index + 1; i < cluster.length; i++) {
-            if(!isLoop(cluster[i].codeID)){
+            if (!isLoop(cluster[i].codeID)) {
                 switch (cluster[i].codeID) {
                     case "set x":
                         console.log("set x");
@@ -509,7 +515,7 @@ function analyzingCodeCluster(index, cluster, loopType, value) {
                         break;
                 }
             }
-            else{
+            else {
                 //if found loop block -> applying changes
                 //Saving all gained data
                 applyChangesToSpecificObject(value, x, y, z, sx, sy, sz, xRot, yRot, zRot, xRotSpeed, yRotSpeed, zRotSpeed, r, g, b,
@@ -521,7 +527,7 @@ function analyzingCodeCluster(index, cluster, loopType, value) {
     }
 
 
-    if(!alreadyApplied) {
+    if (!alreadyApplied) {
         if (loopType === "basic")
             applyChangesToAll(x, y, z, sx, sy, sz, xRot, yRot, zRot, xRotSpeed, yRotSpeed, zRotSpeed, r, g, b,
                 ambientR, ambientG, ambientB, useAnimation, camera, opacity, transparency, sumAllValues);
@@ -533,6 +539,7 @@ function analyzingCodeCluster(index, cluster, loopType, value) {
                 ambientR, ambientG, ambientB, useAnimation, camera, opacity, transparency, sumAllValues);
     }
 }
+
 function analyzingCodeClusterForUploading(index, cluster, loopType, value, triggerValue, triggerType) {
     let x = null, y = null, z = null,
         sx = null, sy = null, sz = null,
@@ -548,10 +555,10 @@ function analyzingCodeClusterForUploading(index, cluster, loopType, value, trigg
     console.log("Value: " + value); // value is object type or name
 
     //===Works ONLY one of 3 ifs at one cluster analyzing===
-    if(loopType === "basic") {
+    if (loopType === "basic") {
         //if TRIGGER is On Start & LOOP is For EVERY SHAPE
         for (let i = index + 1; i < cluster.length; i++) {
-            if(!isLoop(cluster[i].codeID)){
+            if (!isLoop(cluster[i].codeID)) {
                 switch (cluster[i].codeID) {
                     case "set x":
                         console.log("set x");
@@ -652,11 +659,11 @@ function analyzingCodeClusterForUploading(index, cluster, loopType, value, trigg
                         break;
                 }
             }
-            else{
+            else {
                 functionToPass = parseDataForFunctionToPass("applyChangesToAll(", x, y, z, sx, sy, sz, xRot, yRot, zRot, xRotSpeed,
                     yRotSpeed, zRotSpeed, r, g, b, ambientR, ambientG, ambientB, useAnimation, camera, opacity, transparency, sumAllValues);
 
-                switch (triggerType){
+                switch (triggerType) {
                     case "onFrame":
                         onFrameConvert(triggerValue, functionToPass);
                         break;
@@ -685,10 +692,10 @@ function analyzingCodeClusterForUploading(index, cluster, loopType, value, trigg
             }
         }
     }
-    if(loopType === "specific") {
+    if (loopType === "specific") {
         //if TRIGGER is On Start & LOOP is For EVERY selected[TYPE]
         for (let i = index + 1; i < cluster.length; i++) {
-            if(!isLoop(cluster[i].codeID)){
+            if (!isLoop(cluster[i].codeID)) {
                 switch (cluster[i].codeID) {
                     case "set x":
                         console.log("set x");
@@ -789,14 +796,14 @@ function analyzingCodeClusterForUploading(index, cluster, loopType, value, trigg
                         break;
                 }
             }
-            else{
+            else {
                 //if found loop block ->
                 //Saving all gained data into string
 
                 functionToPass = parseDataForFunctionToPass("applyChangesToSpecificType(", x, y, z, sx, sy, sz, xRot, yRot, zRot, xRotSpeed,
                     yRotSpeed, zRotSpeed, r, g, b, ambientR, ambientG, ambientB, useAnimation, camera, opacity, transparency, value, sumAllValues);
 
-                switch (triggerType){
+                switch (triggerType) {
                     case "onFrame":
                         onFrameConvert(triggerValue, functionToPass);
                         break;
@@ -825,10 +832,10 @@ function analyzingCodeClusterForUploading(index, cluster, loopType, value, trigg
             }
         }
     }
-    if(loopType === "name") {
+    if (loopType === "name") {
         //if TRIGGER is On Start & LOOP is For EVERY selected[TYPE]
         for (let i = index + 1; i < cluster.length; i++) {
-            if(!isLoop(cluster[i].codeID)){
+            if (!isLoop(cluster[i].codeID)) {
                 switch (cluster[i].codeID) {
                     case "set x":
                         console.log("set x");
@@ -929,14 +936,14 @@ function analyzingCodeClusterForUploading(index, cluster, loopType, value, trigg
                         break;
                 }
             }
-            else{
+            else {
                 //if found loop block ->
                 //Saving all gained data into string
 
                 functionToPass = parseDataForFunctionToPass("applyChangesToSpecificObject(", x, y, z, sx, sy, sz, xRot, yRot, zRot, xRotSpeed,
                     yRotSpeed, zRotSpeed, r, g, b, ambientR, ambientG, ambientB, useAnimation, camera, opacity, transparency, value, sumAllValues);
 
-                switch (triggerType){
+                switch (triggerType) {
                     case "onFrame":
                         onFrameConvert(triggerValue, functionToPass);
                         break;
@@ -967,33 +974,33 @@ function analyzingCodeClusterForUploading(index, cluster, loopType, value, trigg
     }
 
 
-    if(!alreadyApplied) {
-        if (loopType === "basic"){
+    if (!alreadyApplied) {
+        if (loopType === "basic") {
             functionToPass = parseDataForFunctionToPass("applyChangesToAll(", x, y, z, sx, sy, sz, xRot, yRot, zRot, xRotSpeed,
                 yRotSpeed, zRotSpeed, r, g, b, ambientR, ambientG, ambientB, useAnimation, camera, opacity, transparency, sumAllValues);
-           /* switch (triggerType){
-                case "onFrame":
-                    onFrameConvert(triggerValue, functionToPass);
-                    break;
-                case "onRepeat":
-                    onFrameRepeatConvert(triggerValue, functionToPass);
-                    break;
-                case "onKeyDown":
-                    onKeyDownPressConvert(triggerValue, functionToPass);
-                    break;
-                case "onKeyUp":
-                    onKeyUpPressConvert(triggerValue, functionToPass);
-                    break;
-                case "onX":
-                    onCoordinateConvert(triggerValue, functionToPass, "x");
-                    break;
-                case "onY":
-                    onCoordinateConvert(triggerValue, functionToPass, "y");
-                    break;
-                case "onZ":
-                    onCoordinateConvert(triggerValue, functionToPass, "z");
-                    break;
-            }*/
+            /* switch (triggerType){
+                 case "onFrame":
+                     onFrameConvert(triggerValue, functionToPass);
+                     break;
+                 case "onRepeat":
+                     onFrameRepeatConvert(triggerValue, functionToPass);
+                     break;
+                 case "onKeyDown":
+                     onKeyDownPressConvert(triggerValue, functionToPass);
+                     break;
+                 case "onKeyUp":
+                     onKeyUpPressConvert(triggerValue, functionToPass);
+                     break;
+                 case "onX":
+                     onCoordinateConvert(triggerValue, functionToPass, "x");
+                     break;
+                 case "onY":
+                     onCoordinateConvert(triggerValue, functionToPass, "y");
+                     break;
+                 case "onZ":
+                     onCoordinateConvert(triggerValue, functionToPass, "z");
+                     break;
+             }*/
         }
 
         if (loopType === "specific") {
@@ -1015,7 +1022,7 @@ function analyzingCodeClusterForUploading(index, cluster, loopType, value, trigg
                 onCoordinateConvert(triggerValue, functionToPass, "z");*/
         }
 
-        if (loopType === "name"){
+        if (loopType === "name") {
             functionToPass = parseDataForFunctionToPass("applyChangesToSpecificObject(", x, y, z, sx, sy, sz, xRot, yRot, zRot, xRotSpeed,
                 yRotSpeed, zRotSpeed, r, g, b, ambientR, ambientG, ambientB, useAnimation, camera, opacity, transparency, sumAllValues, value);
             /*if (triggerType === "onFrame")
@@ -1034,7 +1041,7 @@ function analyzingCodeClusterForUploading(index, cluster, loopType, value, trigg
                 onCoordinateConvert(triggerValue, functionToPass, "z");*/
         }
 
-        switch (triggerType){
+        switch (triggerType) {
             case "onFrame":
                 onFrameConvert(triggerValue, functionToPass);
                 break;
@@ -1061,23 +1068,23 @@ function analyzingCodeClusterForUploading(index, cluster, loopType, value, trigg
 }
 
 
-
-function isLoop(block){
-    if(block === "for all"){
+function isLoop(block) {
+    if (block === "for all") {
         console.log("FOUND LOOP: for all");
         return true;
     }
-    if(block === "for specific"){
+    if (block === "for specific") {
         console.log("FOUND LOOP: for specific");
         return true;
     }
-    if(block === "for name"){
+    if (block === "for name") {
         console.log("FOUND LOOP: for all");
         return true;
     }
     return false;
 }
-function getDataFromBlock(block){
+
+function getDataFromBlock(block) {
     switch (block) {
         case "on start":
             console.log("--On Start--");
@@ -1105,177 +1112,180 @@ function getDataFromBlock(block){
             break;
     }
 }
+
 function parseDataForFunctionToPass(method, x, y, z, sx, sy, sz, xRot, yRot, zRot, xRotSpeed, yRotSpeed, zRotSpeed,
-                                    r, g, b, ambientR, ambientG, ambientB, useAnimation, camera, opacity, transparency, sumAllValues, value){
+                                    r, g, b, ambientR, ambientG, ambientB, useAnimation, camera, opacity, transparency, sumAllValues, value) {
     let data = method;
 
     //x y z
     //----------
-    if(x !== null)
+    if (x !== null)
         x = x.toString() + ",";
     else
         x = "null,";
 
-    if(y !== null)
+    if (y !== null)
         y = y.toString() + ",";
     else
         y = "null,";
 
-    if(z !== null)
+    if (z !== null)
         z = z.toString() + ",";
     else
         z = "null,";
     //sx sy sz
     //----------
-    if(sx !== null)
+    if (sx !== null)
         sx = sx.toString() + ",";
     else
         sx = "null,";
 
-    if(sy !== null)
+    if (sy !== null)
         sy = sy.toString() + ",";
     else
         sy = "null,";
 
-    if(sz !== null)
+    if (sz !== null)
         sz = sz.toString() + ",";
     else
         sz = "null,";
     //xRot yRot zRot
     //----------
-    if(xRot !== null)
+    if (xRot !== null)
         xRot = xRot.toString() + ",";
     else
         xRot = "null,";
 
-    if(yRot !== null)
+    if (yRot !== null)
         yRot = yRot.toString() + ",";
     else
         yRot = "null,";
 
-    if(zRot !== null)
+    if (zRot !== null)
         zRot = zRot.toString() + ",";
     else
         zRot = "null,";
     //xRotSpeed yRotSpeed zRotSpeed
     //----------
-    if(xRotSpeed !== null)
+    if (xRotSpeed !== null)
         xRotSpeed = xRotSpeed.toString() + ",";
     else
         xRotSpeed = "null,";
 
-    if(yRotSpeed !== null)
+    if (yRotSpeed !== null)
         yRotSpeed = yRotSpeed.toString() + ",";
     else
         yRotSpeed = "null,";
 
-    if(zRotSpeed !== null)
+    if (zRotSpeed !== null)
         zRotSpeed = zRotSpeed.toString() + ",";
     else
         zRotSpeed = "null,";
     //r g b
     //----------
-    if(r !== null)
+    if (r !== null)
         r = r.toString() + ",";
     else
         r = "null,";
 
-    if(g !== null)
+    if (g !== null)
         g = g.toString() + ",";
     else
         g = "null,";
 
-    if(b !== null)
+    if (b !== null)
         b = b.toString() + ",";
     else
         b = "null,";
     //rambient gambient bambient
     //----------
-    if(ambientR !== null)
+    if (ambientR !== null)
         ambientR = ambientR.toString() + ",";
     else
         ambientR = "null,";
 
-    if(ambientG !== null)
+    if (ambientG !== null)
         ambientG = ambientG.toString() + ",";
     else
         ambientG = "null,";
 
-    if(ambientB !== null)
+    if (ambientB !== null)
         ambientB = ambientB.toString() + ",";
     else
         ambientB = "null,";
     //other
     //---------
-    if(useAnimation !== null)
+    if (useAnimation !== null)
         useAnimation = useAnimation.toString() + ",";
     else
         useAnimation = "null,";
 
-    if(camera !== null)
+    if (camera !== null)
         camera = camera.toString() + ",";
     else
         camera = "null,";
 
-    if(opacity !== null)
+    if (opacity !== null)
         opacity = opacity.toString() + ",";
     else
         opacity = "null,";
 
-    if(transparency !== null)
+    if (transparency !== null)
         transparency = transparency.toString() + ",";
     else
         transparency = "null,";
 
-    if(sumAllValues !== null)
+    if (sumAllValues !== null)
         sumAllValues = sumAllValues.toString();
     else
         sumAllValues = "null";
 
 
-
-    if(value !== undefined) {
+    if (value !== undefined) {
         value = value.toString() + ",";
         data += value + x + y + z + sx + sy + sz + xRot + yRot + zRot + xRotSpeed + yRotSpeed + zRotSpeed +
             r + g + b + ambientR + ambientG + ambientB + useAnimation + camera + opacity + transparency + sumAllValues + ");";
     }
-    else{
+    else {
         data += x + y + z + sx + sy + sz + xRot + yRot + zRot + xRotSpeed + yRotSpeed + zRotSpeed +
             r + g + b + ambientR + ambientG + ambientB + useAnimation + camera + opacity + transparency + sumAllValues + ");";
     }
 
     return data;
 }
-function onFrameConvert(triggerValue, functionToPass){
+
+function onFrameConvert(triggerValue, functionToPass) {
     let ifStatement = "if ( playFrames && fpsSum === " + triggerValue[0] + " ) {\n        ";
     let currData = "";
 
     console.log(triggerValue);
 
-    if(tempCodeToAddArr === "")
+    if (tempCodeToAddArr === "")
         currData = ifStatement + functionToPass;
     else
         currData = "\n        " + functionToPass;
 
     tempCodeToAddArr += currData;
 }
-function onFrameRepeatConvert(triggerValue, functionToPass){
+
+function onFrameRepeatConvert(triggerValue, functionToPass) {
     let ifStatement = "if ( playFrames && fpsSum % " + triggerValue[0] + " === 0 ) {\n        ";
     let currData = "";
 
-    if(tempCodeToAddArr === "")
+    if (tempCodeToAddArr === "")
         currData = ifStatement + functionToPass;
     else
         currData = "\n        " + functionToPass;
 
     tempCodeToAddArr += currData;
 }
-function onKeyDownPressConvert(triggerValue, functionToPass){
+
+function onKeyDownPressConvert(triggerValue, functionToPass) {
     let ifStatement = "for (let i in keysArray) {\n        " +
         "if (keysArray[i].keyName === \"" + triggerValue[0] + "\" && keysArray[i].keyPressed) {\n            ";
     let currData = "";
 
-    if(tempCodeToAddArr === "")
+    if (tempCodeToAddArr === "")
         currData = ifStatement + functionToPass;
     else
         currData = "\n            " + functionToPass;
@@ -1283,13 +1293,14 @@ function onKeyDownPressConvert(triggerValue, functionToPass){
     tempCodeToAddArr += currData;
 
 }
-function onKeyUpPressConvert(triggerValue, functionToPass){
+
+function onKeyUpPressConvert(triggerValue, functionToPass) {
     let ifStatement = "for (let i in keysArray) {\n        " +
         "if (keysArray[i].keyName === \"" + triggerValue[0] + "\" && keysArray[i].keyUp) {\n            " +
         "keysArray[i].keyUp = false;\n            ";
     let currData = "";
 
-    if(tempCodeToAddArr === "")
+    if (tempCodeToAddArr === "")
         currData = ifStatement + functionToPass;
     else
         currData = "\n            " + functionToPass;
@@ -1298,11 +1309,11 @@ function onKeyUpPressConvert(triggerValue, functionToPass){
 
 }
 
-function onCoordinateConvert(triggerValue, functionToPass, axis){
+function onCoordinateConvert(triggerValue, functionToPass, axis) {
     let ifStatement = "if ( " + axis + " " + triggerValue[1] + " " + triggerValue[0] + " ) {\n        ";
     let currData = "";
 
-    if(tempCodeToAddArr === "")
+    if (tempCodeToAddArr === "")
         currData = ifStatement + functionToPass;
     else
         currData = "\n        " + functionToPass;

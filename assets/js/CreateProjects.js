@@ -4,7 +4,7 @@
 
 
 
-$(document).ready(function() {
+$(document).ready(function () {
     //ON Click New project button
     $(document).on('click', '#new-project-btn', function (e) {
         e.preventDefault();
@@ -17,17 +17,15 @@ $(document).ready(function() {
         let projectName = $(document).find('#usr-project-name').val();
         let aboutProject = $(document).find('textarea#usr-project-about').val();
 
-
         console.log("values: " + projectName);
         console.log("about: " + aboutProject);
 
-
-        if(projectName === ""){
+        if (projectName === "") {
             //empty name
             $('#new-project-form').addClass('has-error');
             $('#error-explanation').html("Empty name is not allowed");
         }
-        else{
+        else {
             $.ajax({
                 type: "POST",
                 url: "../php/create_project.php",
@@ -36,7 +34,7 @@ $(document).ready(function() {
                     about: aboutProject,
                     userId: userId
                 },
-            }).done(function(response) {
+            }).done(function (response) {
                 let responseArray = JSON.parse(response);
 
                 //checking last color
@@ -44,20 +42,19 @@ $(document).ready(function() {
                 let possibleColors = ["primary", "info", "success", "warning", "danger"];
                 let color = "";
 
-                if(createdProjects.length === 0)
+                if (createdProjects.length === 0)
                     color = "primary";
-                else{
-                    let parsedClassName = createdProjects[createdProjects.length - 1].className.
-                    substr(32, createdProjects[createdProjects.length - 1].className.length);
-
+                else {
+                    let parsedClassName = createdProjects[createdProjects.length - 1].className.substr(32,
+                        createdProjects[createdProjects.length - 1].className.length);
                     let i;
-                    for (i = 0; i < possibleColors.length; i++){
-                        if(possibleColors[i] === parsedClassName){
-                            if(i === possibleColors.length-1){
+                    for (i = 0; i < possibleColors.length; i++) {
+                        if (possibleColors[i] === parsedClassName) {
+                            if (i === possibleColors.length - 1) {
                                 i = 0;
                                 break;
                             }
-                            else{
+                            else {
                                 i++;
                                 break;
                             }
@@ -76,7 +73,7 @@ $(document).ready(function() {
                     "</div>" +
                     "</div>" +
                     "<div class=\"col-md-3 cta-button\">" +
-                    "<a href=\"editor.php?project_id="+ responseArray['project_id'] + "&project_name=" + responseArray['name'] +"\" class=\"btn btn-lg btn-block btn-" + color + "\">Open</a>" +
+                    "<a href=\"editor.php?project_id=" + responseArray['project_id'] + "&project_name=" + responseArray['name'] + "\" class=\"btn btn-lg btn-block btn-" + color + "\">Open</a>" +
                     "<a href=\"#\" id=\"" + responseArray['project_id'] + "\" class=\"del-project-btn btn btn-lg btn-block btn-" + color + "\">Delete</a>" +
                     "</div>" +
                     "</div>" +
@@ -95,8 +92,6 @@ $(document).ready(function() {
 
     //On deleting project
     $(document).on('click', '.del-project-btn', function (e) {
-        console.log("CLICK DELETE");
-
         let projectId = $(this).attr('id');
         let divToDelete = $(this)[0].parentNode.parentNode.parentNode;
         $.ajax({
@@ -106,17 +101,17 @@ $(document).ready(function() {
                 projectId: projectId,
                 userId: userId
             },
-        }).done(function(response) {
+        }).done(function (response) {
             console.log(response);
             divToDelete.remove();
-        }).error(function (response){
+        }).error(function (response) {
             console.log(response);
         });
     });
 
 
     //Detect key input (delete error signs in Modal window)
-    $('#usr-project-name').bind('input', function() {
+    $('#usr-project-name').bind('input', function () {
         $('#new-project-form').removeClass('has-error');
         $('#error-explanation').html("");
     });

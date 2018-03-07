@@ -13,7 +13,7 @@ if (isset($_FILES['upl']) && $_FILES['upl']['error'] == 0) {
         exit;
     }
 
-    $file_name = $path_parts['filename'] . '_' . time() . '.' . $path_parts['extension'];
+    $file_name = $path_parts['filename'] . '_' . time() . "_" . $_POST['userId'] . "_" . $_POST['projectId'] . "." . $path_parts['extension'];
     if (move_uploaded_file($_FILES['upl']['tmp_name'], '../uploads/' . $file_name)) {
         echo json_encode(array('extension' => $extension, 'name' => $file_name));
         exit;
@@ -126,24 +126,72 @@ function moveFile($old_file_path, $new_file_path)
 
 //Calling load user data (textures/music/json) function
 if (isset($_POST['callLoadUserData'])) {
-    echo loadUserData($_POST['callLoadUserData']);
+    echo loadUserData($_POST['callLoadUserData'], $_POST['userId'], $_POST['projectId']);
 }
+
+if (isset($_POST['texturePaths'][0])) {
+    echo loadAllTextures($_POST['texturePaths'][0], $_POST['texturePaths'][1], $_POST['userId'], $_POST['projectId']);
+}
+
 //Load user data (textures/music/json)
-function loadUserData($dir)
+function loadUserData($dir, $userId, $projectId)
 {
     $folderContent = array();
     // Open a directory, and read its contents
     if (is_dir($dir)) {
         if ($dh = opendir($dir)) {
             while (($file = readdir($dh)) !== false) {
-                //echo "filename:" . $file . "<br>";
-                array_push($folderContent, $file);
+                if (isFileOwner($file, $userId, $projectId)) {
+                    array_push($folderContent, $file);
+                }
             }
             closedir($dh);
         }
     }
     //return $dir;
-    return json_encode(array('data' => $folderContent));
+    return json_encode(array('data' => $folderContent/*, 'userId' => $userId, 'prId' => $projectId*/));
+}
+
+//Check file owner
+function isFileOwner($file, $userId, $projectId)
+{
+    $explode = explode("_", $file);
+
+    $fileUserId = $explode[sizeof($explode) - 2];
+    $fileProjectId = explode(".", $explode[sizeof($explode) - 1])[0];
+
+    if ($fileUserId == $userId && $fileProjectId == $projectId) {
+        return true;
+    }
+    return false;
+}
+
+//Load user data (textures/music/json)
+function loadAllTextures($dir1, $dir2, $userId, $projectId)
+{
+    $folderContent = array();
+    // Open a directory, and read its contents
+    if (is_dir($dir1)) {
+        if ($dh = opendir($dir1)) {
+            while (($file = readdir($dh)) !== false) {
+                if (isFileOwner($file, $userId, $projectId)) {
+                    array_push($folderContent, "assets/img/textures/" . $file);
+                }
+            }
+            closedir($dh);
+        }
+    }
+    if (is_dir($dir2)) {
+        if ($dh = opendir($dir2)) {
+            while (($file = readdir($dh)) !== false) {
+                if (isFileOwner($file, $userId, $projectId)) {
+                    array_push($folderContent, "assets/img/textures/user_textures/" . $file);
+                }
+            }
+            closedir($dh);
+        }
+    }
+    return json_encode(array('data' => $folderContent/*, 'userId' => $userId, 'prId' => $projectId*/));
 }
 
 
@@ -158,7 +206,7 @@ if (isset($_POST['imgBase64'])) {
     if ($_POST['imgName'] != null) {
         $fileName = "../shapes/user_saved_shapes/" . $_POST['imgName'];
     } else {
-        $fileName = "../shapes/user_saved_shapes/" . time() . ".png";
+        $fileName = "../shapes/user_saved_shapes/" . time() . "_" . $_POST['userId'] . "_" . $_POST['projectId'] . ".png";
     }
 
 
@@ -166,47 +214,13 @@ if (isset($_POST['imgBase64'])) {
 
     echo json_encode(array('name' => $fileName, 'passImgName' => $_POST['imgName']));
 }
-//Saving user data about all objects and shapes
-if (isset($_POST['savedShape'])) {
-    $savedShapeData = $_POST['savedShape'];
-    $objectData = $_POST['objectData'];
-
-    file_put_contents("../shapes/user_shapes_data/savedShapes.txt", $savedShapeData);
-    file_put_contents("../shapes/user_shapes_data/liveObjects.txt", $objectData);
-
-    echo json_encode(array('savedData' => $savedShapeData, 'objectData' => $objectData));
-}
-//Saving scene
-if (isset($_POST['sceneToSave'])) {
-    $sceneData = $_POST['sceneToSave'];
-
-    file_put_contents("shapes/user_shapes_data/savedScene.txt", "");
-    file_put_contents("shapes/user_shapes_data/savedScene.txt", $sceneData);
-
-    echo json_encode(array('savedScene' => $sceneData));
-}
-//Saving SVG Code Scene
-if (isset($_POST['svgSceneToSave'])) {
-    $sceneData = $_POST['svgSceneToSave'];
-
-    file_put_contents("../shapes/user_shapes_data/savedSvgCodeScene.txt", "");
-    file_put_contents("../shapes/user_shapes_data/savedSvgCodeScene.txt", $sceneData);
-
-    echo json_encode(array('savedSvgCodeScene' => $sceneData));
-}
-//Loading SVG Code Scene
-if (isset($_POST['getSvgCodeScene'])) {
-    $dir = "../shapes/user_shapes_data/";
-    $file = "savedSvgCodeScene.txt";
-
-    echo getFiles($file, $dir);
-}
 
 if (isset($_POST['callGetObjectFiles'])) {
     echo getFiles($_POST['callGetObjectFiles'][0], $_POST['callGetObjectFiles'][1]);
 }
 //Get data from files
-function getFiles($file, $dir){
+function getFiles($file, $dir)
+{
     $fileData = file_get_contents($dir . $file);
 
     if (strlen($fileData) == 0)
@@ -216,37 +230,3 @@ function getFiles($file, $dir){
 
     return json_encode(array('data' => $fileData, 'status' => $status));
 }
-
-if (isset($_POST['texturePaths'][0])) {
-    echo loadAllTextures($_POST['texturePaths'][0], $_POST['texturePaths'][1]);
-}
-
-//Load user data (textures/music/json)
-function loadAllTextures($dir1, $dir2)
-{
-    $folderContent = array();
-    // Open a directory, and read its contents
-    if (is_dir($dir1)) {
-        if ($dh = opendir($dir1)) {
-            while (($file = readdir($dh)) !== false) {
-                //echo "filename:" . $file . "<br>";
-                array_push($folderContent, "assets/img/textures/" . $file);
-            }
-            closedir($dh);
-        }
-    }
-    if (is_dir($dir2)) {
-        if ($dh = opendir($dir2)) {
-            while (($file = readdir($dh)) !== false) {
-                //echo "filename:" . $file . "<br>";
-                array_push($folderContent, "assets/img/textures/user_textures/" . $file);
-            }
-            closedir($dh);
-        }
-    }
-    return json_encode(array('data' => $folderContent));
-}
-
-
-//Clearing UserConvertedCode file and filling with saved blocks data
-

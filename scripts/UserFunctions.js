@@ -3,86 +3,16 @@
  */
 
 
-//Coordinates
-function changeX(name, value) {
-    getObjByName(name).x = value;
-}
-function changeY(name, value) {
-    getObjByName(name).y = value;
-}
-function changeZ(name, value) {
-    getObjByName(name).z = value;
-}
-
-//Scaling
-function changeSx(name, value){
-    getObjByName(name).sx = value;
-}
-function changeSy(name, value){
-    getObjByName(name).sy = value;
-}
-function changeSz(name, value){
-    getObjByName(name).sz = value;
-}
-
-//Rotation degrees
-function changeXRotationDeg(name, value) {
-    getObjByName(name).xRot = value;
-}
-function changeYRotationDeg(name, value) {
-    getObjByName(name).yRot = value;
-}
-function changeZRotationDeg(name, value) {
-    getObjByName(name).zRot = value;
-}
-
-//Rotation Speed
-function changeXRotationSpeed(name, value) {
-    getObjByName(name).xRotSpeed = value;
-}
-function changeYRotationSpeed(name, value) {
-    getObjByName(name).yRotSpeed = value;
-}
-function changeZRotationSpeed(name, value) {
-    getObjByName(name).zRotSpeed = value;
-}
-
-//Or use animation
-function useAnimation(name, value) {
-    getObjByName(name).animateRotation = value;
-}
-//Opacity and color
-function changeR(name, value) {
-    getObjByName(name).r = value;
-}
-function changeG(name, value) {
-    getObjByName(name).g = value;
-}
-function changeB(name, value) {
-    getObjByName(name).b = value;
-}
-function changeOpacity(name, value) {
-    getObjByName(name).alpha = value;
-}
-//Waiting before animation start
-function waitBeforeAnimationStart(value){
-
-}
-
-//Assign object to camera
-function assignCameraToObj(name, value){
-    getObjByName(name).useCamera = value;
-}
 
 //Apply changes to all objects
 function applyChangesToAll(x, y, z, sx, sy, sz, xRot, yRot, zRot,
                            xRotSpeed, yRotSpeed, zRotSpeed, r, g, b,
-                           ambientR, ambientG, ambientB, animateRotation, useCamera, opacity, transparency, sumAllValues){
+                           ambientR, ambientG, ambientB, animateRotation, useCamera, opacity, transparency, sumAllValues) {
 
 
     console.log("sumAllValues: " + sumAllValues);
     console.log("Going to apply changes TO ALL");
-    if(sumAllValues) {
+    if (sumAllValues) {
         console.log("Summing values");
         //summing up all given values
         if (ambientR !== null)
@@ -134,7 +64,7 @@ function applyChangesToAll(x, y, z, sx, sy, sz, xRot, yRot, zRot,
                 objArr[i].useCamera = useCamera;
         }
     }
-    else{
+    else {
         if (ambientR !== null)
             ambientLight.r = parseFloat(ambientR);
         if (ambientG !== null)
@@ -188,15 +118,16 @@ function applyChangesToAll(x, y, z, sx, sy, sz, xRot, yRot, zRot,
 
     console.log(objArr);
 }
+
 //Apply changes to specific type of objects
 function applyChangesToSpecificType(objectType, x, y, z, sx, sy, sz, xRot, yRot, zRot,
-                           xRotSpeed, yRotSpeed, zRotSpeed, r, g, b,
-                           ambientR, ambientG, ambientB, animateRotation, useCamera, opacity, transparency, sumAllValues){
+                                    xRotSpeed, yRotSpeed, zRotSpeed, r, g, b,
+                                    ambientR, ambientG, ambientB, animateRotation, useCamera, opacity, transparency, sumAllValues) {
 
 
     console.log("Going to apply changes TO: " + objectType);
 
-    if(sumAllValues) {
+    if (sumAllValues) {
         console.log("Summing values");
         //summing up all given values
         if (ambientR !== null)
@@ -250,7 +181,7 @@ function applyChangesToSpecificType(objectType, x, y, z, sx, sy, sz, xRot, yRot,
             }
         }
     }
-    else{
+    else {
         if (ambientR !== null)
             ambientLight.r = parseFloat(ambientR);
         if (ambientG !== null)
@@ -305,17 +236,18 @@ function applyChangesToSpecificType(objectType, x, y, z, sx, sy, sz, xRot, yRot,
 
     console.log(objArr);
 }
+
 //Apply changes to specific type of objects
 function applyChangesToSpecificObject(name, x, y, z, sx, sy, sz, xRot, yRot, zRot,
-                                    xRotSpeed, yRotSpeed, zRotSpeed, r, g, b,
-                                    ambientR, ambientG, ambientB, animateRotation, useCamera, opacity, transparency, sumAllValues){
+                                      xRotSpeed, yRotSpeed, zRotSpeed, r, g, b,
+                                      ambientR, ambientG, ambientB, animateRotation, useCamera, opacity, transparency, sumAllValues) {
 
 
     console.log("Going to apply changes TO: " + name);
 
     let object = getObjByName(name);
 
-    if(sumAllValues) {
+    if (sumAllValues) {
         console.log("Summing values");
         if (ambientR !== null)
             ambientLight.r = parseFloat(ambientR);
@@ -323,7 +255,6 @@ function applyChangesToSpecificObject(name, x, y, z, sx, sy, sz, xRot, yRot, zRo
             ambientLight.g = parseFloat(ambientG);
         if (ambientB !== null)
             ambientLight.b = parseFloat(ambientB);
-
 
 
         if (x !== null)
@@ -365,7 +296,7 @@ function applyChangesToSpecificObject(name, x, y, z, sx, sy, sz, xRot, yRot, zRo
         if (useCamera !== null)
             object.useCamera = useCamera;
     }
-    else{
+    else {
         if (ambientR !== null)
             ambientLight.r = parseFloat(ambientR);
         if (ambientG !== null)
@@ -413,7 +344,6 @@ function applyChangesToSpecificObject(name, x, y, z, sx, sy, sz, xRot, yRot, zRo
         if (useCamera !== null)
             object.useCamera = useCamera;
     }
-
 
 
     console.log(object);

@@ -11,7 +11,7 @@
 session_start();
 
 // If session variable is not set it will redirect to login page
-if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
+if (!isset($_SESSION['username']) || empty($_SESSION['username'])) {
     header("location: ../index.php");
     exit;
 }
@@ -54,7 +54,7 @@ if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
             </ul>
             <form class="navbar-right">
                 <div align="center" style="color: white; font-size: 16px; font-family: Helvetica, Arial, sans-serif">
-                    <?php echo "Welcome, " . "<b>" . "ID: " . $_SESSION['user_id'] . "  " . $_SESSION['username'] .  "</b>" ?>
+                    <?php echo "Welcome, " . "<b>" . "ID: " . $_SESSION['user_id'] . "  " . $_SESSION['username'] . "</b>" ?>
                 </div>
                 <div align="center" class="form-group">
 
@@ -74,15 +74,15 @@ if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
 <!-- Carousel -->
 <div id="theCarousel" class="carousel slide" data-ride="carousel">
     <ol class="carousel-indicators">
-        <li data-target="#theCarousel" data-slide-to="0" class="active"> </li >
-        <li data-target="#theCarousel" data-slide-to="1"> </li >
-        <li data-target="#theCarousel" data-slide-to="2"> </li>
-    </ol >
+        <li data-target="#theCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#theCarousel" data-slide-to="1"></li>
+        <li data-target="#theCarousel" data-slide-to="2"></li>
+    </ol>
 
     <!-- Define the text to place over the image -->
     <div class="carousel-inner">
-        <div class="item active" >
-            <div class ="slide1"></div>
+        <div class="item active">
+            <div class="slide1"></div>
             <div class="carousel-caption">
                 <h1>Update 0.9.1</h1>
                 <h3>Meet the alpha version of Blockly Code</h3>
@@ -92,13 +92,14 @@ if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
                 <h2><a href="#update-log" class="btn btn-primary btn-sm">More info</a></h2>
             </div>
         </div>
-        <div class="item" >
-            <div class ="slide2"></div>
+        <div class="item">
+            <div class="slide2"></div>
             <div class="carousel-caption">
                 <h1>Experiencing difficulties?</h1>
                 <br>
                 <p>Do not know how to start?</p>
-                <br><h2><a href="demo.php" class="btn btn-primary btn-sm">Check our example</a></h2></div>
+                <br>
+                <h2><a href="demo.php" class="btn btn-primary btn-sm">Check our example</a></h2></div>
         </div>
         <div class="item">
             <div class="slide3"></div>
@@ -127,15 +128,18 @@ if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
     <div class="container-fluid">
         <div class="row">
             <h1 class="col-md-12 title">StickJS - easy & fun way to create simple 3D scenes</h1>
-            <p class="col-md-push-3 col-md-6 "><strong>StickJS</strong> is some sort of Scratch, which allows for kids create simple games or scenes
+            <p class="col-md-push-3 col-md-6 "><strong>StickJS</strong> is some sort of Scratch, which allows for kids
+                create simple games or scenes
                 not just in 2D, but now also in 3D. Main feature of this engine is that it's developed
                 on webgl, that support all modern browsers and you do not need to write code just simply
                 combine blocks and get your result. It's as simple as it seems to be. Even 1th grade school
                 student should be able to use it. In my opinion, this project could be great tool for teachers,
                 who want to involve students in programing.</p>
             <div class="title col-md-12" style="text-align: center">
-                <p class="col-md-push-3 col-md-6 " style="padding-top: 2%"> <strong>StickJS</strong> source code you can find
-                    <a href="https://github.com/JaroslavTkac/StickJS-Simple-JavaScript-HTML5-Game-Engine">here</a> on my github page.</p>
+                <p class="col-md-push-3 col-md-6 " style="padding-top: 2%"><strong>StickJS</strong> source code you can
+                    find
+                    <a href="https://github.com/JaroslavTkac/StickJS-Simple-JavaScript-HTML5-Game-Engine">here</a> on my
+                    github page.</p>
             </div>
             <div class="title col-md-12" style="text-align: center">
                 <h2>Common don't be shy, try our example!</h2>
@@ -151,8 +155,9 @@ if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
     <div class="container">
         <div class="row">
             <h1 class="title col-md-12">Project Author</h1>.
-            <div align="center" class="col-md-5 col-sm-12 col-xs-12" >
-                <img class="featurette-image img-fluid mx-auto img-circle" style="height: 250px" src="../assets/img/design/Author.jpg" alt="Author photo">
+            <div align="center" class="col-md-5 col-sm-12 col-xs-12">
+                <img class="featurette-image img-fluid mx-auto img-circle" style="height: 250px"
+                     src="../assets/img/design/Author.jpg" alt="Author photo">
             </div>
             <div class="col-md-7 col-sm-12 col-xs-12">
                 <p>My name is Jaroslav Tkaciuk.
@@ -176,7 +181,9 @@ if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
                     <li>All three loops now working correctly.</li>
                     <li>Added 2 more buttons to blockly code section for future features.</li>
                     <li>Added 2 new setter blocks.</li>
-                    <li>Now user created <b>blockly code</b> is automatically saving on server every 5 seconds and also after any produced action with blocks.</li>
+                    <li>Now user created <b>blockly code</b> is automatically saving on server every 5 seconds and also
+                        after any produced action with blocks.
+                    </li>
                 </ul>
                 <h2>0.9.1.1</h2>
                 <hr class="update-hr">
@@ -206,7 +213,9 @@ if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
                 <hr class="update-hr">
                 <ul>
                     <li>Navigation bars fixed, now they do not overlaps other content.</li>
-                    <li>Fixed bug, when uncached editor web page received thousands of WEBGL rendering errors from shapes preview window.</li>
+                    <li>Fixed bug, when uncached editor web page received thousands of WEBGL rendering errors from
+                        shapes preview window.
+                    </li>
                 </ul>
                 <h2>0.9.0.2</h2>
                 <hr class="update-hr">
@@ -216,15 +225,21 @@ if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
                 <h2>0.9.0.1</h2>
                 <hr class="update-hr">
                 <ul>
-                    <li>Updated shapes deleting, now when deleting shape from selectable window, shape also deleting from everywhere.</li>
+                    <li>Updated shapes deleting, now when deleting shape from selectable window, shape also deleting
+                        from everywhere.
+                    </li>
                     <li>Bug fixes.</li>
                 </ul>
                 <h2>0.9.0.0</h2>
                 <hr class="update-hr">
                 <ul>
                     <li>New UX/UI.</li>
-                    <li>Now instead of images of shapes you can actually see object in 3D and modify all objects at once.</li>
-                    <li>Now you can import your objects in .obj format, but objects should be unwrapped and only one object per file.</li>
+                    <li>Now instead of images of shapes you can actually see object in 3D and modify all objects at
+                        once.
+                    </li>
+                    <li>Now you can import your objects in .obj format, but objects should be unwrapped and only one
+                        object per file.
+                    </li>
                     <li>Now you can import music files. (only mp3 files are supported)</li>
                     <li>Now you can import jpg and png files and use them as textures.</li>
                     <li>Now it's possible to save designed object from editor.</li>
@@ -239,14 +254,10 @@ if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
 </div>
 
 
-
-
 <hr>
 <footer>
-    <p>&copy; Jaroslav Tkaciuk <?php echo date("Y")?></p>
+    <p>&copy; Jaroslav Tkaciuk <?php echo date("Y") ?></p>
 </footer>
-
-
 
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>

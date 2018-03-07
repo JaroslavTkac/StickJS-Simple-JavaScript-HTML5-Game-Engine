@@ -2,39 +2,43 @@
  * Created by jaroslavtkaciuk on 08/09/2017.
  */
 
-function findDuplicateName(currName){
-    for(let i = 0; i < objArr.length; i++){
-        if(objArr[i].name === currName){
+function findDuplicateName(currName) {
+    for (let i = 0; i < objArr.length; i++) {
+        if (objArr[i].name === currName) {
             return true;
         }
     }
     return false;
 }
+
 function getSavedShapeByName(name) {
-    for (let i = 0; i < savedShapesArr.length; i++){
+    for (let i = 0; i < savedShapesArr.length; i++) {
         if (savedShapesArr[i].link === name)
             return savedShapesArr[i].value;
     }
 }
-function getSavedShapeElementIndex(name){
-    for (let i = 0; i < savedShapesArr.length; i++){
+
+function getSavedShapeElementIndex(name) {
+    for (let i = 0; i < savedShapesArr.length; i++) {
         if (savedShapesArr[i].link === name)
             return i;
     }
 }
-function getObjByName(name){
-    for (let i = 0; i < objArr.length; i++){
+
+function getObjByName(name) {
+    for (let i = 0; i < objArr.length; i++) {
         if (objArr[i].name === name)
             return objArr[i];
     }
 }
+
 //Callback for reset scene function
 function waitUntilSavedSceneDataLoads() {
     if ((sceneToLoadArr !== null) && (sceneToLoadArr.length === 0)) {
         setTimeout(waitUntilSavedSceneDataLoads, 50);
         return;
     }
-    if((sceneToLoadArr !== null)) {
+    if ((sceneToLoadArr !== null)) {
         for (let i = 0; i < sceneToLoadArr.length; i++) {
             //init objects
             new LoadObject(sceneToLoadArr[i].jsonPath, sceneToLoadArr[i].textureSrc, {
@@ -72,13 +76,13 @@ function waitUntilSavedSceneDataLoads() {
 }
 
 // Some sort of call back (waiting for savedShapeImg value)
-function waitUntilCanvasImgUploading(){
-    if (savedShapeImg === ""){
+function waitUntilCanvasImgUploading() {
+    if (savedShapeImg === "") {
         setTimeout(waitUntilCanvasImgUploading, 50);
         return;
     }
     let transparent = true;
-    if(opacitySlider.option("value") === 1.0)
+    if (opacitySlider.option("value") === 1.0)
         transparent = false;
     let objValues = {
         shape: currentlySelectedShape,
@@ -102,24 +106,24 @@ function waitUntilCanvasImgUploading(){
     };
     //console.log("Saved shape ARR in wait until");
     //console.log(savedShapeImg);
-    savedShapesArr.push({link : savedShapeImg, value : objValues});
+    savedShapesArr.push({link: savedShapeImg, value: objValues});
 
     console.log(savedShapesArr);
-   // console.log(getSavedShapeByName(savedShapeImg));
+    // console.log(getSavedShapeByName(savedShapeImg));
 
     //Modify all shapes that use same base object
-    for (let i = 0; i < objArr.length; i++){
+    for (let i = 0; i < objArr.length; i++) {
         console.log(objArr[i].savedShapeName + " === " + savedShapeImg);
-        if(objArr[i].savedShapeName === savedShapeImg){
-            objArr[i].r = savedShapesArr[savedShapesArr.length-1].value.r;
-            objArr[i].g = savedShapesArr[savedShapesArr.length-1].value.g;
-            objArr[i].b = savedShapesArr[savedShapesArr.length-1].value.b;
-            objArr[i].alpha = savedShapesArr[savedShapesArr.length-1].value.alpha;
+        if (objArr[i].savedShapeName === savedShapeImg) {
+            objArr[i].r = savedShapesArr[savedShapesArr.length - 1].value.r;
+            objArr[i].g = savedShapesArr[savedShapesArr.length - 1].value.g;
+            objArr[i].b = savedShapesArr[savedShapesArr.length - 1].value.b;
+            objArr[i].alpha = savedShapesArr[savedShapesArr.length - 1].value.alpha;
             objArr[i].transparency = objArr[i].alpha !== 1;
-            objArr[i].lighting = savedShapesArr[savedShapesArr.length-1].value.lighting;
-            objArr[i].useTexture = savedShapesArr[savedShapesArr.length-1].value.useTexture;
-            objArr[i].textureSrc = savedShapesArr[savedShapesArr.length-1].value.texture;
-            if(objArr[i].useTexture) {
+            objArr[i].lighting = savedShapesArr[savedShapesArr.length - 1].value.lighting;
+            objArr[i].useTexture = savedShapesArr[savedShapesArr.length - 1].value.useTexture;
+            objArr[i].textureSrc = savedShapesArr[savedShapesArr.length - 1].value.texture;
+            if (objArr[i].useTexture) {
                 objArr[i].initTexture(objArr[i].texture, objArr[i].textureSrc, "objArr", webgl);
             }
         }
@@ -127,6 +131,7 @@ function waitUntilCanvasImgUploading(){
     savedShapeImg = "";
     saveData();
 }
+
 // Will remove all falsy values: undefined, null, 0, false, NaN and "" (empty string)
 function cleanArray(actual) {
     let newArray = new Array();
@@ -137,6 +142,7 @@ function cleanArray(actual) {
     }
     return newArray;
 }
+
 function fpsCounter() {
     let delta = (Date.now() - lastCalledTime) / 1000;
     lastCalledTime = Date.now();
@@ -150,13 +156,14 @@ function fpsCounter() {
     //fpsNode.nodeValue = "Current fps: " + fps.toFixed(2);
 }
 
-function avgFps(){
+function avgFps() {
     framesPassed++;
     avgFpsElement.appendChild(avgFpsNode);
-    avgFpsNode.nodeValue = "Average fps: " + (fpsSum/framesPassed).toFixed(2);
+    avgFpsNode.nodeValue = "Average fps: " + (fpsSum / framesPassed).toFixed(2);
 }
-function getKeyByName(name){
-    for(let i in keysArray) {
+
+function getKeyByName(name) {
+    for (let i in keysArray) {
         if (keysArray[i].keyName === name)
             return keysArray[i];
     }

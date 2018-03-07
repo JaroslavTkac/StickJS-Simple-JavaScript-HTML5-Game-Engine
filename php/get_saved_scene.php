@@ -13,7 +13,7 @@ require_once 'connection.php';
 
 if(isset($_POST['projectId'])){
     $sql = "SELECT json_data
-            FROM users_live_objects 
+            FROM users_saved_scene 
             WHERE project_id = ?";
 
     if($stmt = $mysqli->prepare($sql)){

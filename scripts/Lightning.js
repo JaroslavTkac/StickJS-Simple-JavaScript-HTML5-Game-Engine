@@ -2,13 +2,14 @@
  * Created by jaroslavtkaciuk on 06/04/2017.
  */
 
-function AmbientLight(r, g, b){
+function AmbientLight(r, g, b) {
     this.r = r;
     this.g = g;
     this.b = b;
 }
-class DirectionalLight{
-    constructor(r, g, b, x, y, z, createObj){
+
+class DirectionalLight {
+    constructor(r, g, b, x, y, z, createObj) {
         this.r = r;
         this.g = g;
         this.b = b;
@@ -33,11 +34,12 @@ class DirectionalLight{
             "lighting" : false
         });*/
     }
-    changePlace(x, y, z){
-        if(this.createObj) {
-             modifyObjByName(this.name).x = x;
-             modifyObjByName(this.name).y = y;
-             modifyObjByName(this.name).z = z;
+
+    changePlace(x, y, z) {
+        if (this.createObj) {
+            modifyObjByName(this.name).x = x;
+            modifyObjByName(this.name).y = y;
+            modifyObjByName(this.name).z = z;
         }
 
         this.x = x;
@@ -45,8 +47,9 @@ class DirectionalLight{
         this.z = z;
     }
 }
-class PointLight{
-    constructor(name, r, g, b, x, y, z, radius, alphaInc, saveTo, createObj){
+
+class PointLight {
+    constructor(name, r, g, b, x, y, z, radius, alphaInc, saveTo, createObj) {
         this.r = r;
         this.g = g;
         this.b = b;
@@ -61,7 +64,7 @@ class PointLight{
         this.radius = radius;
         this.name = name;
         this.createObj = createObj;
-        if(this.createObj) {
+        if (this.createObj) {
             /*new LoadObject("shapes/simpleSphere.json", "assets/img/textures/sun.jpg", {
                 "name": this.name,
                 "x": this.x,
@@ -78,8 +81,9 @@ class PointLight{
             }, saveTo);*/
         }
     }
-    changePlace(x, y, z){
-        if(this.createObj) {
+
+    changePlace(x, y, z) {
+        if (this.createObj) {
             modifyObjByName(this.name).x = x;
             modifyObjByName(this.name).y = y;
             modifyObjByName(this.name).z = z;

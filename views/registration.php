@@ -35,7 +35,8 @@ require '../php/register.php';
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="pull-left" href="../index.php"><img style="height: 50px" src="../assets/img/design/StickJSlogo.png"></a>
+            <a class="pull-left" href="../index.php"><img style="height: 50px"
+                                                          src="../assets/img/design/StickJSlogo.png"></a>
         </div>
         <div class="navbar-collapse collapse" id="navbar-main">
             <ul class="nav navbar-nav">
@@ -65,7 +66,8 @@ require '../php/register.php';
             </div>
             <div class="form-group <?php echo (!empty($confirm_password_err)) ? 'has-error' : ''; ?>">
                 <label>Confirm Password</label>
-                <input type="password" name="confirm_password" class="form-control" value="<?php echo $confirm_password; ?>">
+                <input type="password" name="confirm_password" class="form-control"
+                       value="<?php echo $confirm_password; ?>">
                 <span class="help-block"><?php echo $confirm_password_err; ?></span>
             </div>
             <div class="form-group">
@@ -80,10 +82,9 @@ require '../php/register.php';
 <div class="col-lg-12 col-md-12 col-sm-12">
     <hr>
     <footer>
-        <p>&copy; Jaroslav Tkaciuk <?php echo date("Y")?></p>
+        <p>&copy; Jaroslav Tkaciuk <?php echo date("Y") ?></p>
     </footer>
 </div>
-
 
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>

@@ -7,8 +7,8 @@ function animate(array) {
     let timeNow = new Date().getTime();
     if (lastTime !== 0) {
         elapsed = timeNow - lastTime;
-        for(let i in array){
-            if(array[i].animateRotation){
+        for (let i in array) {
+            if (array[i].animateRotation) {
                 array[i].xRot += (array[i].xRotSpeed * elapsed) / 1000.0;
                 array[i].yRot += (array[i].yRotSpeed * elapsed) / 1000.0;
                 array[i].zRot += (array[i].zRotSpeed * elapsed) / 1000.0;
@@ -28,7 +28,7 @@ function drawScene(canvas, webgl, array, mvMatrix, pMatrix, mvMatrixStack, shade
 
     mat4.identity(mvMatrix);
 
-    for (let i in array){
+    for (let i in array) {
         mvPushMatrix(mvMatrix, mvMatrixStack);
 
         if (!array[i].useCamera) {
@@ -41,10 +41,10 @@ function drawScene(canvas, webgl, array, mvMatrix, pMatrix, mvMatrixStack, shade
 
         //Scaling
         let scaleMatrix = new Float32Array([
-            array[i].sx,   0.0,  0.0,  0.0,
-            0.0,  array[i].sy,   0.0,  0.0,
-            0.0,  0.0,  array[i].sz,   0.0,
-            0.0,  0.0,  0.0,  1.0
+            array[i].sx, 0.0, 0.0, 0.0,
+            0.0, array[i].sy, 0.0, 0.0,
+            0.0, 0.0, array[i].sz, 0.0,
+            0.0, 0.0, 0.0, 1.0
         ]);
         mat4.multiply(mvMatrix, scaleMatrix);
 
@@ -71,11 +71,6 @@ function webGLStart() {
 
     document.onkeydown = handleKeyDown;
     document.onkeyup = handleKeyUp;
-
-
-
-
-
 
 
     /*sound = new Sound();
@@ -110,24 +105,15 @@ function webGLStart() {
 */
 
 
-
-
-
-
-
-
-
-
-
     startEditorWindow();
     loading();
 
 }
 
 
-function loading(){
+function loading() {
     console.log(loadedObjects + " / " + totalObjects);
-    if(totalObjects <= loadedObjects) {
+    if (totalObjects <= loadedObjects) {
         //let element = document.getElementById("loading");
         //element.outerHTML = "";
         //delete element;
@@ -141,12 +127,11 @@ function loading(){
         //lastRenderedEditorScene = new LastRendered();
 
 
-
         render();
 
 
     }
-    else{
+    else {
         //loaderElement.appendChild(loaderNode);
         //loaderNode.nodeValue = ((loadedObjects/totalObjects)*100).toFixed(0) + "%";
         requestAnimationFrame(loading);
@@ -180,10 +165,10 @@ function world(size) {
     let src, geometry;
     let rndObj;
     console.log("world size: " + size);
-    for(let i = 0; i < size; i++) {
+    for (let i = 0; i < size; i++) {
 
         rndObj = Math.floor(Math.random() * 4) + 1;
-        switch (rndObj){
+        switch (rndObj) {
             case 1:
                 src = "assets/img/textures/metal.jpg";
                 break;
@@ -198,7 +183,7 @@ function world(size) {
                 break;
         }
         rndObj = Math.floor(Math.random() * 5) + 1;
-        switch (rndObj){
+        switch (rndObj) {
             case 1:
                 geometry = cubeSrc;
                 break;
@@ -231,7 +216,7 @@ function world(size) {
             "zRotSpeed": Math.random() * 35,
             "animateRotation": Math.random() < 0.95,
             "useTexture": Math.random() > 0.5,
-            "alpha" : Math.random() + 0.4
+            "alpha": Math.random() + 0.4
         });
     }
 }

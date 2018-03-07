@@ -10,33 +10,31 @@
 session_start();
 
 // If session variable is not set it will redirect to login page
-if(!isset($_SESSION['username']) || empty($_SESSION['username'])){
+if (!isset($_SESSION['username']) || empty($_SESSION['username'])) {
     header("location: ../index.php");
     exit;
-}
-else{
+} else {
     $project_id = $_GET['project_id'];
     $project_name = $_GET['project_name'];
-    echo "pr id: " . $project_id . "|  session user id: " . $_SESSION['user_id'] . "|  pr name: " . $project_name . "| ";
+    //echo "pr id: " . $project_id . "|  session user id: " . $_SESSION['user_id'] . "|  pr name: " . $project_name . "| ";
     //require_once ('../php/get_code_source.php');
-
 }
 ?>
 
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
 <head>
-    <title><?php echo "StickJS: " . $project_name?></title>
+    <title><?php echo "StickJS: " . $project_name ?></title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/jquery.roundslider/1.3/roundslider.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/9.8.0/css/bootstrap-slider.min.css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/9.8.0/css/bootstrap-slider.min.css">
     <link rel="stylesheet" type="text/css" href="../assets/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="../assets/css/styles.css">
 
@@ -49,7 +47,9 @@ else{
     <script src="../assets/js/jquery.iframe-transport.js"></script>
     <script src="../assets/js/jquery.fileupload.js"></script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
+            integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
+            crossorigin="anonymous"></script>
     <script src="../assets/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/9.8.0/bootstrap-slider.min.js"></script>
     <script src="https://cdn.jsdelivr.net/jquery.roundslider/1.3/roundslider.min.js"></script>
@@ -94,7 +94,8 @@ else{
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="pull-left" href="home.php"><img style="height: 50px" src="../assets/img/design/StickJSlogo.png"></a>
+            <a class="pull-left" href="home.php"><img style="height: 50px"
+                                                      src="../assets/img/design/StickJSlogo.png"></a>
         </div>
         <div class="navbar-collapse collapse" id="navbar-main">
             <ul class="nav navbar-nav">
@@ -126,13 +127,13 @@ else{
 
 <!-- How to modal -->
 <div class="modal fade" id="how-to-modal" role="dialog" data-keyboard="false">
-    <div class="modal-dialog" >
-        <div class="modal-content" >
+    <div class="modal-dialog">
+        <div class="modal-content">
             <div align="center" class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h4 class="modal-title" style="alignment: center">How to use StickJS</h4>
             </div>
-            <div class="modal-body" >
+            <div class="modal-body">
                 <h2 align="center">Upload</h2>
                 <hr class="update-hr">
                 <p>By clicking upload button, you can upload these types of files to server.</p>
@@ -146,7 +147,8 @@ else{
                 <h2 align="center">Editor</h2>
                 <hr class="update-hr">
                 <p>There you can modify shapes and save them for following exporting to main scene.</p>
-                <p><i>Color, Texture, Opacity and Shape rotation directly have effect on shape before saving. However by clicking on tab Lightning
+                <p><i>Color, Texture, Opacity and Shape rotation directly have effect on shape before saving. However by
+                        clicking on tab Lightning
                         you only affecting shapes that are in editor window.</i></p>
             </div>
         </div>
@@ -162,17 +164,18 @@ else{
 
             <!-- Add shape name modal -->
             <div class="modal fade" id="add-name-modal" role="dialog" data-backdrop="static" data-keyboard="false">
-                <div class="modal-dialog" >
-                    <div class="modal-content" >
+                <div class="modal-dialog">
+                    <div class="modal-content">
                         <div align="center" class="modal-header">
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
                             <h4 class="modal-title" style="alignment: center">Enter Object Name</h4>
                         </div>
-                        <div align="center" class="modal-body" >
+                        <div align="center" class="modal-body">
                             <form>
                                 <div id="add-shape-name-form" class="form-group ">
                                     <label for="usr-shape-name">Name</label>
-                                    <input type="text" class="form-control" id="usr-shape-name" style="width: 100%; border-radius: 2px">
+                                    <input type="text" class="form-control" id="usr-shape-name"
+                                           style="width: 100%; border-radius: 2px">
                                     <p id="error-explanation"></p>
                                 </div>
                                 <button class="btn btn-primary" id="add-shape-name">Submit</button>
@@ -183,21 +186,24 @@ else{
             </div>
 
             <!-- Upload and selection navigation bar -->
-            <div >
+            <div>
                 <nav class="navbar navbar-default navbar-static-top" style="margin: 0 0 0 0;">
                     <div class="container-fluid">
                         <div class="navbar-header">
-                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-3" aria-expanded="false">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                                    data-target="#bs-example-navbar-collapse-3" aria-expanded="false">
                                 <span class="icon-bar"></span>
                                 <span class="icon-bar"></span>
                                 <span class="icon-bar"></span>
                             </button>
-                            <a class="navbar-brand" href="#"><img style="margin-top: -28%; height: 50px" src="../assets/img/design/SelectIcon.png"></a>
+                            <a class="navbar-brand" href="#"><img style="margin-top: -28%; height: 50px"
+                                                                  src="../assets/img/design/SelectIcon.png"></a>
                         </div>
                         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-3">
                             <ul class="nav navbar-nav">
                                 <li class="dropdown">
-                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Select<span class="caret"></span></a>
+                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Select<span
+                                                class="caret"></span></a>
                                     <ul class="dropdown-menu" id="select-dropdown-value">
                                         <li><a href="#">Shapes</a></li>
                                         <li><a href="#">Music</a></li>
@@ -211,30 +217,35 @@ else{
                                     </label>
                                 </li>
                                 <li>
-                                    <label class="btn btn-primary" id="save-scene-btn" style="margin-top: 8px; margin-left: 5px">
+                                    <label class="btn btn-primary" id="save-scene-btn"
+                                           style="margin-top: 8px; margin-left: 5px">
                                         <span class="glyphicon glyphicon-floppy-save"></span> Save
                                     </label>
                                 </li>
                                 <li>
-                                    <label class="btn btn-primary" id="reset-scene-btn" style="margin-top: 8px; margin-left: 5px">
+                                    <label class="btn btn-primary" id="reset-scene-btn"
+                                           style="margin-top: 8px; margin-left: 5px">
                                         <span class="glyphicon glyphicon-refresh"></span> Reset
                                     </label>
                                 </li>
                                 <li>
-                                    <label class="btn btn-primary" id="clear-scene-btn" style="margin-top: 8px; margin-left: 5px">
+                                    <label class="btn btn-primary" id="clear-scene-btn"
+                                           style="margin-top: 8px; margin-left: 5px">
                                         <span class="glyphicon glyphicon-remove"></span> Clear
                                     </label>
                                 </li>
                                 <li>
-                                    <label class="btn btn-primary" id="start-frame-btn" style="margin-top: 8px; margin-left: 5px">
+                                    <label class="btn btn-primary" id="start-frame-btn"
+                                           style="margin-top: 8px; margin-left: 5px">
                                         <span class="glyphicon glyphicon-play"></span> Play Frames
                                     </label>
                                 </li>
                                 <li>
-                                    <form id="upload" method="post" action="../php/upload.php" >
+                                    <form id="upload" method="post" action="../php/upload.php">
                                         <label class="btn btn-primary" style="margin-top: 8px; margin-left: 5px">
                                             <span class="glyphicon glyphicon-save-file"></span> Upload
-                                            <input type="file" name="upl" accept="image/png/jpg/obj/mp3" style="display: none;">
+                                            <input type="file" name="upl" accept="image/png/jpg/obj/mp3"
+                                                   style="display: none;">
                                         </label>
                                     </form>
                                 </li>
@@ -247,32 +258,37 @@ else{
                     <div class="row" id="selectable-shapes-row">
                         <div class="col-lg3 col-md-4 col-sm-4 col-xs-6" align="center">
                             <a href="#" class="thumbnail">
-                                <canvas class="preview-scene shape" id="../shapes/cube.json" ></canvas>
-                                <a href="#" class="btn btn-md overlay-btn disabled"><span class="glyphicon glyphicon-trash"></span></a>
+                                <canvas class="preview-scene shape" id="../shapes/cube.json"></canvas>
+                                <a href="#" class="btn btn-md overlay-btn disabled"><span
+                                            class="glyphicon glyphicon-trash"></span></a>
                             </a>
                         </div>
                         <div class="col-lg3 col-md-4 col-sm-4 col-xs-6" align="center">
                             <a href="#" class="thumbnail">
-                                <canvas class="preview-scene shape" id="../shapes/sphere.json" ></canvas>
-                                <a href="#" class="btn btn-md overlay-btn disabled"><span class="glyphicon glyphicon-trash"></span></a>
+                                <canvas class="preview-scene shape" id="../shapes/sphere.json"></canvas>
+                                <a href="#" class="btn btn-md overlay-btn disabled"><span
+                                            class="glyphicon glyphicon-trash"></span></a>
                             </a>
                         </div>
                         <div class="col-lg3 col-md-4 col-sm-4 col-xs-6" align="center">
                             <a href="#" class="thumbnail">
-                                <canvas class="preview-scene shape" id="../shapes/cone.json" ></canvas>
-                                <a href="#" class="btn btn-md overlay-btn disabled"><span class="glyphicon glyphicon-trash"></span></a>
+                                <canvas class="preview-scene shape" id="../shapes/cone.json"></canvas>
+                                <a href="#" class="btn btn-md overlay-btn disabled"><span
+                                            class="glyphicon glyphicon-trash"></span></a>
                             </a>
                         </div>
                         <div class="col-lg3 col-md-4 col-sm-4 col-xs-6" align="center">
                             <a href="#" class="thumbnail">
-                                <canvas class="preview-scene shape" id="../shapes/cylinder.json" ></canvas>
-                                <a href="#" class="btn btn-md overlay-btn disabled"><span class="glyphicon glyphicon-trash"></span></a>
+                                <canvas class="preview-scene shape" id="../shapes/cylinder.json"></canvas>
+                                <a href="#" class="btn btn-md overlay-btn disabled"><span
+                                            class="glyphicon glyphicon-trash"></span></a>
                             </a>
                         </div>
                         <div class="col-lg3 col-md-4 col-sm-4 col-xs-6" align="center">
                             <a href="#" class="thumbnail">
-                                <canvas class="preview-scene shape" id="../shapes/simpleSphere.json" ></canvas>
-                                <a href="#" class="btn btn-md overlay-btn disabled"><span class="glyphicon glyphicon-trash"></span></a>
+                                <canvas class="preview-scene shape" id="../shapes/simpleSphere.json"></canvas>
+                                <a href="#" class="btn btn-md overlay-btn disabled"><span
+                                            class="glyphicon glyphicon-trash"></span></a>
                             </a>
                         </div>
                     </div>
@@ -297,12 +313,14 @@ else{
             <nav class="navbar navbar-default navbar-static-top" style="margin-bottom: 0">
                 <div class="container-fluid">
                     <div class="navbar-header">
-                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2" aria-expanded="false">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                                data-target="#bs-example-navbar-collapse-2" aria-expanded="false">
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand" href="#"><img style="margin-top: -27%; height: 45px" src="../assets/img/design/SettingsIcon.png"></a>
+                        <a class="navbar-brand" href="#"><img style="margin-top: -27%; height: 45px"
+                                                              src="../assets/img/design/SettingsIcon.png"></a>
                     </div>
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
                         <ul class="nav navbar-nav editor-navbar">
@@ -319,7 +337,7 @@ else{
                 <!-- EDITOR -->
                 <!-- Saved shape Canvas container -->
                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" id="saved-shape-container">
-                    <div align="center" id="saved-shape-canvas-container" >
+                    <div align="center" id="saved-shape-canvas-container">
                         <!-- User saved shapes png preview images -->
 
                     </div>
@@ -337,10 +355,14 @@ else{
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <div class="input-group">
                                 <div id="radioBtn" class="btn-group">
-                                    <a class="btn btn-primary btn-sm active" id="color-radioBtn" data-toggle="picker" data-title="Color">Color</a>
-                                    <a class="btn btn-primary btn-sm notActive" id="texture-radioBtn" data-toggle="picker" data-title="Texture">Texture</a>
-                                    <a class="btn btn-primary btn-sm notActive" id="opacity-radioBtn" data-toggle="picker" data-title="Opacity">Opacity</a>
-                                    <a class="btn btn-primary btn-sm notActive" id="lightning-radioBtn" data-toggle="picker" data-title="Lightning">Lightning</a>
+                                    <a class="btn btn-primary btn-sm active" id="color-radioBtn" data-toggle="picker"
+                                       data-title="Color">Color</a>
+                                    <a class="btn btn-primary btn-sm notActive" id="texture-radioBtn"
+                                       data-toggle="picker" data-title="Texture">Texture</a>
+                                    <a class="btn btn-primary btn-sm notActive" id="opacity-radioBtn"
+                                       data-toggle="picker" data-title="Opacity">Opacity</a>
+                                    <a class="btn btn-primary btn-sm notActive" id="lightning-radioBtn"
+                                       data-toggle="picker" data-title="Lightning">Lightning</a>
                                 </div>
                                 <input type="hidden" name="editor-picker" id="picker">
                             </div>
@@ -350,68 +372,93 @@ else{
                     <!-- Color picker -->
                     <div align="center" class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="color-picker">
                         <h4>Color</h4>
-                        <p>R &nbsp; &nbsp; <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="1" data-slider-step="0.025" data-slider-value="0.5" data-slider-id="RC" id="R" data-slider-tooltip="hide" data-slider-handle="square"   /></p>
-                        <p>G &nbsp; &nbsp; <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="1" data-slider-step="0.025" data-slider-value="0.5" data-slider-id="GC" id="G" data-slider-tooltip="hide" data-slider-handle="square" /></p>
-                        <p>B &nbsp; &nbsp; <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="1" data-slider-step="0.025" data-slider-value="0.5" data-slider-id="BC" id="B" data-slider-tooltip="hide" data-slider-handle="square" /></p>
+                        <p>R &nbsp; &nbsp; <input type="text" class="span2" value="" data-slider-min="0"
+                                                  data-slider-max="1" data-slider-step="0.025" data-slider-value="0.5"
+                                                  data-slider-id="RC" id="R" data-slider-tooltip="hide"
+                                                  data-slider-handle="square"/></p>
+                        <p>G &nbsp; &nbsp; <input type="text" class="span2" value="" data-slider-min="0"
+                                                  data-slider-max="1" data-slider-step="0.025" data-slider-value="0.5"
+                                                  data-slider-id="GC" id="G" data-slider-tooltip="hide"
+                                                  data-slider-handle="square"/></p>
+                        <p>B &nbsp; &nbsp; <input type="text" class="span2" value="" data-slider-min="0"
+                                                  data-slider-max="1" data-slider-step="0.025" data-slider-value="0.5"
+                                                  data-slider-id="BC" id="B" data-slider-tooltip="hide"
+                                                  data-slider-handle="square"/></p>
                     </div>
 
                     <!-- Texture picker -->
-                    <div align="center" class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="texture-picker" style="display: none;"  >
+                    <div align="center" class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="texture-picker"
+                         style="display: none;">
                         <h4>Textures</h4>
                         <div class="row" id="texture-picker-row">
                             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6 texture-padding">
-                                <a href="#" class="thumbnail" >
-                                    <img src="../assets/img/textures/sun.jpg" class="img-rounded inline-block texture" alt="../assets/img/textures/sun.jpg" >
+                                <a href="#" class="thumbnail">
+                                    <img src="../assets/img/textures/sun.jpg" class="img-rounded inline-block texture"
+                                         alt="../assets/img/textures/sun.jpg">
                                 </a>
                             </div>
                             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6 texture-padding">
-                                <a href="#" class="thumbnail" >
-                                    <img src="../assets/img/textures/metal.jpg" class="img-rounded inline-block texture" alt="../assets/img/textures/metal.jpg" >
+                                <a href="#" class="thumbnail">
+                                    <img src="../assets/img/textures/metal.jpg" class="img-rounded inline-block texture"
+                                         alt="../assets/img/textures/metal.jpg">
                                 </a>
                             </div>
                             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6 texture-padding">
-                                <a href="#" class="thumbnail" >
-                                    <img src="../assets/img/textures/carbon_fiber.jpg" class="img-rounded inline-block texture" alt="../assets/img/textures/carbon_fiber.jpg" >
+                                <a href="#" class="thumbnail">
+                                    <img src="../assets/img/textures/carbon_fiber.jpg"
+                                         class="img-rounded inline-block texture"
+                                         alt="../assets/img/textures/carbon_fiber.jpg">
                                 </a>
                             </div>
                             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6 texture-padding">
-                                <a href="#" class="thumbnail" >
-                                    <img src="../assets/img/textures/wood.jpg" class="img-rounded inline-block texture" alt="../assets/img/textures/wood.jpg" >
+                                <a href="#" class="thumbnail">
+                                    <img src="../assets/img/textures/wood.jpg" class="img-rounded inline-block texture"
+                                         alt="../assets/img/textures/wood.jpg">
                                 </a>
                             </div>
                             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6 texture-padding">
-                                <a href="#" class="thumbnail" >
-                                    <img src="../assets/img/textures/leather.jpg" class="img-rounded inline-block texture" alt="../assets/img/textures/leather.jpg" >
+                                <a href="#" class="thumbnail">
+                                    <img src="../assets/img/textures/leather.jpg"
+                                         class="img-rounded inline-block texture"
+                                         alt="../assets/img/textures/leather.jpg">
                                 </a>
                             </div>
                             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6 texture-padding">
-                                <a href="#" class="thumbnail" >
-                                    <img src="../assets/img/textures/asphalt.jpg" class="img-rounded inline-block texture" alt="../assets/img/textures/asphalt.jpg" >
+                                <a href="#" class="thumbnail">
+                                    <img src="../assets/img/textures/asphalt.jpg"
+                                         class="img-rounded inline-block texture"
+                                         alt="../assets/img/textures/asphalt.jpg">
                                 </a>
                             </div>
                             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6 texture-padding">
-                                <a href="#" class="thumbnail" >
-                                    <img src="../assets/img/textures/glass.jpg" class="img-rounded inline-block texture" alt="../assets/img/textures/glass.jpg" >
+                                <a href="#" class="thumbnail">
+                                    <img src="../assets/img/textures/glass.jpg" class="img-rounded inline-block texture"
+                                         alt="../assets/img/textures/glass.jpg">
                                 </a>
                             </div>
                             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6 texture-padding">
-                                <a href="#" class="thumbnail" >
-                                    <img src="../assets/img/textures/grass.jpg" class="img-rounded inline-block texture" alt="../assets/img/textures/grass.jpg" >
+                                <a href="#" class="thumbnail">
+                                    <img src="../assets/img/textures/grass.jpg" class="img-rounded inline-block texture"
+                                         alt="../assets/img/textures/grass.jpg">
                                 </a>
                             </div>
                             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6 texture-padding">
-                                <a href="#" class="thumbnail" >
-                                    <img src="../assets/img/textures/lava.jpg" class="img-rounded inline-block texture" alt="../assets/img/textures/lava.jpg" >
+                                <a href="#" class="thumbnail">
+                                    <img src="../assets/img/textures/lava.jpg" class="img-rounded inline-block texture"
+                                         alt="../assets/img/textures/lava.jpg">
                                 </a>
                             </div>
                             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6 texture-padding">
-                                <a href="#" class="thumbnail" >
-                                    <img src="../assets/img/textures/molten_lava.jpg" class="img-rounded inline-block texture" alt="../assets/img/textures/molten_lava.jpg" >
+                                <a href="#" class="thumbnail">
+                                    <img src="../assets/img/textures/molten_lava.jpg"
+                                         class="img-rounded inline-block texture"
+                                         alt="../assets/img/textures/molten_lava.jpg">
                                 </a>
                             </div>
                             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6 texture-padding">
-                                <a href="#" class="thumbnail" >
-                                    <img src="../assets/img/textures/snow.jpg" class="img-rounded inline-block texture" alt="../assets/img/textures/snow.jpg" >
+                                <a href="#" class="thumbnail">
+                                    <img src="../assets/img/textures/snow.jpg" class="img-rounded inline-block texture"
+                                         alt="../assets/img/textures/snow.jpg">
                                 </a>
                             </div>
                         </div>
@@ -428,19 +475,32 @@ else{
 
                         <div align="center" id="ambient-light-full">
                             <h4>Ambient light</h4>
-                            <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="1" data-slider-step="0.025" data-slider-value="0.5" data-slider-id="RC" id="R-ambient" data-slider-tooltip="hide" data-slider-handle="square" data-slider-orientation="vertical" />
-                            <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="1" data-slider-step="0.025" data-slider-value="0.5" data-slider-id="GC" id="G-ambient" data-slider-tooltip="hide" data-slider-handle="square" data-slider-orientation="vertical" />
-                            <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="1" data-slider-step="0.025" data-slider-value="0.5" data-slider-id="BC" id="B-ambient" data-slider-tooltip="hide" data-slider-handle="square" data-slider-orientation="vertical" />
+                            <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="1"
+                                   data-slider-step="0.025" data-slider-value="0.5" data-slider-id="RC" id="R-ambient"
+                                   data-slider-tooltip="hide" data-slider-handle="square"
+                                   data-slider-orientation="vertical"/>
+                            <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="1"
+                                   data-slider-step="0.025" data-slider-value="0.5" data-slider-id="GC" id="G-ambient"
+                                   data-slider-tooltip="hide" data-slider-handle="square"
+                                   data-slider-orientation="vertical"/>
+                            <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="1"
+                                   data-slider-step="0.025" data-slider-value="0.5" data-slider-id="BC" id="B-ambient"
+                                   data-slider-tooltip="hide" data-slider-handle="square"
+                                   data-slider-orientation="vertical"/>
                         </div>
                         <div align="center" id="ambient-light-combined" style="display: none">
                             <h4>Combined ambient light</h4>
-                            <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="1" data-slider-step="0.025" data-slider-value="0.5" data-slider-id="combined" id="combined-light" data-slider-tooltip="hide" data-slider-handle="square" data-slider-orientation="vertical" />
+                            <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="1"
+                                   data-slider-step="0.025" data-slider-value="0.5" data-slider-id="combined"
+                                   id="combined-light" data-slider-tooltip="hide" data-slider-handle="square"
+                                   data-slider-orientation="vertical"/>
                         </div>
                         <div align="center" class="checkbox">
                             <label><input id="use-combine-ambient" type="checkbox" value="">Combine sliders</label>
                         </div>
                         <div align="center" class="checkbox">
-                            <label><input id="use-light" type="checkbox" name="light" value="lightning" checked>Use Light</label>
+                            <label><input id="use-light" type="checkbox" name="light" value="lightning" checked>Use
+                                Light</label>
                         </div>
                     </div>
 
@@ -449,12 +509,22 @@ else{
                         <div align="center">
                             <h4>Point light</h4>
                             <div>
-                                <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="1" data-slider-step="0.025" data-slider-value="0.2" data-slider-id="RC" id="R-point" data-slider-tooltip="hide" data-slider-handle="square" data-slider-orientation="vertical" />
-                                <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="1" data-slider-step="0.025" data-slider-value="0.2" data-slider-id="GC" id="G-point" data-slider-tooltip="hide" data-slider-handle="square" data-slider-orientation="vertical" />
-                                <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="1" data-slider-step="0.025" data-slider-value="0.2" data-slider-id="BC" id="B-point" data-slider-tooltip="hide" data-slider-handle="square" data-slider-orientation="vertical" />
+                                <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="1"
+                                       data-slider-step="0.025" data-slider-value="0.2" data-slider-id="RC" id="R-point"
+                                       data-slider-tooltip="hide" data-slider-handle="square"
+                                       data-slider-orientation="vertical"/>
+                                <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="1"
+                                       data-slider-step="0.025" data-slider-value="0.2" data-slider-id="GC" id="G-point"
+                                       data-slider-tooltip="hide" data-slider-handle="square"
+                                       data-slider-orientation="vertical"/>
+                                <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="1"
+                                       data-slider-step="0.025" data-slider-value="0.2" data-slider-id="BC" id="B-point"
+                                       data-slider-tooltip="hide" data-slider-handle="square"
+                                       data-slider-orientation="vertical"/>
                                 <div align="center">
                                     <div align="center" class="checkbox">
-                                        <label><input id="use-animation" type="checkbox" value="animation" checked>Use Animation</label>
+                                        <label><input id="use-animation" type="checkbox" value="animation" checked>Use
+                                            Animation</label>
                                     </div>
                                 </div>
                             </div>
@@ -464,15 +534,25 @@ else{
                     <!-- Rotation sliders -->
                     <div align="center" class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12" id="rotation-control">
                         <h4>Shape rotation</h4>
-                        <p>X &nbsp; &nbsp; <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="360" data-slider-step="2" data-slider-value="0" data-slider-id="XC" id="X-RotationSlider" data-slider-tooltip="hide" data-slider-handle="round" /></p>
-                        <p>Y &nbsp; &nbsp; <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="360" data-slider-step="2" data-slider-value="40" data-slider-id="XC" id="Y-RotationSlider" data-slider-tooltip="hide" data-slider-handle="round" /></p>
-                        <p>Z &nbsp; &nbsp; <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="360" data-slider-step="2" data-slider-value="0" data-slider-id="XC" id="Z-RotationSlider" data-slider-tooltip="hide" data-slider-handle="round" /></p>
+                        <p>X &nbsp; &nbsp; <input type="text" class="span2" value="" data-slider-min="0"
+                                                  data-slider-max="360" data-slider-step="2" data-slider-value="0"
+                                                  data-slider-id="XC" id="X-RotationSlider" data-slider-tooltip="hide"
+                                                  data-slider-handle="round"/></p>
+                        <p>Y &nbsp; &nbsp; <input type="text" class="span2" value="" data-slider-min="0"
+                                                  data-slider-max="360" data-slider-step="2" data-slider-value="40"
+                                                  data-slider-id="XC" id="Y-RotationSlider" data-slider-tooltip="hide"
+                                                  data-slider-handle="round"/></p>
+                        <p>Z &nbsp; &nbsp; <input type="text" class="span2" value="" data-slider-min="0"
+                                                  data-slider-max="360" data-slider-step="2" data-slider-value="0"
+                                                  data-slider-id="XC" id="Z-RotationSlider" data-slider-tooltip="hide"
+                                                  data-slider-handle="round"/></p>
                     </div>
 
                     <!-- Button to save object -->
                     <div align="center" class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding-bottom: 2.5%">
                         <button id="saveShape" class="btn btn-primary btn-sm add-your-shape-button">
-                            <span class="glyphicon glyphicon-floppy-save"></span> Save</button>
+                            <span class="glyphicon glyphicon-floppy-save"></span> Save
+                        </button>
                     </div>
                 </div>
                 <!-- END EDITOR -->
@@ -493,7 +573,8 @@ else{
                         <g transform="matrix(1 0 0 1 0 30)"
                            class="trigger">
                             <path d="M 0 34.652 L 199.879 34.73 C 258.782 34.137 245.231
-                                     -0.498 200 0.005 L 31.522 0.005 L 0 34.652 Z" fill="green" stroke="black" stroke-width="2"></path>
+                                     -0.498 200 0.005 L 31.522 0.005 L 0 34.652 Z" fill="green" stroke="black"
+                                  stroke-width="2"></path>
                             <text class="basic-text-over-svg" x="50" y="24" font-size="20">
                                 On Apply Code
                             </text>
@@ -510,7 +591,8 @@ else{
                         <g transform="matrix(1 0 0 1 0 90)"
                            class="trigger">
                             <path d="M 0 34.652 L 199.879 34.73 C 258.782 34.137 245.231
-                                     -0.498 200 0.005 L 31.522 0.005 L 0 34.652 Z" fill="green" stroke="black" stroke-width="2"></path>
+                                     -0.498 200 0.005 L 31.522 0.005 L 0 34.652 Z" fill="green" stroke="black"
+                                  stroke-width="2"></path>
                             <text class="basic-text-over-svg" x="50" y="24" font-size="20">
                                 On Frame
                             </text>
@@ -532,7 +614,8 @@ else{
                         <g transform="matrix(1 0 0 1 0 150)"
                            class="trigger">
                             <path d="M 0 34.652 L 199.879 34.73 C 258.782 34.137 245.231
-                                     -0.498 200 0.005 L 31.522 0.005 L 0 34.652 Z" fill="green" stroke="black" stroke-width="2"></path>
+                                     -0.498 200 0.005 L 31.522 0.005 L 0 34.652 Z" fill="green" stroke="black"
+                                  stroke-width="2"></path>
                             <text class="basic-text-over-svg" x="50" y="24" font-size="20">
                                 Key Down
                             </text>
@@ -561,7 +644,8 @@ else{
                         <g transform="matrix(1 0 0 1 0 210)"
                            class="trigger">
                             <path d="M 0 34.652 L 199.879 34.73 C 258.782 34.137 245.231
-                                     -0.498 200 0.005 L 31.522 0.005 L 0 34.652 Z" fill="green" stroke="black" stroke-width="2"></path>
+                                     -0.498 200 0.005 L 31.522 0.005 L 0 34.652 Z" fill="green" stroke="black"
+                                  stroke-width="2"></path>
                             <text class="basic-text-over-svg" x="50" y="24" font-size="20">
                                 Key Up
                             </text>
@@ -590,7 +674,8 @@ else{
                         <g transform="matrix(1 0 0 1 0 270)"
                            class="trigger">
                             <path d="M 0 34.652 L 199.879 34.73 C 258.782 34.137 245.231
-                                     -0.498 200 0.005 L 31.522 0.005 L 0 34.652 Z" fill="green" stroke="black" stroke-width="2"></path>
+                                     -0.498 200 0.005 L 31.522 0.005 L 0 34.652 Z" fill="green" stroke="black"
+                                  stroke-width="2"></path>
                             <text class="basic-text-over-svg" x="50" y="24" font-size="20">
                                 Repeat at
                             </text>
@@ -612,7 +697,8 @@ else{
                         <g transform="matrix(1 0 0 1 0 330)"
                            class="trigger">
                             <path d="M 0 34.652 L 199.879 34.73 C 258.782 34.137 245.231
-                                     -0.498 200 0.005 L 31.522 0.005 L 0 34.652 Z" fill="green" stroke="black" stroke-width="2"></path>
+                                     -0.498 200 0.005 L 31.522 0.005 L 0 34.652 Z" fill="green" stroke="black"
+                                  stroke-width="2"></path>
                             <text class="basic-text-over-svg" x="50" y="24" font-size="20">
                                 On X
                             </text>
@@ -644,7 +730,8 @@ else{
                         <g transform="matrix(1 0 0 1 0 390)"
                            class="trigger">
                             <path d="M 0 34.652 L 199.879 34.73 C 258.782 34.137 245.231
-                                     -0.498 200 0.005 L 31.522 0.005 L 0 34.652 Z" fill="green" stroke="black" stroke-width="2"></path>
+                                     -0.498 200 0.005 L 31.522 0.005 L 0 34.652 Z" fill="green" stroke="black"
+                                  stroke-width="2"></path>
                             <text class="basic-text-over-svg" x="50" y="24" font-size="20">
                                 On Y
                             </text>
@@ -676,7 +763,8 @@ else{
                         <g transform="matrix(1 0 0 1 0 450)"
                            class="trigger">
                             <path d="M 0 34.652 L 199.879 34.73 C 258.782 34.137 245.231
-                                     -0.498 200 0.005 L 31.522 0.005 L 0 34.652 Z" fill="green" stroke="black" stroke-width="2"></path>
+                                     -0.498 200 0.005 L 31.522 0.005 L 0 34.652 Z" fill="green" stroke="black"
+                                  stroke-width="2"></path>
                             <text class="basic-text-over-svg" x="50" y="24" font-size="20">
                                 On Z
                             </text>
@@ -712,7 +800,8 @@ else{
                         <g transform="matrix(1 0 0 1 0 520)"
                            class="">
                             <path d="M 12.062 34.73 L 215.922 34.154 C 245.481 33.561 240.969
-                                     -0.498 215.922 0.005 L 0 0.416 L 12.062 34.73 Z" fill="#7673d6" stroke="black" stroke-width="2"></path>
+                                     -0.498 215.922 0.005 L 0 0.416 L 12.062 34.73 Z" fill="#7673d6" stroke="black"
+                                  stroke-width="2"></path>
                             <text class="basic-text-over-svg" x="20" y="24" font-size="20">
                                 For Every Shape
                             </text>
@@ -729,7 +818,8 @@ else{
                         <g transform="matrix(1 0 0 1 0 580)"
                            class="">
                             <path d="M 12.062 34.73 L 215.922 34.154 C 245.481 33.561 240.969
-                                     -0.498 215.922 0.005 L 0 0.416 L 12.062 34.73 Z" fill="#7673d6" stroke="black" stroke-width="2"></path>
+                                     -0.498 215.922 0.005 L 0 0.416 L 12.062 34.73 Z" fill="#7673d6" stroke="black"
+                                  stroke-width="2"></path>
                             <text class="basic-text-over-svg" x="20" y="24" font-size="20">
                                 For Every
                             </text>
@@ -755,7 +845,8 @@ else{
                         <g transform="matrix(1 0 0 1 0 640)"
                            class="">
                             <path d="M 12.062 34.73 L 215.922 34.154 C 245.481 33.561 240.969
-                                     -0.498 215.922 0.005 L 0 0.416 L 12.062 34.73 Z" fill="#7673d6" stroke="black" stroke-width="2"></path>
+                                     -0.498 215.922 0.005 L 0 0.416 L 12.062 34.73 Z" fill="#7673d6" stroke="black"
+                                  stroke-width="2"></path>
                             <text class="basic-text-over-svg" x="20" y="24" font-size="20">
                                 For Specific
                             </text>
@@ -781,7 +872,8 @@ else{
                         <g transform="matrix(1 0 0 1 0 710)"
                            class="">
                             <path d="M 7.625 34.731 L 136.49 34.155 C 155.176 33.562 152.324
-                                    -0.496 136.49 0.006 L 0 0.418 L 7.625 34.731 Z" fill="#d068f9" stroke="black" stroke-width="2"></path>
+                                    -0.496 136.49 0.006 L 0 0.418 L 7.625 34.731 Z" fill="#d068f9" stroke="black"
+                                  stroke-width="2"></path>
                             <text class="basic-text-over-svg" x="20" y="24" font-size="20">
                                 Set X
                             </text>
@@ -803,7 +895,8 @@ else{
                         <g transform="matrix(1 0 0 1 0 770)"
                            class="">
                             <path d="M 7.625 34.731 L 136.49 34.155 C 155.176 33.562 152.324
-                                    -0.496 136.49 0.006 L 0 0.418 L 7.625 34.731 Z" fill="#d068f9" stroke="black" stroke-width="2"></path>
+                                    -0.496 136.49 0.006 L 0 0.418 L 7.625 34.731 Z" fill="#d068f9" stroke="black"
+                                  stroke-width="2"></path>
                             <text class="basic-text-over-svg" x="20" y="24" font-size="20">
                                 Set Y
                             </text>
@@ -825,7 +918,8 @@ else{
                         <g transform="matrix(1 0 0 1 0 830)"
                            class="">
                             <path d="M 7.625 34.731 L 136.49 34.155 C 155.176 33.562 152.324
-                                    -0.496 136.49 0.006 L 0 0.418 L 7.625 34.731 Z" fill="#d068f9" stroke="black" stroke-width="2"></path>
+                                    -0.496 136.49 0.006 L 0 0.418 L 7.625 34.731 Z" fill="#d068f9" stroke="black"
+                                  stroke-width="2"></path>
                             <text class="basic-text-over-svg" x="20" y="24" font-size="20">
                                 Set Z
                             </text>
@@ -847,7 +941,8 @@ else{
                         <g transform="matrix(1 0 0 1 0 890)"
                            class="">
                             <path d="M 7.625 34.731 L 136.49 34.155 C 155.176 33.562 152.324
-                                    -0.496 136.49 0.006 L 0 0.418 L 7.625 34.731 Z" fill="#4da558" stroke="black" stroke-width="2"></path>
+                                    -0.496 136.49 0.006 L 0 0.418 L 7.625 34.731 Z" fill="#4da558" stroke="black"
+                                  stroke-width="2"></path>
                             <text class="basic-text-over-svg" x="20" y="24" font-size="20">
                                 Set SX
                             </text>
@@ -869,7 +964,8 @@ else{
                         <g transform="matrix(1 0 0 1 0 950)"
                            class="">
                             <path d="M 7.625 34.731 L 136.49 34.155 C 155.176 33.562 152.324
-                                    -0.496 136.49 0.006 L 0 0.418 L 7.625 34.731 Z" fill="#4da558" stroke="black" stroke-width="2"></path>
+                                    -0.496 136.49 0.006 L 0 0.418 L 7.625 34.731 Z" fill="#4da558" stroke="black"
+                                  stroke-width="2"></path>
                             <text class="basic-text-over-svg" x="20" y="24" font-size="20">
                                 Set SY
                             </text>
@@ -891,7 +987,8 @@ else{
                         <g transform="matrix(1 0 0 1 0 1010)"
                            class="">
                             <path d="M 7.625 34.731 L 136.49 34.155 C 155.176 33.562 152.324
-                                    -0.496 136.49 0.006 L 0 0.418 L 7.625 34.731 Z" fill="#4da558" stroke="black" stroke-width="2"></path>
+                                    -0.496 136.49 0.006 L 0 0.418 L 7.625 34.731 Z" fill="#4da558" stroke="black"
+                                  stroke-width="2"></path>
                             <text class="basic-text-over-svg" x="20" y="24" font-size="20">
                                 Set SZ
                             </text>
@@ -913,7 +1010,8 @@ else{
                         <g transform="matrix(1 0 0 1 0 1070)"
                            class="">
                             <path d="M 10.197 34.73 L 182.538 34.154 C 207.527 33.561 203.713
-                                    -0.497 182.538 0.005 L 0 0.417 L 10.197 34.73 Z" fill="orange" stroke="black" stroke-width="2"></path>
+                                    -0.497 182.538 0.005 L 0 0.417 L 10.197 34.73 Z" fill="orange" stroke="black"
+                                  stroke-width="2"></path>
                             <text class="basic-text-over-svg" x="20" y="24" font-size="20">
                                 X Rotation
                             </text>
@@ -935,7 +1033,8 @@ else{
                         <g transform="matrix(1 0 0 1 0 1130)"
                            class="">
                             <path d="M 10.197 34.73 L 182.538 34.154 C 207.527 33.561 203.713
-                                    -0.497 182.538 0.005 L 0 0.417 L 10.197 34.73 Z" fill="orange" stroke="black" stroke-width="2"></path>
+                                    -0.497 182.538 0.005 L 0 0.417 L 10.197 34.73 Z" fill="orange" stroke="black"
+                                  stroke-width="2"></path>
                             <text class="basic-text-over-svg" x="20" y="24" font-size="20">
                                 Y Rotation
                             </text>
@@ -957,7 +1056,8 @@ else{
                         <g transform="matrix(1 0 0 1 0 1190)"
                            class="">
                             <path d="M 10.197 34.73 L 182.538 34.154 C 207.527 33.561 203.713
-                                    -0.497 182.538 0.005 L 0 0.417 L 10.197 34.73 Z" fill="orange" stroke="black" stroke-width="2"></path>
+                                    -0.497 182.538 0.005 L 0 0.417 L 10.197 34.73 Z" fill="orange" stroke="black"
+                                  stroke-width="2"></path>
                             <text class="basic-text-over-svg" x="20" y="24" font-size="20">
                                 Z Rotation
                             </text>
@@ -979,13 +1079,14 @@ else{
                         <g transform="matrix(1 0 0 1 0 1250)"
                            class="">
                             <path d="M 12.062 34.73 L 215.922 34.154 C 245.481 33.561 240.969
-                                     -0.498 215.922 0.005 L 0 0.416 L 12.062 34.73 Z" fill="#a86508" stroke="black" stroke-width="2"></path>
+                                     -0.498 215.922 0.005 L 0 0.416 L 12.062 34.73 Z" fill="#a86508" stroke="black"
+                                  stroke-width="2"></path>
                             <text class="basic-text-over-svg" x="20" y="24" font-size="20">
                                 X Rot. Speed
                             </text>
                             <foreignObject x="160" y="4" width="60" height="30">
                                 <form>
-                                    <input class="code-input" title="value" type="text" value="0" />
+                                    <input class="code-input" title="value" type="text" value="0"/>
                                 </form>
                             </foreignObject>
                             <text class="code-id"
@@ -1001,13 +1102,14 @@ else{
                         <g transform="matrix(1 0 0 1 0 1310)"
                            class="">
                             <path d="M 12.062 34.73 L 215.922 34.154 C 245.481 33.561 240.969
-                                     -0.498 215.922 0.005 L 0 0.416 L 12.062 34.73 Z" fill="#a86508" stroke="black" stroke-width="2"></path>
+                                     -0.498 215.922 0.005 L 0 0.416 L 12.062 34.73 Z" fill="#a86508" stroke="black"
+                                  stroke-width="2"></path>
                             <text class="basic-text-over-svg" x="20" y="24" font-size="20">
                                 Y Rot. Speed
                             </text>
                             <foreignObject x="160" y="4" width="60" height="30">
                                 <form>
-                                    <input class="code-input" title="value" type="text" value="0" />
+                                    <input class="code-input" title="value" type="text" value="0"/>
                                 </form>
                             </foreignObject>
                             <text class="code-id"
@@ -1023,7 +1125,8 @@ else{
                         <g transform="matrix(1 0 0 1 0 1370)"
                            class="">
                             <path d="M 12.062 34.73 L 215.922 34.154 C 245.481 33.561 240.969
-                                     -0.498 215.922 0.005 L 0 0.416 L 12.062 34.73 Z" fill="#a86508" stroke="black" stroke-width="2"></path>
+                                     -0.498 215.922 0.005 L 0 0.416 L 12.062 34.73 Z" fill="#a86508" stroke="black"
+                                  stroke-width="2"></path>
                             <text class="basic-text-over-svg" x="20" y="24" font-size="20">
                                 Z Rot. Speed
                             </text>
@@ -1045,7 +1148,8 @@ else{
                         <g transform="matrix(1 0 0 1 0 1430)"
                            class="">
                             <path d="M 7.625 34.731 L 136.49 34.155 C 155.176 33.562 152.324
-                                    -0.496 136.49 0.006 L 0 0.418 L 7.625 34.731 Z" fill="#c10023" stroke="black" stroke-width="2"></path>
+                                    -0.496 136.49 0.006 L 0 0.418 L 7.625 34.731 Z" fill="#c10023" stroke="black"
+                                  stroke-width="2"></path>
                             <text class="basic-text-over-svg" x="20" y="24" font-size="20">
                                 Set R
                             </text>
@@ -1067,7 +1171,8 @@ else{
                         <g transform="matrix(1 0 0 1 0 1490)"
                            class="">
                             <path d="M 7.625 34.731 L 136.49 34.155 C 155.176 33.562 152.324
-                                    -0.496 136.49 0.006 L 0 0.418 L 7.625 34.731 Z" fill="#009102" stroke="black" stroke-width="2"></path>
+                                    -0.496 136.49 0.006 L 0 0.418 L 7.625 34.731 Z" fill="#009102" stroke="black"
+                                  stroke-width="2"></path>
                             <text class="basic-text-over-svg" x="20" y="24" font-size="20">
                                 Set G
                             </text>
@@ -1089,7 +1194,8 @@ else{
                         <g transform="matrix(1 0 0 1 0 1550)"
                            class="">
                             <path d="M 7.625 34.731 L 136.49 34.155 C 155.176 33.562 152.324
-                                    -0.496 136.49 0.006 L 0 0.418 L 7.625 34.731 Z" fill="#036bba" stroke="black" stroke-width="2"></path>
+                                    -0.496 136.49 0.006 L 0 0.418 L 7.625 34.731 Z" fill="#036bba" stroke="black"
+                                  stroke-width="2"></path>
                             <text class="basic-text-over-svg" x="20" y="24" font-size="20">
                                 Set B
                             </text>
@@ -1111,13 +1217,14 @@ else{
                         <g transform="matrix(1 0 0 1 0 1610)"
                            class="">
                             <path d="M 12.062 34.73 L 215.922 34.154 C 245.481 33.561 240.969
-                                     -0.498 215.922 0.005 L 0 0.416 L 12.062 34.73 Z" fill="#c10023" stroke="black" stroke-width="2"></path>
+                                     -0.498 215.922 0.005 L 0 0.416 L 12.062 34.73 Z" fill="#c10023" stroke="black"
+                                  stroke-width="2"></path>
                             <text class="basic-text-over-svg" x="20" y="24" font-size="20">
                                 Set Ambient R
                             </text>
                             <foreignObject x="160" y="4" width="60" height="30">
                                 <form>
-                                    <input class="code-input" title="value" type="text" value="0" />
+                                    <input class="code-input" title="value" type="text" value="0"/>
                                 </form>
                             </foreignObject>
                             <text class="code-id"
@@ -1133,13 +1240,14 @@ else{
                         <g transform="matrix(1 0 0 1 0 1670)"
                            class="">
                             <path d="M 12.062 34.73 L 215.922 34.154 C 245.481 33.561 240.969
-                                     -0.498 215.922 0.005 L 0 0.416 L 12.062 34.73 Z" fill="#009102" stroke="black" stroke-width="2"></path>
+                                     -0.498 215.922 0.005 L 0 0.416 L 12.062 34.73 Z" fill="#009102" stroke="black"
+                                  stroke-width="2"></path>
                             <text class="basic-text-over-svg" x="20" y="24" font-size="20">
                                 Set Ambient G
                             </text>
                             <foreignObject x="160" y="4" width="60" height="30">
                                 <form>
-                                    <input class="code-input" title="value" type="text" value="0" />
+                                    <input class="code-input" title="value" type="text" value="0"/>
                                 </form>
                             </foreignObject>
                             <text class="code-id"
@@ -1155,7 +1263,8 @@ else{
                         <g transform="matrix(1 0 0 1 0 1730)"
                            class="">
                             <path d="M 12.062 34.73 L 215.922 34.154 C 245.481 33.561 240.969
-                                     -0.498 215.922 0.005 L 0 0.416 L 12.062 34.73 Z" fill="#036bba" stroke="black" stroke-width="2"></path>
+                                     -0.498 215.922 0.005 L 0 0.416 L 12.062 34.73 Z" fill="#036bba" stroke="black"
+                                  stroke-width="2"></path>
                             <text class="basic-text-over-svg" x="20" y="24" font-size="20">
                                 Set Ambient B
                             </text>
@@ -1177,7 +1286,8 @@ else{
                         <g transform="matrix(1 0 0 1 0 1790)"
                            class="">
                             <path d="M 10.197 34.73 L 182.538 34.154 C 207.527 33.561 203.713
-                                    -0.497 182.538 0.005 L 0 0.417 L 10.197 34.73 Z" fill="#3cc6d8" stroke="black" stroke-width="2"></path>
+                                    -0.497 182.538 0.005 L 0 0.417 L 10.197 34.73 Z" fill="#3cc6d8" stroke="black"
+                                  stroke-width="2"></path>
                             <text class="basic-text-over-svg" x="20" y="24" font-size="20">
                                 Opacity
                             </text>
@@ -1199,7 +1309,8 @@ else{
                         <g transform="matrix(1 0 0 1 0 1850)"
                            class="">
                             <path d="M 10.197 34.73 L 182.538 34.154 C 207.527 33.561 203.713
-                                    -0.497 182.538 0.005 L 0 0.417 L 10.197 34.73 Z" fill="#7b7c7c" stroke="black" stroke-width="2"></path>
+                                    -0.497 182.538 0.005 L 0 0.417 L 10.197 34.73 Z" fill="#7b7c7c" stroke="black"
+                                  stroke-width="2"></path>
                             <text class="basic-text-over-svg" x="20" y="24" font-size="20">
                                 Assign Camera
                             </text>
@@ -1216,7 +1327,8 @@ else{
                         <g transform="matrix(1 0 0 1 0 1910)"
                            class="">
                             <path d="M 10.197 34.73 L 182.538 34.154 C 207.527 33.561 203.713
-                                    -0.497 182.538 0.005 L 0 0.417 L 10.197 34.73 Z" fill="#7b7c7c" stroke="black" stroke-width="2"></path>
+                                    -0.497 182.538 0.005 L 0 0.417 L 10.197 34.73 Z" fill="#7b7c7c" stroke="black"
+                                  stroke-width="2"></path>
                             <text class="basic-text-over-svg" x="20" y="24" font-size="20">
                                 Retract Camera
                             </text>
@@ -1233,7 +1345,8 @@ else{
                         <g transform="matrix(1 0 0 1 0 1970)"
                            class="">
                             <path d="M 12.062 34.73 L 215.922 34.154 C 245.481 33.561 240.969
-                                     -0.498 215.922 0.005 L 0 0.416 L 12.062 34.73 Z" fill="#7b7c7c" stroke="black" stroke-width="2"></path>
+                                     -0.498 215.922 0.005 L 0 0.416 L 12.062 34.73 Z" fill="#7b7c7c" stroke="black"
+                                  stroke-width="2"></path>
                             <text class="basic-text-over-svg" x="20" y="24" font-size="20">
                                 Don't Use Animation
                             </text>
@@ -1250,7 +1363,8 @@ else{
                         <g transform="matrix(1 0 0 1 0 2030)"
                            class="">
                             <path d="M 10.197 34.73 L 182.538 34.154 C 207.527 33.561 203.713
-                                    -0.497 182.538 0.005 L 0 0.417 L 10.197 34.73 Z" fill="#7b7c7c" stroke="black" stroke-width="2"></path>
+                                    -0.497 182.538 0.005 L 0 0.417 L 10.197 34.73 Z" fill="#7b7c7c" stroke="black"
+                                  stroke-width="2"></path>
                             <text class="basic-text-over-svg" x="20" y="24" font-size="20">
                                 Use Animation
                             </text>
@@ -1267,7 +1381,8 @@ else{
                         <g transform="matrix(1 0 0 1 0 2090)"
                            class="">
                             <path d="M 10.197 34.73 L 182.538 34.154 C 207.527 33.561 203.713
-                                    -0.497 182.538 0.005 L 0 0.417 L 10.197 34.73 Z" fill="#7b7c7c" stroke="black" stroke-width="2"></path>
+                                    -0.497 182.538 0.005 L 0 0.417 L 10.197 34.73 Z" fill="#7b7c7c" stroke="black"
+                                  stroke-width="2"></path>
                             <text class="basic-text-over-svg" x="20" y="24" font-size="20">
                                 Sum All Values
                             </text>
@@ -1293,7 +1408,8 @@ else{
                          version="1.1"
                          width="1000px" height="3000px">
 
-                        <g class="nonjoinable trash-bin" transform="matrix(1 0 0 1 0 -20)" stroke="black" stroke-width="2" style="position: absolute">
+                        <g class="nonjoinable trash-bin" transform="matrix(1 0 0 1 0 -20)" stroke="black"
+                           stroke-width="2" style="position: absolute">
                             <path transform="scale(1.0)" d="M50,32.319c5.584,0,11.004,0.191,16.11,0.568c4.538,0.335,8.688,0.807,12.335,1.403c0.187,0.031,0.371,0.061,0.555,0.092
                                     l-4.644,56.935c-5.156,0.662-10.919,1.095-17.117,1.284H42.793c-6.229-0.189-11.992-0.622-17.148-1.284L21,34.382
                                     c0.184-0.031,0.369-0.062,0.556-0.092c3.645-0.596,7.794-1.067,12.333-1.403C38.994,32.51,44.415,32.319,50,32.319 M49.998,53.771
@@ -1325,24 +1441,32 @@ else{
                 </div>
                 <div align="center">
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <label class="btn btn-primary" id="push-code-btn" data-toggle="tooltip" data-placement="top" title="Apply your code" style="display: none">
+                        <label class="btn btn-primary" id="push-code-btn" data-toggle="tooltip" data-placement="top"
+                               title="Apply your code" style="display: none">
                             <span class="glyphicon glyphicon-floppy-save"></span>
                         </label>
-                        <label class="btn btn-primary" id="upload-code-btn" data-toggle="tooltip" data-placement="top" title="Upload your code to server" style="display: none">
+                        <label class="btn btn-primary" id="upload-code-btn" data-toggle="tooltip" data-placement="top"
+                               title="Upload your code to server" style="display: none">
                             <span class="glyphicon glyphicon-save-file"></span>
                         </label>
-                        <label class="btn btn-primary" id="clear-code-btn" data-toggle="tooltip" data-placement="top" title="Clear code area" style="display: none">
+                        <label class="btn btn-primary" id="clear-code-btn" data-toggle="tooltip" data-placement="top"
+                               title="Clear code area" style="display: none">
                             <span class="glyphicon glyphicon-remove"></span>
                         </label>
 
-                        <label id="checkbox-label" class="form-check-speed-usage" for="checkSpeed" style="display: none">Standard Movement</label>
-                        <input type="checkbox" class="form-check-speed-usage" id="checkSpeed" style="display: none" checked>
+                        <label id="checkbox-label" class="form-check-speed-usage" for="checkSpeed"
+                               style="display: none">Standard Movement</label>
+                        <input type="checkbox" class="form-check-speed-usage" id="checkSpeed" style="display: none"
+                               checked>
 
                         <label id="basic-speed-label" for="basic-speed-input" style="display: none">Speed:</label>
-                        <input class="rounded-input" id="basic-speed-input" value="0.5" placeholder="1.2" style="display: none">
+                        <input class="rounded-input" id="basic-speed-input" value="0.5" placeholder="1.2"
+                               style="display: none">
 
-                        <label id="rotation-speed-label" for="rotation-speed-input" style="display: none">Rot Speed:</label>
-                        <input class="rounded-input" id="rotation-speed-input" value="1.4" placeholder="0.2" style="display: none">
+                        <label id="rotation-speed-label" for="rotation-speed-input" style="display: none">Rot
+                            Speed:</label>
+                        <input class="rounded-input" id="rotation-speed-input" value="1.4" placeholder="0.2"
+                               style="display: none">
 
                     </div>
 
@@ -1359,12 +1483,6 @@ else{
 
 
 </div>
-
-
-
-
-
-
 
 
 </body>

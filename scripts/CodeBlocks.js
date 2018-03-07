@@ -3,8 +3,6 @@
  */
 
 
-
-
 /**
  * Selecting svg element function. Used to init selectedElement by svg <g> element.
  * @param evt
@@ -19,10 +17,10 @@ function selectElement(evt) {
     currentX = evt.clientX;
     currentY = evt.clientY;
     //Preventing from error caused by clicking on non <g> element
-    if(selectedElement.tagName === "g") {
+    if (selectedElement.tagName === "g") {
         currentMatrix = selectedElement.getAttributeNS(null, "transform").slice(7, -1).split(' ');
     }
-    if(selectedElement.tagName === "FORM" || selectedElement.tagName === "foreignObject")
+    if (selectedElement.tagName === "FORM" || selectedElement.tagName === "foreignObject")
         return;
 
     //Push selected element to back
@@ -38,8 +36,8 @@ function selectElement(evt) {
 
     //Saving children translate matrix in case of grouped elements conjunction
     let childrenData = getChildrenData(selectedElement);
-    if(childrenData.length > 0 && childrenData[0] !== "") {
-        for(i = 0; i < childrenData.length; i++) {
+    if (childrenData.length > 0 && childrenData[0] !== "") {
+        for (i = 0; i < childrenData.length; i++) {
             var childM = getGelementByName(childrenData[i]).getAttributeNS(null, "transform").slice(7, -1).split(' ');
             childMatrix.push({
                 childmktime: getChildrenData(selectedElement)[i],
@@ -51,7 +49,7 @@ function selectElement(evt) {
     }
 
     //Creating array of values from svg element transform translate attribute
-    for(let i = 0; i < currentMatrix.length; i++) {
+    for (let i = 0; i < currentMatrix.length; i++) {
         currentMatrix[i] = parseFloat(currentMatrix[i]);
     }
     //Saving starting x and y coordinates for selected element, on case if element would be dragged over unjoinable element
@@ -63,6 +61,7 @@ function selectElement(evt) {
     selectedElement.setAttributeNS(null, "onmouseleave", "deselectElement(evt)");
     selectedElement.setAttributeNS(null, "onmouseup", "deselectElement(evt)");
 }
+
 /**
  * Function calling every time element is moved.
  * Changing svg <g> element position in scene and triggers functions to find intersections.
@@ -85,7 +84,7 @@ function moveElement(evt) {
     findIntersection(selectedElement);
 
     //transform translate children of selected element
-    for(let i = 0; i < childMatrix.length; i++) {
+    for (let i = 0; i < childMatrix.length; i++) {
         let tmpMatrix = childMatrix[i].childM;
         let child = getGelementByName(childMatrix[i].childmktime);
 
@@ -100,19 +99,20 @@ function moveElement(evt) {
         intersectArrUpdate(child);
     }
 }
+
 /**
  * Big function - a lot of responsibilities
  * @param evt
  */
 function deselectElement(evt) {
-    if(selectedElement !== 0){
+    if (selectedElement !== 0) {
         selectedElement.removeAttributeNS(null, "onmousemove");
         selectedElement.removeAttributeNS(null, "onmouseleave");
         selectedElement.removeAttributeNS(null, "onmouseup");
         let childData;
 
         let svgArr = document.getElementById("code-logic-scene").children;
-        for(let i = 0; i < svgArr.length; i++) {
+        for (let i = 0; i < svgArr.length; i++) {
             //Killing existing father of child and giving new father
             //Going through all svg <g> elements
             //and deleting SELECTED element NAME from every element child section
@@ -138,9 +138,9 @@ function deselectElement(evt) {
                 //console.log("My father: " + svgArr[i].getElementsByClassName("myFather")[0].textContent);
             }
         }
-        for(let i = 0; i < svgArr.length; i++){
+        for (let i = 0; i < svgArr.length; i++) {
             //Found intersection
-            if((svgArr[i].firstElementChild.getAttribute("stroke") === "green") &&
+            if ((svgArr[i].firstElementChild.getAttribute("stroke") === "green") &&
                 svgArr[i].firstElementChild.getAttribute("stroke-dasharray") === "0") {
 
                 //Main father -> element that was with green border
@@ -149,7 +149,7 @@ function deselectElement(evt) {
                 let father = svgArr[i];
 
                 //Check if father is already have kids if so -> prevent from joining
-                if(getChildrenData(father).length > 0 && getChildrenData(father)[0] !== ""){
+                if (getChildrenData(father).length > 0 && getChildrenData(father)[0] !== "") {
                     moveSelectedElementBack();
                     break;
                 }
@@ -158,7 +158,7 @@ function deselectElement(evt) {
                 //selectedElement.getElementsByClassName("myFather")[0].innerHTML = fathersName;
 
                 //Joining element to another by y axis
-                while (father.firstElementChild.getAttribute("stroke") === "green"){
+                while (father.firstElementChild.getAttribute("stroke") === "green") {
                     currentMatrix[5] += 1;
                     tmpTotalDy += 1;
                     selectedElement.setAttributeNS(null, "transform", "matrix(" + currentMatrix.join(' ') + ")");
@@ -169,12 +169,12 @@ function deselectElement(evt) {
                     findIntersection(selectedElement);
                 }
                 //Aligning element by x axis
-                while(getElementXf(father) !== getElementXf(selectedElement)){
-                    if(getElementXf(father) <= getElementXf(selectedElement)) {
+                while (getElementXf(father) !== getElementXf(selectedElement)) {
+                    if (getElementXf(father) <= getElementXf(selectedElement)) {
                         currentMatrix[4] -= 1;
                         tmpTotalDx -= 1;
                     }
-                    if(getElementXf(father) >= getElementXf(selectedElement)) {
+                    if (getElementXf(father) >= getElementXf(selectedElement)) {
                         currentMatrix[4] += 1;
                         tmpTotalDx += 1;
                     }
@@ -188,16 +188,16 @@ function deselectElement(evt) {
 
                 //Say that selected element is child
                 childData = father.getElementsByClassName("myChild")[0].textContent;
-                if(childData.indexOf(getmktime(selectedElement)) === -1)
+                if (childData.indexOf(getmktime(selectedElement)) === -1)
                     father.getElementsByClassName("myChild")[0].innerHTML = getmktime(selectedElement);
-                if(childData.indexOf(getmktime(selectedElement)) === -1 && childData.length > 0)
+                if (childData.indexOf(getmktime(selectedElement)) === -1 && childData.length > 0)
                     father.getElementsByClassName("myChild")[0].innerHTML = childData + "," + getmktime(selectedElement);
 
                 childData = getChildrenData(selectedElement);
 
                 //Checking is SELECTED element have any children
-                if(childData.length > 0 && childData[0] !== ""){
-                    for(let j = 0; j < childData.length; j++) {
+                if (childData.length > 0 && childData[0] !== "") {
+                    for (let j = 0; j < childData.length; j++) {
                         if (getChildrenData(father).indexOf(childData[j]) === -1 && childData.length > 0)
                             getGelementByName(fathersName).getElementsByClassName("myChild")[0].innerHTML =
                                 getChildrenData(father) + "," + childData[j];
@@ -205,9 +205,9 @@ function deselectElement(evt) {
 
                     //paimti visus vaikus prijungiamo objekto
                     childData = getChildrenData(selectedElement);
-                    for(let j = 0; j < childData.length; j++){
+                    for (let j = 0; j < childData.length; j++) {
                         var childM = getGelementByName(childData[j]).getAttributeNS(null, "transform").slice(7, -1).split(' ');
-                        for(k = 0; k < childM.length; k++) {
+                        for (k = 0; k < childM.length; k++) {
                             childM[k] = parseFloat(childM[k]);
                         }
                         childM[4] += tmpTotalDx;
@@ -221,18 +221,18 @@ function deselectElement(evt) {
                 }
 
                 //Adding SELECTED element child name to main father of the element group
-                for (let l = 0; l < svgArr.length; l++){
+                for (let l = 0; l < svgArr.length; l++) {
                     childData = getChildrenData(svgArr[l]);
-                    for(let j = 0; j < childData.length; j++){
-                        if(childData[j] === fathersName){
+                    for (let j = 0; j < childData.length; j++) {
+                        if (childData[j] === fathersName) {
                             childData = svgArr[l].getElementsByClassName("myChild")[0].textContent;
 
-                            if(childData.indexOf(getmktime(selectedElement)) === -1 && childData.length > 0) {
+                            if (childData.indexOf(getmktime(selectedElement)) === -1 && childData.length > 0) {
                                 console.log("Adding selected");
                                 svgArr[l].getElementsByClassName("myChild")[0].innerHTML = childData + "," + getmktime(selectedElement);
 
                                 let selectedElemChildData = getChildrenData(selectedElement);
-                                if(selectedElemChildData.length > 0 && selectedElemChildData[0] !== "") {
+                                if (selectedElemChildData.length > 0 && selectedElemChildData[0] !== "") {
                                     for (let k = 0; k < selectedElemChildData.length; k++) {
                                         console.log(selectedElemChildData[k]);
                                         childData = svgArr[l].getElementsByClassName("myChild")[0].textContent;
@@ -248,12 +248,12 @@ function deselectElement(evt) {
             }
 
             //If element can not be joined
-            if((svgArr[i].firstElementChild.getAttribute("stroke") === "green") &&
+            if ((svgArr[i].firstElementChild.getAttribute("stroke") === "green") &&
                 svgArr[i].firstElementChild.getAttribute("stroke-dasharray") !== "0")
                 moveSelectedElementBack();
 
             //Deleting element
-            if((svgArr[i].firstElementChild.getAttribute("stroke") === "red") &&
+            if ((svgArr[i].firstElementChild.getAttribute("stroke") === "red") &&
                 svgArr[i].firstElementChild.getAttribute("stroke-dasharray") === "0") {
                 console.log("Going to delete");
                 deleteSvgElement(selectedElement);
@@ -267,6 +267,7 @@ function deselectElement(evt) {
     //saving all written code to server
     saveSvgCodeScene();
 }
+
 /**
  * Reverting changes with selected element moving
  * Pushing element back to start point
@@ -295,18 +296,19 @@ function moveSelectedElementBack() {
         intersectArrUpdate(child);
     }
 }
+
 /**
  * Adding new element to scene by click
  */
 function addSvgElementToScene() {
-    $('#code-logic-selector').on('mousedown', 'g', function() {
+    $('#code-logic-selector').on('mousedown', 'g', function () {
         let hoverElement = $(this).children()[0];
-        if(hoverElement !== undefined && hoverElement.tagName === "path") {
+        if (hoverElement !== undefined && hoverElement.tagName === "path") {
             hoverElement.setAttribute("opacity", "0.5");
             hoverElement.setAttribute("stroke", "red");
             hoverElement.setAttribute("stroke-width", "3.5");
         }
-    }).on('mouseup', 'g', function() {
+    }).on('mouseup', 'g', function () {
         let hoverElement = $(this).children()[0];
         if (hoverElement !== undefined && hoverElement.tagName === "path") {
             hoverElement.setAttribute("opacity", "1");
@@ -317,8 +319,8 @@ function addSvgElementToScene() {
 
         //Edit transform translation
         let tmp = "";
-        for(let i = 0; i < svgToAdd.length; i++){
-            if(svgToAdd[i] !== ")")
+        for (let i = 0; i < svgToAdd.length; i++) {
+            if (svgToAdd[i] !== ")")
                 tmp += svgToAdd[i];
             else
                 break;
@@ -328,7 +330,7 @@ function addSvgElementToScene() {
         //getting correct x and y coordinates
         let doc = document.getElementById('code-scene-div');
         //x & y is to get center of the code logic scene
-        let x = doc.scrollLeft + Math.round(doc.offsetWidth/2), y = doc.scrollTop + Math.round(doc.offsetHeight/2);
+        let x = doc.scrollLeft + Math.round(doc.offsetWidth / 2), y = doc.scrollTop + Math.round(doc.offsetHeight / 2);
         console.log("X: " + x + " Y: " + y);
         let modSvgToAdd = svgToAdd.replace(tmp.substr(3, tmp.length), "transform=\"matrix(1 0 0 1 " + x + " " + y + ")\"");
 
@@ -337,12 +339,12 @@ function addSvgElementToScene() {
         let dataArr = [];
 
         //Saving already created data
-        for(let i = 0; i < svgArr.length; i++){
-            if(getmktime(svgArr[i]) !== "trashbin")
+        for (let i = 0; i < svgArr.length; i++) {
+            if (getmktime(svgArr[i]) !== "trashbin")
                 dataArr.push({
-                    "name" : getmktime(svgArr[i]),
-                    "value" : getDataFromSvgForm(svgArr[i]),
-                    "value2" : getOperatorDataFromSvgForm(svgArr[i])
+                    "name": getmktime(svgArr[i]),
+                    "value": getDataFromSvgForm(svgArr[i]),
+                    "value2": getOperatorDataFromSvgForm(svgArr[i])
                 })
         }
         //console.log(dataArr);
@@ -351,7 +353,7 @@ function addSvgElementToScene() {
         //Add to main scene
         $("#code-logic-scene").append(modSvgToAdd).html($("#code-logic-scene").html());
         svgArr = document.getElementById("code-logic-scene").children;
-        let element = svgArr[svgArr.length-1];
+        let element = svgArr[svgArr.length - 1];
         let baseClass = element.className.baseVal;
 
         element.setAttribute("class", baseClass + " joinable draggable");
@@ -359,51 +361,51 @@ function addSvgElementToScene() {
         element.getElementsByClassName("mktime")[0].innerHTML = mktime();
         //if have selection field prepare values for selecting
         //console.log(getmktime(element));
-        if(getSvgCodeId(element) === "for specific"){
+        if (getSvgCodeId(element) === "for specific") {
             console.log("for specific");
             let select = element.getElementsByClassName("select-specific-svg")[0];
             $(select).find('option').remove().end();
 
             let items = [{
-                    value: "cube",
-                    text: "Cube"
-                }, {
-                    value: "sphere",
-                    text: "Sphere"
-                }, {
-                    value: "simpleSphere",
-                    text: "S.Sphere"
-                }, {
-                    value: "cone",
-                    text: "Cone"
-                }, {
-                    value: "cylinder",
-                    text: "Cylinder"
-                }];
-            for (let i = 0; i < userUploadedShapesNamesArray.length; i++){
+                value: "cube",
+                text: "Cube"
+            }, {
+                value: "sphere",
+                text: "Sphere"
+            }, {
+                value: "simpleSphere",
+                text: "S.Sphere"
+            }, {
+                value: "cone",
+                text: "Cone"
+            }, {
+                value: "cylinder",
+                text: "Cylinder"
+            }];
+            for (let i = 0; i < userUploadedShapesNamesArray.length; i++) {
                 items.push({value: userUploadedShapesNamesArray[i], text: userUploadedShapesNamesArray[i]})
             }
 
-            for(let i = 0; i < items.length; i++)
+            for (let i = 0; i < items.length; i++)
                 $(select).append(new Option(items[i].text, items[i].value));
 
         }
-        if(getSvgCodeId(element) === "for name"){
+        if (getSvgCodeId(element) === "for name") {
             console.log("for name");
             let select = element.getElementsByClassName("select-name-svg")[0];
             $(select).find('option').remove().end();
 
             let items = [];
 
-            for(let i = 0; i < objArr.length; i++){
+            for (let i = 0; i < objArr.length; i++) {
                 let name = objArr[i].name;
-                if(objArr[i].name.length >= 10)
+                if (objArr[i].name.length >= 10)
                     name = objArr[i].name.substr(0, 9) + "...";
 
                 items.push({value: objArr[i].name, text: name});
             }
 
-            for(let i = 0; i < items.length; i++)
+            for (let i = 0; i < items.length; i++)
                 $(select).append(new Option(items[i].text, items[i].value));
 
         }
@@ -412,15 +414,15 @@ function addSvgElementToScene() {
         intersectArrInit();
         //Restoring data
         svgArr = document.getElementById("code-logic-scene").children;
-        for(let i = 0; i < svgArr.length; i++){
-            if(getmktime(svgArr[i]) !== "trashbin")
-                for(let j = 0; j < dataArr.length; j++){
-                    if(getmktime(svgArr[i]) === dataArr[j].name){
-                        if(svgArr[i].getElementsByClassName("code-selection").length > 0)
+        for (let i = 0; i < svgArr.length; i++) {
+            if (getmktime(svgArr[i]) !== "trashbin")
+                for (let j = 0; j < dataArr.length; j++) {
+                    if (getmktime(svgArr[i]) === dataArr[j].name) {
+                        if (svgArr[i].getElementsByClassName("code-selection").length > 0)
                             setSelectedValue(svgArr[i].getElementsByClassName("code-selection")[0], dataArr[j].value);
-                        if(svgArr[i].getElementsByClassName("code-selection-inequality-operator").length > 0)
+                        if (svgArr[i].getElementsByClassName("code-selection-inequality-operator").length > 0)
                             setSelectedValue(svgArr[i].getElementsByClassName("code-selection-inequality-operator")[0], dataArr[j].value2);
-                        if(svgArr[i].getElementsByClassName("code-input").length > 0)
+                        if (svgArr[i].getElementsByClassName("code-input").length > 0)
                             svgArr[i].getElementsByClassName("code-input")[0].value = dataArr[j].value;
 
                     }
@@ -433,6 +435,7 @@ function addSvgElementToScene() {
     });
 
 }
+
 function updateAllForNameBlocks() {
     let svgArr = document.getElementById("code-logic-scene").children;
     saveCodeSelectionFields(svgArr);
@@ -440,7 +443,7 @@ function updateAllForNameBlocks() {
     for (let j = 0; j < svgArr.length; j++) {
         let select = svgArr[j].getElementsByClassName("select-name-svg")[0];
 
-        if(select !== undefined) {
+        if (select !== undefined) {
             $(select).find('option').remove().end();
             let items = [];
 
@@ -484,31 +487,34 @@ function updateAllForSpecificBlocks() {
             value: "cylinder",
             text: "Cylinder"
         }];
-        for (let i = 0; i < userUploadedShapesNamesArray.length; i++){
+        for (let i = 0; i < userUploadedShapesNamesArray.length; i++) {
             items.push({value: userUploadedShapesNamesArray[i], text: userUploadedShapesNamesArray[i]})
         }
 
-        for(let i = 0; i < items.length; i++)
+        for (let i = 0; i < items.length; i++)
             $(select).append(new Option(items[i].text, items[i].value));
 
 
         restoreUpdatedCodeSelectionFields();
     }
 }
-function restoreUpdatedCodeSelectionFields(){
+
+function restoreUpdatedCodeSelectionFields() {
     let element;
-    for(let i = 0; i < codeBlocksDataStateArray.length; i++){
+    for (let i = 0; i < codeBlocksDataStateArray.length; i++) {
         element = getGelementByName(codeBlocksDataStateArray[i].mktime).getElementsByClassName("code-selection")[0];
         setSelectedValue(element, codeBlocksDataStateArray[i].value);
     }
 }
-function saveCodeSelectionFields(svgArr){
+
+function saveCodeSelectionFields(svgArr) {
     codeBlocksDataStateArray = [];
     for (let i = 0; i < svgArr.length; i++) {
-        if(svgArr[i].getElementsByClassName("code-selection")[0])
+        if (svgArr[i].getElementsByClassName("code-selection")[0])
             codeBlocksDataStateArray.push({mktime: getmktime(svgArr[i]), value: getDataFromSvgForm(svgArr[i])});
     }
 }
+
 /**
  * Setting selectable value
  * @param selectObj - <select> html element of svg element
@@ -523,44 +529,45 @@ function setSelectedValue(selectObj, valueToSet) {
         }
     }
 }
+
 /**
  * On group hover draw border for every element in group
  */
 function previewGroupSelection() {
-    $('#code-logic-scene').on('mouseenter', 'g', function() {
+    $('#code-logic-scene').on('mouseenter', 'g', function () {
         let hoverElement = $(this).children()[0];
-        if(hoverElement !== undefined && hoverElement.tagName === "path") {
+        if (hoverElement !== undefined && hoverElement.tagName === "path") {
             hoverElement.setAttribute("stroke", "blue");
             hoverElement.setAttribute("stroke-width", "3.5");
 
             let childData = getChildrenData(hoverElement.parentNode);
-            if(childData.length > 0 && childData[0] !== "") {
+            if (childData.length > 0 && childData[0] !== "") {
                 for (let i = 0; i < childData.length; i++) {
                     getGelementByName(childData[i]).firstElementChild.setAttribute("stroke", "blue");
                     getGelementByName(childData[i]).firstElementChild.setAttribute("stroke-width", "3.5");
                 }
             }
         }
-    }).on('mouseleave', 'g', function() {
+    }).on('mouseleave', 'g', function () {
         let hoverElement = $(this).children()[0];
-        if(hoverElement !== undefined && hoverElement.tagName === "path") {
+        if (hoverElement !== undefined && hoverElement.tagName === "path") {
             hoverElement.setAttribute("stroke", "black");
             hoverElement.setAttribute("stroke-width", "2");
 
             let childData = getChildrenData(hoverElement.parentNode);
-            if(childData.length > 0 && childData[0] !== "") {
+            if (childData.length > 0 && childData[0] !== "") {
                 for (let i = 0; i < childData.length; i++) {
                     getGelementByName(childData[i]).firstElementChild.setAttribute("stroke", "black");
                     getGelementByName(childData[i]).firstElementChild.setAttribute("stroke-width", "2");
                 }
             }
         }
-    }).on('mousedown', 'g', function() {
+    }).on('mousedown', 'g', function () {
         let hoverElement = $(this).children()[0];
-        if(hoverElement !== undefined && hoverElement.tagName === "path") {
+        if (hoverElement !== undefined && hoverElement.tagName === "path") {
 
             let childData = getChildrenData(hoverElement.parentNode);
-            if(childData.length > 0 && childData[0] !== "") {
+            if (childData.length > 0 && childData[0] !== "") {
                 for (let i = 0; i < childData.length; i++) {
                     getGelementByName(childData[i]).firstElementChild.setAttribute("opacity", "0.5");
                     getGelementByName(childData[i]).firstElementChild.setAttribute("stroke", "blue");
@@ -568,12 +575,12 @@ function previewGroupSelection() {
                 }
             }
         }
-    }).on('mouseup', 'g', function() {
+    }).on('mouseup', 'g', function () {
         let hoverElement = $(this).children()[0];
         if (hoverElement !== undefined && hoverElement.tagName === "path") {
 
             let childData = getChildrenData(hoverElement.parentNode);
-            if(childData.length > 0 && childData[0] !== "") {
+            if (childData.length > 0 && childData[0] !== "") {
                 for (let i = 0; i < childData.length; i++) {
                     getGelementByName(childData[i]).firstElementChild.setAttribute("opacity", "1");
                     getGelementByName(childData[i]).firstElementChild.setAttribute("stroke", "black");
@@ -584,6 +591,7 @@ function previewGroupSelection() {
         }
     });
 }
+
 /**
  * Reorders children in html document to prevent overlapping
  * @param element - svg <g>
@@ -591,7 +599,7 @@ function previewGroupSelection() {
 function reorderChildrenInDocument(element) {
     let childData = getChildrenData(element);
     let tmp;
-    if(childData.length > 0 && childData[0] !== "") {
+    if (childData.length > 0 && childData[0] !== "") {
         for (let i = 0; i < childData.length; i++) {
             //Push selected element to back
             tmp = getGelementByName(childData[i]);
@@ -602,6 +610,7 @@ function reorderChildrenInDocument(element) {
         }
     }
 }
+
 /**
  * Get selected element all children names.
  * @param element Svg <g> component(element)
@@ -612,6 +621,7 @@ function getChildrenData(element) {
     //[0] index, cause getElementsByClassName return an array of found "myChild" classes
     return children[0].textContent.split(",");
 }
+
 /**
  * Creating array of SORTED data by (x;y) of all <g> svg elements in scene
  * initializing - svgScene[]
@@ -622,8 +632,8 @@ function getDataOfSvgInScene() {
     let childData;
     codeArray = [];
     //Creating array of just svg elements data
-    for(let i = 0; i < svgArr.length; i++){
-        if(getmktime(svgArr[i]) !== "trashbin") {
+    for (let i = 0; i < svgArr.length; i++) {
+        if (getmktime(svgArr[i]) !== "trashbin") {
             //Pushing into array only father elements and elements with father
             childData = getChildrenData(svgArr[i]);
             //Check NR.:1
@@ -657,7 +667,7 @@ function getDataOfSvgInScene() {
     }
     //sorting array by x and y coordinates example (100; 40) > (120; 10)
     svgScene.sort(
-        function(a, b) {
+        function (a, b) {
             return (parseFloat(a.y) - parseFloat(b.y)) && (parseFloat(a.x) - parseFloat(b.x));
         }
     );
@@ -665,13 +675,13 @@ function getDataOfSvgInScene() {
     //console.log(svgScene);
     let cleanSvgScene = [];
 
-    for (let i = 0; i < svgScene.length; i++){
-        if(svgScene[i].trigger){
+    for (let i = 0; i < svgScene.length; i++) {
+        if (svgScene[i].trigger) {
             cleanSvgScene.push(svgScene[i]);
-            for(let k = i+1; k < svgScene.length; k++){
-                if(svgScene[k].children.length > 0 && svgScene[k].children[0] !== "")
+            for (let k = i + 1; k < svgScene.length; k++) {
+                if (svgScene[k].children.length > 0 && svgScene[k].children[0] !== "")
                     cleanSvgScene.push(svgScene[k]);
-                else{
+                else {
                     cleanSvgScene.push(svgScene[k]);
                     i = k;
                     break;
@@ -682,11 +692,11 @@ function getDataOfSvgInScene() {
     //console.log("SVG scene cleaned");
     //console.log(cleanSvgScene);
     let groupArr = [];
-    for (let i = 0; i < cleanSvgScene.length; i++){
-        if(cleanSvgScene[i].children.length > 0 && cleanSvgScene[i].children[0] !== ""){
+    for (let i = 0; i < cleanSvgScene.length; i++) {
+        if (cleanSvgScene[i].children.length > 0 && cleanSvgScene[i].children[0] !== "") {
             groupArr.push(cleanSvgScene[i]);
         }
-        else{
+        else {
             groupArr.push(cleanSvgScene[i]);
             codeArray.push(groupArr);
             groupArr = [];
@@ -696,15 +706,16 @@ function getDataOfSvgInScene() {
     console.log("Final code array");
     console.log(codeArray);
 }
+
 /**
  * Check is element is someone child
  * @param element - svg <g>
  */
-function checkIsElementHaveFather(element){
+function checkIsElementHaveFather(element) {
     let svgArr = document.getElementById("code-logic-scene").children;
     let childData;
-    for(let i = 0; i < svgArr.length; i++){
-        if(getmktime(svgArr[i]) !== "trashbin") {
+    for (let i = 0; i < svgArr.length; i++) {
+        if (getmktime(svgArr[i]) !== "trashbin") {
             childData = getChildrenData(svgArr[i]);
             if (childData.length > 0 && childData[0] !== "" && childData !== undefined) {
                 for (let j = 0; j < childData.length; j++) {
@@ -716,19 +727,20 @@ function checkIsElementHaveFather(element){
     }
     return 0;
 }
+
 /**
  * Deleting element from svg scene
  * @param element - svg <g>
  */
-function deleteSvgElement(element){
+function deleteSvgElement(element) {
     //If element have children delete them also
     let childData = getChildrenData(element);
 
     //Deleting selected element
     $(element).remove();
 
-    if(childData.length > 0 && childData[0] !== "")
-        for(let i = 0; i < childData.length; i++)
+    if (childData.length > 0 && childData[0] !== "")
+        for (let i = 0; i < childData.length; i++)
             $(getGelementByName(childData[i])).remove();
 
     intersectArrInit();
@@ -736,27 +748,29 @@ function deleteSvgElement(element){
     //saving all written code to server
     saveSvgCodeScene();
 
-    for(let i = 0; i < svgIntersectArr.length; i++)
-        if(svgIntersectArr[i].trashbin)
+    for (let i = 0; i < svgIntersectArr.length; i++)
+        if (svgIntersectArr[i].trashbin)
             getGelementByName(svgIntersectArr[i].mktime).firstElementChild.setAttribute("transform", "scale(1.0)");
 }
+
 /**
  * Getting data from <input> or <select> tag from svg element
  *  @param element - svg <g> element
  */
 function getDataFromSvgForm(element) {
     let data, e;
-    if(element.getElementsByClassName("code-selection").length > 0) {
+    if (element.getElementsByClassName("code-selection").length > 0) {
         e = element.getElementsByClassName("code-selection")[0];
-        if(e.options[e.selectedIndex] !== undefined)
+        if (e.options[e.selectedIndex] !== undefined)
             data = e.options[e.selectedIndex].value;
     }
-    if(element.getElementsByClassName("code-input").length > 0) {
+    if (element.getElementsByClassName("code-input").length > 0) {
         e = element.getElementsByClassName("code-input")[0];
         data = e.value;
     }
     return data;
 }
+
 /**
  * Getting additional data from <select> tag from svg element
  *  @param element - svg <g> element
@@ -770,6 +784,7 @@ function getOperatorDataFromSvgForm(element) {
     }
     return data;
 }
+
 /**
  * Get data from svg <text> tag with class code id
  *  @param element - svg <g> element
@@ -777,13 +792,14 @@ function getOperatorDataFromSvgForm(element) {
 function getSvgCodeId(element) {
     return element.getElementsByClassName("code-id")[0].textContent;
 }
+
 /**
  * Intersected array initialization, load all exiting svg elements data into array
  */
-function intersectArrInit(){
+function intersectArrInit() {
     svgIntersectArr = [];
     let svgArr = document.getElementById("code-logic-scene").children;
-    for(let i = 0; i < svgArr.length; i++){
+    for (let i = 0; i < svgArr.length; i++) {
         svgIntersectArr.push({
             mktime: getmktime(svgArr[i]),
             xf: getSvgElementX(svgArr[i]),
@@ -800,13 +816,14 @@ function intersectArrInit(){
 
 
 }
+
 /**
  * Updating intersection array with selected svg element
  *  @param element - svg <g> element
  */
 function intersectArrUpdate(element) {
-    for(let i = 0; i < svgIntersectArr.length; i++){
-        if(svgIntersectArr[i].mktime === getmktime(element)){
+    for (let i = 0; i < svgIntersectArr.length; i++) {
+        if (svgIntersectArr[i].mktime === getmktime(element)) {
             svgIntersectArr[i].xf = getElementXf(element);
             svgIntersectArr[i].xt = getElementXt(element);
             svgIntersectArr[i].yf = getElementYf(element);
@@ -815,6 +832,7 @@ function intersectArrUpdate(element) {
         }
     }
 }
+
 /**
  * Finding intersection
  *  @param element - svg <g> element
@@ -825,19 +843,19 @@ function findIntersection(element) {
     let elementY = getElementYf(element);
 
     //clear un-intersected svg elements
-    for(let i = 0; i < svgIntersectArr.length; i++) {
+    for (let i = 0; i < svgIntersectArr.length; i++) {
         getGelementByName(svgIntersectArr[i].mktime).firstElementChild.setAttribute("stroke", "black");
         getGelementByName(svgIntersectArr[i].mktime).firstElementChild.setAttribute("stroke-width", "2");
         getGelementByName(svgIntersectArr[i].mktime).firstElementChild.setAttribute("stroke-dasharray", "0");
-        if(svgIntersectArr[i].trashbin)
+        if (svgIntersectArr[i].trashbin)
             getGelementByName(svgIntersectArr[i].mktime).firstElementChild.setAttribute("transform", "scale(1.0)");
     }
     //Checking or taken center dot is in any svg <g> elements
-    for(let i = 0; i < svgIntersectArr.length; i++){
-        if(svgIntersectArr[i].mktime !== getmktime(element)){
-            for(let x = svgIntersectArr[i].xf; x < svgIntersectArr[i].xt; ++x){
-                for(let y = svgIntersectArr[i].yf; y < svgIntersectArr[i].yt; ++y){
-                    if(x === elementX && y === elementY){
+    for (let i = 0; i < svgIntersectArr.length; i++) {
+        if (svgIntersectArr[i].mktime !== getmktime(element)) {
+            for (let x = svgIntersectArr[i].xf; x < svgIntersectArr[i].xt; ++x) {
+                for (let y = svgIntersectArr[i].yf; y < svgIntersectArr[i].yt; ++y) {
+                    if (x === elementX && y === elementY) {
                         previewIntersection(i, element);
                         return;
                     }
@@ -846,29 +864,30 @@ function findIntersection(element) {
         }
     }
 }
+
 /**
  * Drawing border for intersected element
  *  @param elementIndex - is int, index that represent element in intersection array
  * intersection array is save all svg elements array, but just only with name and coordinates data
  */
 function previewIntersection(elementIndex) {
-    for(let i = 0; i < svgIntersectArr.length; i++){
-        if(i === elementIndex){
+    for (let i = 0; i < svgIntersectArr.length; i++) {
+        if (i === elementIndex) {
             //Drawing standart green border to preview intersection
             getGelementByName(svgIntersectArr[i].mktime).firstElementChild.setAttribute("stroke", "green");
             getGelementByName(svgIntersectArr[i].mktime).firstElementChild.setAttribute("stroke-width", "4");
 
             //If element which is now intersected can not be joined draw dashed border
             let hasClass = selectedElement.classList.contains('joinable');
-            if(!(hasClass && svgIntersectArr[i].joinable))
+            if (!(hasClass && svgIntersectArr[i].joinable))
                 getGelementByName(svgIntersectArr[i].mktime).firstElementChild.setAttribute("stroke-dasharray", "5,5,5");
 
             hasClass = selectedElement.classList.contains('nonjoinable');
-            if(!(hasClass === svgIntersectArr[i].nonjoinable))
+            if (!(hasClass === svgIntersectArr[i].nonjoinable))
                 getGelementByName(svgIntersectArr[i].mktime).firstElementChild.setAttribute("stroke-dasharray", "5,5,5");
 
             //If intersected element is rubbish bin show that
-            if(svgIntersectArr[i].trashbin) {
+            if (svgIntersectArr[i].trashbin) {
                 getGelementByName(svgIntersectArr[i].mktime).firstElementChild.setAttribute("stroke-dasharray", "0");
                 getGelementByName(svgIntersectArr[i].mktime).firstElementChild.setAttribute("stroke", "red");
                 getGelementByName(svgIntersectArr[i].mktime).firstElementChild.setAttribute("transform", "scale(1.3)");
@@ -876,12 +895,12 @@ function previewIntersection(elementIndex) {
 
             //If father and intersected element is trigger
             hasClass = selectedElement.classList.contains('trigger');
-            if(hasClass && svgIntersectArr[i].trigger)
+            if (hasClass && svgIntersectArr[i].trigger)
                 getGelementByName(svgIntersectArr[i].mktime).firstElementChild.setAttribute("stroke-dasharray", "5,5,5");
 
             //If selected element = trigger & intersected = standard
             hasClass = selectedElement.classList.contains('trigger');
-            if(hasClass && svgIntersectArr[i].joinable && !svgIntersectArr[i].trigger)
+            if (hasClass && svgIntersectArr[i].joinable && !svgIntersectArr[i].trigger)
                 getGelementByName(svgIntersectArr[i].mktime).firstElementChild.setAttribute("stroke-dasharray", "5,5,5");
         }
         else {
@@ -892,24 +911,27 @@ function previewIntersection(elementIndex) {
         }
     }
 }
+
 /**
  * Timestamps svg elements in scene
  */
 function timeStampAll() {
     let svgArr = document.getElementById("code-logic-scene").children;
-    for(let i = 0; i < svgArr.length; i++){
-        if(getmktime(svgArr[i]) !== "trashbin")
+    for (let i = 0; i < svgArr.length; i++) {
+        if (getmktime(svgArr[i]) !== "trashbin")
             svgArr[i].getElementsByClassName("mktime")[0].innerHTML = mktime(); //patestuoti galima su [+ i]
         //svgArr[i].getElementsByClassName("mktime")[0].innerHTML = i;
     }
 }
+
 /**
  * Simply generates unique id -> timestamp
  */
-function mktime(){
+function mktime() {
     let d = new Date();
     return d.getTime();
 }
+
 /**
  * Get svg <g> element from name(mktime)
  * @param value - mktime
@@ -918,12 +940,13 @@ function mktime(){
 function getGelementByName(value) {
     let svg = document.getElementById("code-logic-scene");
     let elements = svg.getElementsByClassName("mktime");
-    for(let i = 0; i < elements.length; i++) {
+    for (let i = 0; i < elements.length; i++) {
         if (elements[i].textContent === value) {
             return elements[i].parentNode;
         }
     }
 }
+
 /**
  * Get svg <g> element id === name === mktime
  * @param element - svg <g> element
@@ -932,6 +955,7 @@ function getGelementByName(value) {
 function getmktime(element) {
     return element.getElementsByClassName("mktime")[0].textContent;
 }
+
 /**
  * Get (x from) coordinates of svg <g> element  -> smallest possible x coordinate
  * @param element
@@ -940,6 +964,7 @@ function getmktime(element) {
 function getElementXf(element) {
     return getSvgElementX(element);
 }
+
 /**
  * Get (x to) coordinates of svg <g> element -> largest possible x coordinate
  * @param element
@@ -948,6 +973,7 @@ function getElementXf(element) {
 function getElementXt(element) {
     return Math.round(element.getBBox().width + getSvgElementX(element))
 }
+
 /**
  * Get (y from) coordinates of svg <g> element -> smallest possible y coordinate
  * @param element
@@ -956,21 +982,23 @@ function getElementXt(element) {
 function getElementYf(element) {
     return getSvgElementY(element);
 }
+
 /**
  * Get (y to) coordinates of svg <g> element -> largest possible y coordinate
  * @param element
  * @returns {number} y coordinates
  */
-function getElementYt(element){
+function getElementYt(element) {
     return Math.round(element.getBBox().height + getSvgElementY(element));
 }
+
 /**
  * Simple function to get svg <g> element real x coordinates
  * @param element - svg <g>
  * @returns {number} X coordinate
  */
-function getSvgElementX(element){
-    if(element.tagName === "g") {
+function getSvgElementX(element) {
+    if (element.tagName === "g") {
         let matrix = element.getAttributeNS(null, "transform").slice(7, -1).split(' ');
         for (let i = 0; i < matrix.length; i++) {
             matrix[i] = parseFloat(matrix[i]);
@@ -978,13 +1006,14 @@ function getSvgElementX(element){
         return Math.round(element.getBBox().x + matrix[4]);
     }
 }
+
 /**
  * Simple function to get svg <g> element real y coordinates
  * @param element - svg <g>
  * @returns {number} Y coordinate
  */
-function getSvgElementY(element){
-    if(element.tagName === "g") {
+function getSvgElementY(element) {
+    if (element.tagName === "g") {
         let matrix = element.getAttributeNS(null, "transform").slice(7, -1).split(' ');
         for (let i = 0; i < matrix.length; i++) {
             matrix[i] = parseFloat(matrix[i]);
