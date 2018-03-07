@@ -9,15 +9,25 @@
 // Initialize the session
 session_start();
 
+
+
+//TODO patikrinima ar projektas priklauso useriui
+
 // If session variable is not set it will redirect to login page
 if (!isset($_SESSION['username']) || empty($_SESSION['username'])) {
-    header("location: ../index.php");
+    header("location: index.php");
     exit;
-} else {
+}
+else{
+    require_once ('../php/check_users_permissions_for_project.php');
+}
+if ($isUsersProject){
     $project_id = $_GET['project_id'];
     $project_name = $_GET['project_name'];
-    //echo "pr id: " . $project_id . "|  session user id: " . $_SESSION['user_id'] . "|  pr name: " . $project_name . "| ";
-    //require_once ('../php/get_code_source.php');
+}
+else {
+    header("location: my_projects.php");
+    exit;
 }
 ?>
 
