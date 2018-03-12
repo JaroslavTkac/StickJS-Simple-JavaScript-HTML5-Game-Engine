@@ -18,6 +18,7 @@ $(document).ready(function () {
         parsingBlocks();
         saveSvgCodeScene();
         codeToAdd += "\n}";
+        uploadUserConvertedCode();
         console.log(codeToAdd);
         codeToAdd = "function userCode() { ";
     });
@@ -157,12 +158,12 @@ function searchingFirstLoopWithCodeUploading(cluster, index, triggerValue, trigg
         }
         if (cluster[j].codeID === "for specific") {
             console.log("LOOP: for specific");
-            analyzingCodeClusterForUploading(j, cluster, "specific", cluster[j].value, triggerValue, triggerType);
+            analyzingCodeClusterForUploading(j, cluster, "specific", "\"" + cluster[j].value + "\"", triggerValue, triggerType);
             break;
         }
         if (cluster[j].codeID === "for name") {
             console.log("LOOP: for name");
-            analyzingCodeClusterForUploading(j, cluster, "name", cluster[j].value, triggerValue, triggerType);
+            analyzingCodeClusterForUploading(j, cluster, "name", "\"" + cluster[j].value + "\"", triggerValue, triggerType);
             break;
         }
     }

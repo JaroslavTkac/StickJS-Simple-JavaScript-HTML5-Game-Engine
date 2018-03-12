@@ -59,9 +59,10 @@ if(isset($_POST['userId']) && isset($_POST['projectName'])){
             $sql = "INSERT INTO users_projects_movement_config (project_id) VALUES (" . $project_id . ")";
             $result = $mysqli->query($sql);
 
-            //TODO sugalvoti kaip cia su failais zaisti
-            $sql = "INSERT INTO users_projects_movement_config (project_id, js_file_path, code) 
-            VALUES (" . $project_id . ",\"UserConvertedCode.js\"," . "function userCode() {} )";
+            $sql = "INSERT INTO users_converted_code (project_id, old_js_file_path, new_js_file_path, code) 
+                VALUES (\"". $project_id . "\",\"../scripts/UserConvertedCode.js\"
+                ,\"../scripts/UserConvertedCode.js\",
+                \"function userCode() {}\" )";
             $result = $mysqli->query($sql);
 
         }

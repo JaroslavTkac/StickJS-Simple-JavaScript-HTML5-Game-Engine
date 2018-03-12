@@ -9,7 +9,6 @@
 // Include connection file
 require_once 'connection.php';
 
-
 $username = $_SESSION['username'];
 $user_id = $_SESSION['user_id'];
 

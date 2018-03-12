@@ -10,9 +10,6 @@
 session_start();
 
 
-
-//TODO patikrinima ar projektas priklauso useriui
-
 // If session variable is not set it will redirect to login page
 if (!isset($_SESSION['username']) || empty($_SESSION['username'])) {
     header("location: index.php");
@@ -20,10 +17,14 @@ if (!isset($_SESSION['username']) || empty($_SESSION['username'])) {
 }
 else{
     require_once ('../php/check_users_permissions_for_project.php');
+
 }
 if ($isUsersProject){
     $project_id = $_GET['project_id'];
     $project_name = $_GET['project_name'];
+
+    include ('../php/get_users_code_file_path.php');
+    //echo "newFilePath: " . $newFilePath;
 }
 else {
     header("location: my_projects.php");
@@ -87,7 +88,7 @@ else {
     <script type="text/javascript" src="../scripts/UserFunctions.js"></script>
     <script type="text/javascript" src="../scripts/CodeBlocks.js"></script>
     <script type="text/javascript" src="../scripts/BlocksToCode.js"></script>
-    <script type="text/javascript" src="../scripts/UserConvertedCode.js"></script>
+    <script type="text/javascript" src="<?php echo $newFilePath ; ?>"></script>
     <script type="text/javascript" src="../scripts/EditorMainWindow.js"></script>
     <script type="text/javascript" src="../scripts/Main.js"></script>
 

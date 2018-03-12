@@ -640,6 +640,25 @@ function loadMovementConfig() {
     });
 }
 
+
+//Uploading user code to server
+function uploadUserConvertedCode() {
+    $.ajax({
+        url: "../php/upload_converted_code.php",
+        type: "POST",
+        data: {
+            projectId: projectId,
+            userId: userId,
+            codeToUpload: codeToAdd
+        },
+        success: function (response) {
+            console.log("Response of update");
+            console.log(response);
+        }
+    });
+}
+
+
 //Saving all SVG SCENE elements
 function saveSvgCodeScene() {
     let svgCodeScene = [];

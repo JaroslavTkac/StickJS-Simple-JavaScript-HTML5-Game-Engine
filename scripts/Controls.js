@@ -244,22 +244,30 @@ class Key {
 
     doAction() {
         if (this.keyPressed) {
-            if (keyboard.shooterControlsEnabled)
+            if (keyboard.shooterControlsEnabled) {
                 this.shooterControlsValidation(keyboard.speed, keyboard.controlsType);
+            }
+
             x += this.x;
             y += this.y;
             z += this.z;
+            x = round(x, 5);
+            y = round(y, 5);
+            z = round(z, 5);
             xRotation += this.xRot;
             yRotation += this.yRot;
             zRotation += this.zRot;
+            //console.log("this.x: " + this.x + " this.y: " + this.y +  " this.z: " + this.z);
+            //console.log("x: " + x + " y: " + y +  " z: " + z );
             //if(this.useSong)
             //this.playSound();
         }
     }
 
-    shooterControlsValidation(speed, type) {
-        yRotation = yRotation % 360;
-        let delta = yRotation / 90;
+    shooterControlsValidation(speedValue, type) {
+        yRotation = parseFloat(yRotation % 360);
+        let delta = parseFloat(yRotation / 90);
+        let speed = parseFloat(speedValue);
         let forward = "w", backward = "s";
         if (type === "arrows") {
             forward = "uarrow";
@@ -269,6 +277,7 @@ class Key {
         if (this.keyName === forward) {
             if (yRotation >= -90 && yRotation <= 90) {
                 this.x = -speed * delta;
+                //console.log("-speed * delta : -" + speed + " * " + delta + " = " + this.x);
                 this.z = speed - Math.abs(this.x);
                 return
             }
@@ -276,6 +285,7 @@ class Key {
         if (this.keyName === backward) {
             if (yRotation >= -90 && yRotation <= 90) {
                 this.x = speed * delta;
+                //console.log("speed * delta : " + speed + " * " + delta + " = " + this.x);
                 this.z = -(speed - Math.abs(this.x));
                 return
             }
@@ -283,6 +293,7 @@ class Key {
         if (this.keyName === forward) {
             if (yRotation > 90 && yRotation <= 180) {
                 this.z = -((speed * delta) - speed);
+                //console.log("-((speed * delta) - speed : -((" + speed + " * " + delta + ") - " + speed  + "  = " + this.z);
                 this.x = -(speed - Math.abs(this.z));
                 return
             }
@@ -290,6 +301,7 @@ class Key {
         if (this.keyName === backward) {
             if (yRotation > 90 && yRotation <= 180) {
                 this.z = ((speed * delta) - speed);
+                //console.log("((speed * delta) - speed : ((" + speed + " * " + delta + ") - " + speed  + "  = " + this.z);
                 this.x = (speed - Math.abs(this.z));
                 return
             }
@@ -297,6 +309,7 @@ class Key {
         if (this.keyName === forward) {
             if (yRotation >= -180 && yRotation < -90) {
                 this.z = (speed * delta) + speed;
+                //console.log("(speed * delta) + speed : (" + speed + " * " + delta + ") + " + speed  + "  = " + this.z);
                 this.x = (speed - Math.abs(this.z));
                 return
             }
@@ -304,6 +317,7 @@ class Key {
         if (this.keyName === backward) {
             if (yRotation >= -180 && yRotation < -90) {
                 this.z = Math.abs((speed * delta) + speed);
+                //console.log("Math.abs((speed * delta) + speed) : Math.abs((" + speed + " * " + delta + ") + " + speed  + ")  = " + this.z);
                 this.x = -(speed - Math.abs(this.z));
                 return
             }
@@ -311,6 +325,7 @@ class Key {
         if (this.keyName === forward) {
             if (yRotation > 180 && yRotation <= 270) {
                 this.x = ((speed * delta) - 2 * speed);
+                //console.log("((speed * delta) - 2 * speed : ((" + speed + " * " + delta + ") - 2 * " + speed  + "  = " + this.x);
                 this.z = -(speed - Math.abs(this.x));
                 return
             }
@@ -318,6 +333,7 @@ class Key {
         if (this.keyName === backward) {
             if (yRotation > 180 && yRotation <= 270) {
                 this.x = -((speed * delta) - 2 * speed);
+                //console.log("-((speed * delta) - 2 * speed : -((" + speed + " * " + delta + ") - 2 * " + speed  + "  = " + this.x);
                 this.z = (speed - Math.abs(this.x));
                 return
             }
@@ -325,6 +341,7 @@ class Key {
         if (this.keyName === forward) {
             if (yRotation >= -270 && yRotation < -180) {
                 this.x = ((speed * delta) + 2 * speed);
+                //console.log("((speed * delta) + 2 * speed : ((" + speed + " * " + delta + ") + 2 * " + speed  + "  = " + this.x);
                 this.z = -(speed - Math.abs(this.x));
                 return
             }
@@ -332,6 +349,7 @@ class Key {
         if (this.keyName === backward) {
             if (yRotation >= -270 && yRotation < -180) {
                 this.x = -((speed * delta) + 2 * speed);
+                //console.log("-((speed * delta) + 2 * speed : -((" + speed + " * " + delta + ") + 2 * " + speed  + "  = " + this.x);
                 this.z = (speed - Math.abs(this.x));
                 return
             }
@@ -339,6 +357,7 @@ class Key {
         if (this.keyName === forward) {
             if (yRotation > 270 && yRotation <= 360) {
                 this.z = ((speed * delta) - 3 * speed);
+                //console.log("((speed * delta) - 3 * speed : ((" + speed + " * " + delta + ") - 3 * " + speed  + "  = " + this.z);
                 this.x = (speed - Math.abs(this.z));
                 return
             }
@@ -346,6 +365,7 @@ class Key {
         if (this.keyName === backward) {
             if (yRotation > 270 && yRotation <= 360) {
                 this.z = -((speed * delta) - 3 * speed);
+                //console.log("-((speed * delta) - 3 * speed : -((" + speed + " * " + delta + ") - 3 * " + speed  + "  = " + this.z);
                 this.x = -(speed - Math.abs(this.z));
                 return
             }
@@ -353,6 +373,7 @@ class Key {
         if (this.keyName === forward) {
             if (yRotation >= -360 && yRotation < -270) {
                 this.z = Math.abs((speed * delta) + 3 * speed);
+                //console.log("Math.abs((speed * delta) + 3 * speed) : Math.abs((" + speed + " * " + delta + ") + 3 * " + speed  + ")  = " + this.z);
                 this.x = -(speed - Math.abs(this.z));
                 return
             }
@@ -360,6 +381,7 @@ class Key {
         if (this.keyName === backward) {
             if (yRotation >= -360 && yRotation < -270) {
                 this.z = ((speed * delta) + 3 * speed);
+                //console.log("((speed * delta) + 3 * speed) : ((" + speed + " * " + delta + ") + 3 * " + speed  + ")  = " + this.z);
                 this.x = (speed - Math.abs(this.z));
             }
         }

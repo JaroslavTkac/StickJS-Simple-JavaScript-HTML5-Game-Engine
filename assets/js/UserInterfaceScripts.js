@@ -707,6 +707,15 @@ $(document).ready(function () {
     $('#reset-scene-btn').click(function () {
         //clearing scene array
         objArr = [];
+        //return camera
+        x = 0;
+        y = 0;
+        z = 0;
+        xRotation = 0;
+        yRotation = 0;
+        zRotation = 0;
+        playFrames = false;
+        fpsSum = 0;
         //load saved scene
         loadScene();
 
