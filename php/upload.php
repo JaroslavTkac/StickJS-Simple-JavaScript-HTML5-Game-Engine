@@ -86,14 +86,26 @@ function deleteFile($file_path)
     $allowed = array('png', 'jpg', 'obj', 'mp3', 'json');
     $file = $file_path;
     $ext = pathinfo($file, PATHINFO_EXTENSION);
+    if(strpos($file, "scripts/user_converted_code/")){
+        if (!unlink($file)) {
+            return "Error deleting file: $file";
+        }
+        else{
+            return "Deleted file: $file";
+        }
+    }
     if (!in_array(strtolower($ext), $allowed)) {
         return "Error, cannot delete file: " . $file;
     }
-    if (!unlink($file))
+    if (!unlink($file)) {
         return "Error deleting file: $file";
-    else
+    }
+    else {
         return "Deleted file: $file";
+    }
+
 }
+
 
 //Uploading object after converting to server
 if (isset($_POST['callCreateFile'])) {
@@ -266,6 +278,14 @@ if (isset($_POST['userId']) && isset($_POST['cleanFolders']) && isset($_POST['pr
     foreach ($rawData as $item) {
         array_push($folderContentToDelete, $item);
     }
+
+    //preparing user saved converted code scripts for deleting
+    $rawData = getFilesInFolder("../scripts/user_converted_code/", $userId, $projectId);
+
+    foreach ($rawData as $item) {
+        array_push($folderContentToDelete, $item);
+    }
+
 
     $infoArr = array();
     foreach ($folderContentToDelete as $item) {

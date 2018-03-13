@@ -576,7 +576,7 @@ setInterval(function () {
 
 //Saving main important data
 function saveData() {
-    console.log("Saving all data");
+    //console.log("Saving all data");
     saveSavedShapes();
     saveLiveObjects();
     saveSvgCodeScene();
@@ -674,15 +674,18 @@ function saveSvgCodeScene() {
     }
     let data = JSON.stringify(svgCodeScene);
 
+
     $.ajax({
         url: "../php/upload_saved_svg_scene.php",
         type: "POST",
         data: {
             projectId: projectId,
-            saved_svg_scene: data
+            saved_svg_scene: data,
+            svgArr_len: svgArr.length
         },
         success: function (response) {
             //console.log(response);
+            //console.log("svgArr.len: " + svgArr.length);
         }
     });
 }
@@ -723,6 +726,20 @@ function loadSvgCodeScene() {
                     if (svgArr[i].getElementsByClassName("code-input").length > 0)
                         svgArr[i].getElementsByClassName("code-input")[0].value = data[i - 1].value;
                 }
+            }
+
+            //Check or some block data are not corrupted with NaN value
+            //if so restore object coordinates to 30;30
+            for (let i = 0; i < svgArr.length; i++){
+                console.log("x: " + getSvgElementX(svgArr[i]) + " y: " + getSvgElementY(svgArr[i]));
+                if(isNaN(getSvgElementX(svgArr[i])) || isNaN(getSvgElementY(svgArr[i]))){
+                    let currentMatrix = svgArr[i].getAttributeNS(null, "transform").slice(7, -1).split(' ');
+
+                    currentMatrix[4] = 30;
+                    currentMatrix[5] = 30;
+                    svgArr[i].setAttributeNS(null, "transform", "matrix(" + currentMatrix.join(' ') + ")");
+                }
+
             }
         }
     });

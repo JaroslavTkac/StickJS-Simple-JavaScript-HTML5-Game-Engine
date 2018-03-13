@@ -118,8 +118,8 @@ function deselectElement(evt) {
             //and deleting SELECTED element NAME from every element child section
             if ((svgArr[i].getElementsByClassName("myChild")[0].textContent.indexOf(getmktime(selectedElement)) !== -1) &&
                 (tmpMatrixX !== currentMatrix[4] || tmpMatrixY !== currentMatrix[5])) {
-                console.log("Going to clean father's ** " + getmktime(svgArr[i]) + " ** children");
-                console.log(i);
+                //console.log("Going to clean father's ** " + getmktime(svgArr[i]) + " ** children");
+                //console.log(i);
                 childData = getChildrenData(svgArr[i]);
                 let cleanData = "";
                 for (let j = 0; j < childData.length; j++) {
@@ -131,8 +131,8 @@ function deselectElement(evt) {
                     else
                         break;
                 }
-                console.log("child data: " + childData);
-                console.log("cleaned child data: " + cleanData);
+                //console.log("child data: " + childData);
+                //console.log("cleaned child data: " + cleanData);
                 svgArr[i].getElementsByClassName("myChild")[0].innerHTML = cleanData;
                 //svgArr[i].getElementsByClassName("myFather")[0].innerHTML = "none";
                 //console.log("My father: " + svgArr[i].getElementsByClassName("myFather")[0].textContent);
@@ -228,13 +228,13 @@ function deselectElement(evt) {
                             childData = svgArr[l].getElementsByClassName("myChild")[0].textContent;
 
                             if (childData.indexOf(getmktime(selectedElement)) === -1 && childData.length > 0) {
-                                console.log("Adding selected");
+                                //console.log("Adding selected");
                                 svgArr[l].getElementsByClassName("myChild")[0].innerHTML = childData + "," + getmktime(selectedElement);
 
                                 let selectedElemChildData = getChildrenData(selectedElement);
                                 if (selectedElemChildData.length > 0 && selectedElemChildData[0] !== "") {
                                     for (let k = 0; k < selectedElemChildData.length; k++) {
-                                        console.log(selectedElemChildData[k]);
+                                        //console.log(selectedElemChildData[k]);
                                         childData = svgArr[l].getElementsByClassName("myChild")[0].textContent;
                                         svgArr[l].getElementsByClassName("myChild")[0].innerHTML = childData + "," + selectedElemChildData[k];
 
@@ -331,7 +331,7 @@ function addSvgElementToScene() {
         let doc = document.getElementById('code-scene-div');
         //x & y is to get center of the code logic scene
         let x = doc.scrollLeft + Math.round(doc.offsetWidth / 2), y = doc.scrollTop + Math.round(doc.offsetHeight / 2);
-        console.log("X: " + x + " Y: " + y);
+        //console.log("X: " + x + " Y: " + y);
         let modSvgToAdd = svgToAdd.replace(tmp.substr(3, tmp.length), "transform=\"matrix(1 0 0 1 " + x + " " + y + ")\"");
 
         //Save already filled data to array and fill back it after appending html

@@ -333,7 +333,7 @@ $(document).ready(function () {
         else
             texture_path = $(this).attr("alt");
         applyTexture("../" + texture_path);
-        lastSelectedTexture = texture_path;
+        lastSelectedTexture = "../" + texture_path;
     });
 
     //Add Shape to Editor

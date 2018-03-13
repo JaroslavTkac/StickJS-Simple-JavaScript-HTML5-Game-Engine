@@ -13,7 +13,7 @@ function applyChangesToAll(x, y, z, sx, sy, sz, xRot, yRot, zRot,
     console.log("sumAllValues: " + sumAllValues);
     console.log("Going to apply changes TO ALL");
     if (sumAllValues) {
-        console.log("Summing values");
+        //console.log("Summing values");
         //summing up all given values
         if (ambientR !== null)
             ambientLight.r += parseFloat(ambientR);
@@ -116,7 +116,7 @@ function applyChangesToAll(x, y, z, sx, sy, sz, xRot, yRot, zRot,
         }
     }
 
-    console.log(objArr);
+    //console.log(objArr);
 }
 
 //Apply changes to specific type of objects
@@ -125,10 +125,10 @@ function applyChangesToSpecificType(objectType, x, y, z, sx, sy, sz, xRot, yRot,
                                     ambientR, ambientG, ambientB, animateRotation, useCamera, opacity, transparency, sumAllValues) {
 
 
-    console.log("Going to apply changes TO: " + objectType);
+    //console.log("Going to apply changes TO: " + objectType);
 
     if (sumAllValues) {
-        console.log("Summing values");
+        //console.log("Summing values");
         //summing up all given values
         if (ambientR !== null)
             ambientLight.r += parseFloat(ambientR);
@@ -234,7 +234,7 @@ function applyChangesToSpecificType(objectType, x, y, z, sx, sy, sz, xRot, yRot,
         }
     }
 
-    console.log(objArr);
+    //console.log(objArr);
 }
 
 //Apply changes to specific type of objects
@@ -248,7 +248,7 @@ function applyChangesToSpecificObject(name, x, y, z, sx, sy, sz, xRot, yRot, zRo
     let object = getObjByName(name);
 
     if (sumAllValues) {
-        console.log("Summing values");
+        //console.log("Summing values");
         if (ambientR !== null)
             ambientLight.r = parseFloat(ambientR);
         if (ambientG !== null)
@@ -346,6 +346,6 @@ function applyChangesToSpecificObject(name, x, y, z, sx, sy, sz, xRot, yRot, zRo
     }
 
 
-    console.log(object);
+    //console.log(object);
 }
 
