@@ -42,13 +42,12 @@ $(document).ready(function () {
 
 
     // Get user content and append page with got data
-    // TODO PACIAM PHP PRIE FAILU TURI PRISIDETI USER IR PROJECT ID PAGAL KURIOS BUS SPRENDZIAMA KOKIUS KRAUTI IS SERVERIO
     //Getting all textures on server for init validation
     getAllAvailableTextures();
     //Textures
     loadUserData("../assets/img/textures/user_textures", "image");
     //Music
-    loadUserData("../assets/music/user_music", "music");
+    //loadUserData("../assets/music/user_music", "music");
     //Saved shapes
     loadUserData("../shapes/user_saved_shapes", "savedShapes");
 
@@ -247,7 +246,7 @@ $(document).ready(function () {
 
         }
 
-        if ($(this).text() === "Sound") {
+        /*if ($(this).text() === "Sound") {
             $('#saved-shape-container').css('display', 'none');
             $('#editor-container').css('display', 'none');
             $('#code-area').css('display', 'none');
@@ -266,7 +265,7 @@ $(document).ready(function () {
             $('#checkbox-label').css('display', 'none');
             //Sound divs
 
-        }
+        }*/
     });
     previewGroupSelection();
     addSvgElementToScene();
@@ -306,11 +305,11 @@ $(document).ready(function () {
             }
 
         }
-        if ($(this).text() === "Music") {
+        /*if ($(this).text() === "Music") {
             $('#selectable-textures').css('display', 'none');
             $('#selectable-shapes').css('display', 'none');
             $('#selectable-music').css('display', '');
-        }
+        }*/
         if ($(this).text() === "Textures") {
             $('#selectable-music').css('display', 'none');
             $('#selectable-shapes').css('display', 'none');

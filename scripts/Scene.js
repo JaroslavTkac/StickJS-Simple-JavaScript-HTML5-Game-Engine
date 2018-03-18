@@ -226,6 +226,38 @@ class CreateShape {
              mat4.rotate(mvMatrix, degToRad(this.zRot), [false, false, true]);
          }*/
     }
+    setColorR(r){
+        if(r >= 1){
+            this.r = 1;
+        }
+        if(r <= 0){
+            this.r = 0;
+        }
+    }
+    setColorB(b){
+        if(b >= 1){
+            this.b = 1;
+        }
+        if(b <= 0){
+            this.b = 0;
+        }
+    }
+    setColorG(g){
+        if(g >= 1){
+            this.g = 1;
+        }
+        if(g <= 0){
+            this.g = 0;
+        }
+    }
+    setOpacity(opacity){
+        if(opacity >= 1){
+            this.alpha = 1;
+        }
+        if(opacity <= 0){
+            this.alpha = 0;
+        }
+    }
 }
 
 function initBuffers(object, webgl) {

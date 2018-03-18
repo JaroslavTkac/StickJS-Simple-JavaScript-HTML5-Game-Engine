@@ -10,7 +10,7 @@
 require_once 'connection.php';
 
 
-if(isset($_POST['projectId']) && isset($_POST['saved_scene_json_data'])){
+if(isset($_POST['projectId']) && isset($_POST['saved_scene_json_data']) && ($_POST['projectType'] === "general")){
     $sql = "UPDATE users_saved_scene SET json_data = ? WHERE project_id = ?";
 
     if($stmt = $mysqli->prepare($sql)){

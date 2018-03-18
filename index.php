@@ -43,6 +43,8 @@ require_once 'php/login.php';
                 </li>
                 <li><a href="#creator-info">About</a>
                 </li>
+                <li><a href="views/users_projects.php">Users Projects</a>
+                </li>
             </ul>
             <form class="navbar-form navbar-right" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>"
                   method="post">
@@ -170,6 +172,29 @@ require_once 'php/login.php';
         <div class="row">
             <h1 class="title col-md-12">Update log</h1>
             <div id="update-log">
+                <h2>0.9.3.0</h2>
+                <hr class="update-hr">
+                <ul>
+                    <li>User project publishing to projects preview page.</li>
+                    <li>Everyone can try projects created by other users.</li>
+                    <li>Demo project available.</li>
+                    <li>Bug fixes.</li>
+                </ul>
+                <h2>0.9.2.0</h2>
+                <hr class="update-hr">
+                <ul>
+                    <li><b>HUGE UPDATE</b></li>
+                    <li>Bug fixes, bug fixes and a lot of bug fixes.</li>
+                    <li>Stability improvements.</li>
+                    <li>Additional validations.</li>
+                    <li>MySQL database integration and moving away from file system user data saving.</li>
+                    <li>User accounts.</li>
+                    <li>Multiple and individual projects for every user.</li>
+                    <li>Drastically improved three triggers (on X, on Y, on Z), now they support 6 comparison
+                        (equals, not equals, greater than, less than, greater or equal than, lesser or equal than) NOT just equals.</li>
+                    <li>Code uploading to server and subsequent code executing in project, after page refresh.</li>
+                    <li>... I sure that something I forget to mention. </li>
+                </ul>
                 <h2>0.9.1.2</h2>
                 <hr class="update-hr">
                 <ul>

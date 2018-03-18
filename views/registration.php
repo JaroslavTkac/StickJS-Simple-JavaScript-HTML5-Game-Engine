@@ -44,6 +44,8 @@ require '../php/register.php';
                 </li>
                 <li><a href="../index.php#creator-info">About</a>
                 </li>
+                <li><a href="users_projects.php">Users Projects</a>
+                </li>
             </ul>
         </div>
     </div>

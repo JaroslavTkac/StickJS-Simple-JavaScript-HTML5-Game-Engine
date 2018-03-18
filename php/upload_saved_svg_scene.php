@@ -10,7 +10,7 @@
 require_once 'connection.php';
 
 
-if(isset($_POST['projectId']) && isset($_POST['saved_svg_scene'])){
+if(isset($_POST['projectId']) && isset($_POST['saved_svg_scene']) && ($_POST['projectType'] === "general")){
     if($_POST['saved_svg_scene'] == "[]" && $_POST['svgArr_len'] > 1){
         echo "Trying to save wrong input";
     }

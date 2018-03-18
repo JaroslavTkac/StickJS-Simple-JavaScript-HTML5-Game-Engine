@@ -15,6 +15,7 @@ if (!isset($_SESSION['username']) || empty($_SESSION['username'])) {
     header("location: ../index.php");
     exit;
 } else {
+    $projectType = "general";
     require_once('../php/get_projects.php');
 }
 ?>
@@ -70,6 +71,8 @@ if (!isset($_SESSION['username']) || empty($_SESSION['username'])) {
                 </li>
                 <li><a href="home.php#creator-info">About</a>
                 </li>
+                <li><a href="users_projects.php">Users Projects</a>
+                </li>
             </ul>
             <form class="navbar-right">
                 <div align="center" style="color: white; font-size: 16px; font-family: Helvetica, Arial, sans-serif">
@@ -118,6 +121,7 @@ if (!isset($_SESSION['username']) || empty($_SESSION['username'])) {
             echo "</div>";
             echo "<div class=\"col-md-3 cta-button\">";
             echo "<a href=\"editor.php?project_id=" . $data['project_id'] . "&project_name=" . $data['name'] . "\" class=\"btn btn-lg btn-block btn-" . $color_array[$color_switcher] . "\">Open</a>";
+            echo "<a href=\"#\" id=\"" . $data['project_id'] . "\" class=\"publish-project-btn btn btn-lg btn-block btn-" . $color_array[$color_switcher] . "\">Publish</a>";
             echo "<a href=\"#\" id=\"" . $data['project_id'] . "\" class=\"del-project-btn btn btn-lg btn-block btn-" . $color_array[$color_switcher] . "\">Delete</a>";
             echo "</div>";
             echo "</div>";

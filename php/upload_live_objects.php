@@ -10,7 +10,7 @@
 require_once 'connection.php';
 
 
-if(isset($_POST['projectId']) && isset($_POST['live_objects_json_data'])){
+if(isset($_POST['projectId']) && isset($_POST['live_objects_json_data']) && ($_POST['projectType'] === "general")){
     $sql = "UPDATE users_live_objects SET json_data = ? WHERE project_id = ?";
 
     if($stmt = $mysqli->prepare($sql)){

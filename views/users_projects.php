@@ -2,9 +2,10 @@
 /**
  * Created by PhpStorm.
  * User: jaroslavtkaciuk
- * Date: 19/02/2018
- * Time: 19:36
+ * Date: 16/03/2018
+ * Time: 11:29
  */
+
 
 // Initialize the session
 session_start();
@@ -12,16 +13,18 @@ session_start();
 $isLoggedIn = true;
 // If session variable is not set it will redirect to login page
 if (!isset($_SESSION['username']) || empty($_SESSION['username'])) {
-    //header("location: ../index.php");
-    //exit;
     $isLoggedIn = false;
 }
+else{
+    $userId = $_SESSION['user_id'];
+}
+
 ?>
 
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
-    <title>StickJS - Demo Project</title>
+    <title>StickJS - Users Projects</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -30,7 +33,24 @@ if (!isset($_SESSION['username']) || empty($_SESSION['username'])) {
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" type="text/css" href="../assets/css/bootstrap.css">
-    <link rel="stylesheet" href="../assets/css/styles.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/styles.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/projects_styles.css">
+
+    <!-- JavaScript Includes -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="../assets/js/jquery.knob.js"></script>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
+            integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
+            crossorigin="anonymous"></script>
+    <script src="../assets/js/bootstrap.min.js"></script>
+
+
+    <script>
+        let userId = "<?php echo $_SESSION['user_id']; ?>";
+    </script>
+    <script src="../assets/js/PublishedProjects.js"></script>
 
 </head>
 <body>
@@ -112,11 +132,55 @@ if (!isset($_SESSION['username']) || empty($_SESSION['username'])) {
     </div>
 </div>
 
-<h4>DEMO PROJECT</h4>
+<div class="container-fluid" style="background: #e3eef4">
+    <h1 align="center">Users Projects</h1>
 
 
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
-<script src="../assets/js/bootstrap.min.js"></script>
+
+    <div id="user-projects" class="col-sm-12">
+
+        <?php
+        /*$color_switcher = 0;
+        $color_array = array('primary', 'info', 'success', 'warning', 'danger');
+        foreach ($project_data as $data) {
+            echo "<div class=\"bs-calltoaction bs-calltoaction-" . $color_array[$color_switcher] . "\">";
+            echo "<div class=\"row\">";
+            echo "<div class=\"col-md-9 cta-contents\">";
+            echo "<h1 class=\"cta-title col-lg-9 col-md-9\">" . $data['name'] . "</h1>";
+            echo "<p class=\"col-lg-3 col-md-3\">Created at: " . $data['created'] . "</p>";
+            echo "<div class=\"cta-desc col-lg-12 col-md-12\">";
+            echo "<p>" . $data['about'] . "</p>";
+            echo "</div>";
+            echo "</div>";
+            echo "<div class=\"col-md-3 cta-button\">";
+            echo "<a href=\"editor.php?project_id=" . $data['project_id'] . "&project_name=" . $data['name'] . "\" class=\"btn btn-lg btn-block btn-" . $color_array[$color_switcher] . "\">Open</a>";
+            echo "<a href=\"#\" id=\"" . $data['project_id'] . "\" class=\"del-project-btn btn btn-lg btn-block btn-" . $color_array[$color_switcher] . "\">Delete</a>";
+            echo "</div>";
+            echo "</div>";
+            echo "</div>";
+            $color_switcher++;
+            if ($color_switcher % 5 == 0)
+                $color_switcher = 0;
+        }*/
+
+        ?>
+
+
+    </div>
+
+
+
+</div>
+
+
+<hr>
+<footer>
+    <p>&copy; Jaroslav Tkaciuk <?php echo date("Y") ?></p>
+</footer>
+
+
+<!-- My Scripts -->
+<!-- <script type="text/javascript" src="../assets/js/CreateProjects.js"></script>
+-->
 </body>
 </html>

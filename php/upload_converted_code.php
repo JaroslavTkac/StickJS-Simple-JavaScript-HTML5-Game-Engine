@@ -11,7 +11,7 @@ require_once 'connection.php';
 
 $new_js_file_path = "";
 
-if(isset($_POST['projectId']) && isset($_POST['codeToUpload'])){
+if(isset($_POST['projectId']) && isset($_POST['codeToUpload']) && ($_POST['projectType'] === "general")){
     $sql = "SELECT new_js_file_path 
                   FROM users_converted_code 
                   WHERE project_id = " . $_POST['projectId'] . " 

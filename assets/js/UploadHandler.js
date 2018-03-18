@@ -162,19 +162,28 @@ function loadUserData(dir, type) {
                         "alt=\"assets/img/textures/user_textures/" + folderContent[i] + "\">" +
                         "</a>" +
                         "</div>");
-                    data = "<div align=\"center\" class=\"col-lg-4 col-md-4 col-sm-4 col-xs-6 texture-padding\">" +
-                        "<a href=\"#\" class=\"thumbnail\" >" +
-                        "<img src=\"../assets/img/textures/user_textures/" + folderContent[i] + "\" class=\"img-rounded inline-block\" " +
-                        "alt=" + folderContent[i] + "\">" +
-                        "<a href=\"#\" class=\"btn btn-md overlay-btn-del\">" +
-                        "<span class=\"glyphicon glyphicon-trash\"></span>" +
-                        "<span class=\"delete_path\" style=\"display: none\">../assets/img/textures/user_textures/" + folderContent[i] + "</span></a>" +
-                        "</a>" +
-                        "</div>";
+                    if (projectType === "general") {
+                        data = "<div align=\"center\" class=\"col-lg-4 col-md-4 col-sm-4 col-xs-6 texture-padding\">" +
+                            "<a href=\"#\" class=\"thumbnail\" >" +
+                            "<img src=\"../assets/img/textures/user_textures/" + folderContent[i] + "\" class=\"img-rounded inline-block\" " +
+                            "alt=" + folderContent[i] + "\">" +
+                            "<a href=\"#\" class=\"btn btn-md overlay-btn-del\">" +
+                            "<span class=\"glyphicon glyphicon-trash\"></span>" +
+                            "<span class=\"delete_path\" style=\"display: none\">../assets/img/textures/user_textures/" + folderContent[i] + "</span></a>" +
+                            "</a>" +
+                            "</div>";
+                    }
+                    if (projectType === "publish"){
+                        data = "<div align=\"center\" class=\"col-lg-4 col-md-4 col-sm-4 col-xs-6 texture-padding\">" +
+                            "<a href=\"#\" class=\"thumbnail\" >" +
+                            "<img src=\"../assets/img/textures/user_textures/" + folderContent[i] + "\" class=\"img-rounded inline-block\" " +
+                            "alt=" + folderContent[i] + "\">" +
+                            "</div>";
+                    }
                     $('#selectable-textures-row').append(data);
                 }
                 if (type === "music") {
-                    data = "<div align=\"center\" class=\"col-lg-3 col-md-3 col-sm-4 col-xs-6\">" +
+                    /*data = "<div align=\"center\" class=\"col-lg-3 col-md-3 col-sm-4 col-xs-6\">" +
                         "<a href=\"#\" class=\"thumbnail\" >" +
                         "<img src=\"../assets/img/design/audio_file.png\" class=\"img-rounded inline-block\" " +
                         "alt=\"../assets/img/design/audio_file.png\">" +
@@ -184,17 +193,25 @@ function loadUserData(dir, type) {
                         "<span class=\"glyphicon glyphicon-trash\"></span>" +
                         "<span class=\"delete_path\" style=\"display: none\">../assets/music/user_music/" + folderContent[i] + "</span></a>" +
                         "</div>";
-                    $('#selectable-music-row').append(data);
+                    $('#selectable-music-row').append(data);*/
                 }
                 if (type === "object") {
-                    data = "<div align=\"center\" class=\"col-lg3 col-md-4 col-sm-4 col-xs-6\">" +
-                        "<a href=\"#\" class=\"thumbnail\">" +
-                        "<canvas class=\"preview-scene shape\" id=\"" + "../shapes/user_shapes/" + folderContent[i] + "\" ></canvas>" +
-                        "<a href=\"#\" class=\"btn btn-md overlay-btn overlay-btn-del\">" +
-                        "<span class=\"glyphicon glyphicon-trash\"></span>" +
-                        "<span class=\"delete_path\" style=\"display: none\">../shapes/user_shapes/" + folderContent[i] + "</span></a>" +
-                        "</a>" +
-                        "</div>";
+                    if (projectType === "general") {
+                        data = "<div align=\"center\" class=\"col-lg3 col-md-4 col-sm-4 col-xs-6\">" +
+                            "<a href=\"#\" class=\"thumbnail\">" +
+                            "<canvas class=\"preview-scene shape\" id=\"" + "../shapes/user_shapes/" + folderContent[i] + "\" ></canvas>" +
+                            "<a href=\"#\" class=\"btn btn-md overlay-btn overlay-btn-del\">" +
+                            "<span class=\"glyphicon glyphicon-trash\"></span>" +
+                            "<span class=\"delete_path\" style=\"display: none\">../shapes/user_shapes/" + folderContent[i] + "</span></a>" +
+                            "</a>" +
+                            "</div>";
+                    }
+                    if (projectType === "publish") {
+                        data = "<div align=\"center\" class=\"col-lg3 col-md-4 col-sm-4 col-xs-6\">" +
+                            "<a href=\"#\" class=\"thumbnail\">" +
+                            "<canvas class=\"preview-scene shape\" id=\"" + "../shapes/user_shapes/" + folderContent[i] + "\" ></canvas>" +
+                            "</div>";
+                    }
                     $('#selectable-shapes-row').append(data);
 
                     //init every object for webgl here
@@ -204,27 +221,47 @@ function loadUserData(dir, type) {
                     getShapesNameInFolder("../shapes/user_shapes");
                 }
                 if (type === "savedShapes") {
-                    data = "<div align=\"center\">" +
-                        "<a href=\"#\" class=\"thumbnail\" >" +
-                        "<img src=\"../shapes/user_saved_shapes/" + folderContent[i] + "\" class=\"img-rounded inline-block\" " +
-                        "alt=\"../shapes/user_saved_shapes/" + folderContent[i] + "\">" +
-                        "</a>" +
-                        // Add btn
-                        "<a href=\"#\" class=\"btn btn-md overlay-btn overlay-btn-add\">" +
-                        "<span class=\"glyphicon glyphicon-plus\"></span>" +
-                        "<span class=\"add_shape\" style=\"display: none\">../shapes/user_saved_shapes/" + folderContent[i] + "</span>" +
-                        "</a>" +
-                        // Edit btn
-                        "<a href=\"#\" class=\"btn btn-md overlay-btn overlay-btn-edit\">" +
-                        "<span class=\"glyphicon glyphicon-wrench\"></span>" +
-                        "<span class=\"edit_shape\" style=\"display: none\">../shapes/user_saved_shapes/" + folderContent[i] + "</span>" +
-                        "</a>" +
-                        // Delete btn
-                        "<a href=\"#\" class=\"btn btn-md overlay-btn overlay-btn-del\">" +
-                        "<span class=\"glyphicon glyphicon-trash\"></span>" +
-                        "<span class=\"delete_path\" style=\"display: none\">../shapes/user_saved_shapes/" + folderContent[i] + "</span>" +
-                        "</a>" +
-                        "</div>";
+                    if (projectType === "general") {
+                        data = "<div align=\"center\">" +
+                            "<a href=\"#\" class=\"thumbnail\" >" +
+                            "<img src=\"../shapes/user_saved_shapes/" + folderContent[i] + "\" class=\"img-rounded inline-block\" " +
+                            "alt=\"../shapes/user_saved_shapes/" + folderContent[i] + "\">" +
+                            "</a>" +
+                            // Add btn
+                            "<a href=\"#\" class=\"btn btn-md overlay-btn overlay-btn-add\">" +
+                            "<span class=\"glyphicon glyphicon-plus\"></span>" +
+                            "<span class=\"add_shape\" style=\"display: none\">../shapes/user_saved_shapes/" + folderContent[i] + "</span>" +
+                            "</a>" +
+                            // Edit btn
+                            "<a href=\"#\" class=\"btn btn-md overlay-btn overlay-btn-edit\">" +
+                            "<span class=\"glyphicon glyphicon-wrench\"></span>" +
+                            "<span class=\"edit_shape\" style=\"display: none\">../shapes/user_saved_shapes/" + folderContent[i] + "</span>" +
+                            "</a>" +
+                            // Delete btn
+                            "<a href=\"#\" class=\"btn btn-md overlay-btn overlay-btn-del\">" +
+                            "<span class=\"glyphicon glyphicon-trash\"></span>" +
+                            "<span class=\"delete_path\" style=\"display: none\">../shapes/user_saved_shapes/" + folderContent[i] + "</span>" +
+                            "</a>" +
+                            "</div>";
+                    }
+                    if (projectType === "publish") {
+                        data = "<div align=\"center\">" +
+                            "<a href=\"#\" class=\"thumbnail\" >" +
+                            "<img src=\"../shapes/user_saved_shapes/" + folderContent[i] + "\" class=\"img-rounded inline-block\" " +
+                            "alt=\"../shapes/user_saved_shapes/" + folderContent[i] + "\">" +
+                            "</a>" +
+                            // Add btn
+                            "<a href=\"#\" class=\"btn btn-md overlay-btn overlay-btn-add\">" +
+                            "<span class=\"glyphicon glyphicon-plus\"></span>" +
+                            "<span class=\"add_shape\" style=\"display: none\">../shapes/user_saved_shapes/" + folderContent[i] + "</span>" +
+                            "</a>" +
+                            // Edit btn
+                            "<a href=\"#\" class=\"btn btn-md overlay-btn overlay-btn-edit\">" +
+                            "<span class=\"glyphicon glyphicon-wrench\"></span>" +
+                            "<span class=\"edit_shape\" style=\"display: none\">../shapes/user_saved_shapes/" + folderContent[i] + "</span>" +
+                            "</a>" +
+                            "</div>";
+                    }
                     $('#saved-shape-canvas-container').append(data);
                 }
             }
@@ -297,7 +334,7 @@ $(function () {
             //if music run php script to relocate file to user_music
             //and appending html document
             if (uploaded['extension'] === 'mp3') {
-                let musicName = uploaded['name'];
+                /*let musicName = uploaded['name'];
                 //transferring music file to destination location
                 $.ajax({
                     url: "../php/upload.php",
@@ -319,7 +356,7 @@ $(function () {
                         $('#selectable-music-row').append(data);
                         saveData();
                     }
-                });
+                });*/
             }
 
         },
@@ -577,10 +614,13 @@ setInterval(function () {
 //Saving main important data
 function saveData() {
     //console.log("Saving all data");
-    saveSavedShapes();
-    saveLiveObjects();
-    saveSvgCodeScene();
-    saveMovementConfig();
+    if(projectType === "general") {
+        console.log(projectType);
+        saveSavedShapes();
+        saveLiveObjects();
+        saveSvgCodeScene();
+        saveMovementConfig();
+    }
 }
 
 //Load all user projects data
@@ -608,7 +648,8 @@ function saveMovementConfig() {
             projectId: projectId,
             useMovement: useMovement,
             movementSpeed: $('#basic-speed-input').val(),
-            movementRotation: $('#rotation-speed-input').val()
+            movementRotation: $('#rotation-speed-input').val(),
+            projectType: projectType
         },
         success: function (response) {
             //console.log(response);
@@ -626,16 +667,20 @@ function loadMovementConfig() {
         },
         success: function (response) {
             let data = JSON.parse(response);
+            //console.log(response);
 
             if (data[0].useMovement === 1) {
                 $('#checkSpeed').prop('checked', true);
+                keyboard.enableStandardControls();
             }
             else {
                 $('#checkSpeed').prop('checked', false);
+                keyboard.disableStandardControls();
             }
 
             $('#basic-speed-input').val(data[0].speed);
             $('#rotation-speed-input').val(data[0].rotationSpeed);
+
         }
     });
 }
@@ -649,7 +694,8 @@ function uploadUserConvertedCode() {
         data: {
             projectId: projectId,
             userId: userId,
-            codeToUpload: codeToAdd
+            codeToUpload: codeToAdd,
+            projectType: projectType
         },
         success: function (response) {
             console.log("Response of update");
@@ -681,7 +727,8 @@ function saveSvgCodeScene() {
         data: {
             projectId: projectId,
             saved_svg_scene: data,
-            svgArr_len: svgArr.length
+            svgArr_len: svgArr.length,
+            projectType: projectType
         },
         success: function (response) {
             //console.log(response);
@@ -755,7 +802,8 @@ function saveScene() {
         type: "POST",
         data: {
             projectId: projectId,
-            saved_scene_json_data: obj_data
+            saved_scene_json_data: obj_data,
+            projectType: projectType
         },
         success: function (response) {
             //console.log("saved scene");
@@ -794,7 +842,8 @@ function saveSavedShapes() {
         type: "POST",
         data: {
             projectId: projectId,
-            saved_shapes_json_data: saved_data
+            saved_shapes_json_data: saved_data,
+            projectType: projectType
         },
         success: function (response) {
             //console.log(response);
@@ -832,7 +881,8 @@ function saveLiveObjects() {
         type: "POST",
         data: {
             projectId: projectId,
-            live_objects_json_data: obj_data
+            live_objects_json_data: obj_data,
+            projectType: projectType
         },
         success: function (response) {
             //console.log(response);

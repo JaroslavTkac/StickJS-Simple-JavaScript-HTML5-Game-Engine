@@ -11,50 +11,47 @@ require 'connection.php';
 
 $username = $_SESSION['username'];
 
-if (!empty($username)) {
-    $sql = "SELECT new_js_file_path, old_js_file_path, code
+
+$sql = "SELECT new_js_file_path, old_js_file_path, code
             FROM users_converted_code 
             WHERE project_id = ?";
 
-    if ($stmt = $mysqli->prepare($sql)) {
-        $stmt->bind_param("s", $param_project_id);
-        //Setting parameters
-        $param_project_id = $project_id;
-        //Executing SQL
-        if ($stmt->execute()) {
-            $stmt->store_result();
+if ($stmt = $mysqli->prepare($sql)) {
+    $stmt->bind_param("s", $param_project_id);
+    //Setting parameters
+    $param_project_id = $project_id;
+    //Executing SQL
+    if ($stmt->execute()) {
+        $stmt->store_result();
 
-            if ($stmt->num_rows >= 1) {
-                $stmt->bind_result($new_js_file_path, $old_js_file_path, $code);
+        if ($stmt->num_rows >= 1) {
+            $stmt->bind_result($new_js_file_path, $old_js_file_path, $code);
 
-                if ($stmt->fetch()) {
-                    $newFilePath = $new_js_file_path;
+            if ($stmt->fetch()) {
+                $newFilePath = $new_js_file_path;
 
-                    if($old_js_file_path != "../scripts/UserConvertedCode.js"){
-                        //update data in file
-                        file_put_contents($old_js_file_path, $code);
-                        rename($old_js_file_path, $newFilePath);
-                    }
-                    else{
-                        //create file
-                        //write data in it
-                        file_put_contents($newFilePath, $code);
-                    }
-
+                if ($old_js_file_path != "../scripts/UserConvertedCode.js") {
+                    //update data in file
+                    file_put_contents($old_js_file_path, $code);
+                    rename($old_js_file_path, $newFilePath);
+                } else {
+                    //create file
+                    //write data in it
+                    file_put_contents($newFilePath, $code);
                 }
-            } else {
-                $newFilePath = "../scripts/UserConvertedCode.js";
-                return $newFilePath;
+
             }
         } else {
-            echo "Oops! Something went wrong. Please try again later.";
+            $newFilePath = "../scripts/UserConvertedCode.js";
+            return $newFilePath;
         }
-
+    } else {
+        echo "Oops! Something went wrong. Please try again later.";
     }
-    $stmt->close();
-} else {
-    echo "ERROR on get users code file path converted code";
+
 }
+$stmt->close();
+
 $mysqli->close();
 
 

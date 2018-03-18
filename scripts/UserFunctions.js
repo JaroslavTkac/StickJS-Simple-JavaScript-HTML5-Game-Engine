@@ -62,6 +62,9 @@ function applyChangesToAll(x, y, z, sx, sy, sz, xRot, yRot, zRot,
                 objArr[i].alpha += parseFloat(opacity);
             if (useCamera !== null)
                 objArr[i].useCamera = useCamera;
+
+            //correct object values
+            correctUserInputValues(objArr[i]);
         }
     }
     else {
@@ -113,8 +116,11 @@ function applyChangesToAll(x, y, z, sx, sy, sz, xRot, yRot, zRot,
             if (useCamera !== null)
                 objArr[i].useCamera = useCamera;
 
+            correctUserInputValues(objArr[i]);
         }
     }
+
+
 
     //console.log(objArr);
 }
@@ -178,6 +184,8 @@ function applyChangesToSpecificType(objectType, x, y, z, sx, sy, sz, xRot, yRot,
                     objArr[i].alpha += parseFloat(opacity);
                 if (useCamera !== null)
                     objArr[i].useCamera = useCamera;
+
+                correctUserInputValues(objArr[i]);
             }
         }
     }
@@ -230,6 +238,8 @@ function applyChangesToSpecificType(objectType, x, y, z, sx, sy, sz, xRot, yRot,
                     objArr[i].alpha = parseFloat(opacity);
                 if (useCamera !== null)
                     objArr[i].useCamera = useCamera;
+
+                correctUserInputValues(objArr[i]);
             }
         }
     }
@@ -295,6 +305,8 @@ function applyChangesToSpecificObject(name, x, y, z, sx, sy, sz, xRot, yRot, zRo
             object.alpha += parseFloat(opacity);
         if (useCamera !== null)
             object.useCamera = useCamera;
+
+        correctUserInputValues(object);
     }
     else {
         if (ambientR !== null)
@@ -343,9 +355,18 @@ function applyChangesToSpecificObject(name, x, y, z, sx, sy, sz, xRot, yRot, zRo
             object.alpha = parseFloat(opacity);
         if (useCamera !== null)
             object.useCamera = useCamera;
+
+        correctUserInputValues(object);
     }
 
 
     //console.log(object);
 }
 
+function correctUserInputValues(object){
+    object.setColorR(object.r);
+    object.setColorG(object.g);
+    object.setColorB(object.b);
+    object.setOpacity(object.alpha);
+    object.transparency = object.alpha >= 0 && object.alpha < 1;
+}

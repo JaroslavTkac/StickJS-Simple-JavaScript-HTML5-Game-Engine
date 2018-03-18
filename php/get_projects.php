@@ -21,7 +21,10 @@ if(!empty($username)){
 
     //Preparing SQL
 
-    $sql = "SELECT id, name, info, created_at FROM users_projects WHERE user_id = ?";
+    $sql = "SELECT id, name, info, created_at 
+            FROM users_projects 
+            WHERE user_id = ? AND project_type = \"" . $projectType . "\"
+            ORDER BY created_at DESC";
 
     if($stmt = $mysqli->prepare($sql)){
         $stmt->bind_param("s", $param_user_id);
@@ -41,7 +44,7 @@ if(!empty($username)){
                 }
             }
             else{
-                echo "No projects found";
+                return "No projects found";
             }
         }
         else {

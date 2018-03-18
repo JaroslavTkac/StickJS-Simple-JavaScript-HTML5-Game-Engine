@@ -1,7 +1,7 @@
 <?php
 
 //A list of permitted file extensions
-$allowed = array('png', 'jpg', 'obj', 'mp3');
+$allowed = array('png', 'jpg', 'obj'/*, 'mp3'*/);
 
 if (isset($_FILES['upl']) && $_FILES['upl']['error'] == 0) {
 
@@ -250,7 +250,7 @@ if (isset($_POST['userId']) && isset($_POST['cleanFolders']) && isset($_POST['pr
     $projectId = $_POST['projectId'];
     $folderContentToDelete = array();
 
-    //preparing textures paths for deleting
+        //preparing textures paths for deleting
     $rawData = getFilesInFolder("../assets/img/textures/user_textures/", $userId, $projectId);
     //$rawData = getFilesInFolder("php/", $userId, $projectId);
 

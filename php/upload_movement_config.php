@@ -10,7 +10,7 @@
 require_once 'connection.php';
 
 
-if(isset($_POST['projectId']) && isset($_POST['useMovement'])){
+if(isset($_POST['projectId']) && isset($_POST['useMovement']) && ($_POST['projectType'] === "general")){
     $sql = "UPDATE users_projects_movement_config 
             SET standard_movement = ?, speed = ?, rotation_speed = ? WHERE project_id = ?";
 

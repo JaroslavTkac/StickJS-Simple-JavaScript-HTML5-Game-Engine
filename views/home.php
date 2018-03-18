@@ -51,10 +51,12 @@ if (!isset($_SESSION['username']) || empty($_SESSION['username'])) {
                 </li>
                 <li><a href="home.php#creator-info">About</a>
                 </li>
+                <li><a href="users_projects.php">Users Projects</a>
+                </li>
             </ul>
             <form class="navbar-right">
                 <div align="center" style="color: white; font-size: 16px; font-family: Helvetica, Arial, sans-serif">
-                    <?php echo "Welcome, " . "<b>" . "ID: " . $_SESSION['user_id'] . "  " . $_SESSION['username'] . "</b>" ?>
+                    <?php echo "Welcome, " . "<b>" . $_SESSION['username'] . "</b>" ?>
                 </div>
                 <div align="center" class="form-group">
 
@@ -175,6 +177,30 @@ if (!isset($_SESSION['username']) || empty($_SESSION['username'])) {
         <div class="row">
             <h1 class="title col-md-12">Update log</h1>
             <div id="update-log">
+                <h2>0.9.3.0</h2>
+                <hr class="update-hr">
+                <ul>
+                    <li>User project publishing to projects preview page.</li>
+                    <li>Everyone can try projects created by other users.</li>
+                    <li>Demo project available.</li>
+                    <li>Bug fixes.</li>
+                    <li>User blocks validation for non valid input (any kind of characters).</li>
+                </ul>
+                <h2>0.9.2.0</h2>
+                <hr class="update-hr">
+                <ul>
+                    <li><b>HUGE UPDATE</b></li>
+                    <li>Bug fixes, bug fixes and a lot of bug fixes.</li>
+                    <li>Stability improvements.</li>
+                    <li>Additional validations.</li>
+                    <li>MySQL database integration and moving away from file system user data saving.</li>
+                    <li>User accounts.</li>
+                    <li>Multiple and individual projects for every user.</li>
+                    <li>Drastically improved three triggers (on X, on Y, on Z), now they support 6 comparison
+                        (equals, not equals, greater than, less than, greater or equal than, lesser or equal than) NOT just equals.</li>
+                    <li>Code uploading to server and subsequent code executing in project, after page refresh.</li>
+                    <li>... I sure that something I forget to mention. </li>
+                </ul>
                 <h2>0.9.1.2</h2>
                 <hr class="update-hr">
                 <ul>

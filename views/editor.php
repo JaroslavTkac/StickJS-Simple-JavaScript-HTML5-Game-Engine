@@ -6,29 +6,48 @@
  * Time: 19:36
  */
 
-// Initialize the session
+
 session_start();
 
 
-// If session variable is not set it will redirect to login page
-if (!isset($_SESSION['username']) || empty($_SESSION['username'])) {
-    header("location: index.php");
-    exit;
-}
-else{
-    require_once ('../php/check_users_permissions_for_project.php');
+require_once ('../php/check_project_type.php');
+echo "projectType: " . $projectType . "<br>";
+echo "preview: " . $_GET['preview'];
 
+
+if($projectType === "general" && strlen($_GET['preview']) == 0) {
+    // If session variable is not set it will redirect to login page
+    if (!isset($_SESSION['username']) || empty($_SESSION['username'])) {
+        header("location: index.php");
+        exit;
+    } else {
+        require_once('../php/check_users_permissions_for_project.php');
+    }
+    if ($isUsersProject) {
+        $project_id = $_GET['project_id'];
+        $project_name = $_GET['project_name'];
+
+        include('../php/get_users_code_file_path.php');
+        //echo "newFilePath: " . $newFilePath;
+    } else {
+        header("location: my_projects.php");
+        exit;
+    }
 }
-if ($isUsersProject){
+if($projectType === "publish" && strlen($_GET['preview']) > 0 && $_GET['preview'] === "usersprojects"){
     $project_id = $_GET['project_id'];
     $project_name = $_GET['project_name'];
 
-    include ('../php/get_users_code_file_path.php');
-    //echo "newFilePath: " . $newFilePath;
+    include('../php/get_users_code_file_path.php');
 }
-else {
-    header("location: my_projects.php");
-    exit;
+if($projectType === "general" && strlen($_GET['preview']) > 0){
+    if (!isset($_SESSION['username']) || empty($_SESSION['username'])) {
+        header("location: index.php");
+        exit;
+    } else {
+        header("location: home.php");
+        exit;
+    }
 }
 ?>
 
@@ -66,7 +85,12 @@ else {
     <script src="https://cdn.jsdelivr.net/jquery.roundslider/1.3/roundslider.min.js"></script>
 
     <script>
+        let projectType = "<?php echo $projectType; ?>";
         let userId = "<?php echo $_SESSION['user_id']; ?>";
+        if (projectType === "publish"){
+            userId = "<?php echo $projectOwnerId ?>"; //TODO SCRIPTAS KURIS GAUNA PROJEKTO OWNERIO ID -> REIKALINGA PAKRAUTI OBJEKTAMS IR TEKSTUROM
+            //TODO cia bus ****original pr id***** is lenteles published projects
+        }
         let projectId = "<?php echo $project_id; ?>";
     </script>
 
@@ -113,6 +137,8 @@ else {
                 <li><a href="home.php">Home</a>
                 </li>
                 <li><a href="home.php#creator-info">About</a>
+                </li>
+                <li><a href="users_projects.php">Users Projects</a>
                 </li>
                 <li><a href="#">How To</a></li>
             </ul>
@@ -251,15 +277,18 @@ else {
                                         <span class="glyphicon glyphicon-play"></span> Play Frames
                                     </label>
                                 </li>
-                                <li>
-                                    <form id="upload" method="post" action="../php/upload.php">
-                                        <label class="btn btn-primary" style="margin-top: 8px; margin-left: 5px">
-                                            <span class="glyphicon glyphicon-save-file"></span> Upload
-                                            <input type="file" name="upl" accept="image/png/jpg/obj/mp3"
-                                                   style="display: none;">
-                                        </label>
-                                    </form>
-                                </li>
+                                <?php
+                                if($projectType === "general") {
+                                    echo "<li>";
+                                    echo "<form id = \"upload\" method = \"post\" action = \"../php/upload.php\" >";
+                                    echo "<label class=\"btn btn-primary\" style = \"margin-top: 8px; margin-left: 5px\" >";
+                                    echo "<span class=\"glyphicon glyphicon-save-file\" ></span > Upload";
+                                    echo "<input type = \"file\" name = \"upl\" accept = \"image/png/jpg/obj/mp3\" style = \"display: none;\">";
+                                    echo "</label >";
+                                    echo "</form>";
+                                    echo "</li>";
+                                }
+                                ?>
                             </ul>
                         </div>
                     </div>
@@ -270,36 +299,51 @@ else {
                         <div class="col-lg3 col-md-4 col-sm-4 col-xs-6" align="center">
                             <a href="#" class="thumbnail">
                                 <canvas class="preview-scene shape" id="../shapes/cube.json"></canvas>
-                                <a href="#" class="btn btn-md overlay-btn disabled"><span
-                                            class="glyphicon glyphicon-trash"></span></a>
+                                <?php
+                                if($projectType === "general"){
+                                    echo " <a href=\"#\" class=\"btn btn-md overlay-btn disabled\"><span class=\"glyphicon glyphicon-trash\"></span></a>";
+                                }
+                                ?>
                             </a>
                         </div>
                         <div class="col-lg3 col-md-4 col-sm-4 col-xs-6" align="center">
                             <a href="#" class="thumbnail">
                                 <canvas class="preview-scene shape" id="../shapes/sphere.json"></canvas>
-                                <a href="#" class="btn btn-md overlay-btn disabled"><span
-                                            class="glyphicon glyphicon-trash"></span></a>
+                                <?php
+                                if($projectType === "general") {
+                                    echo "<a href=\"#\" class=\"btn btn-md overlay-btn disabled\"><span class=\"glyphicon glyphicon-trash\"></span></a>";
+                                }
+                                ?>
                             </a>
                         </div>
                         <div class="col-lg3 col-md-4 col-sm-4 col-xs-6" align="center">
                             <a href="#" class="thumbnail">
                                 <canvas class="preview-scene shape" id="../shapes/cone.json"></canvas>
-                                <a href="#" class="btn btn-md overlay-btn disabled"><span
-                                            class="glyphicon glyphicon-trash"></span></a>
+                                <?php
+                                if($projectType === "general"){
+                                    echo " <a href=\"#\" class=\"btn btn-md overlay-btn disabled\"><span class=\"glyphicon glyphicon-trash\"></span></a>";
+                                }
+                                ?>
                             </a>
                         </div>
                         <div class="col-lg3 col-md-4 col-sm-4 col-xs-6" align="center">
                             <a href="#" class="thumbnail">
                                 <canvas class="preview-scene shape" id="../shapes/cylinder.json"></canvas>
-                                <a href="#" class="btn btn-md overlay-btn disabled"><span
-                                            class="glyphicon glyphicon-trash"></span></a>
+                                <?php
+                                if($projectType === "general"){
+                                    echo " <a href=\"#\" class=\"btn btn-md overlay-btn disabled\"><span class=\"glyphicon glyphicon-trash\"></span></a>";
+                                }
+                                ?>
                             </a>
                         </div>
                         <div class="col-lg3 col-md-4 col-sm-4 col-xs-6" align="center">
                             <a href="#" class="thumbnail">
                                 <canvas class="preview-scene shape" id="../shapes/simpleSphere.json"></canvas>
-                                <a href="#" class="btn btn-md overlay-btn disabled"><span
-                                            class="glyphicon glyphicon-trash"></span></a>
+                                <?php
+                                if($projectType === "general"){
+                                    echo " <a href=\"#\" class=\"btn btn-md overlay-btn disabled\"><span class=\"glyphicon glyphicon-trash\"></span></a>";
+                                }
+                                ?>
                             </a>
                         </div>
                     </div>
@@ -561,9 +605,13 @@ else {
 
                     <!-- Button to save object -->
                     <div align="center" class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding-bottom: 2.5%">
-                        <button id="saveShape" class="btn btn-primary btn-sm add-your-shape-button">
-                            <span class="glyphicon glyphicon-floppy-save"></span> Save
-                        </button>
+                        <?php
+                        if($projectType == "general") {
+                            echo "<button id=\"saveShape\" class=\"btn btn-primary btn-sm add-your-shape-button\">";
+                            echo "<span class=\"glyphicon glyphicon-floppy-save\"></span> Save";
+                            echo "</button>";
+                        }
+                        ?>
                     </div>
                 </div>
                 <!-- END EDITOR -->
@@ -1456,14 +1504,19 @@ else {
                                title="Apply your code" style="display: none">
                             <span class="glyphicon glyphicon-floppy-save"></span>
                         </label>
-                        <label class="btn btn-primary" id="upload-code-btn" data-toggle="tooltip" data-placement="top"
-                               title="Upload your code to server" style="display: none">
-                            <span class="glyphicon glyphicon-save-file"></span>
-                        </label>
-                        <label class="btn btn-primary" id="clear-code-btn" data-toggle="tooltip" data-placement="top"
-                               title="Clear code area" style="display: none">
-                            <span class="glyphicon glyphicon-remove"></span>
-                        </label>
+                        <?php
+                        if($projectType == "general") {
+                            echo "<label class=\"btn btn-primary\" id=\"upload-code-btn\" data-toggle=\"tooltip\" data-placement=\"top\"";
+                            echo "title=\"Upload your code to server\" style=\"display: none\">";
+                            echo "<span class=\"glyphicon glyphicon-save-file\"></span>";
+                            echo "</label>";
+                            echo "<label class=\"btn btn-primary\" id=\"clear-code-btn\" data-toggle=\"tooltip\" data-placement=\"top\"";
+                            echo "title=\"Clear code area\" style=\"display: none\">";
+                            echo "<span class=\"glyphicon glyphicon-remove\"></span>";
+                            echo "</label>";
+
+                        }
+                        ?>
 
                         <label id="checkbox-label" class="form-check-speed-usage" for="checkSpeed"
                                style="display: none">Standard Movement</label>

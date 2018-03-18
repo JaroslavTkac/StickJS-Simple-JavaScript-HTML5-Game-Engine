@@ -94,6 +94,9 @@ $(document).ready(function () {
     $(document).on('click', '.del-project-btn', function (e) {
         let projectId = $(this).attr('id');
         let divToDelete = $(this)[0].parentNode.parentNode.parentNode;
+        let publishedProjectId = 0;
+        //searching for main project and checking i
+        // or is published project exist
         $.ajax({
             type: "POST",
             url: "../php/delete_project.php",
@@ -102,13 +105,47 @@ $(document).ready(function () {
                 userId: userId
             },
         }).done(function (response) {
-            console.log(response);
             divToDelete.remove();
+            console.log(JSON.parse(response)['info']);
+            publishedProjectId = JSON.parse(response)['publishedProjectId'];
+
+            if (publishedProjectId !== 0) {
+                console.log("pubPID: " + publishedProjectId);
+                //Deleting published project
+                $.ajax({
+                    type: "POST",
+                    url: "../php/delete_project.php",
+                    data: {
+                        projectId: publishedProjectId,
+                        userId: userId
+                    },
+                }).done(function (response) {
+                    console.log(JSON.parse(response)['info']);
+                }).error(function (response) {
+                    console.log(response);
+                });
+                //Deleting published projects data
+                $.ajax({
+                    type: "POST",
+                    url: "../php/upload.php",
+                    data: {
+                        cleanFolders: true,
+                        projectId: publishedProjectId,
+                        userId: userId
+                    },
+                }).done(function (response) {
+                    console.log(JSON.parse(response)['data']);
+                    console.log(JSON.parse(response)['info']);
+                }).error(function (response) {
+                    console.log(response);
+                });
+            }
         }).error(function (response) {
             console.log(response);
         });
 
 
+        //Deleting main project data
         $.ajax({
             type: "POST",
             url: "../php/upload.php",
@@ -118,13 +155,37 @@ $(document).ready(function () {
                 userId: userId
             },
         }).done(function (response) {
-            //console.log("Searching for files");
-            //console.log(response);
             console.log(JSON.parse(response)['data']);
             console.log(JSON.parse(response)['info']);
         }).error(function (response) {
             //console.log(response);
         });
+
+
+    });
+
+    //On publishing project
+    $(document).on('click', '.publish-project-btn', function (e) {
+        console.log("Publishing project clicked!");
+        let projectId = $(this).attr('id');
+
+        $.ajax({
+            type: "POST",
+            url: "../php/publish_project.php",
+            data: {
+                projectId: projectId,
+                userId: userId
+            },
+        }).done(function (response) {
+            console.log("done");
+            console.log(response);
+
+        }).error(function (response) {
+            console.log("error");
+            console.log(response);
+        });
+
+
     });
 
 
