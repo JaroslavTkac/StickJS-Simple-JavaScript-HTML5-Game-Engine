@@ -112,63 +112,52 @@ $(document).ready(function () {
             if (publishedProjectId !== 0) {
                 console.log("pubPID: " + publishedProjectId);
                 //Deleting published project
-                $.ajax({
-                    type: "POST",
-                    url: "../php/delete_project.php",
-                    data: {
-                        projectId: publishedProjectId,
-                        userId: userId
-                    },
-                }).done(function (response) {
-                    console.log(JSON.parse(response)['info']);
-                }).error(function (response) {
-                    console.log(response);
-                });
+                deleteUsersProject(publishedProjectId);
+
                 //Deleting published projects data
-                $.ajax({
-                    type: "POST",
-                    url: "../php/upload.php",
-                    data: {
-                        cleanFolders: true,
-                        projectId: publishedProjectId,
-                        userId: userId
-                    },
-                }).done(function (response) {
-                    console.log(JSON.parse(response)['data']);
-                    console.log(JSON.parse(response)['info']);
-                }).error(function (response) {
-                    console.log(response);
-                });
+                deleteUsersProjectSavedData(publishedProjectId);
             }
         }).error(function (response) {
             console.log(response);
         });
 
-
         //Deleting main project data
-        $.ajax({
-            type: "POST",
-            url: "../php/upload.php",
-            data: {
-                cleanFolders: true,
-                projectId: projectId,
-                userId: userId
-            },
-        }).done(function (response) {
-            console.log(JSON.parse(response)['data']);
-            console.log(JSON.parse(response)['info']);
-        }).error(function (response) {
-            //console.log(response);
-        });
-
-
+        deleteUsersProjectSavedData(projectId);
     });
 
     //On publishing project
     $(document).on('click', '.publish-project-btn', function (e) {
         console.log("Publishing project clicked!");
         let projectId = $(this).attr('id');
+        let publishedProjectId;
 
+
+        //check if project is already published
+        //if so delete old and publish new
+
+        //checking for
+        $.ajax({
+            type: "POST",
+            url: "../php/find_published_project.php",
+            data: {
+                projectId: projectId,
+                userId: userId
+            },
+        }).done(function (response) {
+            publishedProjectId = JSON.parse(response)['publishedProjectId'];
+
+            //if project is already published
+            if(JSON.parse(response)['found']){
+                deleteUsersProject(publishedProjectId);
+                deleteUsersProjectSavedData(publishedProjectId);
+            }
+
+        }).error(function (response) {
+            console.log(response);
+        });
+
+
+        //publishing new project
         $.ajax({
             type: "POST",
             url: "../php/publish_project.php",
@@ -177,11 +166,9 @@ $(document).ready(function () {
                 userId: userId
             },
         }).done(function (response) {
-            console.log("done");
             console.log(response);
 
         }).error(function (response) {
-            console.log("error");
             console.log(response);
         });
 
@@ -203,3 +190,34 @@ $(document).ready(function () {
         console.log("Add shape name window closed");
     });
 });
+
+function deleteUsersProjectSavedData(projectId) {
+    $.ajax({
+        type: "POST",
+        url: "../php/upload.php",
+        data: {
+            cleanFolders: true,
+            projectId: projectId,
+            userId: userId
+        },
+    }).done(function (response) {
+        console.log(JSON.parse(response)['data']);
+        console.log(JSON.parse(response)['info']);
+    }).error(function (response) {
+        //console.log(response);
+    });
+}
+function deleteUsersProject(projectId) {
+    $.ajax({
+        type: "POST",
+        url: "../php/delete_project.php",
+        data: {
+            projectId: projectId,
+            userId: userId
+        },
+    }).done(function (response) {
+        console.log(JSON.parse(response)['info']);
+    }).error(function (response) {
+        console.log(response);
+    });
+}
