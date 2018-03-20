@@ -11,9 +11,15 @@
 session_start();
 
 $isLoggedIn = true;
+
+$projectType = "publish";
+require_once ('../php/get_projects.php');
+require_once ('../php/get_all_users.php');
+
 // If session variable is not set it will redirect to login page
 if (!isset($_SESSION['username']) || empty($_SESSION['username'])) {
     $isLoggedIn = false;
+    $userId = 0;
 }
 else{
     $userId = $_SESSION['user_id'];
@@ -50,6 +56,7 @@ else{
     <script>
         let userId = "<?php echo $_SESSION['user_id']; ?>";
     </script>
+    <script src="../scripts/Scripts.js"></script>
     <script src="../assets/js/PublishedProjects.js"></script>
 
 </head>
@@ -110,7 +117,8 @@ else{
                 echo "</ul >";
                 echo "</div>";
                 echo "</form>";
-            } else {
+            }
+            else {
                 require_once("../php/login.php");
                 echo "<form class=\"navbar-form navbar-right\" action=\"" . htmlspecialchars($_SERVER["PHP_SELF"]) . "\" method=\"post\">";
                 echo "<div class=\"form-group\" style=\"margin-right: 3.5px\">";
@@ -139,14 +147,25 @@ else{
 
     <div id="user-projects" class="col-sm-12">
 
+
         <?php
-        /*$color_switcher = 0;
+        $author = "empty";
+        $color_switcher = 0;
         $color_array = array('primary', 'info', 'success', 'warning', 'danger');
+
         foreach ($project_data as $data) {
+            //sql get authors needed map IDs to names
+            foreach ($allUsers as $value) {
+                if($value['user_id'] == $data['project_belongs_to_user']){
+                    $author = $value['username'];
+                    break;
+                }
+            }
             echo "<div class=\"bs-calltoaction bs-calltoaction-" . $color_array[$color_switcher] . "\">";
             echo "<div class=\"row\">";
             echo "<div class=\"col-md-9 cta-contents\">";
             echo "<h1 class=\"cta-title col-lg-9 col-md-9\">" . $data['name'] . "</h1>";
+            echo "<p class=\"col-log-3 col-md-3\">Author: " . $author . "</p>";
             echo "<p class=\"col-lg-3 col-md-3\">Created at: " . $data['created'] . "</p>";
             echo "<div class=\"cta-desc col-lg-12 col-md-12\">";
             echo "<p>" . $data['about'] . "</p>";
@@ -154,14 +173,16 @@ else{
             echo "</div>";
             echo "<div class=\"col-md-3 cta-button\">";
             echo "<a href=\"editor.php?project_id=" . $data['project_id'] . "&project_name=" . $data['name'] . "\" class=\"btn btn-lg btn-block btn-" . $color_array[$color_switcher] . "\">Open</a>";
-            echo "<a href=\"#\" id=\"" . $data['project_id'] . "\" class=\"del-project-btn btn btn-lg btn-block btn-" . $color_array[$color_switcher] . "\">Delete</a>";
+            if($userId === $data['project_belongs_to_user']) {
+                echo "<a href=\"#\" id=\"" . $data['project_id'] . "\" class=\"del-project-btn btn btn-lg btn-block btn-" . $color_array[$color_switcher] . "\">Delete</a>";
+            }
             echo "</div>";
             echo "</div>";
             echo "</div>";
             $color_switcher++;
             if ($color_switcher % 5 == 0)
                 $color_switcher = 0;
-        }*/
+        }
 
         ?>
 

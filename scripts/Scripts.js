@@ -171,3 +171,35 @@ function getKeyByName(name) {
 function round(value, decimals) {
     return Number(Math.round(value+'e'+decimals)+'e-'+decimals);
 }
+
+
+function deleteUsersProjectSavedData(projectId) {
+    $.ajax({
+        type: "POST",
+        url: "../php/upload.php",
+        data: {
+            cleanFolders: true,
+            projectId: projectId,
+            userId: userId
+        },
+    }).done(function (response) {
+        console.log(JSON.parse(response)['data']);
+        console.log(JSON.parse(response)['info']);
+    }).error(function (response) {
+        //console.log(response);
+    });
+}
+function deleteUsersProject(projectId) {
+    $.ajax({
+        type: "POST",
+        url: "../php/delete_project.php",
+        data: {
+            projectId: projectId,
+            userId: userId
+        },
+    }).done(function (response) {
+        console.log(JSON.parse(response)['info']);
+    }).error(function (response) {
+        console.log(response);
+    });
+}

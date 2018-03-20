@@ -49,6 +49,7 @@ if (!isset($_SESSION['username']) || empty($_SESSION['username'])) {
     <script>
         let userId = "<?php echo $_SESSION['user_id']; ?>";
     </script>
+    <script src="../scripts/Scripts.js"></script>
     <script src="../assets/js/CreateProjects.js"></script>
 
 </head>
