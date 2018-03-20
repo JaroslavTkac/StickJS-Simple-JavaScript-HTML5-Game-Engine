@@ -78,6 +78,7 @@ let svgIntersectArr = [], codeArray = [];
 let tmpTotalDx, tmpTotalDy;
 let tmpMatrixX, tmpMatrixY;
 let userUploadedShapesNamesArray = [];
+let codeBlocksDataStateArray = [];
 let playFrames = false;
 
 function initGLForScene(canvas) {
@@ -91,9 +92,10 @@ function initGLForScene(canvas) {
         alert("Could not initialise WebGL, sorry :-(");
     }
 }
+
 function initGLForEditor(canvas) {
     try {
-        if(webglEditorArr.length === 0)
+        if (webglEditorArr.length === 0)
             webglE = canvas.getContext("experimental-webgl", {preserveDrawingBuffer: true, antialias: false});
         else
             webglE = canvas.getContext("experimental-webgl");
@@ -106,33 +108,36 @@ function initGLForEditor(canvas) {
         alert("Could not initialise WebGL, sorry :-(");
     }
 }
+
 function resize(canvas, webgl) {
     // Lookup the size the browser is displaying the canvas.
-    let displayWidth  = canvas.clientWidth;
+    let displayWidth = canvas.clientWidth;
     let displayHeight = canvas.clientHeight;
 
     // Check if the canvas is not the same size.
-    if (canvas.width  !== displayWidth ||
+    if (canvas.width !== displayWidth ||
         canvas.height !== displayHeight) {
 
         // Make the canvas the same size
-        canvas.width  = displayWidth;
+        canvas.width = displayWidth;
         canvas.height = displayHeight;
     }
     webgl.viewportWidth = displayWidth;
     webgl.viewportHeight = displayHeight;
 }
+
 function handleLoadedTextureMain(texture) {
     webgl.pixelStorei(webgl.UNPACK_FLIP_Y_WEBGL, true);
 
     webgl.bindTexture(webgl.TEXTURE_2D, texture);
-    webgl.texImage2D(webgl.TEXTURE_2D, 0, webgl.RGBA, webgl.RGBA,   webgl.UNSIGNED_BYTE, texture.image);
+    webgl.texImage2D(webgl.TEXTURE_2D, 0, webgl.RGBA, webgl.RGBA, webgl.UNSIGNED_BYTE, texture.image);
     webgl.texParameteri(webgl.TEXTURE_2D, webgl.TEXTURE_MAG_FILTER, webgl.LINEAR);
     webgl.texParameteri(webgl.TEXTURE_2D, webgl.TEXTURE_MIN_FILTER, webgl.LINEAR_MIPMAP_NEAREST);
     webgl.generateMipmap(webgl.TEXTURE_2D);
 
     webgl.bindTexture(webgl.TEXTURE_2D, null);
 }
+
 function handleLoadedTextureEditor(texture, webglParam) {
     webglParam.pixelStorei(webglParam.UNPACK_FLIP_Y_WEBGL, true);
 
@@ -144,14 +149,17 @@ function handleLoadedTextureEditor(texture, webglParam) {
 
     webglParam.bindTexture(webglParam.TEXTURE_2D, null);
 }
+
 function mvPushMatrix(mvMatrix, mvMatrixStack) {
     let copy = mat4.create();
     mat4.set(mvMatrix, copy);
     mvMatrixStack.push(copy);
 }
+
 function mvPopMatrix(mvMatrixStack) {
     return mvMatrixStack.pop();
 }
+
 function setMatrixUniforms(webgl, shaderProgram, mvMatrix, pMatrix) {
     webgl.uniformMatrix4fv(shaderProgram.pMatrixUniform, false, pMatrix);
     webgl.uniformMatrix4fv(shaderProgram.mvMatrixUniform, false, mvMatrix);
@@ -161,6 +169,7 @@ function setMatrixUniforms(webgl, shaderProgram, mvMatrix, pMatrix) {
     mat3.transpose(normalMatrix);
     webgl.uniformMatrix3fv(shaderProgram.nMatrixUniform, false, normalMatrix);
 }
+
 function degToRad(degrees) {
     return degrees * Math.PI / 180;
 }

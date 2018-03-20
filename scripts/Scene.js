@@ -3,31 +3,32 @@
  */
 
 
-class LoadObject{
-    constructor(shapeSrc, imageSrc, properties, saveTo, webglParam){
+class LoadObject {
+    constructor(shapeSrc, imageSrc, properties, saveTo, webglParam) {
         //if(!(saveTo === "editor") && !(saveTo === "preview"))
-        totalObjects ++;
+        totalObjects++;
         this.shape = null;
 
         this.loadJSON(shapeSrc, imageSrc, this, properties, saveTo, webglParam);
     }
+
     loadJSON(shapeSrc, imageSrc, object, properties, saveTo, webglParam) {
         let request = new XMLHttpRequest();
         request.open("GET", shapeSrc);
 
         request.onreadystatechange = function () {
             if (request.readyState === 4) {
-                if(request.status === 404) {
+                if (request.status === 404) {
                     console.info(shapeSrc + " does not exist");
                 }
                 else {
                     let buffer;
-                    if(saveTo === undefined || saveTo === "objArr") {
+                    if (saveTo === undefined || saveTo === "objArr") {
                         saveTo = "objArr";
                         buffer = initBuffers(JSON.parse(request.responseText), webgl);
                         object.shape = new CreateShape(buffer, imageSrc, saveTo, webgl);
                     }
-                    else{
+                    else {
                         buffer = initBuffers(JSON.parse(request.responseText), webglParam);
                         object.shape = new CreateShape(buffer, imageSrc, saveTo, webglParam);
                     }
@@ -39,8 +40,8 @@ class LoadObject{
     }
 }
 
-class CreateShape{
-    constructor(buffer, imageSrc, saveTo, webglParam){
+class CreateShape {
+    constructor(buffer, imageSrc, saveTo, webglParam) {
         this.buffer = buffer;
         this.vertexPositionBuffer = this.buffer["vertexPositionBuffer"];
         this.vertexNormalBuffer = this.buffer["vertexNormalBuffer"];
@@ -73,25 +74,26 @@ class CreateShape{
         this.b = 0.5;
         this.type = "none";
         //this.textureLoading = false;
-        if(saveTo === "objArr") {
+        if (saveTo === "objArr") {
             this.lastRendered = "main";
             this.texture = webglParam.createTexture();
         }
-        if(saveTo === "editor") {
+        if (saveTo === "editor") {
             this.lastRendered = "editor";
             this.texture = webglParam.createTexture();
         }
-        if(saveTo === "preview"){
+        if (saveTo === "preview") {
             this.lastRendered = "editor";
             this.texture = webglParam.createTexture();
         }
         this.initTexture(this.texture, this.textureSrc, saveTo, webglParam);
     }
+
     initTexture(texture, src, saveTo, webglParam) {
-        if(this.useTexture) {
+        if (this.useTexture) {
             texture.image = new Image();
             texture.image.onload = function () {
-                if(saveTo === "objArr") {
+                if (saveTo === "objArr") {
                     handleLoadedTextureMain(texture);
                 }
                 else {
@@ -101,8 +103,9 @@ class CreateShape{
             texture.image.src = src;
         }
     }
-    draw(webgl, mvMatrix, pMatrix, shaderProgram, ambientLight, directionalLight, pointLightArray){
-        if(this.lastRendered === "main") {
+
+    draw(webgl, mvMatrix, pMatrix, shaderProgram, ambientLight, directionalLight, pointLightArray) {
+        if (this.lastRendered === "main") {
             glBindVertexBuffer(webgl, this.vertexPositionBuffer, shaderProgram, lastRenderedMainScene);
 
             glBindNormalBuffer(webgl, this.vertexNormalBuffer, shaderProgram, lastRenderedMainScene);
@@ -133,14 +136,14 @@ class CreateShape{
                 glDirectionalLight(webgl, directionalLight.r, directionalLight.g, directionalLight.b, shaderProgram, lastRenderedMainScene);
 
                 //Point
-                for(let i in pointLightArray) {
+                for (let i in pointLightArray) {
                     glPointLightLocation(webgl, pointLightArray[i].x, pointLightArray[i].y, pointLightArray[i].z, shaderProgram, lastRenderedMainScene);
                     glPointLight(webgl, pointLightArray[i].r, pointLightArray[i].g, pointLightArray[i].b, shaderProgram, lastRenderedMainScene);
                 }
             }
             glBindBuffer(webgl, this.vertexIndexBuffer, lastRenderedMainScene);
         }
-        else{
+        else {
             //glBindVertexBuffer(webgl, this.vertexPositionBuffer, shaderProgram, lastRenderedEditorScene);
             webgl.bindBuffer(webgl.ARRAY_BUFFER, this.vertexPositionBuffer);
             webgl.vertexAttribPointer(shaderProgram.vertexPositionAttribute, this.vertexPositionBuffer.itemSize, webgl.FLOAT, false, 0, 0);
@@ -198,7 +201,7 @@ class CreateShape{
                 webgl.uniform3f(shaderProgram.directionalColorUniform, directionalLight.r, directionalLight.g, directionalLight.b);
 
                 //Point
-                for(let i in pointLightArray) {
+                for (let i in pointLightArray) {
                     //glPointLightLocation(webgl, pointLightArray[i].x, pointLightArray[i].y, pointLightArray[i].z, shaderProgram, lastRenderedEditorScene);
                     webgl.uniform3f(shaderProgram.pointLightingLocationUniform, pointLightArray[i].x, pointLightArray[i].y, pointLightArray[i].z);
                     //glPointLight(webgl, pointLightArray[i].r, pointLightArray[i].g, pointLightArray[i].b, shaderProgram, lastRenderedEditorScene);
@@ -210,19 +213,53 @@ class CreateShape{
         }
         setMatrixUniforms(webgl, shaderProgram, mvMatrix, pMatrix);
     }
+
     rotation(mvMatrix) {
         //if(!this.animateRotation) {
-            mat4.rotate(mvMatrix, degToRad(this.xRot), [true, false, false]);
-            mat4.rotate(mvMatrix, degToRad(this.yRot), [false, true, false]);
-            mat4.rotate(mvMatrix, degToRad(this.zRot), [false, false, true]);
-       /* }
-        else {
-            mat4.rotate(mvMatrix, degToRad(this.xRot), [true, false, false]);
-            mat4.rotate(mvMatrix, degToRad(this.yRot), [false, true, false]);
-            mat4.rotate(mvMatrix, degToRad(this.zRot), [false, false, true]);
-        }*/
+        mat4.rotate(mvMatrix, degToRad(this.xRot), [true, false, false]);
+        mat4.rotate(mvMatrix, degToRad(this.yRot), [false, true, false]);
+        mat4.rotate(mvMatrix, degToRad(this.zRot), [false, false, true]);
+        /* }
+         else {
+             mat4.rotate(mvMatrix, degToRad(this.xRot), [true, false, false]);
+             mat4.rotate(mvMatrix, degToRad(this.yRot), [false, true, false]);
+             mat4.rotate(mvMatrix, degToRad(this.zRot), [false, false, true]);
+         }*/
+    }
+    setColorR(r){
+        if(r >= 1){
+            this.r = 1;
+        }
+        if(r <= 0){
+            this.r = 0;
+        }
+    }
+    setColorB(b){
+        if(b >= 1){
+            this.b = 1;
+        }
+        if(b <= 0){
+            this.b = 0;
+        }
+    }
+    setColorG(g){
+        if(g >= 1){
+            this.g = 1;
+        }
+        if(g <= 0){
+            this.g = 0;
+        }
+    }
+    setOpacity(opacity){
+        if(opacity >= 1){
+            this.alpha = 1;
+        }
+        if(opacity <= 0){
+            this.alpha = 0;
+        }
     }
 }
+
 function initBuffers(object, webgl) {
     let vertexPositionBuffer = webgl.createBuffer();
     let vertexNormalBuffer = webgl.createBuffer();
@@ -260,93 +297,95 @@ function initBuffers(object, webgl) {
     };
 
 }
-function initProperties(object, properties, saveTo){
-    if(properties["name"] !== undefined)
+
+function initProperties(object, properties, saveTo) {
+    if (properties["name"] !== undefined)
         object.name = properties["name"];
-    if(properties["savedShapeName"] !== undefined)
+    if (properties["savedShapeName"] !== undefined)
         object.savedShapeName = properties["savedShapeName"];
-    if(properties["jsonPath"] !== undefined)
+    if (properties["jsonPath"] !== undefined)
         object.jsonPath = properties["jsonPath"];
 
-    if(properties["useCamera"] !== undefined)
+    if (properties["useCamera"] !== undefined)
         object.useCamera = properties["useCamera"];
 
-    if(properties["x"] !== undefined)
+    if (properties["x"] !== undefined)
         object.x = properties["x"];
-    if(properties["y"] !== undefined)
+    if (properties["y"] !== undefined)
         object.y = properties["y"];
-    if(properties["z"] !== undefined)
+    if (properties["z"] !== undefined)
         object.z = properties["z"];
 
-    if(properties["r"] !== undefined)
+    if (properties["r"] !== undefined)
         object.r = properties["r"];
-    if(properties["g"] !== undefined)
+    if (properties["g"] !== undefined)
         object.g = properties["g"];
-    if(properties["b"] !== undefined)
+    if (properties["b"] !== undefined)
         object.b = properties["b"];
 
-    if(properties["sx"] !== undefined)
+    if (properties["sx"] !== undefined)
         object.sx = properties["sx"];
-    if(properties["sy"] !== undefined)
+    if (properties["sy"] !== undefined)
         object.sy = properties["sy"];
-    if(properties["sz"] !== undefined)
+    if (properties["sz"] !== undefined)
         object.sz = properties["sz"];
 
-    if(properties["xRot"] !== undefined)
+    if (properties["xRot"] !== undefined)
         object.xRot = properties["xRot"];
-    if(properties["yRot"] !== undefined)
+    if (properties["yRot"] !== undefined)
         object.yRot = properties["yRot"];
-    if(properties["zRot"] !== undefined)
+    if (properties["zRot"] !== undefined)
         object.zRot = properties["zRot"];
 
-    if(properties["xRotSpeed"] !== undefined)
+    if (properties["xRotSpeed"] !== undefined)
         object.xRotSpeed = properties["xRotSpeed"];
-    if(properties["yRotSpeed"] !== undefined)
+    if (properties["yRotSpeed"] !== undefined)
         object.yRotSpeed = properties["yRotSpeed"];
-    if(properties["zRotSpeed"] !== undefined)
+    if (properties["zRotSpeed"] !== undefined)
         object.zRotSpeed = properties["zRotSpeed"];
 
-    if(properties["animateRotation"] !== undefined)
+    if (properties["animateRotation"] !== undefined)
         object.animateRotation = properties["animateRotation"];
 
-    if(properties["useTexture"] !== undefined)
+    if (properties["useTexture"] !== undefined)
         object.useTexture = properties["useTexture"];
-    if(properties["textureSrc"] !== undefined)
+    if (properties["textureSrc"] !== undefined)
         object.textureSrc = properties["textureSrc"];
-    if(properties["alpha"] !== undefined)
+    if (properties["alpha"] !== undefined)
         object.alpha = properties["alpha"];
-    if(properties["transparency"] !== undefined)
+    if (properties["transparency"] !== undefined)
         object.transparency = properties["transparency"];
-    if(properties["lighting"] !== undefined)
+    if (properties["lighting"] !== undefined)
         object.lighting = properties["lighting"];
-    if(properties["type"] !== undefined)
+    if (properties["type"] !== undefined)
         object.type = properties["type"];
 
 
-    if(saveTo === "objArr") {
+    if (saveTo === "objArr") {
         objArr.push(object);
         loadedObjects++;
-        console.log("name: " + object.name);
-        console.log("savedShapeName: " + object.savedShapeName);
-        console.log("type: " + object.type);
+        //console.log("name: " + object.name);
+        //console.log("savedShapeName: " + object.savedShapeName);
+        //console.log("type: " + object.type);
     }
-    if(saveTo === "editor") {
+    if (saveTo === "editor") {
         objEditorArr.push(object);
         loadedObjects++;
         editorObjectLoaded = true;
         //console.log(objEditorArr[0]);
         //console.log("Editor obj size: " + objEditorArr.length);
     }
-    if(saveTo === "preview"){
+    if (saveTo === "preview") {
         objPreviewArr.push(object);
         loadedObjects++;
         previewObjects++;
-        console.log("loaded preview object: " + previewObjects);
+        //console.log("loaded preview object: " + previewObjects);
         //console.log("Preview obj size: " + objPreviewArr.length);
     }
 }
-function modifyObjByName(name){
+
+function modifyObjByName(name) {
     for (let i in objArr)
-        if(objArr[i].name === name)
+        if (objArr[i].name === name)
             return objArr[i];
 }
