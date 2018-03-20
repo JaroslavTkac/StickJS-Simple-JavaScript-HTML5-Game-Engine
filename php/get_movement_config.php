@@ -32,6 +32,7 @@ if(isset($_POST['projectId'])){
                 }
             }
             else{
+                echo "project id : " . $_POST['projectId'] . "\n</br>";
                 echo "No movement speed config found";
             }
         }

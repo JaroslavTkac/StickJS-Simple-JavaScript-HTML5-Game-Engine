@@ -666,6 +666,8 @@ function loadMovementConfig() {
             projectId: projectId
         },
         success: function (response) {
+            console.log("LOAD MOVEMENT CONFIG response");
+            console.log(response);
             let data = JSON.parse(response);
             //console.log(response);
 

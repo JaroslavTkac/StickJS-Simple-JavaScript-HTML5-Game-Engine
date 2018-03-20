@@ -9,8 +9,6 @@
 // Include connection file
 require 'connection.php';
 
-$username = $_SESSION['username'];
-
 
 $sql = "SELECT new_js_file_path, old_js_file_path, code
             FROM users_converted_code 

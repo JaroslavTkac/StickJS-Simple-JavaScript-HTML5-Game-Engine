@@ -2,13 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4d98851f-1cbe-463c-84f1-c95cfca61c40" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/php/get_all_users.php" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/assets/js/CreateProjects.js" afterPath="$PROJECT_DIR$/assets/js/CreateProjects.js" />
-      <change beforePath="$PROJECT_DIR$/assets/js/PublishedProjects.js" afterPath="$PROJECT_DIR$/assets/js/PublishedProjects.js" />
-      <change beforePath="$PROJECT_DIR$/php/get_projects.php" afterPath="$PROJECT_DIR$/php/get_projects.php" />
-      <change beforePath="$PROJECT_DIR$/scripts/Scripts.js" afterPath="$PROJECT_DIR$/scripts/Scripts.js" />
-      <change beforePath="$PROJECT_DIR$/views/my_projects.php" afterPath="$PROJECT_DIR$/views/my_projects.php" />
+      <change beforePath="$PROJECT_DIR$/assets/js/UploadHandler.js" afterPath="$PROJECT_DIR$/assets/js/UploadHandler.js" />
+      <change beforePath="$PROJECT_DIR$/php/get_movement_config.php" afterPath="$PROJECT_DIR$/php/get_movement_config.php" />
+      <change beforePath="$PROJECT_DIR$/php/get_users_code_file_path.php" afterPath="$PROJECT_DIR$/php/get_users_code_file_path.php" />
+      <change beforePath="$PROJECT_DIR$/views/editor.php" afterPath="$PROJECT_DIR$/views/editor.php" />
       <change beforePath="$PROJECT_DIR$/views/users_projects.php" afterPath="$PROJECT_DIR$/views/users_projects.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -28,14 +26,83 @@
     <splitter split-orientation="horizontal" split-proportion="0.4735426">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="users_projects.php" pinned="false" current-in-tab="true">
+          <file leaf-file-name="users_projects.php" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/views/users_projects.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="330">
-                  <caret line="27" column="2" lean-forward="true" selection-start-line="27" selection-start-column="2" selection-end-line="27" selection-end-column="2" />
+                <state relative-caret-position="796">
+                  <caret line="174" column="125" lean-forward="false" selection-start-line="174" selection-start-column="125" selection-end-line="174" selection-end-column="125" />
                   <folding>
                     <element signature="e#3329#5274#0#PHP" expanded="false" />
                     <element signature="e#4157#5274#0#PHP" expanded="false" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="editor.php" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/views/editor.php">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="664">
+                  <caret line="90" column="57" lean-forward="false" selection-start-line="90" selection-start-column="57" selection-end-line="90" selection-end-column="57" />
+                  <folding>
+                    <element signature="e#6303#8248#0#PHP" expanded="false" />
+                    <element signature="e#7131#8248#0#PHP" expanded="false" />
+                    <marker date="1521540815469" expanded="true" signature="6428:6500" ph="..." />
+                    <marker date="1521540815469" expanded="true" signature="7384:7403" ph="..." />
+                    <marker date="1521540815469" expanded="true" signature="7676:7693" ph="..." />
+                    <marker date="1521540815469" expanded="true" signature="7926:7943" ph="..." />
+                    <marker date="1521540815469" expanded="true" signature="15378:15411" ph="..." />
+                    <marker date="1521540815469" expanded="true" signature="15650:15664" ph="..." />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="get_users_code_file_path.php" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/php/get_users_code_file_path.php">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="90">
+                  <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+                  <folding>
+                    <marker date="1521540242264" expanded="true" signature="162:281" ph="SELECT new_j... users_converted_code" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="UploadHandler.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/assets/js/UploadHandler.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="682">
+                  <caret line="665" column="32" lean-forward="false" selection-start-line="665" selection-start-column="23" selection-end-line="665" selection-end-column="32" />
+                  <folding>
+                    <element signature="n#!!block;n#saveMovementConfig#0" expanded="false" />
+                    <element signature="n#!!block;n#uploadUserConvertedCode#0" expanded="false" />
+                    <element signature="n#!!block;n#saveSvgCodeScene#0" expanded="false" />
+                    <marker date="1521538637904" expanded="true" signature="6781:6794" ph="..." />
+                    <marker date="1521538637904" expanded="true" signature="9137:9150" ph="..." />
+                    <marker date="1521538637904" expanded="true" signature="10863:10876" ph="..." />
+                    <marker date="1521538637904" expanded="true" signature="11263:11276" ph="..." />
+                    <marker date="1521538637904" expanded="true" signature="11664:11677" ph="..." />
+                    <marker date="1521538637904" expanded="true" signature="12563:12576" ph="..." />
+                    <marker date="1521538637904" expanded="true" signature="12963:12976" ph="..." />
+                    <marker date="1521538637904" expanded="true" signature="16167:16180" ph="..." />
+                    <marker date="1521538637904" expanded="true" signature="23111:23124" ph="..." />
+                    <marker date="1521538637904" expanded="true" signature="26864:26877" ph="..." />
+                    <marker date="1521538637904" expanded="true" signature="27173:27186" ph="..." />
+                    <marker date="1521538637904" expanded="true" signature="27483:27496" ph="..." />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="get_movement_config.php" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/php/get_movement_config.php">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="435">
+                  <caret line="34" column="66" lean-forward="false" selection-start-line="34" selection-start-column="66" selection-end-line="34" selection-end-column="66" />
+                  <folding>
+                    <marker date="1521539786676" expanded="true" signature="222:351" ph="SELECT stand... users_projects_movement_config" />
                   </folding>
                 </state>
               </provider>
@@ -64,30 +131,6 @@
                     <marker date="1521538115986" expanded="true" signature="550:660" ph="SELECT id, n... users_projects" />
                     <marker date="1521538115986" expanded="true" signature="550:698" ph="SELECT id, n... users_projects" />
                     <marker date="1521538115986" expanded="true" signature="781:945" ph="SELECT id, n... users_projects" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="upload.php" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/php/upload.php">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="330">
-                  <caret line="251" column="0" lean-forward="false" selection-start-line="251" selection-start-column="0" selection-end-line="251" selection-end-column="0" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="delete_project.php" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/php/delete_project.php">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="690">
-                  <caret line="51" column="34" lean-forward="false" selection-start-line="51" selection-start-column="34" selection-end-line="51" selection-end-column="34" />
-                  <folding>
-                    <marker date="1521405413251" expanded="true" signature="335:448" ph="SELECT publi... users_projects" />
-                    <marker date="1521405413251" expanded="true" signature="335:532" ph="SELECT publi... users_projects" />
-                    <marker date="1521405413251" expanded="true" signature="945:1000" ph="DELETE FROM users_projects... " />
                   </folding>
                 </state>
               </provider>
@@ -154,8 +197,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/scripts/Lightning.js" />
-        <option value="$PROJECT_DIR$/scripts/OptimizeCalls.js" />
         <option value="$PROJECT_DIR$/scripts/Shaders.js" />
         <option value="$PROJECT_DIR$/assets/css/styles.css" />
         <option value="$PROJECT_DIR$/assets/css/projects_styles.css" />
@@ -182,7 +223,6 @@
         <option value="$PROJECT_DIR$/php/check_users_permissions_for_project.php" />
         <option value="$PROJECT_DIR$/scripts/Main.js" />
         <option value="$PROJECT_DIR$/assets/js/UserInterfaceScripts.js" />
-        <option value="$PROJECT_DIR$/php/get_users_code_file_path.php" />
         <option value="$PROJECT_DIR$/php/check_project_type.php" />
         <option value="$PROJECT_DIR$/php/upload_converted_code.php" />
         <option value="$PROJECT_DIR$/php/upload_live_objects.php" />
@@ -190,8 +230,6 @@
         <option value="$PROJECT_DIR$/php/upload_saved_scene.php" />
         <option value="$PROJECT_DIR$/php/upload_saved_shapes.php" />
         <option value="$PROJECT_DIR$/php/upload_saved_svg_scene.php" />
-        <option value="$PROJECT_DIR$/views/editor.php" />
-        <option value="$PROJECT_DIR$/assets/js/UploadHandler.js" />
         <option value="$PROJECT_DIR$/php/publish_project.php" />
         <option value="$PROJECT_DIR$/php/delete_published_project.php" />
         <option value="$PROJECT_DIR$/php/upload.php" />
@@ -203,8 +241,13 @@
         <option value="$PROJECT_DIR$/views/my_projects.php" />
         <option value="$PROJECT_DIR$/scripts/Scripts.js" />
         <option value="$PROJECT_DIR$/assets/js/PublishedProjects.js" />
-        <option value="$PROJECT_DIR$/views/users_projects.php" />
         <option value="$PROJECT_DIR$/php/get_projects.php" />
+        <option value="$PROJECT_DIR$/assets/js/UploadHandler.js" />
+        <option value="$PROJECT_DIR$/php/get_movement_config.php" />
+        <option value="$PROJECT_DIR$/scripts/user_converted_code/UserConvertedCode_1521538180_1_12.js" />
+        <option value="$PROJECT_DIR$/php/get_users_code_file_path.php" />
+        <option value="$PROJECT_DIR$/views/users_projects.php" />
+        <option value="$PROJECT_DIR$/views/editor.php" />
       </list>
     </option>
   </component>
@@ -549,12 +592,12 @@
       <workItem from="1521225928892" duration="10000" />
       <workItem from="1521280476883" duration="19867000" />
       <workItem from="1521408417371" duration="149000" />
-      <workItem from="1521484090507" duration="4905000" />
+      <workItem from="1521484090507" duration="6543000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="702722000" />
+    <option name="totallyTimeSpent" value="704360000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -637,9 +680,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/scripts/user_converted_code/UserConvertedCode_1520842866_2_4.js" />
-    <entry file="file://$PROJECT_DIR$/scripts/user_converted_code/UserConvertedCode_1520843520_2_7.js" />
-    <entry file="file://$PROJECT_DIR$/scripts/user_converted_code/UserConvertedCode_1520849712_2_13.js" />
     <entry file="file://$PROJECT_DIR$/scripts/user_converted_code/UserConvertedCode_1520849812_2_13.js" />
     <entry file="file://$PROJECT_DIR$/scripts/user_converted_code/UserConvertedCode_1520850502_2_13.js" />
     <entry file="file://$PROJECT_DIR$/php/get_saved_svg_scene.php">
@@ -735,13 +775,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/Main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="469">
-          <caret line="62" column="17" lean-forward="true" selection-start-line="62" selection-start-column="17" selection-end-line="62" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/assets/js/UserInterfaceScripts.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="432">
@@ -781,27 +814,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="540">
           <caret line="41" column="2" lean-forward="true" selection-start-line="41" selection-start-column="2" selection-end-line="41" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/editor.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="606">
-          <caret line="141" column="21" lean-forward="false" selection-start-line="141" selection-start-column="21" selection-end-line="141" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/php/get_users_code_file_path.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="32" column="73" lean-forward="false" selection-start-line="32" selection-start-column="42" selection-end-line="32" selection-end-column="73" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/UploadHandler.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3474">
-          <caret line="876" column="33" lean-forward="false" selection-start-line="876" selection-start-column="19" selection-end-line="876" selection-end-column="33" />
         </state>
       </provider>
     </entry>
@@ -908,26 +920,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/php/upload.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="251" column="0" lean-forward="false" selection-start-line="251" selection-start-column="0" selection-end-line="251" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/php/delete_project.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="690">
-          <caret line="51" column="34" lean-forward="false" selection-start-line="51" selection-start-column="34" selection-end-line="51" selection-end-column="34" />
-          <folding>
-            <marker date="1521405413251" expanded="true" signature="335:448" ph="SELECT publi... users_projects" />
-            <marker date="1521405413251" expanded="true" signature="335:532" ph="SELECT publi... users_projects" />
-            <marker date="1521405413251" expanded="true" signature="945:1000" ph="DELETE FROM users_projects... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/assets/js/CreateProjects.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="546">
@@ -970,6 +962,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/php/upload.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="251" column="0" lean-forward="false" selection-start-line="251" selection-start-column="0" selection-end-line="251" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/delete_project.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="690">
+          <caret line="51" column="34" lean-forward="false" selection-start-line="51" selection-start-column="34" selection-end-line="51" selection-end-column="34" />
+          <folding>
+            <marker date="1521405413251" expanded="true" signature="335:448" ph="SELECT publi... users_projects" />
+            <marker date="1521405413251" expanded="true" signature="335:532" ph="SELECT publi... users_projects" />
+            <marker date="1521405413251" expanded="true" signature="945:1000" ph="DELETE FROM users_projects... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/php/get_projects.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="495">
@@ -982,13 +994,100 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/php/get_live_objects.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1520460046681" expanded="true" signature="203:289" ph="SELECT json_... users_live_objects" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/get_movement_config.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="435">
+          <caret line="34" column="66" lean-forward="false" selection-start-line="34" selection-start-column="66" selection-end-line="34" selection-end-column="66" />
+          <folding>
+            <marker date="1521539786676" expanded="true" signature="222:351" ph="SELECT stand... users_projects_movement_config" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/UploadHandler.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="682">
+          <caret line="665" column="32" lean-forward="false" selection-start-line="665" selection-start-column="23" selection-end-line="665" selection-end-column="32" />
+          <folding>
+            <element signature="n#!!block;n#saveMovementConfig#0" expanded="false" />
+            <element signature="n#!!block;n#uploadUserConvertedCode#0" expanded="false" />
+            <element signature="n#!!block;n#saveSvgCodeScene#0" expanded="false" />
+            <marker date="1521538637904" expanded="true" signature="6781:6794" ph="..." />
+            <marker date="1521538637904" expanded="true" signature="9137:9150" ph="..." />
+            <marker date="1521538637904" expanded="true" signature="10863:10876" ph="..." />
+            <marker date="1521538637904" expanded="true" signature="11263:11276" ph="..." />
+            <marker date="1521538637904" expanded="true" signature="11664:11677" ph="..." />
+            <marker date="1521538637904" expanded="true" signature="12563:12576" ph="..." />
+            <marker date="1521538637904" expanded="true" signature="12963:12976" ph="..." />
+            <marker date="1521538637904" expanded="true" signature="16167:16180" ph="..." />
+            <marker date="1521538637904" expanded="true" signature="23111:23124" ph="..." />
+            <marker date="1521538637904" expanded="true" signature="26864:26877" ph="..." />
+            <marker date="1521538637904" expanded="true" signature="27173:27186" ph="..." />
+            <marker date="1521538637904" expanded="true" signature="27483:27496" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/Main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-305">
+          <caret line="62" column="17" lean-forward="true" selection-start-line="62" selection-start-column="17" selection-end-line="62" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/user_converted_code/UserConvertedCode_1521538180_1_12.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/get_users_code_file_path.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+          <folding>
+            <marker date="1521540242264" expanded="true" signature="162:281" ph="SELECT new_j... users_converted_code" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/views/users_projects.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="27" column="2" lean-forward="true" selection-start-line="27" selection-start-column="2" selection-end-line="27" selection-end-column="2" />
+        <state relative-caret-position="796">
+          <caret line="174" column="125" lean-forward="false" selection-start-line="174" selection-start-column="125" selection-end-line="174" selection-end-column="125" />
           <folding>
             <element signature="e#3329#5274#0#PHP" expanded="false" />
             <element signature="e#4157#5274#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/editor.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="664">
+          <caret line="90" column="57" lean-forward="false" selection-start-line="90" selection-start-column="57" selection-end-line="90" selection-end-column="57" />
+          <folding>
+            <element signature="e#6303#8248#0#PHP" expanded="false" />
+            <element signature="e#7131#8248#0#PHP" expanded="false" />
+            <marker date="1521540815469" expanded="true" signature="6428:6500" ph="..." />
+            <marker date="1521540815469" expanded="true" signature="7384:7403" ph="..." />
+            <marker date="1521540815469" expanded="true" signature="7676:7693" ph="..." />
+            <marker date="1521540815469" expanded="true" signature="7926:7943" ph="..." />
+            <marker date="1521540815469" expanded="true" signature="15378:15411" ph="..." />
+            <marker date="1521540815469" expanded="true" signature="15650:15664" ph="..." />
           </folding>
         </state>
       </provider>

@@ -14,6 +14,9 @@ require_once ('../php/check_project_type.php');
 echo "projectType: " . $projectType . "<br>";
 echo "preview: " . $_GET['preview'];
 
+$project_id = $_GET['project_id'];
+$project_name = $_GET['project_name'];
+$isLoggedIn = false;
 
 if($projectType === "general" && strlen($_GET['preview']) == 0) {
     // If session variable is not set it will redirect to login page
@@ -21,12 +24,10 @@ if($projectType === "general" && strlen($_GET['preview']) == 0) {
         header("location: index.php");
         exit;
     } else {
+        $isLoggedIn = true;
         require_once('../php/check_users_permissions_for_project.php');
     }
     if ($isUsersProject) {
-        $project_id = $_GET['project_id'];
-        $project_name = $_GET['project_name'];
-
         include('../php/get_users_code_file_path.php');
         //echo "newFilePath: " . $newFilePath;
     } else {
@@ -34,10 +35,8 @@ if($projectType === "general" && strlen($_GET['preview']) == 0) {
         exit;
     }
 }
-if($projectType === "publish" && strlen($_GET['preview']) > 0 && $_GET['preview'] === "usersprojects"){
-    $project_id = $_GET['project_id'];
-    $project_name = $_GET['project_name'];
-
+if($projectType === "publish" && strlen($_GET['preview']) > 0){
+    $isLoggedIn = true;
     include('../php/get_users_code_file_path.php');
 }
 if($projectType === "general" && strlen($_GET['preview']) > 0){
@@ -49,6 +48,7 @@ if($projectType === "general" && strlen($_GET['preview']) > 0){
         exit;
     }
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -88,10 +88,12 @@ if($projectType === "general" && strlen($_GET['preview']) > 0){
         let projectType = "<?php echo $projectType; ?>";
         let userId = "<?php echo $_SESSION['user_id']; ?>";
         if (projectType === "publish"){
+            //cia eina kalba apie texturas ir obj failus 
             userId = "<?php echo $projectOwnerId ?>"; //TODO SCRIPTAS KURIS GAUNA PROJEKTO OWNERIO ID -> REIKALINGA PAKRAUTI OBJEKTAMS IR TEKSTUROM
             //TODO cia bus ****original pr id***** is lenteles published projects
         }
         let projectId = "<?php echo $project_id; ?>";
+        console.log("PROJECT ID: " + projectId)
     </script>
 
     <!-- My Scripts -->
@@ -142,21 +144,40 @@ if($projectType === "general" && strlen($_GET['preview']) > 0){
                 </li>
                 <li><a href="#">How To</a></li>
             </ul>
-            <form class="navbar-right">
-                <div align="center" style="color: white; font-size: 16px; font-family: Helvetica, Arial, sans-serif">
-                    <?php echo "Welcome, " . "<b>" . $_SESSION['username'] . "</b>" ?>
-                </div>
-                <div align="center" class="form-group">
-
-                    <ul class="nav navbar-nav">
-                        <a id="register-link" href="my_projects.php">My Projects</a>
-                    </ul>
-                    <ul class="nav navbar-nav">
-                        <a id="register-link" href="../php/logout.php">Logout</a>
-                    </ul>
-                </div>
-
-            </form>
+            <?php
+            if ($isLoggedIn) {
+                echo "<form class=\"navbar-right\">";
+                echo "<div align=\"center\" style=\"color: white; font-size: 16px; font-family: Helvetica, Arial, sans-serif\">";
+                echo "Welcome, " . "<b>" . $_SESSION['username'] . "</b>";
+                echo "</div>";
+                echo "<div align=\"center\" class=\"form-group\">";
+                echo "<ul class=\"nav navbar-nav\" >";
+                echo "<a id = \"register-link\" href = \"my_projects.php\" > My Projects </a >";
+                echo "</ul >";
+                echo "<ul class=\"nav navbar-nav\" >";
+                echo "<a id = \"register-link\" href = \"../php/logout.php\" > Logout</a >";
+                echo "</ul >";
+                echo "</div>";
+                echo "</form>";
+            }
+            else {
+                require_once("../php/login.php");
+                echo "<form class=\"navbar-form navbar-right\" action=\"" . htmlspecialchars($_SERVER["PHP_SELF"]) . "\" method=\"post\">";
+                echo "<div class=\"form-group\" style=\"margin-right: 3.5px\">";
+                echo "<ul class=\"nav navbar-nav\">";
+                echo "<a id=\"register-link\" href=\"../views/registration.php\">Register</a>";
+                echo "</ul>";
+                echo "</div>";
+                echo "<div class=\"form-group\" style=\"margin-right: 4px\">";
+                echo "<input type=\"text\" name=\"username\" class=\"form-control\" placeholder=\"Username\" value=\"" . $username . "\">";
+                echo "</div>";
+                echo "<div class=\"form-group\" style=\"margin-right: 4px\">";
+                echo "<input type=\"password\" name=\"password\" class=\"form-control\" placeholder=\"Password\">";
+                echo "</div>";
+                echo "<button type=\"submit\" class=\"btn btn-primary\" value=\"Login\">Sign In</button>";
+                echo "</from>";
+            }
+            ?>
         </div>
     </div>
 </div>

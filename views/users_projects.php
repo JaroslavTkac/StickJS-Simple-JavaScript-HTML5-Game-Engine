@@ -172,7 +172,7 @@ else{
             echo "</div>";
             echo "</div>";
             echo "<div class=\"col-md-3 cta-button\">";
-            echo "<a href=\"editor.php?project_id=" . $data['project_id'] . "&project_name=" . $data['name'] . "\" class=\"btn btn-lg btn-block btn-" . $color_array[$color_switcher] . "\">Open</a>";
+            echo "<a href=\"editor.php?project_id=" . $data['project_id'] . "&project_name=" . $data['name'] . "&preview=" . $data['name'] . "\" class=\"btn btn-lg btn-block btn-" . $color_array[$color_switcher] . "\">Open</a>";
             if($userId === $data['project_belongs_to_user']) {
                 echo "<a href=\"#\" id=\"" . $data['project_id'] . "\" class=\"del-project-btn btn btn-lg btn-block btn-" . $color_array[$color_switcher] . "\">Delete</a>";
             }
