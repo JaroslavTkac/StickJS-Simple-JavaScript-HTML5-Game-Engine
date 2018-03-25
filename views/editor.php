@@ -735,6 +735,13 @@ if($projectType === "general" && strlen($_GET['preview']) > 0){
                                     <option value="e">E</option>
                                     <option value="lshift">Lshift</option>
                                     <option value="space">Space</option>
+                                    <option value="r">R</option>
+                                    <option value="t">T</option>
+                                    <option value="g">G</option>
+                                    <option value="v">V</option>
+                                    <option value="z">Z</option>
+                                    <option value="c">C</option>
+                                    <option value="x">X</option>
                                 </select>
                             </foreignObject>
                             <text class="code-id"

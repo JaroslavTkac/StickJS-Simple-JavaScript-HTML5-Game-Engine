@@ -103,40 +103,30 @@ function webGLStart() {
     getKeyByName("space").songName = "rotationEngine";
     getKeyByName("space").useSong = true;
 */
-
-
-
-
+    new LoadObject("../shapes/cube.json", "../assets/img/textures/sun.jpg", {
+        "name": "------NotSaveToDB------",
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "sx": 0,
+        "sy": 0,
+        "sz": 0,
+    });
 
     startEditorWindow();
     loading();
-
 }
 
 
 function loading() {
+
     console.log(loadedObjects + " / " + totalObjects);
     if (totalObjects <= loadedObjects) {
-        //let element = document.getElementById("loading");
-        //element.outerHTML = "";
-        //delete element;
-
-        //fpsElement = document.getElementById("fps");
-        //fpsNode = document.createTextNode("");
-        //avgFpsElement = document.getElementById("avgFps");
-        //avgFpsNode = document.createTextNode("");
         console.log("Objects loaded in scene: " + objArr.length);
         lastRenderedMainScene = new LastRendered();
-        //lastRenderedEditorScene = new LastRendered();
-
-
         render();
-
-
     }
     else {
-        //loaderElement.appendChild(loaderNode);
-        //loaderNode.nodeValue = ((loadedObjects/totalObjects)*100).toFixed(0) + "%";
         requestAnimationFrame(loading);
     }
 }
@@ -149,11 +139,7 @@ function render() {
     drawScene(canvas, webgl, objArr, mvMatrix, pMatrix, mvMatrixStack, shaderProgram,
         ambientLight, directionalLight, pointLightArray);
     animate(objArr);
-    //fpsCounter();
-    //avgFps();
-
     renderEditor();
-
     userCode();
 }
 

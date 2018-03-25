@@ -55,6 +55,7 @@ let totalObjects = 0;
 let editorObjectLoaded = false;
 let loaderElement;
 let loaderNode;
+let texturesLoaded = false;
 
 let canvas;
 //let editorCanvas;

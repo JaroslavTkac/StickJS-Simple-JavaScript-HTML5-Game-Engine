@@ -13,18 +13,35 @@ let availableTexturesOnServer = [];
 
 // Some sort of call back (waiting for editor shape loading)
 function waitUntilWebglInitialized() {
-    if (webgl === undefined) {
+    console.log(texturesLoaded);
+    //waiting before webgl is initing, loading textures and shapes
+    if (webgl === undefined && !texturesLoaded) {
         setTimeout(waitUntilWebglInitialized, 50);
         return;
     }
 
     let textureToApplySrc = "../assets/img/textures/sun.jpg";
-
     //initialized -> init objects
     for (let i = 0; i < liveLoadedShapesArr.length; i++) {
+        console.log("-------------");
+        console.log(liveLoadedShapesArr);
+        console.log("REAL TEXTURE: " + liveLoadedShapesArr[i].textureSrc);
+        console.log("-------------");
+        console.log("available texture array");
+        console.log(availableTexturesOnServer);
+
+
+        if(liveLoadedShapesArr[i].textureSrc.indexOf("user_textures") !== -1){
+            textureToApplySrc = liveLoadedShapesArr[i].textureSrc;
+        }
+        else{
+            textureToApplySrc = liveLoadedShapesArr[i].textureSrc;
+        }
+
         //check for texture availability../assets/img/textures
         for (let j = 0; j < availableTexturesOnServer.length; j++) {
-            if (liveLoadedShapesArr[i].textureSrc === availableTexturesOnServer[j]) {
+            console.log("Searching for texture");
+            if (liveLoadedShapesArr[i].textureSrc === ("../" + availableTexturesOnServer[j])) {
                 textureToApplySrc = liveLoadedShapesArr[i].textureSrc;
                 break;
             }
@@ -32,6 +49,9 @@ function waitUntilWebglInitialized() {
                 textureToApplySrc = "../assets/img/textures/sun.jpg";
             }
         }
+        //console.log("-------------");
+        console.log("INITING OBJECT WITH: " + textureToApplySrc);
+        console.log("-------------");
         new LoadObject(liveLoadedShapesArr[i].jsonPath, textureToApplySrc, {
             "name": liveLoadedShapesArr[i].name,
             "savedShapeName": liveLoadedShapesArr[i].savedShapeName,
@@ -181,6 +201,10 @@ function loadUserData(dir, type) {
                             "</div>";
                     }
                     $('#selectable-textures-row').append(data);
+                    if(i === (folderContent.length - 1)){
+                        console.log("EVERYTHNG LOADED");
+                        texturesLoaded = true;
+                    }
                 }
                 if (type === "music") {
                     /*data = "<div align=\"center\" class=\"col-lg-3 col-md-3 col-sm-4 col-xs-6\">" +
@@ -215,7 +239,6 @@ function loadUserData(dir, type) {
                     $('#selectable-shapes-row').append(data);
 
                     //init every object for webgl here
-
                     initUploadedObject("../shapes/user_shapes/" + folderContent[i]);
                     //Getting user saved shapes names for code blocks
                     getShapesNameInFolder("../shapes/user_shapes");
@@ -796,8 +819,15 @@ function loadSvgCodeScene() {
 
 //Saving scene by btn click for multiple use dooring project -> Saving WebGL main scene
 function saveScene() {
+    let toSave = [];
+    for (let i = 0; i < objArr.length; i++){
+        if(objArr[i].name !== "------NotSaveToDB------"){
+            toSave.push(objArr[i]);
+        }
+    }
+
     //Send to server user object data
-    let obj_data = JSON.stringify(objArr);
+    let obj_data = JSON.stringify(toSave);
 
     $.ajax({
         url: "../php/upload_saved_scene.php",
@@ -875,8 +905,15 @@ function loadSavedShapes() {
 
 //Saving user live objects -> objects that are init'ed in scene
 function saveLiveObjects() {
+    let toSave = [];
+    for (let i = 0; i < objArr.length; i++){
+        if(objArr[i].name !== "------NotSaveToDB------"){
+            toSave.push(objArr[i]);
+        }
+    }
+
     //Send to server user object data
-    let obj_data = JSON.stringify(objArr);
+    let obj_data = JSON.stringify(toSave);
 
     $.ajax({
         url: "../php/upload_live_objects.php",
@@ -907,6 +944,7 @@ function loadUserLiveObjects() {
             for (let i = 0; i < savedDataToInit.length; i++) {
                 liveLoadedShapesArr.push(savedDataToInit[i]);
             }
+
             waitUntilWebglInitialized();
         }
     });

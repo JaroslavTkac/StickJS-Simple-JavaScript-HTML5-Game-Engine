@@ -15,9 +15,6 @@ class KeyboardPresets {
         for (let i = 97; i < 123; i++)
             keysArray.push(new Key(String.fromCharCode(i)));
         keysArray.push(new Key("space"), new Key("shift"));
-
-        //console.log("Key Array:");
-        //console.log(keysArray);
     }
 
     enableStandardControls() {
