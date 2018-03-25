@@ -58,7 +58,6 @@ function drawScene(canvas, webgl, array, mvMatrix, pMatrix, mvMatrixStack, shade
 
 function webGLStart() {
     canvas = document.getElementById("Scene");
-    console.log(canvas);
     initGLForScene(canvas);
     mainShader();
 

@@ -167,7 +167,6 @@ $(document).ready(function () {
             },
         }).done(function (response) {
             console.log(response);
-
         }).error(function (response) {
             console.log(response);
         });

@@ -10,56 +10,56 @@ function applyChangesToAll(x, y, z, sx, sy, sz, xRot, yRot, zRot,
                            ambientR, ambientG, ambientB, animateRotation, useCamera, opacity, transparency, sumAllValues) {
 
 
-    console.log("sumAllValues: " + sumAllValues);
-    console.log("Going to apply changes TO ALL");
+    //console.log("sumAllValues: " + sumAllValues);
+    //console.log("Going to apply changes TO ALL");
     if (sumAllValues) {
         //console.log("Summing values");
         //summing up all given values
         if (ambientR !== null)
-            ambientLight.r += parseFloat(ambientR);
+            ambientLight.r += customParseFloat(ambientR);
         if (ambientG !== null)
-            ambientLight.g += parseFloat(ambientG);
+            ambientLight.g += customParseFloat(ambientG);
         if (ambientB !== null)
-            ambientLight.b += parseFloat(ambientB);
+            ambientLight.b += customParseFloat(ambientB);
 
 
         for (let i = 0; i < objArr.length; i++) {
             if (x !== null)
-                objArr[i].x += parseFloat(x);
+                objArr[i].x += customParseFloat(x);
             if (y !== null)
-                objArr[i].y += parseFloat(y);
+                objArr[i].y += customParseFloat(y);
             if (z !== null)
-                objArr[i].z += parseFloat(z);
+                objArr[i].z += customParseFloat(z);
             if (sx !== null)
-                objArr[i].sx += parseFloat(sx);
+                objArr[i].sx += customParseFloat(sx);
             if (sy !== null)
-                objArr[i].sy += parseFloat(sy);
+                objArr[i].sy += customParseFloat(sy);
             if (sz !== null)
-                objArr[i].sz += parseFloat(sz);
+                objArr[i].sz += customParseFloat(sz);
             if (r !== null)
-                objArr[i].r += parseFloat(r);
+                objArr[i].r += customParseFloat(r);
             if (g !== null)
-                objArr[i].g += parseFloat(g);
+                objArr[i].g += customParseFloat(g);
             if (b !== null)
-                objArr[i].b += parseFloat(b);
+                objArr[i].b += customParseFloat(b);
             if (xRot !== null)
-                objArr[i].xRot += parseFloat(xRot);
+                objArr[i].xRot += customParseFloat(xRot);
             if (yRot !== null)
-                objArr[i].yRot += parseFloat(yRot);
+                objArr[i].yRot += customParseFloat(yRot);
             if (zRot !== null)
-                objArr[i].zRot += parseFloat(zRot);
+                objArr[i].zRot += customParseFloat(zRot);
             if (xRotSpeed !== null)
-                objArr[i].xRotSpeed += parseFloat(xRotSpeed);
+                objArr[i].xRotSpeed += customParseFloat(xRotSpeed);
             if (yRotSpeed !== null)
-                objArr[i].yRotSpeed += parseFloat(yRotSpeed);
+                objArr[i].yRotSpeed += customParseFloat(yRotSpeed);
             if (zRotSpeed !== null)
-                objArr[i].zRotSpeed += parseFloat(zRotSpeed);
+                objArr[i].zRotSpeed += customParseFloat(zRotSpeed);
             if (animateRotation !== null)
                 objArr[i].animateRotation = animateRotation;
             if (transparency !== null)
                 objArr[i].transparency = transparency;
             if (opacity !== null)
-                objArr[i].alpha += parseFloat(opacity);
+                objArr[i].alpha += customParseFloat(opacity);
             if (useCamera !== null)
                 objArr[i].useCamera = useCamera;
 
@@ -69,50 +69,50 @@ function applyChangesToAll(x, y, z, sx, sy, sz, xRot, yRot, zRot,
     }
     else {
         if (ambientR !== null)
-            ambientLight.r = parseFloat(ambientR);
+            ambientLight.r = customParseFloat(ambientR);
         if (ambientG !== null)
-            ambientLight.g = parseFloat(ambientG);
+            ambientLight.g = customParseFloat(ambientG);
         if (ambientB !== null)
-            ambientLight.b = parseFloat(ambientB);
+            ambientLight.b = customParseFloat(ambientB);
 
 
         for (let i = 0; i < objArr.length; i++) {
             if (x !== null)
-                objArr[i].x = parseFloat(x);
+                objArr[i].x = customParseFloat(x);
             if (y !== null)
-                objArr[i].y = parseFloat(y);
+                objArr[i].y = customParseFloat(y);
             if (z !== null)
-                objArr[i].z = parseFloat(z);
+                objArr[i].z = customParseFloat(z);
             if (sx !== null)
-                objArr[i].sx = parseFloat(sx);
+                objArr[i].sx = customParseFloat(sx);
             if (sy !== null)
-                objArr[i].sy = parseFloat(sy);
+                objArr[i].sy = customParseFloat(sy);
             if (sz !== null)
-                objArr[i].sz = parseFloat(sz);
+                objArr[i].sz = customParseFloat(sz);
             if (r !== null)
-                objArr[i].r = parseFloat(r);
+                objArr[i].r = customParseFloat(r);
             if (g !== null)
-                objArr[i].g = parseFloat(g);
+                objArr[i].g = customParseFloat(g);
             if (b !== null)
-                objArr[i].b = parseFloat(b);
+                objArr[i].b = customParseFloat(b);
             if (xRot !== null)
-                objArr[i].xRot = parseFloat(xRot);
+                objArr[i].xRot = customParseFloat(xRot);
             if (yRot !== null)
-                objArr[i].yRot = parseFloat(yRot);
+                objArr[i].yRot = customParseFloat(yRot);
             if (zRot !== null)
-                objArr[i].zRot = parseFloat(zRot);
+                objArr[i].zRot = customParseFloat(zRot);
             if (xRotSpeed !== null)
-                objArr[i].xRotSpeed = parseFloat(xRotSpeed);
+                objArr[i].xRotSpeed = customParseFloat(xRotSpeed);
             if (yRotSpeed !== null)
-                objArr[i].yRotSpeed = parseFloat(yRotSpeed);
+                objArr[i].yRotSpeed = customParseFloat(yRotSpeed);
             if (zRotSpeed !== null)
-                objArr[i].zRotSpeed = parseFloat(zRotSpeed);
+                objArr[i].zRotSpeed = customParseFloat(zRotSpeed);
             if (animateRotation !== null)
                 objArr[i].animateRotation = animateRotation;
             if (transparency !== null)
                 objArr[i].transparency = transparency;
             if (opacity !== null)
-                objArr[i].alpha = parseFloat(opacity);
+                objArr[i].alpha = customParseFloat(opacity);
             if (useCamera !== null)
                 objArr[i].useCamera = useCamera;
 
@@ -137,51 +137,51 @@ function applyChangesToSpecificType(objectType, x, y, z, sx, sy, sz, xRot, yRot,
         //console.log("Summing values");
         //summing up all given values
         if (ambientR !== null)
-            ambientLight.r += parseFloat(ambientR);
+            ambientLight.r += customParseFloat(ambientR);
         if (ambientG !== null)
-            ambientLight.g += parseFloat(ambientG);
+            ambientLight.g += customParseFloat(ambientG);
         if (ambientB !== null)
-            ambientLight.b += parseFloat(ambientB);
+            ambientLight.b += customParseFloat(ambientB);
 
 
         for (let i = 0; i < objArr.length; i++) {
             if (objArr[i].type === objectType) {
                 if (x !== null)
-                    objArr[i].x += parseFloat(x);
+                    objArr[i].x += customParseFloat(x);
                 if (y !== null)
-                    objArr[i].y += parseFloat(y);
+                    objArr[i].y += customParseFloat(y);
                 if (z !== null)
-                    objArr[i].z += parseFloat(z);
+                    objArr[i].z += customParseFloat(z);
                 if (sx !== null)
-                    objArr[i].sx += parseFloat(sx);
+                    objArr[i].sx += customParseFloat(sx);
                 if (sy !== null)
-                    objArr[i].sy += parseFloat(sy);
+                    objArr[i].sy += customParseFloat(sy);
                 if (sz !== null)
-                    objArr[i].sz += parseFloat(sz);
+                    objArr[i].sz += customParseFloat(sz);
                 if (r !== null)
-                    objArr[i].r += parseFloat(r);
+                    objArr[i].r += customParseFloat(r);
                 if (g !== null)
-                    objArr[i].g += parseFloat(g);
+                    objArr[i].g += customParseFloat(g);
                 if (b !== null)
-                    objArr[i].b += parseFloat(b);
+                    objArr[i].b += customParseFloat(b);
                 if (xRot !== null)
-                    objArr[i].xRot += parseFloat(xRot);
+                    objArr[i].xRot += customParseFloat(xRot);
                 if (yRot !== null)
-                    objArr[i].yRot += parseFloat(yRot);
+                    objArr[i].yRot += customParseFloat(yRot);
                 if (zRot !== null)
-                    objArr[i].zRot += parseFloat(zRot);
+                    objArr[i].zRot += customParseFloat(zRot);
                 if (xRotSpeed !== null)
-                    objArr[i].xRotSpeed += parseFloat(xRotSpeed);
+                    objArr[i].xRotSpeed += customParseFloat(xRotSpeed);
                 if (yRotSpeed !== null)
-                    objArr[i].yRotSpeed += parseFloat(yRotSpeed);
+                    objArr[i].yRotSpeed += customParseFloat(yRotSpeed);
                 if (zRotSpeed !== null)
-                    objArr[i].zRotSpeed += parseFloat(zRotSpeed);
+                    objArr[i].zRotSpeed += customParseFloat(zRotSpeed);
                 if (animateRotation !== null)
                     objArr[i].animateRotation = animateRotation;
                 if (transparency !== null)
                     objArr[i].transparency = transparency;
                 if (opacity !== null)
-                    objArr[i].alpha += parseFloat(opacity);
+                    objArr[i].alpha += customParseFloat(opacity);
                 if (useCamera !== null)
                     objArr[i].useCamera = useCamera;
 
@@ -191,51 +191,51 @@ function applyChangesToSpecificType(objectType, x, y, z, sx, sy, sz, xRot, yRot,
     }
     else {
         if (ambientR !== null)
-            ambientLight.r = parseFloat(ambientR);
+            ambientLight.r = customParseFloat(ambientR);
         if (ambientG !== null)
-            ambientLight.g = parseFloat(ambientG);
+            ambientLight.g = customParseFloat(ambientG);
         if (ambientB !== null)
-            ambientLight.b = parseFloat(ambientB);
+            ambientLight.b = customParseFloat(ambientB);
 
 
         for (let i = 0; i < objArr.length; i++) {
             if (objArr[i].type === objectType) {
                 if (x !== null)
-                    objArr[i].x = parseFloat(x);
+                    objArr[i].x = customParseFloat(x);
                 if (y !== null)
-                    objArr[i].y = parseFloat(y);
+                    objArr[i].y = customParseFloat(y);
                 if (z !== null)
-                    objArr[i].z = parseFloat(z);
+                    objArr[i].z = customParseFloat(z);
                 if (sx !== null)
-                    objArr[i].sx = parseFloat(sx);
+                    objArr[i].sx = customParseFloat(sx);
                 if (sy !== null)
-                    objArr[i].sy = parseFloat(sy);
+                    objArr[i].sy = customParseFloat(sy);
                 if (sz !== null)
-                    objArr[i].sz = parseFloat(sz);
+                    objArr[i].sz = customParseFloat(sz);
                 if (r !== null)
-                    objArr[i].r = parseFloat(r);
+                    objArr[i].r = customParseFloat(r);
                 if (g !== null)
-                    objArr[i].g = parseFloat(g);
+                    objArr[i].g = customParseFloat(g);
                 if (b !== null)
-                    objArr[i].b = parseFloat(b);
+                    objArr[i].b = customParseFloat(b);
                 if (xRot !== null)
-                    objArr[i].xRot = parseFloat(xRot);
+                    objArr[i].xRot = customParseFloat(xRot);
                 if (yRot !== null)
-                    objArr[i].yRot = parseFloat(yRot);
+                    objArr[i].yRot = customParseFloat(yRot);
                 if (zRot !== null)
-                    objArr[i].zRot = parseFloat(zRot);
+                    objArr[i].zRot = customParseFloat(zRot);
                 if (xRotSpeed !== null)
-                    objArr[i].xRotSpeed = parseFloat(xRotSpeed);
+                    objArr[i].xRotSpeed = customParseFloat(xRotSpeed);
                 if (yRotSpeed !== null)
-                    objArr[i].yRotSpeed = parseFloat(yRotSpeed);
+                    objArr[i].yRotSpeed = customParseFloat(yRotSpeed);
                 if (zRotSpeed !== null)
-                    objArr[i].zRotSpeed = parseFloat(zRotSpeed);
+                    objArr[i].zRotSpeed = customParseFloat(zRotSpeed);
                 if (animateRotation !== null)
                     objArr[i].animateRotation = animateRotation;
                 if (transparency !== null)
                     objArr[i].transparency = transparency;
                 if (opacity !== null)
-                    objArr[i].alpha = parseFloat(opacity);
+                    objArr[i].alpha = customParseFloat(opacity);
                 if (useCamera !== null)
                     objArr[i].useCamera = useCamera;
 
@@ -253,56 +253,56 @@ function applyChangesToSpecificObject(name, x, y, z, sx, sy, sz, xRot, yRot, zRo
                                       ambientR, ambientG, ambientB, animateRotation, useCamera, opacity, transparency, sumAllValues) {
 
 
-    console.log("Going to apply changes TO: " + name);
+    //console.log("Going to apply changes TO: " + name);
 
     let object = getObjByName(name);
 
     if (sumAllValues) {
         //console.log("Summing values");
         if (ambientR !== null)
-            ambientLight.r = parseFloat(ambientR);
+            ambientLight.r = customParseFloat(ambientR);
         if (ambientG !== null)
-            ambientLight.g = parseFloat(ambientG);
+            ambientLight.g = customParseFloat(ambientG);
         if (ambientB !== null)
-            ambientLight.b = parseFloat(ambientB);
+            ambientLight.b = customParseFloat(ambientB);
 
 
         if (x !== null)
-            object.x += parseFloat(x);
+            object.x += customParseFloat(x);
         if (y !== null)
-            object.y += parseFloat(y);
+            object.y += customParseFloat(y);
         if (z !== null)
-            object.z += parseFloat(z);
+            object.z += customParseFloat(z);
         if (sx !== null)
-            object.sx += parseFloat(sx);
+            object.sx += customParseFloat(sx);
         if (sy !== null)
-            object.sy += parseFloat(sy);
+            object.sy += customParseFloat(sy);
         if (sz !== null)
-            object.sz += parseFloat(sz);
+            object.sz += customParseFloat(sz);
         if (r !== null)
-            object.r += parseFloat(r);
+            object.r += customParseFloat(r);
         if (g !== null)
-            object.g += parseFloat(g);
+            object.g += customParseFloat(g);
         if (b !== null)
-            object.b += parseFloat(b);
+            object.b += customParseFloat(b);
         if (xRot !== null)
-            object.xRot += parseFloat(xRot);
+            object.xRot += customParseFloat(xRot);
         if (yRot !== null)
-            object.yRot += parseFloat(yRot);
+            object.yRot += customParseFloat(yRot);
         if (zRot !== null)
-            object.zRot += parseFloat(zRot);
+            object.zRot += customParseFloat(zRot);
         if (xRotSpeed !== null)
-            object.xRotSpeed += parseFloat(xRotSpeed);
+            object.xRotSpeed += customParseFloat(xRotSpeed);
         if (yRotSpeed !== null)
-            object.yRotSpeed += parseFloat(yRotSpeed);
+            object.yRotSpeed += customParseFloat(yRotSpeed);
         if (zRotSpeed !== null)
-            object.zRotSpeed += parseFloat(zRotSpeed);
+            object.zRotSpeed += customParseFloat(zRotSpeed);
         if (animateRotation !== null)
             object.animateRotation = animateRotation;
         if (transparency !== null)
             object.transparency = transparency;
         if (opacity !== null)
-            object.alpha += parseFloat(opacity);
+            object.alpha += customParseFloat(opacity);
         if (useCamera !== null)
             object.useCamera = useCamera;
 
@@ -310,49 +310,49 @@ function applyChangesToSpecificObject(name, x, y, z, sx, sy, sz, xRot, yRot, zRo
     }
     else {
         if (ambientR !== null)
-            ambientLight.r = parseFloat(ambientR);
+            ambientLight.r = customParseFloat(ambientR);
         if (ambientG !== null)
-            ambientLight.g = parseFloat(ambientG);
+            ambientLight.g = customParseFloat(ambientG);
         if (ambientB !== null)
-            ambientLight.b = parseFloat(ambientB);
+            ambientLight.b = customParseFloat(ambientB);
 
 
         if (x !== null)
-            object.x = parseFloat(x);
+            object.x = customParseFloat(x);
         if (y !== null)
-            object.y = parseFloat(y);
+            object.y = customParseFloat(y);
         if (z !== null)
-            object.z = parseFloat(z);
+            object.z = customParseFloat(z);
         if (sx !== null)
-            object.sx = parseFloat(sx);
+            object.sx = customParseFloat(sx);
         if (sy !== null)
-            object.sy = parseFloat(sy);
+            object.sy = customParseFloat(sy);
         if (sz !== null)
-            object.sz = parseFloat(sz);
+            object.sz = customParseFloat(sz);
         if (r !== null)
-            object.r = parseFloat(r);
+            object.r = customParseFloat(r);
         if (g !== null)
-            object.g = parseFloat(g);
+            object.g = customParseFloat(g);
         if (b !== null)
-            object.b = parseFloat(b);
+            object.b = customParseFloat(b);
         if (xRot !== null)
-            object.xRot = parseFloat(xRot);
+            object.xRot = customParseFloat(xRot);
         if (yRot !== null)
-            object.yRot = parseFloat(yRot);
+            object.yRot = customParseFloat(yRot);
         if (zRot !== null)
-            object.zRot = parseFloat(zRot);
+            object.zRot = customParseFloat(zRot);
         if (xRotSpeed !== null)
-            object.xRotSpeed = parseFloat(xRotSpeed);
+            object.xRotSpeed = customParseFloat(xRotSpeed);
         if (yRotSpeed !== null)
-            object.yRotSpeed = parseFloat(yRotSpeed);
+            object.yRotSpeed = customParseFloat(yRotSpeed);
         if (zRotSpeed !== null)
-            object.zRotSpeed = parseFloat(zRotSpeed);
+            object.zRotSpeed = customParseFloat(zRotSpeed);
         if (animateRotation !== null)
             object.animateRotation = animateRotation;
         if (transparency !== null)
             object.transparency = transparency;
         if (opacity !== null)
-            object.alpha = parseFloat(opacity);
+            object.alpha = customParseFloat(opacity);
         if (useCamera !== null)
             object.useCamera = useCamera;
 
@@ -369,4 +369,12 @@ function correctUserInputValues(object){
     object.setColorB(object.b);
     object.setOpacity(object.alpha);
     object.transparency = object.alpha >= 0 && object.alpha < 1;
+}
+
+function customParseFloat(value){
+    let parsedValue = parseFloat(value);
+    if(!isNaN(parsedValue)){
+        return parsedValue;
+    }
+    return 1;
 }

@@ -140,7 +140,7 @@ require_once 'php/login.php';
             </div>
             <div class="title col-md-12" style="text-align: center">
                 <h2>Common don't be shy, try our example!</h2>
-                <a href="views/demo.php" class="btn btn-primary btn-sm">Check our example</a>
+                <a href="views/editor.php?project_id=0&project_name=Example&preview=demo" class="btn btn-primary btn-sm">Check our example</a>
             </div>
         </div>
     </div>

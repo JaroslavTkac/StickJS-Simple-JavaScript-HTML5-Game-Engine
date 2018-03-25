@@ -64,52 +64,52 @@ function parsingBlocks() {
         cluster = codeArray[i];
         switch (cluster[0].codeID) {
             case "on start":
-                console.log("--On Start--");
+                //console.log("--On Start--");
                 searchingFirstLoopWithoutCodeUploading(cluster, 1);
                 break;
             case "on frame":
-                console.log("--On Frame--");
-                console.log(cluster);
-                console.log(cluster[0].value);
+                //console.log("--On Frame--");
+                //console.log(cluster);
+                //console.log(cluster[0].value);
                 searchingFirstLoopWithCodeUploading(cluster, 1, [cluster[0].value], "onFrame", i);
                 break;
             case "on repeat":
-                console.log("--On Repeat--");
-                console.log(cluster);
-                console.log(cluster[0].value);
+                //console.log("--On Repeat--");
+                //console.log(cluster);
+                //console.log(cluster[0].value);
                 searchingFirstLoopWithCodeUploading(cluster, 1, [cluster[0].value], "onRepeat", i);
                 break;
             case "on key":
-                console.log("--On Key DOWN--");
-                console.log(cluster);
-                console.log(cluster[0].value);
+                //console.log("--On Key DOWN--");
+                //console.log(cluster);
+                //console.log(cluster[0].value);
                 searchingFirstLoopWithCodeUploading(cluster, 1, [cluster[0].value], "onKeyDown", i);
                 break;
             case "on keyup":
-                console.log("--On Key UP--");
-                console.log(cluster);
-                console.log(cluster[0].value);
+                //console.log("--On Key UP--");
+                //console.log(cluster);
+                //console.log(cluster[0].value);
                 searchingFirstLoopWithCodeUploading(cluster, 1, [cluster[0].value], "onKeyUp", i);
                 break;
             case "on x":
-                console.log("--On X--");
-                console.log(cluster);
-                console.log(cluster[0].value);
-                console.log(cluster[0].value2);
+                //console.log("--On X--");
+                //console.log(cluster);
+                //console.log(cluster[0].value);
+                //console.log(cluster[0].value2);
                 searchingFirstLoopWithCodeUploading(cluster, 1, [cluster[0].value, cluster[0].value2], "onX", i);
                 break;
             case "on y":
-                console.log("--On Y--");
-                console.log(cluster);
-                console.log(cluster[0].value);
-                console.log(cluster[0].value2);
+                //console.log("--On Y--");
+                //console.log(cluster);
+                //console.log(cluster[0].value);
+                //console.log(cluster[0].value2);
                 searchingFirstLoopWithCodeUploading(cluster, 1, [cluster[0].value, cluster[0].value2], "onY", i);
                 break;
             case "on z":
-                console.log("--On Z--");
-                console.log(cluster);
-                console.log(cluster[0].value);
-                console.log(cluster[0].value2);
+                //console.log("--On Z--");
+                //console.log(cluster);
+                //console.log(cluster[0].value);
+                //console.log(cluster[0].value2);
                 searchingFirstLoopWithCodeUploading(cluster, 1, [cluster[0].value, cluster[0].value2], "onZ", i);
                 break;
         }
@@ -129,7 +129,7 @@ function parsingBlocks() {
 
 function searchingFirstLoopWithoutCodeUploading(cluster, index) {
     for (let j = index; j < cluster.length; j++) {
-        console.log(cluster[j].codeID);
+        //console.log(cluster[j].codeID);
         if (cluster[j].codeID === "for all") {
             analyzingCodeCluster(j, cluster, "basic");
             break;
@@ -148,26 +148,25 @@ function searchingFirstLoopWithoutCodeUploading(cluster, index) {
 function searchingFirstLoopWithCodeUploading(cluster, index, triggerValue, triggerType) {
     for (let j = index; j < cluster.length; j++) {
         if (cluster[j].codeID === "for all") {
-            console.log("LOOP: for all");
-            console.log("cluster[j].value = " + undefined);
+            //console.log("LOOP: for all");
+            //console.log("cluster[j].value = " + undefined);
             analyzingCodeClusterForUploading(j, cluster, "basic", undefined, triggerValue, triggerType);
             break;
         }
         if (cluster[j].codeID === "for specific") {
-            console.log("LOOP: for specific");
-            console.log("cluster[j].value = " + cluster[j].value);
+            //console.log("LOOP: for specific");
+            //console.log("cluster[j].value = " + cluster[j].value);
             analyzingCodeClusterForUploading(j, cluster, "specific", "\"" + cluster[j].value + "\"", triggerValue, triggerType);
             break;
         }
         if (cluster[j].codeID === "for name") {
-            console.log("LOOP: for name");
-            console.log("cluster[j].value = " + cluster[j].value);
+            //console.log("LOOP: for name");
+            //console.log("cluster[j].value = " + cluster[j].value);
             analyzingCodeClusterForUploading(j, cluster, "name", "\"" + cluster[j].value + "\"", triggerValue, triggerType);
             break;
         }
     }
 }
-
 
 function analyzingCodeCluster(index, cluster, loopType, value) {
     let x = null, y = null, z = null,
@@ -180,7 +179,7 @@ function analyzingCodeCluster(index, cluster, loopType, value) {
         useAnimation = null, sumAllValues = null;
     let alreadyApplied = false;
 
-    console.log("Value: " + value); // value is object type or name
+    //console.log("Value: " + value); // value is object type or name
 
     //===Works ONLY one of 3 ifs at one cluster analyzing===
     if (loopType === "basic") {
@@ -189,100 +188,100 @@ function analyzingCodeCluster(index, cluster, loopType, value) {
             if (!isLoop(cluster[i].codeID)) {
                 switch (cluster[i].codeID) {
                     case "set x":
-                        console.log("set x");
+                        ////console.log("set x");
                         x = cluster[i].value;
                         break;
                     case "set y":
-                        console.log("set y");
+                        //console.log("set y");
                         y = cluster[i].value;
                         break;
                     case "set z":
-                        console.log("set z");
+                        //console.log("set z");
                         z = cluster[i].value;
                         break;
                     case "set sx":
-                        console.log("set sx");
+                        //console.log("set sx");
                         sx = cluster[i].value;
                         break;
                     case "set sy":
-                        console.log("set sy");
+                        //console.log("set sy");
                         sy = cluster[i].value;
                         break;
                     case "set sz":
-                        console.log("set sz");
+                        //console.log("set sz");
                         sz = cluster[i].value;
                         break;
                     case "set xrot":
-                        console.log("set xrot");
+                        //console.log("set xrot");
                         xRot = cluster[i].value;
                         break;
                     case "set yrot":
-                        console.log("set yrot");
+                        //console.log("set yrot");
                         yRot = cluster[i].value;
                         break;
                     case "set zrot":
-                        console.log("set zrot");
+                        //console.log("set zrot");
                         zRot = cluster[i].value;
                         break;
                     case "set r":
-                        console.log("set r");
+                        //console.log("set r");
                         r = cluster[i].value;
                         break;
                     case "set g":
-                        console.log("set g");
+                        //console.log("set g");
                         g = cluster[i].value;
                         break;
                     case "set b":
-                        console.log("set b");
+                        //console.log("set b");
                         b = cluster[i].value;
                         break;
                     case "set opacity":
-                        console.log("set opacity");
+                        //console.log("set opacity");
                         opacity = Math.abs(cluster[i].value);
                         transparency = ((opacity >= 0) && (opacity < 1));
                         break;
                     case "set camera":
-                        console.log("set camera");
+                        //console.log("set camera");
                         camera = true;
                         break;
                     case "set camerafalse":
-                        console.log("set camerafalse");
+                        //console.log("set camerafalse");
                         camera = false;
                         break;
                     case "set ambientr":
-                        console.log("set ambientr");
+                        //console.log("set ambientr");
                         ambientR = cluster[i].value;
                         break;
                     case "set ambientg":
-                        console.log("set ambientg");
+                        //console.log("set ambientg");
                         ambientG = cluster[i].value;
                         break;
                     case "set ambientb":
-                        console.log("set ambientb");
+                        //console.log("set ambientb");
                         ambientB = cluster[i].value;
                         break;
                     case "set xrotspeed":
-                        console.log("set xrotspeed");
+                        //console.log("set xrotspeed");
                         xRotSpeed = cluster[i].value;
                         break;
                     case "set yrotspeed":
-                        console.log("set yrotspeed");
+                        //console.log("set yrotspeed");
                         yRotSpeed = cluster[i].value;
                         break;
                     case "set zrotspeed":
-                        console.log("set zrotspeed");
+                        //console.log("set zrotspeed");
                         zRotSpeed = cluster[i].value;
                         break;
                     case "set animationfalse":
-                        console.log("set animationfalse");
+                        //console.log("set animationfalse");
                         useAnimation = false;
                         break;
                     case "set animationtrue":
-                        console.log("set animationtrue");
+                        //console.log("set animationtrue");
                         useAnimation = true;
                         break;
                     case "set sumvalues":
-                        console.log("set sumvalues");
+                        //console.log("set sumvalues");
                         sumAllValues = true;
                         break;
                 }
@@ -306,100 +305,100 @@ function analyzingCodeCluster(index, cluster, loopType, value) {
             if (!isLoop(cluster[i].codeID)) {
                 switch (cluster[i].codeID) {
                     case "set x":
-                        console.log("set x");
+                        //console.log("set x");
                         x = cluster[i].value;
                         break;
                     case "set y":
-                        console.log("set y");
+                        //console.log("set y");
                         y = cluster[i].value;
                         break;
                     case "set z":
-                        console.log("set z");
+                        //console.log("set z");
                         z = cluster[i].value;
                         break;
                     case "set sx":
-                        console.log("set sx");
+                        //console.log("set sx");
                         sx = cluster[i].value;
                         break;
                     case "set sy":
-                        console.log("set sy");
+                        //console.log("set sy");
                         sy = cluster[i].value;
                         break;
                     case "set sz":
-                        console.log("set sz");
+                        //console.log("set sz");
                         sz = cluster[i].value;
                         break;
                     case "set xrot":
-                        console.log("set xrot");
+                        //console.log("set xrot");
                         xRot = cluster[i].value;
                         break;
                     case "set yrot":
-                        console.log("set yrot");
+                        //console.log("set yrot");
                         yRot = cluster[i].value;
                         break;
                     case "set zrot":
-                        console.log("set zrot");
+                        //console.log("set zrot");
                         zRot = cluster[i].value;
                         break;
                     case "set r":
-                        console.log("set r");
+                        //console.log("set r");
                         r = cluster[i].value;
                         break;
                     case "set g":
-                        console.log("set g");
+                        //console.log("set g");
                         g = cluster[i].value;
                         break;
                     case "set b":
-                        console.log("set b");
+                        //console.log("set b");
                         b = cluster[i].value;
                         break;
                     case "set opacity":
-                        console.log("set opacity");
+                        //console.log("set opacity");
                         opacity = Math.abs(cluster[i].value);
                         transparency = ((opacity >= 0) && (opacity < 1));
                         break;
                     case "set camera":
-                        console.log("set camera");
+                        //console.log("set camera");
                         camera = true;
                         break;
                     case "set camerafalse":
-                        console.log("set camerafalse");
+                        //console.log("set camerafalse");
                         camera = false;
                         break;
                     case "set ambientr":
-                        console.log("set ambientr");
+                        //console.log("set ambientr");
                         ambientR = cluster[i].value;
                         break;
                     case "set ambientg":
-                        console.log("set ambientg");
+                        //console.log("set ambientg");
                         ambientG = cluster[i].value;
                         break;
                     case "set ambientb":
-                        console.log("set ambientb");
+                        //console.log("set ambientb");
                         ambientB = cluster[i].value;
                         break;
                     case "set xrotspeed":
-                        console.log("set xrotspeed");
+                        //console.log("set xrotspeed");
                         xRotSpeed = cluster[i].value;
                         break;
                     case "set yrotspeed":
-                        console.log("set yrotspeed");
+                        //console.log("set yrotspeed");
                         yRotSpeed = cluster[i].value;
                         break;
                     case "set zrotspeed":
-                        console.log("set zrotspeed");
+                        //console.log("set zrotspeed");
                         zRotSpeed = cluster[i].value;
                         break;
                     case "set animationfalse":
-                        console.log("set animationfalse");
+                        //console.log("set animationfalse");
                         useAnimation = false;
                         break;
                     case "set animationtrue":
-                        console.log("set animationtrue");
+                        //console.log("set animationtrue");
                         useAnimation = true;
                         break;
                     case "set sumvalues":
-                        console.log("set sumvalues");
+                        //console.log("set sumvalues");
                         sumAllValues = true;
                         break;
                 }
@@ -422,100 +421,100 @@ function analyzingCodeCluster(index, cluster, loopType, value) {
             if (!isLoop(cluster[i].codeID)) {
                 switch (cluster[i].codeID) {
                     case "set x":
-                        console.log("set x");
+                        //console.log("set x");
                         x = cluster[i].value;
                         break;
                     case "set y":
-                        console.log("set y");
+                        //console.log("set y");
                         y = cluster[i].value;
                         break;
                     case "set z":
-                        console.log("set z");
+                        //console.log("set z");
                         z = cluster[i].value;
                         break;
                     case "set sx":
-                        console.log("set sx");
+                        //console.log("set sx");
                         sx = cluster[i].value;
                         break;
                     case "set sy":
-                        console.log("set sy");
+                        //console.log("set sy");
                         sy = cluster[i].value;
                         break;
                     case "set sz":
-                        console.log("set sz");
+                        //console.log("set sz");
                         sz = cluster[i].value;
                         break;
                     case "set xrot":
-                        console.log("set xrot");
+                        //console.log("set xrot");
                         xRot = cluster[i].value;
                         break;
                     case "set yrot":
-                        console.log("set yrot");
+                        //console.log("set yrot");
                         yRot = cluster[i].value;
                         break;
                     case "set zrot":
-                        console.log("set zrot");
+                        //console.log("set zrot");
                         zRot = cluster[i].value;
                         break;
                     case "set r":
-                        console.log("set r");
+                        //console.log("set r");
                         r = cluster[i].value;
                         break;
                     case "set g":
-                        console.log("set g");
+                        //console.log("set g");
                         g = cluster[i].value;
                         break;
                     case "set b":
-                        console.log("set b");
+                        //console.log("set b");
                         b = cluster[i].value;
                         break;
                     case "set opacity":
-                        console.log("set opacity");
+                        //console.log("set opacity");
                         opacity = Math.abs(cluster[i].value);
                         transparency = ((opacity >= 0) && (opacity < 1));
                         break;
                     case "set camera":
-                        console.log("set camera");
+                        //console.log("set camera");
                         camera = true;
                         break;
                     case "set camerafalse":
-                        console.log("set camerafalse");
+                        //console.log("set camerafalse");
                         camera = false;
                         break;
                     case "set ambientr":
-                        console.log("set ambientr");
+                        //console.log("set ambientr");
                         ambientR = cluster[i].value;
                         break;
                     case "set ambientg":
-                        console.log("set ambientg");
+                        //console.log("set ambientg");
                         ambientG = cluster[i].value;
                         break;
                     case "set ambientb":
-                        console.log("set ambientb");
+                        //console.log("set ambientb");
                         ambientB = cluster[i].value;
                         break;
                     case "set xrotspeed":
-                        console.log("set xrotspeed");
+                        //console.log("set xrotspeed");
                         xRotSpeed = cluster[i].value;
                         break;
                     case "set yrotspeed":
-                        console.log("set yrotspeed");
+                        //console.log("set yrotspeed");
                         yRotSpeed = cluster[i].value;
                         break;
                     case "set zrotspeed":
-                        console.log("set zrotspeed");
+                        //console.log("set zrotspeed");
                         zRotSpeed = cluster[i].value;
                         break;
                     case "set animationfalse":
-                        console.log("set animationfalse");
+                        //console.log("set animationfalse");
                         useAnimation = false;
                         break;
                     case "set animationtrue":
-                        console.log("set animationtrue");
+                        //console.log("set animationtrue");
                         useAnimation = true;
                         break;
                     case "set sumvalues":
-                        console.log("set sumvalues");
+                        //console.log("set sumvalues");
                         sumAllValues = true;
                         break;
                 }
@@ -559,7 +558,7 @@ function analyzingCodeClusterForUploading(index, cluster, loopType, value, trigg
     let alreadyApplied = false;
     let functionToPass = "";
 
-    console.log("Value: " + value); // value is object type or name
+    //console.log("Value: " + value); // value is object type or name
 
     //===Works ONLY one of 3 ifs at one cluster analyzing===
     if (loopType === "basic") {
@@ -568,100 +567,100 @@ function analyzingCodeClusterForUploading(index, cluster, loopType, value, trigg
             if (!isLoop(cluster[i].codeID)) {
                 switch (cluster[i].codeID) {
                     case "set x":
-                        console.log("set x");
+                        //console.log("set x");
                         x = cluster[i].value;
                         break;
                     case "set y":
-                        console.log("set y");
+                        //console.log("set y");
                         y = cluster[i].value;
                         break;
                     case "set z":
-                        console.log("set z");
+                        //console.log("set z");
                         z = cluster[i].value;
                         break;
                     case "set sx":
-                        console.log("set sx");
+                        //console.log("set sx");
                         sx = cluster[i].value;
                         break;
                     case "set sy":
-                        console.log("set sy");
+                        //console.log("set sy");
                         sy = cluster[i].value;
                         break;
                     case "set sz":
-                        console.log("set sz");
+                        //console.log("set sz");
                         sz = cluster[i].value;
                         break;
                     case "set xrot":
-                        console.log("set xrot");
+                        //console.log("set xrot");
                         xRot = cluster[i].value;
                         break;
                     case "set yrot":
-                        console.log("set yrot");
+                        //console.log("set yrot");
                         yRot = cluster[i].value;
                         break;
                     case "set zrot":
-                        console.log("set zrot");
+                        //console.log("set zrot");
                         zRot = cluster[i].value;
                         break;
                     case "set r":
-                        console.log("set r");
+                        //console.log("set r");
                         r = cluster[i].value;
                         break;
                     case "set g":
-                        console.log("set g");
+                        //console.log("set g");
                         g = cluster[i].value;
                         break;
                     case "set b":
-                        console.log("set b");
+                        //console.log("set b");
                         b = cluster[i].value;
                         break;
                     case "set opacity":
-                        console.log("set opacity");
+                        //console.log("set opacity");
                         opacity = Math.abs(cluster[i].value);
                         transparency = ((opacity >= 0) && (opacity < 1));
                         break;
                     case "set camera":
-                        console.log("set camera");
+                        //console.log("set camera");
                         camera = true;
                         break;
                     case "set camerafalse":
-                        console.log("set camerafalse");
+                        //console.log("set camerafalse");
                         camera = false;
                         break;
                     case "set ambientr":
-                        console.log("set ambientr");
+                        //console.log("set ambientr");
                         ambientR = cluster[i].value;
                         break;
                     case "set ambientg":
-                        console.log("set ambientg");
+                        //console.log("set ambientg");
                         ambientG = cluster[i].value;
                         break;
                     case "set ambientb":
-                        console.log("set ambientb");
+                        //console.log("set ambientb");
                         ambientB = cluster[i].value;
                         break;
                     case "set xrotspeed":
-                        console.log("set xrotspeed");
+                        //console.log("set xrotspeed");
                         xRotSpeed = cluster[i].value;
                         break;
                     case "set yrotspeed":
-                        console.log("set yrotspeed");
+                        //console.log("set yrotspeed");
                         yRotSpeed = cluster[i].value;
                         break;
                     case "set zrotspeed":
-                        console.log("set zrotspeed");
+                        //console.log("set zrotspeed");
                         zRotSpeed = cluster[i].value;
                         break;
                     case "set animationfalse":
-                        console.log("set animationfalse");
+                        //console.log("set animationfalse");
                         useAnimation = false;
                         break;
                     case "set animationtrue":
-                        console.log("set animationtrue");
+                        //console.log("set animationtrue");
                         useAnimation = true;
                         break;
                     case "set sumvalues":
-                        console.log("set sumvalues");
+                        //console.log("set sumvalues");
                         sumAllValues = true;
                         break;
                 }
@@ -707,100 +706,100 @@ function analyzingCodeClusterForUploading(index, cluster, loopType, value, trigg
             if (!isLoop(cluster[i].codeID)) {
                 switch (cluster[i].codeID) {
                     case "set x":
-                        console.log("set x");
+                        //console.log("set x");
                         x = cluster[i].value;
                         break;
                     case "set y":
-                        console.log("set y");
+                        //console.log("set y");
                         y = cluster[i].value;
                         break;
                     case "set z":
-                        console.log("set z");
+                        //console.log("set z");
                         z = cluster[i].value;
                         break;
                     case "set sx":
-                        console.log("set sx");
+                        //console.log("set sx");
                         sx = cluster[i].value;
                         break;
                     case "set sy":
-                        console.log("set sy");
+                        //console.log("set sy");
                         sy = cluster[i].value;
                         break;
                     case "set sz":
-                        console.log("set sz");
+                        //console.log("set sz");
                         sz = cluster[i].value;
                         break;
                     case "set xrot":
-                        console.log("set xrot");
+                        //console.log("set xrot");
                         xRot = cluster[i].value;
                         break;
                     case "set yrot":
-                        console.log("set yrot");
+                        //console.log("set yrot");
                         yRot = cluster[i].value;
                         break;
                     case "set zrot":
-                        console.log("set zrot");
+                        //console.log("set zrot");
                         zRot = cluster[i].value;
                         break;
                     case "set r":
-                        console.log("set r");
+                        //console.log("set r");
                         r = cluster[i].value;
                         break;
                     case "set g":
-                        console.log("set g");
+                        //console.log("set g");
                         g = cluster[i].value;
                         break;
                     case "set b":
-                        console.log("set b");
+                        //console.log("set b");
                         b = cluster[i].value;
                         break;
                     case "set opacity":
-                        console.log("set opacity");
+                        //console.log("set opacity");
                         opacity = Math.abs(cluster[i].value);
                         transparency = ((opacity >= 0) && (opacity < 1));
                         break;
                     case "set camera":
-                        console.log("set camera");
+                        //console.log("set camera");
                         camera = true;
                         break;
                     case "set camerafalse":
-                        console.log("set camerafalse");
+                        //console.log("set camerafalse");
                         camera = false;
                         break;
                     case "set ambientr":
-                        console.log("set ambientr");
+                        //console.log("set ambientr");
                         ambientR = cluster[i].value;
                         break;
                     case "set ambientg":
-                        console.log("set ambientg");
+                        //console.log("set ambientg");
                         ambientG = cluster[i].value;
                         break;
                     case "set ambientb":
-                        console.log("set ambientb");
+                        //console.log("set ambientb");
                         ambientB = cluster[i].value;
                         break;
                     case "set xrotspeed":
-                        console.log("set xrotspeed");
+                        //console.log("set xrotspeed");
                         xRotSpeed = cluster[i].value;
                         break;
                     case "set yrotspeed":
-                        console.log("set yrotspeed");
+                        //console.log("set yrotspeed");
                         yRotSpeed = cluster[i].value;
                         break;
                     case "set zrotspeed":
-                        console.log("set zrotspeed");
+                        //console.log("set zrotspeed");
                         zRotSpeed = cluster[i].value;
                         break;
                     case "set animationfalse":
-                        console.log("set animationfalse");
+                        //console.log("set animationfalse");
                         useAnimation = false;
                         break;
                     case "set animationtrue":
-                        console.log("set animationtrue");
+                        //console.log("set animationtrue");
                         useAnimation = true;
                         break;
                     case "set sumvalues":
-                        console.log("set sumvalues");
+                        //console.log("set sumvalues");
                         sumAllValues = true;
                         break;
                 }
@@ -849,100 +848,100 @@ function analyzingCodeClusterForUploading(index, cluster, loopType, value, trigg
             if (!isLoop(cluster[i].codeID)) {
                 switch (cluster[i].codeID) {
                     case "set x":
-                        console.log("set x");
+                        //console.log("set x");
                         x = cluster[i].value;
                         break;
                     case "set y":
-                        console.log("set y");
+                        //console.log("set y");
                         y = cluster[i].value;
                         break;
                     case "set z":
-                        console.log("set z");
+                        //console.log("set z");
                         z = cluster[i].value;
                         break;
                     case "set sx":
-                        console.log("set sx");
+                        //console.log("set sx");
                         sx = cluster[i].value;
                         break;
                     case "set sy":
-                        console.log("set sy");
+                        //console.log("set sy");
                         sy = cluster[i].value;
                         break;
                     case "set sz":
-                        console.log("set sz");
+                        //console.log("set sz");
                         sz = cluster[i].value;
                         break;
                     case "set xrot":
-                        console.log("set xrot");
+                        //console.log("set xrot");
                         xRot = cluster[i].value;
                         break;
                     case "set yrot":
-                        console.log("set yrot");
+                        //console.log("set yrot");
                         yRot = cluster[i].value;
                         break;
                     case "set zrot":
-                        console.log("set zrot");
+                        //console.log("set zrot");
                         zRot = cluster[i].value;
                         break;
                     case "set r":
-                        console.log("set r");
+                        //console.log("set r");
                         r = cluster[i].value;
                         break;
                     case "set g":
-                        console.log("set g");
+                        //console.log("set g");
                         g = cluster[i].value;
                         break;
                     case "set b":
-                        console.log("set b");
+                        //console.log("set b");
                         b = cluster[i].value;
                         break;
                     case "set opacity":
-                        console.log("set opacity");
+                        //console.log("set opacity");
                         opacity = Math.abs(cluster[i].value);
                         transparency = ((opacity >= 0) && (opacity < 1));
                         break;
                     case "set camera":
-                        console.log("set camera");
+                        //console.log("set camera");
                         camera = true;
                         break;
                     case "set camerafalse":
-                        console.log("set camerafalse");
+                        //console.log("set camerafalse");
                         camera = false;
                         break;
                     case "set ambientr":
-                        console.log("set ambientr");
+                        //console.log("set ambientr");
                         ambientR = cluster[i].value;
                         break;
                     case "set ambientg":
-                        console.log("set ambientg");
+                        //console.log("set ambientg");
                         ambientG = cluster[i].value;
                         break;
                     case "set ambientb":
-                        console.log("set ambientb");
+                        //console.log("set ambientb");
                         ambientB = cluster[i].value;
                         break;
                     case "set xrotspeed":
-                        console.log("set xrotspeed");
+                        //console.log("set xrotspeed");
                         xRotSpeed = cluster[i].value;
                         break;
                     case "set yrotspeed":
-                        console.log("set yrotspeed");
+                        //console.log("set yrotspeed");
                         yRotSpeed = cluster[i].value;
                         break;
                     case "set zrotspeed":
-                        console.log("set zrotspeed");
+                        //console.log("set zrotspeed");
                         zRotSpeed = cluster[i].value;
                         break;
                     case "set animationfalse":
-                        console.log("set animationfalse");
+                        //console.log("set animationfalse");
                         useAnimation = false;
                         break;
                     case "set animationtrue":
-                        console.log("set animationtrue");
+                        //console.log("set animationtrue");
                         useAnimation = true;
                         break;
                     case "set sumvalues":
-                        console.log("set sumvalues");
+                        //console.log("set sumvalues");
                         sumAllValues = true;
                         break;
                 }
@@ -1170,8 +1169,8 @@ function parseDataForFunctionToPass(method, x, y, z, sx, sy, sz, xRot, yRot, zRo
     else
         sumAllValues = "null";
 
-    console.log("PARSING value: " + value);
-    console.log("PARSING sumAllValues: " + sumAllValues);
+    //console.log("PARSING value: " + value);
+    //console.log("PARSING sumAllValues: " + sumAllValues);
     if (value !== undefined /*&& value !== null*/) {
 
         value = value.toString() + ",";
@@ -1190,7 +1189,7 @@ function onFrameConvert(triggerValue, functionToPass) {
     let ifStatement = "if ( playFrames && fpsSum === " + triggerValue[0] + " ) {\n        ";
     let currData = "";
 
-    console.log(triggerValue);
+    //console.log(triggerValue);
 
     if (tempCodeToAddArr === "")
         currData = ifStatement + functionToPass;

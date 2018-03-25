@@ -16,8 +16,8 @@ class KeyboardPresets {
             keysArray.push(new Key(String.fromCharCode(i)));
         keysArray.push(new Key("space"), new Key("shift"));
 
-        console.log("Key Array:");
-        console.log(keysArray);
+        //console.log("Key Array:");
+        //console.log(keysArray);
     }
 
     enableStandardControls() {

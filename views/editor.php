@@ -11,12 +11,15 @@ session_start();
 
 
 require_once ('../php/check_project_type.php');
-echo "projectType: " . $projectType . "<br>";
-echo "preview: " . $_GET['preview'];
 
 $project_id = $_GET['project_id'];
 $project_name = $_GET['project_name'];
 $isLoggedIn = false;
+$isUsersProject = false;
+
+if (isset($_SESSION['username']) || !empty($_SESSION['username'])) {
+    $isLoggedIn = true;
+}
 
 if($projectType === "general" && strlen($_GET['preview']) == 0) {
     // If session variable is not set it will redirect to login page
@@ -24,7 +27,6 @@ if($projectType === "general" && strlen($_GET['preview']) == 0) {
         header("location: index.php");
         exit;
     } else {
-        $isLoggedIn = true;
         require_once('../php/check_users_permissions_for_project.php');
     }
     if ($isUsersProject) {
@@ -35,8 +37,7 @@ if($projectType === "general" && strlen($_GET['preview']) == 0) {
         exit;
     }
 }
-if($projectType === "publish" && strlen($_GET['preview']) > 0){
-    $isLoggedIn = true;
+if(($projectType === "publish" || $projectType == "demo") && strlen($_GET['preview']) > 0){
     include('../php/get_users_code_file_path.php');
 }
 if($projectType === "general" && strlen($_GET['preview']) > 0){
@@ -87,11 +88,6 @@ if($projectType === "general" && strlen($_GET['preview']) > 0){
     <script>
         let projectType = "<?php echo $projectType; ?>";
         let userId = "<?php echo $_SESSION['user_id']; ?>";
-        if (projectType === "publish"){
-            //cia eina kalba apie texturas ir obj failus 
-            userId = "<?php echo $projectOwnerId ?>"; //TODO SCRIPTAS KURIS GAUNA PROJEKTO OWNERIO ID -> REIKALINGA PAKRAUTI OBJEKTAMS IR TEKSTUROM
-            //TODO cia bus ****original pr id***** is lenteles published projects
-        }
         let projectId = "<?php echo $project_id; ?>";
         console.log("PROJECT ID: " + projectId)
     </script>
@@ -1535,7 +1531,6 @@ if($projectType === "general" && strlen($_GET['preview']) > 0){
                             echo "title=\"Clear code area\" style=\"display: none\">";
                             echo "<span class=\"glyphicon glyphicon-remove\"></span>";
                             echo "</label>";
-
                         }
                         ?>
 

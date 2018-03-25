@@ -145,7 +145,7 @@ if (!isset($_SESSION['username']) || empty($_SESSION['username'])) {
             </div>
             <div class="title col-md-12" style="text-align: center">
                 <h2>Common don't be shy, try our example!</h2>
-                <a href="demo.php" class="btn btn-primary btn-sm">Check our example</a>
+                <a href="editor.php?project_id=0&project_name=Example&preview=demo" class="btn btn-primary btn-sm">Check our example</a>
             </div>
         </div>
     </div>
@@ -156,7 +156,7 @@ if (!isset($_SESSION['username']) || empty($_SESSION['username'])) {
 <div class="jumbotron creator" id="creator-info">
     <div class="container">
         <div class="row">
-            <h1 class="title col-md-12">Project Author</h1>.
+            <h1 class="title col-md-12">Project Author</h1>
             <div align="center" class="col-md-5 col-sm-12 col-xs-12">
                 <img class="featurette-image img-fluid mx-auto img-circle" style="height: 250px"
                      src="../assets/img/design/Author.jpg" alt="Author photo">

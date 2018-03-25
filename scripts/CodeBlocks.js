@@ -362,7 +362,7 @@ function addSvgElementToScene() {
         //if have selection field prepare values for selecting
         //console.log(getmktime(element));
         if (getSvgCodeId(element) === "for specific") {
-            console.log("for specific");
+            //console.log("for specific");
             let select = element.getElementsByClassName("select-specific-svg")[0];
             $(select).find('option').remove().end();
 
@@ -391,7 +391,7 @@ function addSvgElementToScene() {
 
         }
         if (getSvgCodeId(element) === "for name") {
-            console.log("for name");
+            //console.log("for name");
             let select = element.getElementsByClassName("select-name-svg")[0];
             $(select).find('option').remove().end();
 
@@ -812,7 +812,7 @@ function intersectArrInit() {
             trigger: svgArr[i].classList.contains('trigger')
         });
     }
-    console.log(svgIntersectArr);
+    //console.log(svgIntersectArr);
 
 
 }

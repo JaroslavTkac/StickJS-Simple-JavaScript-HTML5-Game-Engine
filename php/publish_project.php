@@ -7,6 +7,7 @@
  */
 
 require 'connection.php';
+include_once ('upload.php');
 
 
 //Creating new project
@@ -21,9 +22,7 @@ if (isset($_POST['userId']) && isset($_POST['projectId'])) {
 
     $result = $mysqli->query($sql);
 
-    //echo $sql;
     if ($result->num_rows == 1) {
-        echo "in results";
         // output data of each row
         if ($row = $result->fetch_assoc()) {
             $project_name = $row['name'];
@@ -64,10 +63,14 @@ if (isset($_POST['userId']) && isset($_POST['projectId'])) {
                     //prepare child tables
                     //Creating and copying all data to new tables
                     echo "\n";
-                    createDataInUserTableWithCopiedJSONData("users_live_objects", $mysqli, $_POST['projectId'], $project_id);
-                    createDataInUserTableWithCopiedJSONData("users_saved_shapes", $mysqli, $_POST['projectId'], $project_id);
-                    createDataInUserTableWithCopiedJSONData("users_saved_scene", $mysqli, $_POST['projectId'], $project_id);
-                    createDataInUserTableWithCopiedJSONData("users_saved_svg_scene", $mysqli, $_POST['projectId'], $project_id);
+
+                    $filesPathsToChange = copyAllUsersUploadedProjectFiles($_POST['userId'], $_POST['projectId'], $project_id);
+
+                    createDataInUserTableWithCopiedJSONData("users_live_objects", $mysqli, $_POST['projectId'], $project_id, $filesPathsToChange);
+                    createDataInUserTableWithCopiedJSONData("users_saved_shapes", $mysqli, $_POST['projectId'], $project_id, $filesPathsToChange);
+                    createDataInUserTableWithCopiedJSONData("users_saved_scene", $mysqli, $_POST['projectId'], $project_id, $filesPathsToChange);
+                    createDataInUserTableWithCopiedJSONData("users_saved_svg_scene", $mysqli, $_POST['projectId'], $project_id, $filesPathsToChange);
+
                     createUserDataInProjectMovementConfigTable($mysqli, $_POST['projectId'], $project_id);
                     createUserDataInConvertedCodeTable($mysqli, $_POST['projectId'], $project_id, $param_user_id);
 
@@ -87,8 +90,63 @@ if (isset($_POST['userId']) && isset($_POST['projectId'])) {
     }
 }
 
+//On project publishing duplicating uploaded user files, for independent from original project storage on server
+function copyAllUsersUploadedProjectFiles($userId, $oldProjectId, $newProjectId)
+{
+    $userFiles = getAllUsersUploadedProjectFiles($userId, $oldProjectId, $newProjectId);
 
-function createDataInUserTableWithCopiedJSONData($tableName, $mysqli, $projectIdCopyFrom, $projectIdToAdd)
+    $mappedArr = array();
+
+    for ($i = 0; $i < sizeof($userFiles['originalFiles']); $i++){
+        if (!copy($userFiles['originalFiles'][$i], $userFiles['newFiles'][$i])) {
+            echo "failed to copy " . $userFiles['originalFiles'][$i] . " ...\n";
+        }
+        array_push($mappedArr, array($userFiles['originalFiles'][$i] => $userFiles['newFiles'][$i]));
+    }
+    return $mappedArr;
+}
+
+function getAllUsersUploadedProjectFiles($userId, $oldProjectId, $newProjectId)
+{
+    echo "UserId: " . $userId ."\nOldProjectId: " . $oldProjectId . "\nNewProjectId: " . $newProjectId . "\n";
+
+    $folderContent = array();
+
+    //Getting user textures
+    $rawData = getFilesInFolder("../assets/img/textures/user_textures/", $userId, $oldProjectId);
+    foreach ($rawData as $item) {
+        array_push($folderContent, $item);
+    }
+
+    //Getting json's paths
+    $rawData = getFilesInFolder("../shapes/user_shapes/", $userId, $oldProjectId);
+    foreach ($rawData as $item) {
+        array_push($folderContent, $item);
+    }
+
+    //Getting savedShapes paths
+    $rawData = getFilesInFolder("../shapes/user_saved_shapes/", $userId, $oldProjectId);
+    foreach ($rawData as $item) {
+        array_push($folderContent, $item);
+    }
+
+    $newFiles = array();
+
+    foreach ($folderContent as $item) {
+        $newFileName = "";
+        $explode = explode("_", $item);
+        for ($i = 0; $i < sizeof($explode) - 1; $i++){
+            $newFileName .= $explode[$i] . "_";
+        }
+        $fileExtension = explode(".", $explode[sizeof($explode) - 1]);
+        $newFileName .=  $newProjectId . "." . $fileExtension[1];
+        array_push($newFiles, $newFileName);
+        //echo $newFileName . "\n";
+    }
+    return array('originalFiles' => $folderContent, 'newFiles' => $newFiles);
+}
+
+function createDataInUserTableWithCopiedJSONData($tableName, $mysqli, $projectIdCopyFrom, $projectIdToAdd, $pathToChange)
 {
     $sql = "SELECT json_data 
             FROM " . $tableName . " 
@@ -102,15 +160,22 @@ function createDataInUserTableWithCopiedJSONData($tableName, $mysqli, $projectId
         if ($row = $result->fetch_assoc()) {
             $json_data = $row['json_data'];
 
+            //Modifying json_data
+            //Replacing original paths with new ones, specially created for published project
+            foreach ($pathToChange as $inner){
+                foreach ($inner as $key => $value) {
+                    //echo "Key: $key  Value: $value\n";
+                    $json_data = str_replace($key,$value,$json_data);
+                }
+            }
+
             $sql = "INSERT INTO " . $tableName . " (project_id, json_data) VALUES (" . $projectIdToAdd . "," . json_encode($json_data) . ")";
             $mysqli->query($sql);
-        }
-        else{
+        } else {
             echo $sql;
             echo "\nError ADDING data in " . $tableName . "\n";
         }
-    }
-    else{
+    } else {
         echo $sql;
         echo "\nError SELECTING data in " . $tableName . "\n";
     }
@@ -135,13 +200,11 @@ function createUserDataInProjectMovementConfigTable($mysqli, $projectIdCopyFrom,
                     VALUES (" . $projectIdToAdd . "," . $row['standard_movement'] . ","
                 . $row['speed'] . "," . $row['rotation_speed'] . ")";
             $mysqli->query($sql);
-        }
-        else{
+        } else {
             echo $sql;
             echo "\nError ADDING data in users_projects_movement_config \n";
         }
-    }
-    else{
+    } else {
         echo $sql;
         echo "\nError SELECTING data in users_projects_movement_config \n";
     }
@@ -174,27 +237,25 @@ function createUserDataInConvertedCodeTable($mysqli, $projectIdCopyFrom, $projec
                     VALUES (" . $projectIdToAdd . ",\"" . $newFile . "\",\""
                 . $newFile . "\",\"" . $code . "\")";
             $mysqli->query($sql);
-        }
-        else{
+        } else {
             echo $sql;
             echo "\nError ADDING data in users_converted_code \n";
         }
-    }
-    else{
+    } else {
         echo $sql;
         echo "\nError SELECTING data in users_converted_code \n";
     }
 }
 
 
-function copyUsersConvertedCodeFile($file, $userId, $projectId){
+function copyUsersConvertedCodeFile($file, $userId, $projectId)
+{
     $newFileForCopy = $file . "_copy";
     if (!copy($file, $newFileForCopy)) {
         echo "failed to copy $file \n";
-    }
-    else{
+    } else {
         $newFile = "../scripts/user_converted_code/UserConvertedCode_" . mktime()
-            . "_" . $userId . "_" .$projectId . ".js";
+            . "_" . $userId . "_" . $projectId . ".js";
         rename($newFileForCopy, $newFile);
         return $newFile;
     }

@@ -3,11 +3,14 @@
   <component name="ChangeListManager">
     <list default="true" id="4d98851f-1cbe-463c-84f1-c95cfca61c40" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+<<<<<<< Updated upstream
       <change beforePath="$PROJECT_DIR$/assets/js/UploadHandler.js" afterPath="$PROJECT_DIR$/assets/js/UploadHandler.js" />
       <change beforePath="$PROJECT_DIR$/php/get_movement_config.php" afterPath="$PROJECT_DIR$/php/get_movement_config.php" />
       <change beforePath="$PROJECT_DIR$/php/get_users_code_file_path.php" afterPath="$PROJECT_DIR$/php/get_users_code_file_path.php" />
       <change beforePath="$PROJECT_DIR$/views/editor.php" afterPath="$PROJECT_DIR$/views/editor.php" />
       <change beforePath="$PROJECT_DIR$/views/users_projects.php" afterPath="$PROJECT_DIR$/views/users_projects.php" />
+=======
+>>>>>>> Stashed changes
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -26,6 +29,7 @@
     <splitter split-orientation="horizontal" split-proportion="0.4735426">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+<<<<<<< Updated upstream
           <file leaf-file-name="users_projects.php" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/views/users_projects.php">
               <provider selected="true" editor-type-id="text-editor">
@@ -103,11 +107,32 @@
                   <caret line="34" column="66" lean-forward="false" selection-start-line="34" selection-start-column="66" selection-end-line="34" selection-end-column="66" />
                   <folding>
                     <marker date="1521539786676" expanded="true" signature="222:351" ph="SELECT stand... users_projects_movement_config" />
+=======
+          <file leaf-file-name="UploadHandler.js" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/assets/js/UploadHandler.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="52">
+                  <caret line="601" column="32" lean-forward="false" selection-start-line="601" selection-start-column="32" selection-end-line="601" selection-end-column="32" />
+                  <folding>
+                    <marker date="1521540963588" expanded="true" signature="6447:6460" ph="..." />
+                    <marker date="1521540963588" expanded="true" signature="7410:7423" ph="..." />
+                    <marker date="1521540963588" expanded="true" signature="8167:8180" ph="..." />
+                    <marker date="1521540963588" expanded="true" signature="9334:9347" ph="..." />
+                    <marker date="1521540963588" expanded="true" signature="9711:9724" ph="..." />
+                    <marker date="1521540963588" expanded="true" signature="10089:10102" ph="..." />
+                    <marker date="1521540963588" expanded="true" signature="13504:13517" ph="..." />
+                    <marker date="1521540963588" expanded="true" signature="15485:15498" ph="..." />
+                    <marker date="1521540963588" expanded="true" signature="20978:20991" ph="..." />
+                    <marker date="1521540963588" expanded="true" signature="24461:24474" ph="..." />
+                    <marker date="1521540963588" expanded="true" signature="24770:24783" ph="..." />
+                    <marker date="1521540963588" expanded="true" signature="25080:25093" ph="..." />
+>>>>>>> Stashed changes
                   </folding>
                 </state>
               </provider>
             </entry>
           </file>
+<<<<<<< Updated upstream
           <file leaf-file-name="my_projects.php" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/views/my_projects.php">
               <provider selected="true" editor-type-id="text-editor">
@@ -118,10 +143,13 @@
               </provider>
             </entry>
           </file>
+=======
+>>>>>>> Stashed changes
         </leaf>
       </split-first>
       <split-second>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+<<<<<<< Updated upstream
           <file leaf-file-name="get_projects.php" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/php/get_projects.php">
               <provider selected="true" editor-type-id="text-editor">
@@ -132,6 +160,14 @@
                     <marker date="1521538115986" expanded="true" signature="550:698" ph="SELECT id, n... users_projects" />
                     <marker date="1521538115986" expanded="true" signature="781:945" ph="SELECT id, n... users_projects" />
                   </folding>
+=======
+          <file leaf-file-name="UploadHandler.js" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/assets/js/UploadHandler.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="15">
+                  <caret line="601" column="32" lean-forward="false" selection-start-line="601" selection-start-column="32" selection-end-line="601" selection-end-column="32" />
+                  <folding />
+>>>>>>> Stashed changes
                 </state>
               </provider>
             </entry>
@@ -323,6 +359,7 @@
               <item name="StickJS-Simple-JavaScript-HTML5-Game-Engine" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="assets" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="music" type="2a2b976b:PhpTreeStructureProvider$1" />
+<<<<<<< Updated upstream
             </path>
             <path>
               <item name="StickJS-Simple-JavaScript-HTML5-Game-Engine" type="b2602c69:ProjectViewProjectNode" />
@@ -333,16 +370,22 @@
               <item name="StickJS-Simple-JavaScript-HTML5-Game-Engine" type="b2602c69:ProjectViewProjectNode" />
               <item name="StickJS-Simple-JavaScript-HTML5-Game-Engine" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="scripts" type="2a2b976b:PhpTreeStructureProvider$1" />
+=======
+>>>>>>> Stashed changes
             </path>
             <path>
               <item name="StickJS-Simple-JavaScript-HTML5-Game-Engine" type="b2602c69:ProjectViewProjectNode" />
               <item name="StickJS-Simple-JavaScript-HTML5-Game-Engine" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="shapes" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="scripts" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="StickJS-Simple-JavaScript-HTML5-Game-Engine" type="b2602c69:ProjectViewProjectNode" />
               <item name="StickJS-Simple-JavaScript-HTML5-Game-Engine" type="2a2b976b:PhpTreeStructureProvider$1" />
+<<<<<<< Updated upstream
               <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
+=======
+              <item name="shapes" type="2a2b976b:PhpTreeStructureProvider$1" />
+>>>>>>> Stashed changes
             </path>
           </expand>
           <select />
@@ -597,7 +640,11 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
+<<<<<<< Updated upstream
     <option name="totallyTimeSpent" value="704360000" />
+=======
+    <option name="totallyTimeSpent" value="559351000" />
+>>>>>>> Stashed changes
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -625,12 +672,23 @@
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32958034" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32958034" sideWeight="0.502442" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32958034" sideWeight="0.497558" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.34371185" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Statistic" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28761515" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3285568" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24969475" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -742,6 +800,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/php/connection.php">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< Updated upstream
         <state relative-caret-position="390">
           <caret line="26" column="0" lean-forward="true" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
         </state>
@@ -772,25 +831,54 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
           <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="19" />
+=======
+        <state relative-caret-position="15">
+          <caret line="153" column="124" lean-forward="false" selection-start-line="153" selection-start-column="124" selection-end-line="153" selection-end-column="124" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shapes/user_saved_shapes/1514997090.png" />
+    <entry file="file://$PROJECT_DIR$/shapes/user_saved_shapes/1515004257.png" />
+    <entry file="file://$PROJECT_DIR$/shapes/user_saved_shapes/1515004261.png" />
+    <entry file="file://$PROJECT_DIR$/shapes/user_saved_shapes/1515005228.png" />
+    <entry file="file://$PROJECT_DIR$/shapes/user_shapes_data/savedShapes.txt" />
+    <entry file="file://$PROJECT_DIR$/shapes/user_shapes_data/liveObjects.txt" />
+    <entry file="file://$PROJECT_DIR$/shapes/user_shapes_data/savedScene.txt" />
+    <entry file="file://$PROJECT_DIR$/scripts/OptimizeCalls.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-27">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+>>>>>>> Stashed changes
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/js/UserInterfaceScripts.js">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< Updated upstream
         <state relative-caret-position="432">
           <caret line="45" column="12" lean-forward="false" selection-start-line="45" selection-start-column="12" selection-end-line="45" selection-end-column="12" />
+=======
+        <state relative-caret-position="283">
+          <caret line="48" column="4" lean-forward="false" selection-start-line="48" selection-start-column="4" selection-end-line="48" selection-end-column="4" />
+>>>>>>> Stashed changes
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/php/check_users_permissions_for_project.php">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< Updated upstream
         <state relative-caret-position="60">
           <caret line="9" column="7" lean-forward="false" selection-start-line="9" selection-start-column="7" selection-end-line="9" selection-end-column="7" />
+=======
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+>>>>>>> Stashed changes
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/php/upload_movement_config.php">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< Updated upstream
         <state relative-caret-position="105">
           <caret line="12" column="102" lean-forward="false" selection-start-line="12" selection-start-column="102" selection-end-line="12" selection-end-column="102" />
         </state>
@@ -866,11 +954,25 @@
           <folding>
             <marker date="1521407790739" expanded="true" signature="335:532" ph="SELECT publi... users_published_projects" />
           </folding>
+=======
+        <state relative-caret-position="675">
+          <caret line="184" column="26" lean-forward="true" selection-start-line="184" selection-start-column="26" selection-end-line="184" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shapes/user_shapes_data/codeScene.txt" />
+    <entry file="file://$PROJECT_DIR$/shapes/user_shapes_data/savedSvgCodeScene.txt" />
+    <entry file="file://$PROJECT_DIR$/scripts/Scene.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="274" column="35" lean-forward="true" selection-start-line="273" selection-start-column="4" selection-end-line="274" selection-end-column="35" />
+>>>>>>> Stashed changes
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/php/publish_project.php">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< Updated upstream
         <state relative-caret-position="690">
           <caret line="199" column="5" lean-forward="false" selection-start-line="199" selection-start-column="5" selection-end-line="199" selection-end-column="5" />
           <folding>
@@ -901,6 +1003,10 @@
             <marker date="1521373837158" expanded="true" signature="6381:6618" ph="INSERT INTO users_converted_code... " />
             <marker date="1521373837158" expanded="true" signature="6381:6619" ph="INSERT INTO users_converted_code... " />
           </folding>
+=======
+        <state relative-caret-position="15">
+          <caret line="23" column="4" lean-forward="false" selection-start-line="23" selection-start-column="4" selection-end-line="23" selection-end-column="4" />
+>>>>>>> Stashed changes
         </state>
       </provider>
     </entry>
@@ -938,9 +1044,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/scripts/Scripts.js">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< Updated upstream
         <state relative-caret-position="-9">
           <caret line="167" column="2" lean-forward="false" selection-start-line="167" selection-start-column="2" selection-end-line="167" selection-end-column="2" />
           <folding />
+=======
+        <state relative-caret-position="738">
+          <caret line="157" column="14" lean-forward="false" selection-start-line="157" selection-start-column="9" selection-end-line="157" selection-end-column="14" />
+>>>>>>> Stashed changes
         </state>
       </provider>
     </entry>
@@ -954,24 +1065,35 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/php/get_all_users.php">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< Updated upstream
         <state relative-caret-position="0">
           <caret line="0" column="5" lean-forward="false" selection-start-line="0" selection-start-column="5" selection-end-line="0" selection-end-column="5" />
           <folding>
             <marker date="1521485930120" expanded="true" signature="150:180" ph="SELECT id, u... users" />
           </folding>
+=======
+        <state relative-caret-position="15">
+          <caret line="594" column="4" lean-forward="false" selection-start-line="594" selection-start-column="4" selection-end-line="594" selection-end-column="4" />
+>>>>>>> Stashed changes
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/php/upload.php">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< Updated upstream
         <state relative-caret-position="330">
           <caret line="251" column="0" lean-forward="false" selection-start-line="251" selection-start-column="0" selection-end-line="251" selection-end-column="0" />
           <folding />
+=======
+        <state relative-caret-position="450">
+          <caret line="191" column="24" lean-forward="true" selection-start-line="191" selection-start-column="24" selection-end-line="191" selection-end-column="24" />
+>>>>>>> Stashed changes
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/php/delete_project.php">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< Updated upstream
         <state relative-caret-position="690">
           <caret line="51" column="34" lean-forward="false" selection-start-line="51" selection-start-column="34" selection-end-line="51" selection-end-column="34" />
           <folding>
@@ -979,11 +1101,16 @@
             <marker date="1521405413251" expanded="true" signature="335:532" ph="SELECT publi... users_projects" />
             <marker date="1521405413251" expanded="true" signature="945:1000" ph="DELETE FROM users_projects... " />
           </folding>
+=======
+        <state relative-caret-position="15">
+          <caret line="538" column="59" lean-forward="false" selection-start-line="538" selection-start-column="59" selection-end-line="538" selection-end-column="59" />
+>>>>>>> Stashed changes
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/php/get_projects.php">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< Updated upstream
         <state relative-caret-position="495">
           <caret line="38" column="53" lean-forward="true" selection-start-line="38" selection-start-column="53" selection-end-line="38" selection-end-column="53" />
           <folding>
@@ -991,26 +1118,40 @@
             <marker date="1521538115986" expanded="true" signature="550:698" ph="SELECT id, n... users_projects" />
             <marker date="1521538115986" expanded="true" signature="781:945" ph="SELECT id, n... users_projects" />
           </folding>
+=======
+        <state relative-caret-position="210">
+          <caret line="14" column="24" lean-forward="false" selection-start-line="14" selection-start-column="24" selection-end-line="14" selection-end-column="24" />
+>>>>>>> Stashed changes
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/php/get_live_objects.php">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< Updated upstream
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <marker date="1520460046681" expanded="true" signature="203:289" ph="SELECT json_... users_live_objects" />
           </folding>
+=======
+        <state relative-caret-position="310">
+          <caret line="77" column="9" lean-forward="false" selection-start-line="77" selection-start-column="9" selection-end-line="77" selection-end-column="9" />
+>>>>>>> Stashed changes
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/php/get_movement_config.php">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< Updated upstream
         <state relative-caret-position="435">
           <caret line="34" column="66" lean-forward="false" selection-start-line="34" selection-start-column="66" selection-end-line="34" selection-end-column="66" />
           <folding>
             <marker date="1521539786676" expanded="true" signature="222:351" ph="SELECT stand... users_projects_movement_config" />
           </folding>
+=======
+        <state relative-caret-position="-250">
+          <caret line="62" column="38" lean-forward="false" selection-start-line="62" selection-start-column="38" selection-end-line="62" selection-end-column="38" />
+>>>>>>> Stashed changes
         </state>
       </provider>
     </entry>
@@ -1040,14 +1181,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/scripts/Main.js">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< Updated upstream
         <state relative-caret-position="-305">
           <caret line="62" column="17" lean-forward="true" selection-start-line="62" selection-start-column="17" selection-end-line="62" selection-end-column="17" />
           <folding />
+=======
+        <state relative-caret-position="317">
+          <caret line="48" column="10" lean-forward="false" selection-start-line="48" selection-start-column="10" selection-end-line="48" selection-end-column="10" />
+>>>>>>> Stashed changes
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/scripts/user_converted_code/UserConvertedCode_1521538180_1_12.js">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< Updated upstream
         <state relative-caret-position="15">
           <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
           <folding />
@@ -1061,6 +1208,10 @@
           <folding>
             <marker date="1521540242264" expanded="true" signature="162:281" ph="SELECT new_j... users_converted_code" />
           </folding>
+=======
+        <state relative-caret-position="13">
+          <caret line="14" column="52" lean-forward="false" selection-start-line="14" selection-start-column="52" selection-end-line="14" selection-end-column="52" />
+>>>>>>> Stashed changes
         </state>
       </provider>
     </entry>
@@ -1077,6 +1228,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/views/editor.php">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< Updated upstream
         <state relative-caret-position="664">
           <caret line="90" column="57" lean-forward="false" selection-start-line="90" selection-start-column="57" selection-end-line="90" selection-end-column="57" />
           <folding>
@@ -1088,6 +1240,30 @@
             <marker date="1521540815469" expanded="true" signature="7926:7943" ph="..." />
             <marker date="1521540815469" expanded="true" signature="15378:15411" ph="..." />
             <marker date="1521540815469" expanded="true" signature="15650:15664" ph="..." />
+=======
+        <state relative-caret-position="512">
+          <caret line="80" column="31" lean-forward="false" selection-start-line="80" selection-start-column="31" selection-end-line="80" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/UploadHandler.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="52">
+          <caret line="601" column="32" lean-forward="false" selection-start-line="601" selection-start-column="32" selection-end-line="601" selection-end-column="32" />
+          <folding>
+            <marker date="1521540963588" expanded="true" signature="6447:6460" ph="..." />
+            <marker date="1521540963588" expanded="true" signature="7410:7423" ph="..." />
+            <marker date="1521540963588" expanded="true" signature="8167:8180" ph="..." />
+            <marker date="1521540963588" expanded="true" signature="9334:9347" ph="..." />
+            <marker date="1521540963588" expanded="true" signature="9711:9724" ph="..." />
+            <marker date="1521540963588" expanded="true" signature="10089:10102" ph="..." />
+            <marker date="1521540963588" expanded="true" signature="13504:13517" ph="..." />
+            <marker date="1521540963588" expanded="true" signature="15485:15498" ph="..." />
+            <marker date="1521540963588" expanded="true" signature="20978:20991" ph="..." />
+            <marker date="1521540963588" expanded="true" signature="24461:24474" ph="..." />
+            <marker date="1521540963588" expanded="true" signature="24770:24783" ph="..." />
+            <marker date="1521540963588" expanded="true" signature="25080:25093" ph="..." />
+>>>>>>> Stashed changes
           </folding>
         </state>
       </provider>

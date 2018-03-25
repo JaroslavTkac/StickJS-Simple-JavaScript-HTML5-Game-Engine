@@ -60,10 +60,23 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             $_SESSION['username'] = $username;
                             $_SESSION['user_id'] = $id;
 
-                            if(strpos($_SERVER['REQUEST_URI'], 'views'))
-                                header("location: home.php");
-                            else
+                            $url = $_SERVER['REQUEST_URI'];
+                            if(strpos($url, 'views')) {
+                                //header("location: home.php");
+                                //echo $url;
+                                if(strpos($url, 'views/editor.php')){
+                                    header("location: editor.php");
+                                    //echo "RETURN TO: editor.php";
+                                }
+                                if(strpos($url, 'views/users_projects.php')){
+                                    header("location: users_projects.php");
+                                    //echo "RETURN TO: users_project.php";
+                                }
+                            }
+                            else {
+                                //echo "RETURN TO: views/home.php";
                                 header("location: views/home.php");
+                            }
                         } else{
                             // Display an error message if password is not valid
                             $password_err = 'The password you entered was not valid.';

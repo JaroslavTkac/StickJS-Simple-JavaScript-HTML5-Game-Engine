@@ -70,7 +70,7 @@ if(!empty($username) || !empty($projectType)){
                 }
             }
             else{
-                echo "No projects found";
+                //echo "No projects found";
             }
         }
         else {

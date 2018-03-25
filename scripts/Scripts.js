@@ -108,7 +108,7 @@ function waitUntilCanvasImgUploading() {
     //console.log(savedShapeImg);
     savedShapesArr.push({link: savedShapeImg, value: objValues});
 
-    console.log(savedShapesArr);
+    //console.log(savedShapesArr);
     // console.log(getSavedShapeByName(savedShapeImg));
 
     //Modify all shapes that use same base object

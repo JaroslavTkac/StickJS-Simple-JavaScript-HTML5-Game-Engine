@@ -250,38 +250,32 @@ if (isset($_POST['userId']) && isset($_POST['cleanFolders']) && isset($_POST['pr
     $projectId = $_POST['projectId'];
     $folderContentToDelete = array();
 
-        //preparing textures paths for deleting
+    //preparing textures paths for deleting
     $rawData = getFilesInFolder("../assets/img/textures/user_textures/", $userId, $projectId);
-    //$rawData = getFilesInFolder("php/", $userId, $projectId);
-
     foreach ($rawData as $item) {
         array_push($folderContentToDelete, $item);
     }
 
     //preparing json's paths for deleting
     $rawData = getFilesInFolder("../shapes/user_shapes/", $userId, $projectId);
-
     foreach ($rawData as $item) {
         array_push($folderContentToDelete, $item);
     }
 
     //preparing savedShapes paths for deleting
     $rawData = getFilesInFolder("../shapes/user_saved_shapes/", $userId, $projectId);
-
     foreach ($rawData as $item) {
         array_push($folderContentToDelete, $item);
     }
 
     //preparing music paths for deleting
     $rawData = getFilesInFolder("../assets/music/user_music/", $userId, $projectId);
-
     foreach ($rawData as $item) {
         array_push($folderContentToDelete, $item);
     }
 
     //preparing user saved converted code scripts for deleting
     $rawData = getFilesInFolder("../scripts/user_converted_code/", $userId, $projectId);
-
     foreach ($rawData as $item) {
         array_push($folderContentToDelete, $item);
     }
@@ -294,6 +288,7 @@ if (isset($_POST['userId']) && isset($_POST['cleanFolders']) && isset($_POST['pr
 
     echo json_encode(array('data' => $folderContentToDelete, 'info' => $infoArr));
 }
+
 
 function getFilesInFolder($dir, $userId, $projectId)
 {

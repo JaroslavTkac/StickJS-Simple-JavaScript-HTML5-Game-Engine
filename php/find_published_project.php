@@ -10,8 +10,6 @@
 // Include connection file
 require_once 'connection.php';
 
-// Initialize the session
-
 
 if(isset($_POST['userId']) && isset($_POST['projectId'])){
     //Check if this project have been published
