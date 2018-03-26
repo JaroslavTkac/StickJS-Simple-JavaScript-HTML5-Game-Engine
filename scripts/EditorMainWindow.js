@@ -75,10 +75,14 @@ function initPreview(i) {
     let srcArr = ["../shapes/cube.json", "../shapes/sphere.json", "../shapes/cone.json",
         "../shapes/cylinder.json", "../shapes/simpleSphere.json"];
 
+    console.log(previewObjects);
+
     if (((i - 1) - previewObjects) !== 0) {
+        console.log("WAITING");
+        console.log("-------------");
         setTimeout(function () {
             initPreview(i)
-        }, 50);
+        }, 100);
         return;
     }
     //if older object initialized -> init new object

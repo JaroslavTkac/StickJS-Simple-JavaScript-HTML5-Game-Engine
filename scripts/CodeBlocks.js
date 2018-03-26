@@ -449,16 +449,18 @@ function updateAllForNameBlocks() {
 
             for (let i = 0; i < objArr.length; i++) {
                 let name = objArr[i].name;
-                if (objArr[i].name.length >= 10)
+                if (objArr[i].name.length >= 10) {
                     name = objArr[i].name.substr(0, 9) + "...";
-
-                items.push({value: objArr[i].name, text: name});
+                }
+                //if (name !== "------NotSaveToDB------"){
+                    items.push({value: objArr[i].name, text: name});
+                //}
             }
             for (let i = 0; i < items.length; i++)
                 $(select).append(new Option(items[i].text, items[i].value));
         }
     }
-
+    console.log("called ");
     restoreUpdatedCodeSelectionFields();
 }
 

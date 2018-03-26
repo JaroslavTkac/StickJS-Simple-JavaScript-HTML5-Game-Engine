@@ -72,7 +72,10 @@ function waitUntilSavedSceneDataLoads() {
         }
     }
     saveData();
-    updateAllForNameBlocks();
+
+    setTimeout(function () {
+        updateAllForNameBlocks();
+    }, 500);
 }
 
 // Some sort of call back (waiting for savedShapeImg value)

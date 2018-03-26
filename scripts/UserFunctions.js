@@ -3,7 +3,6 @@
  */
 
 
-
 //Apply changes to all objects
 function applyChangesToAll(x, y, z, sx, sy, sz, xRot, yRot, zRot,
                            xRotSpeed, yRotSpeed, zRotSpeed, r, g, b,

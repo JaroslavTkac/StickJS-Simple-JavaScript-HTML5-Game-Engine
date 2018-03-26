@@ -9,27 +9,33 @@ let savedShapesArr = [];
 let liveLoadedShapesArr = [];
 let sceneToLoadArr = [];
 let availableTexturesOnServer = [];
+let uploadedObjectLoadedSuccessfully = false;
+let uploadedObjectsToInit = [];
+let initializeIndex = 0;
 
 
 // Some sort of call back (waiting for editor shape loading)
 function waitUntilWebglInitialized() {
-    //console.log(texturesLoaded);
-    //waiting before webgl is initing, loading textures and shapes
-    if (webgl === undefined && !texturesLoaded) {
-        setTimeout(waitUntilWebglInitialized, 50);
+    //waiting before webgl is initing, loading textures
+    if (webgl === undefined) {
+        setTimeout(waitUntilWebglInitialized, 100);
+        return;
+    }
+    if(!texturesLoaded || texturesLoaded === undefined){
+        setTimeout(waitUntilWebglInitialized, 100);
         return;
     }
 
     let textureToApplySrc = "../assets/img/textures/sun.jpg";
     //initialized -> init objects
     for (let i = 0; i < liveLoadedShapesArr.length; i++) {
-       /* console.log("-------------");
+        /*console.log("-------------");
         console.log(liveLoadedShapesArr);
         console.log("REAL TEXTURE: " + liveLoadedShapesArr[i].textureSrc);
         console.log("-------------");
         console.log("available texture array");
-        console.log(availableTexturesOnServer);
-*/
+        console.log(availableTexturesOnServer);*/
+
 
         if(liveLoadedShapesArr[i].textureSrc.indexOf("user_textures") !== -1){
             //check for texture availability../assets/img/textures
@@ -49,9 +55,9 @@ function waitUntilWebglInitialized() {
         }
 
 
-        //console.log("-------------");
-        //console.log("INITING OBJECT WITH: " + textureToApplySrc);
-        //console.log("-------------");
+        /*console.log("-------------");
+        console.log("INITING OBJECT WITH: " + textureToApplySrc);
+        console.log("-------------");*/
         new LoadObject(liveLoadedShapesArr[i].jsonPath, textureToApplySrc, {
             "name": liveLoadedShapesArr[i].name,
             "savedShapeName": liveLoadedShapesArr[i].savedShapeName,
@@ -171,9 +177,13 @@ function loadUserData(dir, type) {
             console.log(content);
 
 
+            if (type === "object") {
+                uploadedObjectsToInit = folderContent;
+                uploadedObjectInitSequence(projectType, folderContent);
+            }
             //after successful file location change appending html document
             for (let i = 0; i < folderContent.length; i++) {
-                //console.log(content['data'][i]);
+                console.log(content['data'][i]);
                 if (type === "image") {
                     $('#texture-picker-row').append(
                         "<div class=\"col-lg-4 col-md-4 col-sm-4 col-xs-6 texture-padding\">" +
@@ -218,30 +228,6 @@ function loadUserData(dir, type) {
                         "<span class=\"delete_path\" style=\"display: none\">../assets/music/user_music/" + folderContent[i] + "</span></a>" +
                         "</div>";
                     $('#selectable-music-row').append(data);*/
-                }
-                if (type === "object") {
-                    if (projectType === "general") {
-                        data = "<div align=\"center\" class=\"col-lg3 col-md-4 col-sm-4 col-xs-6\">" +
-                            "<a href=\"#\" class=\"thumbnail\">" +
-                            "<canvas class=\"preview-scene shape\" id=\"" + "../shapes/user_shapes/" + folderContent[i] + "\" ></canvas>" +
-                            "<a href=\"#\" class=\"btn btn-md overlay-btn overlay-btn-del\">" +
-                            "<span class=\"glyphicon glyphicon-trash\"></span>" +
-                            "<span class=\"delete_path\" style=\"display: none\">../shapes/user_shapes/" + folderContent[i] + "</span></a>" +
-                            "</a>" +
-                            "</div>";
-                    }
-                    if (projectType === "publish") {
-                        data = "<div align=\"center\" class=\"col-lg3 col-md-4 col-sm-4 col-xs-6\">" +
-                            "<a href=\"#\" class=\"thumbnail\">" +
-                            "<canvas class=\"preview-scene shape\" id=\"" + "../shapes/user_shapes/" + folderContent[i] + "\" ></canvas>" +
-                            "</div>";
-                    }
-                    $('#selectable-shapes-row').append(data);
-
-                    //init every object for webgl here
-                    initUploadedObject("../shapes/user_shapes/" + folderContent[i]);
-                    //Getting user saved shapes names for code blocks
-                    getShapesNameInFolder("../shapes/user_shapes");
                 }
                 if (type === "savedShapes") {
                     if (projectType === "general") {
@@ -291,6 +277,57 @@ function loadUserData(dir, type) {
 
         }
     });
+}
+
+
+function uploadedObjectInitSequence(projectType, objects){
+    let data = "";
+    let i = 0;
+    if(initializeIndex !== objects.length) {
+        i = initializeIndex;
+        if (projectType === "general") {
+            data = "<div align=\"center\" class=\"col-lg3 col-md-4 col-sm-4 col-xs-6\">" +
+                "<a href=\"#\" class=\"thumbnail\">" +
+                "<canvas class=\"preview-scene shape\" id=\"" + "../shapes/user_shapes/" + objects[i] + "\" ></canvas>" +
+                "<a href=\"#\" class=\"btn btn-md overlay-btn overlay-btn-del\">" +
+                "<span class=\"glyphicon glyphicon-trash\"></span>" +
+                "<span class=\"delete_path\" style=\"display: none\">../shapes/user_shapes/" + objects[i] + "</span></a>" +
+                "</a>" +
+                "</div>";
+        }
+        if (projectType === "publish") {
+            data = "<div align=\"center\" class=\"col-lg3 col-md-4 col-sm-4 col-xs-6\">" +
+                "<a href=\"#\" class=\"thumbnail\">" +
+                "<canvas class=\"preview-scene shape\" id=\"" + "../shapes/user_shapes/" + objects[i] + "\" ></canvas>" +
+                "</div>";
+        }
+        $('#selectable-shapes-row').append(data);
+
+        uploadedObjectLoadedSuccessfully = false;
+        //init every UPLOADED object for webgl here
+        initUploadedObject("../shapes/user_shapes/" + objects[i]);
+
+        //Waiting till object is not fully initialized
+        waitUntilUserUploadedObjectIsLoadedSuccessfully();
+    }
+    else {
+        //When all objects is finally initialized
+        //Getting user saved shapes names for code blocks
+        getShapesNameInFolder("../shapes/user_shapes");
+    }
+}
+
+function waitUntilUserUploadedObjectIsLoadedSuccessfully(){
+    if (!uploadedObjectLoadedSuccessfully) {
+        console.log("waiting");
+        setTimeout(waitUntilUserUploadedObjectIsLoadedSuccessfully, 50);
+        return;
+    }
+    //When object initialized calling again function to init second object
+    if(initializeIndex !== uploadedObjectsToInit.length) {
+        initializeIndex++;
+        uploadedObjectInitSequence(projectType, uploadedObjectsToInit);
+    }
 }
 
 //Upload file (images/sound/object)
@@ -815,15 +852,15 @@ function loadSvgCodeScene() {
 
 //Saving scene by btn click for multiple use dooring project -> Saving WebGL main scene
 function saveScene() {
-    let toSave = [];
+    /*let toSave = [];
     for (let i = 0; i < objArr.length; i++){
         if(objArr[i].name !== "------NotSaveToDB------"){
             toSave.push(objArr[i]);
         }
-    }
+    }*/
 
     //Send to server user object data
-    let obj_data = JSON.stringify(toSave);
+    let obj_data = JSON.stringify(objArr);
 
     $.ajax({
         url: "../php/upload_saved_scene.php",
@@ -901,15 +938,15 @@ function loadSavedShapes() {
 
 //Saving user live objects -> objects that are init'ed in scene
 function saveLiveObjects() {
-    let toSave = [];
+   /* let toSave = [];
     for (let i = 0; i < objArr.length; i++){
         if(objArr[i].name !== "------NotSaveToDB------"){
             toSave.push(objArr[i]);
         }
-    }
+    }*/
 
     //Send to server user object data
-    let obj_data = JSON.stringify(toSave);
+    let obj_data = JSON.stringify(objArr);
 
     $.ajax({
         url: "../php/upload_live_objects.php",

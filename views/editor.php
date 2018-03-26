@@ -260,7 +260,7 @@ if($projectType === "general" && strlen($_GET['preview']) > 0){
                                                 class="caret"></span></a>
                                     <ul class="dropdown-menu" id="select-dropdown-value">
                                         <li><a href="#">Shapes</a></li>
-                                        <li><a href="#">Music</a></li>
+                                        <!--<li><a href="#">Music</a></li>-->
                                         <li><a href="#">Textures</a></li>
                                     </ul>
 

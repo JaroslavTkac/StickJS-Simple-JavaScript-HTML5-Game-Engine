@@ -379,6 +379,8 @@ function initProperties(object, properties, saveTo) {
         objPreviewArr.push(object);
         loadedObjects++;
         previewObjects++;
+        uploadedObjectLoadedSuccessfully = true;
+        console.log("really inited");
         //console.log("loaded preview object: " + previewObjects);
         //console.log("Preview obj size: " + objPreviewArr.length);
     }

@@ -103,7 +103,7 @@ function webGLStart() {
     getKeyByName("space").songName = "rotationEngine";
     getKeyByName("space").useSong = true;
 */
-    new LoadObject("../shapes/cube.json", "../assets/img/textures/sun.jpg", {
+    /*new LoadObject("../shapes/cube.json", "../assets/img/textures/sun.jpg", {
         "name": "------NotSaveToDB------",
         "x": 0,
         "y": 0,
@@ -111,7 +111,7 @@ function webGLStart() {
         "sx": 0,
         "sy": 0,
         "sz": 0,
-    });
+    });*/
 
     startEditorWindow();
     loading();
