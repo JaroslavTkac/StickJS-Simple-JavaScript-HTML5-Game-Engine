@@ -98,7 +98,7 @@ function initPreview(i) {
     if (i === 5) {
         setTimeout(function () {
             loadUserData("../shapes/user_shapes", "object");
-        }, 50);
+        }, 100);
     }
 }
 

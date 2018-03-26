@@ -122,6 +122,7 @@ function loading() {
 
     console.log(loadedObjects + " / " + totalObjects);
     if (totalObjects <= loadedObjects) {
+        readyToSaveData = true;
         console.log("Objects loaded in scene: " + objArr.length);
         lastRenderedMainScene = new LastRendered();
         render();

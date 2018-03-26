@@ -56,6 +56,7 @@ let editorObjectLoaded = false;
 let loaderElement;
 let loaderNode;
 let texturesLoaded = false;
+let readyToSaveData = false;
 
 let canvas;
 //let editorCanvas;

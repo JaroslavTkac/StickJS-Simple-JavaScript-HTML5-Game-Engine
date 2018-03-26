@@ -13,7 +13,7 @@ let availableTexturesOnServer = [];
 
 // Some sort of call back (waiting for editor shape loading)
 function waitUntilWebglInitialized() {
-    console.log(texturesLoaded);
+    //console.log(texturesLoaded);
     //waiting before webgl is initing, loading textures and shapes
     if (webgl === undefined && !texturesLoaded) {
         setTimeout(waitUntilWebglInitialized, 50);
@@ -23,35 +23,35 @@ function waitUntilWebglInitialized() {
     let textureToApplySrc = "../assets/img/textures/sun.jpg";
     //initialized -> init objects
     for (let i = 0; i < liveLoadedShapesArr.length; i++) {
-        console.log("-------------");
+       /* console.log("-------------");
         console.log(liveLoadedShapesArr);
         console.log("REAL TEXTURE: " + liveLoadedShapesArr[i].textureSrc);
         console.log("-------------");
         console.log("available texture array");
         console.log(availableTexturesOnServer);
-
+*/
 
         if(liveLoadedShapesArr[i].textureSrc.indexOf("user_textures") !== -1){
-            textureToApplySrc = liveLoadedShapesArr[i].textureSrc;
+            //check for texture availability../assets/img/textures
+            for (let j = 0; j < availableTexturesOnServer.length; j++) {
+                console.log("Searching for texture");
+                if (liveLoadedShapesArr[i].textureSrc === ("../" + availableTexturesOnServer[j])) {
+                    textureToApplySrc = liveLoadedShapesArr[i].textureSrc;
+                    break;
+                }
+                else {
+                    textureToApplySrc = "../assets/img/textures/sun.jpg";
+                }
+            }
         }
         else{
             textureToApplySrc = liveLoadedShapesArr[i].textureSrc;
         }
 
-        //check for texture availability../assets/img/textures
-        for (let j = 0; j < availableTexturesOnServer.length; j++) {
-            console.log("Searching for texture");
-            if (liveLoadedShapesArr[i].textureSrc === ("../" + availableTexturesOnServer[j])) {
-                textureToApplySrc = liveLoadedShapesArr[i].textureSrc;
-                break;
-            }
-            else {
-                textureToApplySrc = "../assets/img/textures/sun.jpg";
-            }
-        }
+
         //console.log("-------------");
-        console.log("INITING OBJECT WITH: " + textureToApplySrc);
-        console.log("-------------");
+        //console.log("INITING OBJECT WITH: " + textureToApplySrc);
+        //console.log("-------------");
         new LoadObject(liveLoadedShapesArr[i].jsonPath, textureToApplySrc, {
             "name": liveLoadedShapesArr[i].name,
             "savedShapeName": liveLoadedShapesArr[i].savedShapeName,
@@ -625,19 +625,15 @@ function saveCanvasImg(imgName) {
     });
 }
 
-//Sending every 60 sec user data to server
+//Sending every 5 sec user data to server
 setInterval(function () {
     saveData();
-}, 5000); // every 60 sec*/
-
-setInterval(function () {
-    saveSvgCodeScene();
 }, 5000); // every 5 sec*/
 
 //Saving main important data
 function saveData() {
     //console.log("Saving all data");
-    if(projectType === "general") {
+    if(projectType === "general" && readyToSaveData) {
         console.log(projectType);
         saveSavedShapes();
         saveLiveObjects();

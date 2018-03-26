@@ -127,9 +127,10 @@ $(document).ready(function () {
 
     //On publishing project
     $(document).on('click', '.publish-project-btn', function (e) {
-        console.log("Publishing project clicked!");
+        let btn = $(this);
         let projectId = $(this).attr('id');
         let publishedProjectId;
+        btn.attr("disabled", "disabled");
 
 
         //check if project is already published
@@ -167,6 +168,9 @@ $(document).ready(function () {
             },
         }).done(function (response) {
             console.log(response);
+            setTimeout(function () {
+                btn.removeAttr("disabled");
+            }, 2000)
         }).error(function (response) {
             console.log(response);
         });
