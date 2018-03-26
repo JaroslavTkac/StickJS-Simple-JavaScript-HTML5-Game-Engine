@@ -29,18 +29,15 @@ function waitUntilWebglInitialized() {
     let textureToApplySrc = "../assets/img/textures/sun.jpg";
     //initialized -> init objects
     for (let i = 0; i < liveLoadedShapesArr.length; i++) {
-        /*console.log("-------------");
+        console.log("-------------");
         console.log(liveLoadedShapesArr);
         console.log("REAL TEXTURE: " + liveLoadedShapesArr[i].textureSrc);
         console.log("-------------");
         console.log("available texture array");
-        console.log(availableTexturesOnServer);*/
-
-
+        console.log(availableTexturesOnServer);
         if(liveLoadedShapesArr[i].textureSrc.indexOf("user_textures") !== -1){
             //check for texture availability../assets/img/textures
             for (let j = 0; j < availableTexturesOnServer.length; j++) {
-                console.log("Searching for texture");
                 if (liveLoadedShapesArr[i].textureSrc === ("../" + availableTexturesOnServer[j])) {
                     textureToApplySrc = liveLoadedShapesArr[i].textureSrc;
                     break;
@@ -54,10 +51,9 @@ function waitUntilWebglInitialized() {
             textureToApplySrc = liveLoadedShapesArr[i].textureSrc;
         }
 
-
-        /*console.log("-------------");
+        console.log("-------------");
         console.log("INITING OBJECT WITH: " + textureToApplySrc);
-        console.log("-------------");*/
+        console.log("-------------");
         new LoadObject(liveLoadedShapesArr[i].jsonPath, textureToApplySrc, {
             "name": liveLoadedShapesArr[i].name,
             "savedShapeName": liveLoadedShapesArr[i].savedShapeName,
@@ -143,6 +139,7 @@ function getAllAvailableTextures() {
                 if (tmp[tmp.length - 1] === "png" || tmp[tmp.length - 1] === "jpg")
                     availableTexturesOnServer.push(tmp[0] + "." + tmp[1]);
             }
+            texturesLoaded = true;
         },
         error: function (response) {
             console.log("Error occurred on texture folder reading");
@@ -211,10 +208,6 @@ function loadUserData(dir, type) {
                             "</div>";
                     }
                     $('#selectable-textures-row').append(data);
-                    if(i === (folderContent.length - 1)){
-                        console.log("EVERYTHNG LOADED");
-                        texturesLoaded = true;
-                    }
                 }
                 if (type === "music") {
                     /*data = "<div align=\"center\" class=\"col-lg-3 col-md-3 col-sm-4 col-xs-6\">" +

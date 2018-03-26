@@ -78,8 +78,6 @@ function initPreview(i) {
     console.log(previewObjects);
 
     if (((i - 1) - previewObjects) !== 0) {
-        console.log("WAITING");
-        console.log("-------------");
         setTimeout(function () {
             initPreview(i)
         }, 100);
