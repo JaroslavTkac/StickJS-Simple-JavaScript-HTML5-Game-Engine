@@ -177,6 +177,14 @@ if (!isset($_SESSION['username']) || empty($_SESSION['username'])) {
         <div class="row">
             <h1 class="title col-md-12">Update log</h1>
             <div id="update-log">
+                <h2>0.9.3.1</h2>
+                <hr class="update-hr">
+                <ul>
+                    <li>New available shapes for user and textures.</li>
+                    <li>New Blocks (now can adjust point lighting color and position).</li>
+                    <li>Now possible manually delete selected shape from scene.</li>
+                    <li>Bug fixes.</li>
+                </ul>
                 <h2>0.9.3.0</h2>
                 <hr class="update-hr">
                 <ul>

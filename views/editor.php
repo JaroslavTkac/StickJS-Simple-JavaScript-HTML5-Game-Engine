@@ -93,11 +93,9 @@ if($projectType === "general" && strlen($_GET['preview']) > 0){
         let userId = "<?php echo $_SESSION['user_id']; ?>";
         let projectUserId = "<?php echo $projectUserId; ?>";
         if (!isLoggedIn || userId !== projectUserId){
-            console.log("NOT CORRECT USER ID");
             userId = projectUserId;
         }
         let projectId = "<?php echo $project_id; ?>";
-        console.log("PROJECT ID: " + projectId)
     </script>
 
     <!-- My Scripts -->
@@ -233,12 +231,8 @@ if($projectType === "general" && strlen($_GET['preview']) > 0){
                 </div>
             </div>
 
-
             <!-- WEB GL Canvas area -->
             <canvas id="Scene" style="border: 3pt black solid"></canvas>
-
-
-
 
             <!-- Add shape name modal -->
             <div class="modal fade" id="add-name-modal" role="dialog" data-backdrop="static" data-keyboard="false">
@@ -287,7 +281,6 @@ if($projectType === "general" && strlen($_GET['preview']) > 0){
                                         <!--<li><a href="#">Music</a></li>-->
                                         <li><a href="#">Textures</a></li>
                                     </ul>
-
                                 </li>
                                 <li>
                                     <label class="btn btn-primary" id="aspect-ratio" style="margin-top: 8px;">
@@ -328,6 +321,18 @@ if($projectType === "general" && strlen($_GET['preview']) > 0){
                                     echo "</label >";
                                     echo "</form>";
                                     echo "</li>";
+
+                                    echo "<li style=\"margin-top: 4px; margin-left: 5px\">";
+                                    echo "<p id='delete-info'>Shape to delete</p><select id=\"deletable-shape-selection\">";
+                                    echo "<option value=\"name\">Name</option>";
+                                    echo "</select>";
+                                    echo "</li>";
+                                    echo "<li>";
+                                    echo "<label class=\"btn btn-primary\" id=\"delete-shape-from-scene-btn\" style=\"margin-top: 8px; margin-left: 5px\">";
+                                    echo "<span class=\"glyphicon glyphicon-trash\"></span>";
+                                    echo "</label>";
+                                    echo "</li>";
+
                                 }
                                 ?>
                             </ul>
@@ -387,6 +392,46 @@ if($projectType === "general" && strlen($_GET['preview']) > 0){
                                 ?>
                             </a>
                         </div>
+                        <div class="col-lg3 col-md-4 col-sm-4 col-xs-6" align="center">
+                            <a href="#" class="thumbnail">
+                                <canvas class="preview-scene shape" id="../shapes/christmasTree.json"></canvas>
+                                <?php
+                                if($projectType === "general"){
+                                    echo " <a href=\"#\" class=\"btn btn-md overlay-btn disabled\"><span class=\"glyphicon glyphicon-trash\"></span></a>";
+                                }
+                                ?>
+                            </a>
+                        </div>
+                        <div class="col-lg3 col-md-4 col-sm-4 col-xs-6" align="center">
+                            <a href="#" class="thumbnail">
+                                <canvas class="preview-scene shape" id="../shapes/pineTree.json"></canvas>
+                                <?php
+                                if($projectType === "general"){
+                                    echo " <a href=\"#\" class=\"btn btn-md overlay-btn disabled\"><span class=\"glyphicon glyphicon-trash\"></span></a>";
+                                }
+                                ?>
+                            </a>
+                        </div>
+                        <div class="col-lg3 col-md-4 col-sm-4 col-xs-6" align="center">
+                            <a href="#" class="thumbnail">
+                                <canvas class="preview-scene shape" id="../shapes/simpleTree.json"></canvas>
+                                <?php
+                                if($projectType === "general"){
+                                    echo " <a href=\"#\" class=\"btn btn-md overlay-btn disabled\"><span class=\"glyphicon glyphicon-trash\"></span></a>";
+                                }
+                                ?>
+                            </a>
+                        </div>
+                        <div class="col-lg3 col-md-4 col-sm-4 col-xs-6" align="center">
+                            <a href="#" class="thumbnail">
+                                <canvas class="preview-scene shape" id="../shapes/house.json"></canvas>
+                                <?php
+                                if($projectType === "general"){
+                                    echo " <a href=\"#\" class=\"btn btn-md overlay-btn disabled\"><span class=\"glyphicon glyphicon-trash\"></span></a>";
+                                }
+                                ?>
+                            </a>
+                        </div>
                     </div>
                 </div>
 
@@ -422,7 +467,7 @@ if($projectType === "general" && strlen($_GET['preview']) > 0){
                         <ul class="nav navbar-nav editor-navbar">
                             <li class="active"><a href="#">Editor</a></li>
                             <li><a href="#">Logic</a></li>
-                            <li><a href="#">Sound</a></li>
+                            <!--<li><a href="#">Sound</a></li>-->
                         </ul>
                     </div>
                 </div>
@@ -557,6 +602,12 @@ if($projectType === "general" && strlen($_GET['preview']) > 0){
                                          alt="../assets/img/textures/snow.jpg">
                                 </a>
                             </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6 texture-padding">
+                                <a href="#" class="thumbnail">
+                                    <img src="../assets/img/textures/house.png" class="img-rounded inline-block texture"
+                                         alt="../assets/img/textures/house.png">
+                                </a>
+                            </div>
                         </div>
                     </div>
 
@@ -665,7 +716,7 @@ if($projectType === "general" && strlen($_GET['preview']) > 0){
                     <svg id="code-logic-selector"
                          xmlns="http://www.w3.org/2000/svg"
                          version="1.1"
-                         width="250px" height="2500px">
+                         width="250px" height="3200px">
 
                         <!-- TRIGGERS -->
                         <text x="45" y="15" fill="#ea640b" transform="scale(1.5)">Triggers</text>
@@ -930,7 +981,7 @@ if($projectType === "general" && strlen($_GET['preview']) > 0){
                             <text class="basic-text-over-svg" x="20" y="24" font-size="20">
                                 For Every
                             </text>
-                            <foreignObject x="135" y="6" width="90" height="30">
+                            <foreignObject x="130" y="6" width="90" height="30">
                                 <select class="code-selection select-specific-svg" title="Select Shape Type">
                                     <option value="cube">Cube</option>
                                     <option value="sphere">Sphere</option>
@@ -957,7 +1008,7 @@ if($projectType === "general" && strlen($_GET['preview']) > 0){
                             <text class="basic-text-over-svg" x="20" y="24" font-size="20">
                                 For Specific
                             </text>
-                            <foreignObject x="135" y="6" width="90" height="30">
+                            <foreignObject x="130" y="6" width="90" height="30">
                                 <select class="code-selection select-name-svg" title="Select Shape Name">
                                     <option value="name">Name</option>
                                 </select>
@@ -1389,8 +1440,146 @@ if($projectType === "general" && strlen($_GET['preview']) > 0){
                             <text class="myFather"
                                   x="0" y="0"></text>
                         </g>
-                        <!-- Set Opacity -->
+                        <!-- Set Point R -->
                         <g transform="matrix(1 0 0 1 0 1790)"
+                           class="">
+                            <path d="M 12.062 34.73 L 215.922 34.154 C 245.481 33.561 240.969
+                                     -0.498 215.922 0.005 L 0 0.416 L 12.062 34.73 Z" fill="#c10023" stroke="black"
+                                  stroke-width="2"></path>
+                            <text class="basic-text-over-svg" x="20" y="24" font-size="20">
+                                Set Point &#9728 R
+                            </text>
+                            <foreignObject x="160" y="4" width="60" height="30">
+                                <form>
+                                    <input class="code-input" title="value" type="text" value="0"/>
+                                </form>
+                            </foreignObject>
+                            <text class="code-id"
+                                  x="0" y="0">set pointr</text>
+                            <text class="mktime"
+                                  x="0" y="0"></text>
+                            <text class="myChild"
+                                  x="0" y="0"></text>
+                            <text class="myFather"
+                                  x="0" y="0"></text>
+                        </g>
+                        <!-- Set Point G -->
+                        <g transform="matrix(1 0 0 1 0 1850)"
+                           class="">
+                            <path d="M 12.062 34.73 L 215.922 34.154 C 245.481 33.561 240.969
+                                     -0.498 215.922 0.005 L 0 0.416 L 12.062 34.73 Z" fill="#009102" stroke="black"
+                                  stroke-width="2"></path>
+                            <text class="basic-text-over-svg" x="20" y="24" font-size="20">
+                                Set Point &#9728 G
+                            </text>
+                            <foreignObject x="160" y="4" width="60" height="30">
+                                <form>
+                                    <input class="code-input" title="value" type="text" value="0"/>
+                                </form>
+                            </foreignObject>
+                            <text class="code-id"
+                                  x="0" y="0">set pointg</text>
+                            <text class="mktime"
+                                  x="0" y="0"></text>
+                            <text class="myChild"
+                                  x="0" y="0"></text>
+                            <text class="myFather"
+                                  x="0" y="0"></text>
+                        </g>
+                        <!-- Set Point B -->
+                        <g transform="matrix(1 0 0 1 0 1910)"
+                           class="">
+                            <path d="M 12.062 34.73 L 215.922 34.154 C 245.481 33.561 240.969
+                                     -0.498 215.922 0.005 L 0 0.416 L 12.062 34.73 Z" fill="#036bba" stroke="black"
+                                  stroke-width="2"></path>
+                            <text class="basic-text-over-svg" x="20" y="24" font-size="20">
+                                Set Point &#9728 B
+                            </text>
+                            <foreignObject x="160" y="4" width="60" height="30">
+                                <form>
+                                    <input class="code-input" title="value" type="text" value="0"/>
+                                </form>
+                            </foreignObject>
+                            <text class="code-id"
+                                  x="0" y="0">set pointb</text>
+                            <text class="mktime"
+                                  x="0" y="0"></text>
+                            <text class="myChild"
+                                  x="0" y="0"></text>
+                            <text class="myFather"
+                                  x="0" y="0"></text>
+                        </g>
+                        <!-- Set Point X -->
+                        <g transform="matrix(1 0 0 1 0 1970)"
+                           class="">
+                            <path d="M 12.062 34.73 L 215.922 34.154 C 245.481 33.561 240.969
+                                     -0.498 215.922 0.005 L 0 0.416 L 12.062 34.73 Z" fill="#e2c531" stroke="black"
+                                  stroke-width="2"></path>
+                            <text class="basic-text-over-svg" x="20" y="24" font-size="20">
+                                Set Point &#9728 X
+                            </text>
+                            <foreignObject x="160" y="4" width="60" height="30">
+                                <form>
+                                    <input class="code-input" title="value" type="text" value="0"/>
+                                </form>
+                            </foreignObject>
+                            <text class="code-id"
+                                  x="0" y="0">set pointx</text>
+                            <text class="mktime"
+                                  x="0" y="0"></text>
+                            <text class="myChild"
+                                  x="0" y="0"></text>
+                            <text class="myFather"
+                                  x="0" y="0"></text>
+                        </g>
+                        <!-- Set Point Y -->
+                        <g transform="matrix(1 0 0 1 0 2030)"
+                           class="">
+                            <path d="M 12.062 34.73 L 215.922 34.154 C 245.481 33.561 240.969
+                                     -0.498 215.922 0.005 L 0 0.416 L 12.062 34.73 Z" fill="#e2c531" stroke="black"
+                                  stroke-width="2"></path>
+                            <text class="basic-text-over-svg" x="20" y="24" font-size="20">
+                                Set Point &#9728 Y
+                            </text>
+                            <foreignObject x="160" y="4" width="60" height="30">
+                                <form>
+                                    <input class="code-input" title="value" type="text" value="0"/>
+                                </form>
+                            </foreignObject>
+                            <text class="code-id"
+                                  x="0" y="0">set pointy</text>
+                            <text class="mktime"
+                                  x="0" y="0"></text>
+                            <text class="myChild"
+                                  x="0" y="0"></text>
+                            <text class="myFather"
+                                  x="0" y="0"></text>
+                        </g>
+                        <!-- Set Point Z -->
+                        <g transform="matrix(1 0 0 1 0 2090)"
+                           class="">
+                            <path d="M 12.062 34.73 L 215.922 34.154 C 245.481 33.561 240.969
+                                     -0.498 215.922 0.005 L 0 0.416 L 12.062 34.73 Z" fill="#e2c531" stroke="black"
+                                  stroke-width="2"></path>
+                            <text class="basic-text-over-svg" x="20" y="24" font-size="20">
+                                Set Point &#9728 Z
+                            </text>
+                            <foreignObject x="160" y="4" width="60" height="30">
+                                <form>
+                                    <input class="code-input" title="value" type="text" value="0"/>
+                                </form>
+                            </foreignObject>
+                            <text class="code-id"
+                                  x="0" y="0">set pointz</text>
+                            <text class="mktime"
+                                  x="0" y="0"></text>
+                            <text class="myChild"
+                                  x="0" y="0"></text>
+                            <text class="myFather"
+                                  x="0" y="0"></text>
+                        </g>
+
+                        <g transform="matrix(1 0 0 1 0 2150)"
                            class="">
                             <path d="M 10.197 34.73 L 182.538 34.154 C 207.527 33.561 203.713
                                     -0.497 182.538 0.005 L 0 0.417 L 10.197 34.73 Z" fill="#3cc6d8" stroke="black"
@@ -1413,7 +1602,7 @@ if($projectType === "general" && strlen($_GET['preview']) > 0){
                                   x="0" y="0"></text>
                         </g>
                         <!-- Set to camera -->
-                        <g transform="matrix(1 0 0 1 0 1850)"
+                         <g transform="matrix(1 0 0 1 0 2210)"
                            class="">
                             <path d="M 10.197 34.73 L 182.538 34.154 C 207.527 33.561 203.713
                                     -0.497 182.538 0.005 L 0 0.417 L 10.197 34.73 Z" fill="#7b7c7c" stroke="black"
@@ -1431,80 +1620,80 @@ if($projectType === "general" && strlen($_GET['preview']) > 0){
                                   x="0" y="0"></text>
                         </g>
                         <!-- Unset to camera -->
-                        <g transform="matrix(1 0 0 1 0 1910)"
-                           class="">
-                            <path d="M 10.197 34.73 L 182.538 34.154 C 207.527 33.561 203.713
-                                    -0.497 182.538 0.005 L 0 0.417 L 10.197 34.73 Z" fill="#7b7c7c" stroke="black"
-                                  stroke-width="2"></path>
-                            <text class="basic-text-over-svg" x="20" y="24" font-size="20">
-                                Retract Camera
-                            </text>
-                            <text class="code-id"
-                                  x="0" y="0">set camerafalse</text>
-                            <text class="mktime"
-                                  x="0" y="0"></text>
-                            <text class="myChild"
-                                  x="0" y="0"></text>
-                            <text class="myFather"
-                                  x="0" y="0"></text>
-                        </g>
-                        <!-- Don't use animation -->
-                        <g transform="matrix(1 0 0 1 0 1970)"
-                           class="">
-                            <path d="M 12.062 34.73 L 215.922 34.154 C 245.481 33.561 240.969
-                                     -0.498 215.922 0.005 L 0 0.416 L 12.062 34.73 Z" fill="#7b7c7c" stroke="black"
-                                  stroke-width="2"></path>
-                            <text class="basic-text-over-svg" x="20" y="24" font-size="20">
-                                Don't Use Animation
-                            </text>
-                            <text class="code-id"
-                                  x="0" y="0">set animationfalse</text>
-                            <text class="mktime"
-                                  x="0" y="0"></text>
-                            <text class="myChild"
-                                  x="0" y="0"></text>
-                            <text class="myFather"
-                                  x="0" y="0"></text>
-                        </g>
-                        <!-- Use animation -->
-                        <g transform="matrix(1 0 0 1 0 2030)"
-                           class="">
-                            <path d="M 10.197 34.73 L 182.538 34.154 C 207.527 33.561 203.713
-                                    -0.497 182.538 0.005 L 0 0.417 L 10.197 34.73 Z" fill="#7b7c7c" stroke="black"
-                                  stroke-width="2"></path>
-                            <text class="basic-text-over-svg" x="20" y="24" font-size="20">
-                                Use Animation
-                            </text>
-                            <text class="code-id"
-                                  x="0" y="0">set animationtrue</text>
-                            <text class="mktime"
-                                  x="0" y="0"></text>
-                            <text class="myChild"
-                                  x="0" y="0"></text>
-                            <text class="myFather"
-                                  x="0" y="0"></text>
-                        </g>
-                        <!-- Sum values -->
-                        <g transform="matrix(1 0 0 1 0 2090)"
-                           class="">
-                            <path d="M 10.197 34.73 L 182.538 34.154 C 207.527 33.561 203.713
-                                    -0.497 182.538 0.005 L 0 0.417 L 10.197 34.73 Z" fill="#7b7c7c" stroke="black"
-                                  stroke-width="2"></path>
-                            <text class="basic-text-over-svg" x="20" y="24" font-size="20">
-                                Sum All Values
-                            </text>
-                            <text class="code-id"
-                                  x="0" y="0">set sumvalues</text>
-                            <text class="mktime"
-                                  x="0" y="0"></text>
-                            <text class="myChild"
-                                  x="0" y="0"></text>
-                            <text class="myFather"
-                                  x="0" y="0"></text>
-                        </g>
+                         <g transform="matrix(1 0 0 1 0 2270)"
+                            class="">
+                             <path d="M 10.197 34.73 L 182.538 34.154 C 207.527 33.561 203.713
+                                     -0.497 182.538 0.005 L 0 0.417 L 10.197 34.73 Z" fill="#7b7c7c" stroke="black"
+                                   stroke-width="2"></path>
+                             <text class="basic-text-over-svg" x="20" y="24" font-size="20">
+                                 Retract Camera
+                             </text>
+                             <text class="code-id"
+                                   x="0" y="0">set camerafalse</text>
+                             <text class="mktime"
+                                   x="0" y="0"></text>
+                             <text class="myChild"
+                                   x="0" y="0"></text>
+                             <text class="myFather"
+                                   x="0" y="0"></text>
+                         </g>
+                         <!-- Don't use animation -->
+                          <g transform="matrix(1 0 0 1 0 2330)"
+                              class="">
+                               <path d="M 12.062 34.73 L 215.922 34.154 C 245.481 33.561 240.969
+                                        -0.498 215.922 0.005 L 0 0.416 L 12.062 34.73 Z" fill="#7b7c7c" stroke="black"
+                                     stroke-width="2"></path>
+                               <text class="basic-text-over-svg" x="20" y="24" font-size="20">
+                                   Don't Use Animation
+                               </text>
+                               <text class="code-id"
+                                     x="0" y="0">set animationfalse</text>
+                               <text class="mktime"
+                                     x="0" y="0"></text>
+                               <text class="myChild"
+                                     x="0" y="0"></text>
+                               <text class="myFather"
+                                     x="0" y="0"></text>
+                           </g>
+                           <!-- Use animation -->
+                          <g transform="matrix(1 0 0 1 0 2390)"
+                             class="">
+                              <path d="M 10.197 34.73 L 182.538 34.154 C 207.527 33.561 203.713
+                                      -0.497 182.538 0.005 L 0 0.417 L 10.197 34.73 Z" fill="#7b7c7c" stroke="black"
+                                    stroke-width="2"></path>
+                              <text class="basic-text-over-svg" x="20" y="24" font-size="20">
+                                  Use Animation
+                              </text>
+                              <text class="code-id"
+                                    x="0" y="0">set animationtrue</text>
+                              <text class="mktime"
+                                    x="0" y="0"></text>
+                              <text class="myChild"
+                                    x="0" y="0"></text>
+                              <text class="myFather"
+                                    x="0" y="0"></text>
+                          </g>
+                          <!-- Sum values -->
+                         <g transform="matrix(1 0 0 1 0 2450)"
+                            class="">
+                             <path d="M 10.197 34.73 L 182.538 34.154 C 207.527 33.561 203.713
+                                     -0.497 182.538 0.005 L 0 0.417 L 10.197 34.73 Z" fill="#7b7c7c" stroke="black"
+                                   stroke-width="2"></path>
+                             <text class="basic-text-over-svg" x="20" y="24" font-size="20">
+                                 Sum All Values
+                             </text>
+                             <text class="code-id"
+                                   x="0" y="0">set sumvalues</text>
+                             <text class="mktime"
+                                   x="0" y="0"></text>
+                             <text class="myChild"
+                                   x="0" y="0"></text>
+                             <text class="myFather"
+                                   x="0" y="0"></text>
+                         </g>
 
 
-                        <!-- END SETTERS -->
+                         <!-- END SETTERS -->
                     </svg>
                 </div>
 

@@ -694,8 +694,10 @@ $(document).ready(function () {
                     }
                 }
             }
+            updateAbleToDeleteLiveShapesInSceneList();
         });
     }
+
 
     //Save WebGL scene
     $('#save-scene-btn').click(function () {
@@ -728,6 +730,26 @@ $(document).ready(function () {
         saveData();
         updateAllForNameBlocks();
     });
+
+    //Disable focus when selecting shape to delete
+    $('#deletable-shape-selection').click(function () {
+       $(this).blur();
+    });
+
+
+    //Deleting selected shape from scene
+    $('#delete-shape-from-scene-btn').click(function () {
+        let element = $('#deletable-shape-selection')[0];
+        let shapeToDelete = element.options[element.selectedIndex].value;
+        for (let i = 0; i < objArr.length; i++){
+            if(objArr[i].name === shapeToDelete){
+                objArr.splice(i, 1);
+            }
+        }
+    });
+
+
+
 
     //Prevent jumping to page beginning
     $(document).on('click', 'img', function (e) {

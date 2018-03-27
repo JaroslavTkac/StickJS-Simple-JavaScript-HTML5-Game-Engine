@@ -145,26 +145,28 @@ function cleanArray(actual) {
     }
     return newArray;
 }
+function updateAbleToDeleteLiveShapesInSceneList() {
+    if(projectType === "general") {
+        for (let i = 0; i < objArr.length; i++) {
+            let dropDown = $('#deletable-shape-selection');
 
-function fpsCounter() {
-    let delta = (Date.now() - lastCalledTime) / 1000;
-    lastCalledTime = Date.now();
-    fps = 1 / delta;
-    fpsSum += fps;
+            if (dropDown !== undefined) {
+                $(dropDown).find('option').remove().end();
+                let items = [];
 
-    //console.log("Fps total: " + fpsSum);
-    //console.log("Current fps: " + fps.toFixed(2))
-
-    //fpsElement.appendChild(fpsNode);
-    //fpsNode.nodeValue = "Current fps: " + fps.toFixed(2);
+                for (let i = 0; i < objArr.length; i++) {
+                    let name = objArr[i].name;
+                    if (objArr[i].name.length >= 10) {
+                        name = objArr[i].name.substr(0, 7) + ".." + objArr[i].name.substr(objArr[i].name.length - 3);
+                    }
+                    items.push({value: objArr[i].name, text: name});
+                }
+                for (let i = 0; i < items.length; i++)
+                    $(dropDown).append(new Option(items[i].text, items[i].value));
+            }
+        }
+    }
 }
-
-function avgFps() {
-    framesPassed++;
-    avgFpsElement.appendChild(avgFpsNode);
-    avgFpsNode.nodeValue = "Average fps: " + (fpsSum / framesPassed).toFixed(2);
-}
-
 function getKeyByName(name) {
     for (let i in keysArray) {
         if (keysArray[i].keyName === name)

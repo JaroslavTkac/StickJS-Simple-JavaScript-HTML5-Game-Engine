@@ -383,11 +383,16 @@ function addSvgElementToScene() {
                 text: "Cylinder"
             }];
             for (let i = 0; i < userUploadedShapesNamesArray.length; i++) {
-                items.push({value: userUploadedShapesNamesArray[i], text: userUploadedShapesNamesArray[i]})
+                let name = userUploadedShapesNamesArray[i];
+                if (userUploadedShapesNamesArray[i].length >= 10) {
+                    name = userUploadedShapesNamesArray[i].substr(0, 7) + ".." + userUploadedShapesNamesArray[i].substr(userUploadedShapesNamesArray[i].length - 3);
+                }
+                items.push({value: userUploadedShapesNamesArray[i], text: name})
             }
 
-            for (let i = 0; i < items.length; i++)
+            for (let i = 0; i < items.length; i++) {
                 $(select).append(new Option(items[i].text, items[i].value));
+            }
 
         }
         if (getSvgCodeId(element) === "for name") {
@@ -399,14 +404,16 @@ function addSvgElementToScene() {
 
             for (let i = 0; i < objArr.length; i++) {
                 let name = objArr[i].name;
-                if (objArr[i].name.length >= 10)
-                    name = objArr[i].name.substr(0, 9) + "...";
+                if (objArr[i].name.length >= 10) {
+                    name = objArr[i].name.substr(0, 7) + ".." + objArr[i].name.substr(objArr[i].name.length - 3);
+                }
 
                 items.push({value: objArr[i].name, text: name});
             }
 
-            for (let i = 0; i < items.length; i++)
+            for (let i = 0; i < items.length; i++) {
                 $(select).append(new Option(items[i].text, items[i].value));
+            }
 
         }
 
@@ -450,17 +457,14 @@ function updateAllForNameBlocks() {
             for (let i = 0; i < objArr.length; i++) {
                 let name = objArr[i].name;
                 if (objArr[i].name.length >= 10) {
-                    name = objArr[i].name.substr(0, 9) + "...";
+                    name = objArr[i].name.substr(0, 7) + ".." + objArr[i].name.substr(objArr[i].name.length - 3);
                 }
-                //if (name !== "------NotSaveToDB------"){
-                    items.push({value: objArr[i].name, text: name});
-                //}
+                items.push({value: objArr[i].name, text: name});
             }
             for (let i = 0; i < items.length; i++)
                 $(select).append(new Option(items[i].text, items[i].value));
         }
     }
-    console.log("called ");
     restoreUpdatedCodeSelectionFields();
 }
 
@@ -490,7 +494,11 @@ function updateAllForSpecificBlocks() {
             text: "Cylinder"
         }];
         for (let i = 0; i < userUploadedShapesNamesArray.length; i++) {
-            items.push({value: userUploadedShapesNamesArray[i], text: userUploadedShapesNamesArray[i]})
+            let name = userUploadedShapesNamesArray[i];
+            if (userUploadedShapesNamesArray[i].length >= 10) {
+                name = userUploadedShapesNamesArray[i].substr(0, 7) + ".." + userUploadedShapesNamesArray[i].substr(userUploadedShapesNamesArray[i].length - 3);
+            }
+            items.push({value: userUploadedShapesNamesArray[i], text: name})
         }
 
         for (let i = 0; i < items.length; i++)
@@ -500,6 +508,8 @@ function updateAllForSpecificBlocks() {
         restoreUpdatedCodeSelectionFields();
     }
 }
+
+
 
 function restoreUpdatedCodeSelectionFields() {
     let element;

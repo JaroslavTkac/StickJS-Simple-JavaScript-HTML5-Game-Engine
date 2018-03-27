@@ -63,7 +63,7 @@ function webGLStart() {
 
     ambientLight = new AmbientLight(0.35, 0.35, 0.35);
     directionalLight = new DirectionalLight(0.05, 0.05, 0.05, 0, 0, 50, false);
-    pointLightArray.push(new PointLight("sun", 0, 0, 0, -10, 0, -50, 50, 0.025, "objArr", false));
+    pointLightArray.push(new PointLight("", 0, 0, 0, 0, 0, 0, null, null, null, null));
 
 
     webgl.clearColor(0, 0, 0, 1.0);

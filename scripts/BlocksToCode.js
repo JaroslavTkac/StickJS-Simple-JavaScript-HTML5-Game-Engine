@@ -176,6 +176,8 @@ function analyzingCodeCluster(index, cluster, loopType, value) {
         opacity = null, transparency = null, camera = null,
         r = null, g = null, b = null,
         ambientR = null, ambientG = null, ambientB = null,
+        pointR = null, pointG = null, pointB = null,
+        pointX = null, pointY = null, pointZ = null,
         useAnimation = null, sumAllValues = null;
     let alreadyApplied = false;
 
@@ -260,6 +262,30 @@ function analyzingCodeCluster(index, cluster, loopType, value) {
                         //console.log("set ambientb");
                         ambientB = cluster[i].value;
                         break;
+                    case "set pointr":
+                        //console.log("set pointR");
+                        pointR = cluster[i].value;
+                        break;
+                    case "set pointg":
+                        //console.log("set pointG");
+                        pointG = cluster[i].value;
+                        break;
+                    case "set pointb":
+                        //console.log("set pointB");
+                        pointB = cluster[i].value;
+                        break;
+                    case "set pointx":
+                        //console.log("set ambientr");
+                        pointX = cluster[i].value;
+                        break;
+                    case "set pointy":
+                        //console.log("set ambientg");
+                        pointY = cluster[i].value;
+                        break;
+                    case "set pointz":
+                        //console.log("set ambientb");
+                        pointZ = cluster[i].value;
+                        break;
                     case "set xrotspeed":
                         //console.log("set xrotspeed");
                         xRotSpeed = cluster[i].value;
@@ -291,7 +317,8 @@ function analyzingCodeCluster(index, cluster, loopType, value) {
                 //Saving all gained data
                 if (!alreadyApplied) {
                     applyChangesToAll(x, y, z, sx, sy, sz, xRot, yRot, zRot, xRotSpeed, yRotSpeed, zRotSpeed, r, g, b,
-                        ambientR, ambientG, ambientB, useAnimation, camera, opacity, transparency, sumAllValues);
+                        ambientR, ambientG, ambientB, pointR, pointG, pointB, pointX, pointY, pointZ,
+                        useAnimation, camera, opacity, transparency, sumAllValues);
                     alreadyApplied = true;
                     searchingFirstLoopWithoutCodeUploading(cluster, i);
                 }
@@ -377,6 +404,30 @@ function analyzingCodeCluster(index, cluster, loopType, value) {
                         //console.log("set ambientb");
                         ambientB = cluster[i].value;
                         break;
+                    case "set pointr":
+                        //console.log("set ambientr");
+                        pointR = cluster[i].value;
+                        break;
+                    case "set pointg":
+                        //console.log("set ambientg");
+                        pointG = cluster[i].value;
+                        break;
+                    case "set pointb":
+                        //console.log("set ambientb");
+                        pointB = cluster[i].value;
+                        break;
+                    case "set pointx":
+                        //console.log("set ambientr");
+                        pointX = cluster[i].value;
+                        break;
+                    case "set pointy":
+                        //console.log("set ambientg");
+                        pointY = cluster[i].value;
+                        break;
+                    case "set pointz":
+                        //console.log("set ambientb");
+                        pointZ = cluster[i].value;
+                        break;
                     case "set xrotspeed":
                         //console.log("set xrotspeed");
                         xRotSpeed = cluster[i].value;
@@ -408,7 +459,8 @@ function analyzingCodeCluster(index, cluster, loopType, value) {
                 //Saving all gained data
                 if (!alreadyApplied) {
                     applyChangesToSpecificType(value, x, y, z, sx, sy, sz, xRot, yRot, zRot, xRotSpeed, yRotSpeed, zRotSpeed, r, g, b,
-                        ambientR, ambientG, ambientB, useAnimation, camera, opacity, transparency, sumAllValues);
+                        ambientR, ambientG, ambientB, pointR, pointG, pointB, pointX, pointY, pointZ,
+                        useAnimation, camera, opacity, transparency, sumAllValues);
                     alreadyApplied = true;
                     searchingFirstLoopWithoutCodeUploading(cluster, i);
                 }
@@ -493,6 +545,30 @@ function analyzingCodeCluster(index, cluster, loopType, value) {
                         //console.log("set ambientb");
                         ambientB = cluster[i].value;
                         break;
+                    case "set pointr":
+                        //console.log("set ambientr");
+                        pointR = cluster[i].value;
+                        break;
+                    case "set pointg":
+                        //console.log("set ambientg");
+                        pointG = cluster[i].value;
+                        break;
+                    case "set pointb":
+                        //console.log("set ambientb");
+                        pointB = cluster[i].value;
+                        break;
+                    case "set pointx":
+                        //console.log("set ambientr");
+                        pointX = cluster[i].value;
+                        break;
+                    case "set pointy":
+                        //console.log("set ambientg");
+                        pointY = cluster[i].value;
+                        break;
+                    case "set pointz":
+                        //console.log("set ambientb");
+                        pointZ = cluster[i].value;
+                        break;
                     case "set xrotspeed":
                         //console.log("set xrotspeed");
                         xRotSpeed = cluster[i].value;
@@ -524,7 +600,8 @@ function analyzingCodeCluster(index, cluster, loopType, value) {
                 //Saving all gained data
                 if (!alreadyApplied) {
                     applyChangesToSpecificObject(value, x, y, z, sx, sy, sz, xRot, yRot, zRot, xRotSpeed, yRotSpeed, zRotSpeed, r, g, b,
-                        ambientR, ambientG, ambientB, useAnimation, camera, opacity, transparency, sumAllValues);
+                        ambientR, ambientG, ambientB, pointR, pointG, pointB, pointX, pointY, pointZ,
+                        useAnimation, camera, opacity, transparency, sumAllValues);
                     alreadyApplied = true;
                     searchingFirstLoopWithoutCodeUploading(cluster, i);
                 }
@@ -536,13 +613,16 @@ function analyzingCodeCluster(index, cluster, loopType, value) {
     if (!alreadyApplied) {
         if (loopType === "basic")
             applyChangesToAll(x, y, z, sx, sy, sz, xRot, yRot, zRot, xRotSpeed, yRotSpeed, zRotSpeed, r, g, b,
-                ambientR, ambientG, ambientB, useAnimation, camera, opacity, transparency, sumAllValues);
+                ambientR, ambientG, ambientB, pointR, pointG, pointB, pointX, pointY, pointZ,
+                useAnimation, camera, opacity, transparency, sumAllValues);
         if (loopType === "specific")
             applyChangesToSpecificType(value, x, y, z, sx, sy, sz, xRot, yRot, zRot, xRotSpeed, yRotSpeed, zRotSpeed, r, g, b,
-                ambientR, ambientG, ambientB, useAnimation, camera, opacity, transparency, sumAllValues);
+                ambientR, ambientG, ambientB, pointR, pointG, pointB, pointX, pointY, pointZ,
+                useAnimation, camera, opacity, transparency, sumAllValues);
         if (loopType === "name")
             applyChangesToSpecificObject(value, x, y, z, sx, sy, sz, xRot, yRot, zRot, xRotSpeed, yRotSpeed, zRotSpeed, r, g, b,
-                ambientR, ambientG, ambientB, useAnimation, camera, opacity, transparency, sumAllValues);
+                ambientR, ambientG, ambientB, pointR, pointG, pointB, pointX, pointY, pointZ,
+                useAnimation, camera, opacity, transparency, sumAllValues);
     }
 }
 
@@ -554,6 +634,8 @@ function analyzingCodeClusterForUploading(index, cluster, loopType, value, trigg
         opacity = null, transparency = null, camera = null,
         r = null, g = null, b = null,
         ambientR = null, ambientG = null, ambientB = null,
+        pointR = null, pointG = null, pointB = null,
+        pointX = null, pointY = null, pointZ = null,
         useAnimation = null, sumAllValues = null;
     let alreadyApplied = false;
     let functionToPass = "";
@@ -639,6 +721,30 @@ function analyzingCodeClusterForUploading(index, cluster, loopType, value, trigg
                         //console.log("set ambientb");
                         ambientB = cluster[i].value;
                         break;
+                    case "set pointr":
+                        //console.log("set ambientr");
+                        pointR = cluster[i].value;
+                        break;
+                    case "set pointg":
+                        //console.log("set ambientg");
+                        pointG = cluster[i].value;
+                        break;
+                    case "set pointb":
+                        //console.log("set ambientb");
+                        pointB = cluster[i].value;
+                        break;
+                    case "set pointx":
+                        //console.log("set ambientr");
+                        pointX = cluster[i].value;
+                        break;
+                    case "set pointy":
+                        //console.log("set ambientg");
+                        pointY = cluster[i].value;
+                        break;
+                    case "set pointz":
+                        //console.log("set ambientb");
+                        pointZ = cluster[i].value;
+                        break;
                     case "set xrotspeed":
                         //console.log("set xrotspeed");
                         xRotSpeed = cluster[i].value;
@@ -668,7 +774,8 @@ function analyzingCodeClusterForUploading(index, cluster, loopType, value, trigg
             else {
                 if (!alreadyApplied) {
                     functionToPass = parseDataForFunctionToPass("applyChangesToAll(", x, y, z, sx, sy, sz, xRot, yRot, zRot, xRotSpeed,
-                        yRotSpeed, zRotSpeed, r, g, b, ambientR, ambientG, ambientB, useAnimation, camera, opacity, transparency, sumAllValues);
+                        yRotSpeed, zRotSpeed, r, g, b, ambientR, ambientG, ambientB, pointR, pointG, pointB, pointX, pointY, pointZ,
+                        useAnimation, camera, opacity, transparency, sumAllValues);
 
                     switch (triggerType) {
                         case "onFrame":
@@ -778,6 +885,30 @@ function analyzingCodeClusterForUploading(index, cluster, loopType, value, trigg
                         //console.log("set ambientb");
                         ambientB = cluster[i].value;
                         break;
+                    case "set pointr":
+                        //console.log("set ambientr");
+                        pointR = cluster[i].value;
+                        break;
+                    case "set pointg":
+                        //console.log("set ambientg");
+                        pointG = cluster[i].value;
+                        break;
+                    case "set pointb":
+                        //console.log("set ambientb");
+                        pointB = cluster[i].value;
+                        break;
+                    case "set pointx":
+                        //console.log("set ambientr");
+                        pointX = cluster[i].value;
+                        break;
+                    case "set pointy":
+                        //console.log("set ambientg");
+                        pointY = cluster[i].value;
+                        break;
+                    case "set pointz":
+                        //console.log("set ambientb");
+                        pointZ = cluster[i].value;
+                        break;
                     case "set xrotspeed":
                         //console.log("set xrotspeed");
                         xRotSpeed = cluster[i].value;
@@ -810,7 +941,8 @@ function analyzingCodeClusterForUploading(index, cluster, loopType, value, trigg
 
                 if (!alreadyApplied) {
                     functionToPass = parseDataForFunctionToPass("applyChangesToSpecificType(", x, y, z, sx, sy, sz, xRot, yRot, zRot, xRotSpeed,
-                        yRotSpeed, zRotSpeed, r, g, b, ambientR, ambientG, ambientB, useAnimation, camera, opacity, transparency, sumAllValues, value);
+                        yRotSpeed, zRotSpeed, r, g, b, ambientR, ambientG, ambientB, pointR, pointG, pointB, pointX, pointY, pointZ,
+                        useAnimation, camera, opacity, transparency, sumAllValues, value);
 
                     switch (triggerType) {
                         case "onFrame":
@@ -920,6 +1052,30 @@ function analyzingCodeClusterForUploading(index, cluster, loopType, value, trigg
                         //console.log("set ambientb");
                         ambientB = cluster[i].value;
                         break;
+                    case "set pointr":
+                        //console.log("set ambientr");
+                        pointR = cluster[i].value;
+                        break;
+                    case "set pointg":
+                        //console.log("set ambientg");
+                        pointG = cluster[i].value;
+                        break;
+                    case "set pointb":
+                        //console.log("set ambientb");
+                        pointB = cluster[i].value;
+                        break;
+                    case "set pointx":
+                        //console.log("set ambientr");
+                        pointX = cluster[i].value;
+                        break;
+                    case "set pointy":
+                        //console.log("set ambientg");
+                        pointY = cluster[i].value;
+                        break;
+                    case "set pointz":
+                        //console.log("set ambientb");
+                        pointZ = cluster[i].value;
+                        break;
                     case "set xrotspeed":
                         //console.log("set xrotspeed");
                         xRotSpeed = cluster[i].value;
@@ -952,7 +1108,8 @@ function analyzingCodeClusterForUploading(index, cluster, loopType, value, trigg
 
                 if (!alreadyApplied) {
                     functionToPass = parseDataForFunctionToPass("applyChangesToSpecificObject(", x, y, z, sx, sy, sz, xRot, yRot, zRot, xRotSpeed,
-                        yRotSpeed, zRotSpeed, r, g, b, ambientR, ambientG, ambientB, useAnimation, camera, opacity, transparency, sumAllValues, value);
+                        yRotSpeed, zRotSpeed, r, g, b, ambientR, ambientG, ambientB, pointR, pointG, pointB, pointX, pointY, pointZ,
+                        useAnimation, camera, opacity, transparency, sumAllValues, value);
 
                     switch (triggerType) {
                         case "onFrame":
@@ -989,17 +1146,20 @@ function analyzingCodeClusterForUploading(index, cluster, loopType, value, trigg
     if (!alreadyApplied) {
         if (loopType === "basic") {
             functionToPass = parseDataForFunctionToPass("applyChangesToAll(", x, y, z, sx, sy, sz, xRot, yRot, zRot, xRotSpeed,
-                yRotSpeed, zRotSpeed, r, g, b, ambientR, ambientG, ambientB, useAnimation, camera, opacity, transparency, sumAllValues);
+                yRotSpeed, zRotSpeed, r, g, b, ambientR, ambientG, ambientB, pointR, pointG, pointB, pointX, pointY, pointZ,
+                useAnimation, camera, opacity, transparency, sumAllValues);
         }
 
         if (loopType === "specific") {
             functionToPass = parseDataForFunctionToPass("applyChangesToSpecificType(", x, y, z, sx, sy, sz, xRot, yRot, zRot, xRotSpeed,
-                yRotSpeed, zRotSpeed, r, g, b, ambientR, ambientG, ambientB, useAnimation, camera, opacity, transparency, sumAllValues, value);
+                yRotSpeed, zRotSpeed, r, g, b, ambientR, ambientG, ambientB, pointR, pointG, pointB, pointX, pointY, pointZ,
+                useAnimation, camera, opacity, transparency, sumAllValues, value);
         }
 
         if (loopType === "name") {
             functionToPass = parseDataForFunctionToPass("applyChangesToSpecificObject(", x, y, z, sx, sy, sz, xRot, yRot, zRot, xRotSpeed,
-                yRotSpeed, zRotSpeed, r, g, b, ambientR, ambientG, ambientB, useAnimation, camera, opacity, transparency, sumAllValues, value);
+                yRotSpeed, zRotSpeed, r, g, b, ambientR, ambientG, ambientB, pointR, pointG, pointB, pointX, pointY, pointZ,
+                useAnimation, camera, opacity, transparency, sumAllValues, value);
         }
 
         switch (triggerType) {
@@ -1042,8 +1202,12 @@ function isLoop(block) {
     return false;
 }
 
-function parseDataForFunctionToPass(method, x, y, z, sx, sy, sz, xRot, yRot, zRot, xRotSpeed, yRotSpeed, zRotSpeed,
-                                    r, g, b, ambientR, ambientG, ambientB, useAnimation, camera, opacity, transparency, sumAllValues, value) {
+function parseDataForFunctionToPass(method, x, y, z, sx, sy, sz,
+                                    xRot, yRot, zRot, xRotSpeed, yRotSpeed, zRotSpeed,
+                                    r, g, b, ambientR, ambientG, ambientB,
+                                    pointR, pointG, pointB, pointX, pointY, pointZ,
+                                    useAnimation,
+                                    camera, opacity, transparency, sumAllValues, value) {
     let data = method;
 
     //x y z
@@ -1142,6 +1306,38 @@ function parseDataForFunctionToPass(method, x, y, z, sx, sy, sz, xRot, yRot, zRo
         ambientB = ambientB.toString() + ",";
     else
         ambientB = "null,";
+    //pointR pointG pointB
+    //----------
+    if (pointR !== null)
+        pointR = pointR.toString() + ",";
+    else
+        pointR = "null,";
+
+    if (pointG !== null)
+        pointG = pointG.toString() + ",";
+    else
+        pointG = "null,";
+
+    if (pointB !== null)
+        pointB = pointB.toString() + ",";
+    else
+        pointB = "null,";
+    //pointX pointY pointZ
+    //----------
+    if (pointX !== null)
+        pointX = pointX.toString() + ",";
+    else
+        pointX = "null,";
+
+    if (pointY !== null)
+        pointY = pointY.toString() + ",";
+    else
+        pointY = "null,";
+
+    if (pointZ !== null)
+        pointZ = pointZ.toString() + ",";
+    else
+        pointZ = "null,";
     //other
     //---------
     if (useAnimation !== null)
@@ -1169,17 +1365,17 @@ function parseDataForFunctionToPass(method, x, y, z, sx, sy, sz, xRot, yRot, zRo
     else
         sumAllValues = "null";
 
-    //console.log("PARSING value: " + value);
-    //console.log("PARSING sumAllValues: " + sumAllValues);
     if (value !== undefined /*&& value !== null*/) {
 
         value = value.toString() + ",";
         data += value + x + y + z + sx + sy + sz + xRot + yRot + zRot + xRotSpeed + yRotSpeed + zRotSpeed +
-            r + g + b + ambientR + ambientG + ambientB + useAnimation + camera + opacity + transparency + sumAllValues + ");";
+            r + g + b + ambientR + ambientG + ambientB + pointR + pointG + pointB + pointX + pointY + pointZ
+            + useAnimation + camera + opacity + transparency + sumAllValues + ");";
     }
     else {
         data += x + y + z + sx + sy + sz + xRot + yRot + zRot + xRotSpeed + yRotSpeed + zRotSpeed +
-            r + g + b + ambientR + ambientG + ambientB + useAnimation + camera + opacity + transparency + sumAllValues + ");";
+            r + g + b + ambientR + ambientG + ambientB + pointR + pointG + pointB + pointX + pointY + pointZ
+            + useAnimation + camera + opacity + transparency + sumAllValues + ");";
     }
 
     return data;

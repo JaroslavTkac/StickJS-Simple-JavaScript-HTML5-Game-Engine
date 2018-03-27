@@ -11,6 +11,12 @@ function startEditorWindow() {
     canvasEditorArr.push(document.getElementById("../shapes/cylinder.json"));
     canvasEditorArr.push(document.getElementById("../shapes/simpleSphere.json"));
 
+    canvasEditorArr.push(document.getElementById("../shapes/christmasTree.json"));
+    canvasEditorArr.push(document.getElementById("../shapes/pineTree.json"));
+    canvasEditorArr.push(document.getElementById("../shapes/simpleTree.json"));
+    canvasEditorArr.push(document.getElementById("../shapes/house.json"));
+
+
     for (let i in canvasEditorArr) {
         initGLForEditor(canvasEditorArr[i]);
         //console.log(webglEditorArr[i]);
@@ -38,7 +44,8 @@ function startEditorWindow() {
 
 function initEditorEnvironment() {
     let srcArr = ["../shapes/cube.json", "../shapes/sphere.json", "../shapes/cone.json",
-        "../shapes/cylinder.json", "../shapes/simpleSphere.json"];
+        "../shapes/cylinder.json", "../shapes/simpleSphere.json", "../shapes/christmasTree.json",
+        "../shapes/pineTree.json", "../shapes/simpleTree.json", "../shapes/house.json"];
 
     new LoadObject("../shapes/cube.json", "../assets/img/textures/sun.jpg", {
         "name": "forEditor",
@@ -65,7 +72,7 @@ function initEditorEnvironment() {
         "alpha": 1.0
     }, "preview", webglEditorArr[1]);
 
-    for (let i = 2; i < 6; i++) {
+    for (let i = 2; i < 10; i++) {
         initPreview(i);
     }
 
@@ -73,9 +80,8 @@ function initEditorEnvironment() {
 
 function initPreview(i) {
     let srcArr = ["../shapes/cube.json", "../shapes/sphere.json", "../shapes/cone.json",
-        "../shapes/cylinder.json", "../shapes/simpleSphere.json"];
-
-    console.log(previewObjects);
+        "../shapes/cylinder.json", "../shapes/simpleSphere.json", "../shapes/christmasTree.json",
+        "../shapes/pineTree.json", "../shapes/simpleTree.json", "../shapes/house.json"];
 
     if (((i - 1) - previewObjects) !== 0) {
         setTimeout(function () {
@@ -97,7 +103,7 @@ function initPreview(i) {
     }, "preview", webglEditorArr[i]);
 
     // Init loaded user objects
-    if (i === 5) {
+    if (i === 9) {
         setTimeout(function () {
             loadUserData("../shapes/user_shapes", "object");
         }, 100);

@@ -364,25 +364,18 @@ function initProperties(object, properties, saveTo) {
     if (saveTo === "objArr") {
         objArr.push(object);
         loadedObjects++;
-        //console.log("name: " + object.name);
-        //console.log("savedShapeName: " + object.savedShapeName);
-        //console.log("type: " + object.type);
+        updateAbleToDeleteLiveShapesInSceneList();
     }
     if (saveTo === "editor") {
         objEditorArr.push(object);
         loadedObjects++;
         editorObjectLoaded = true;
-        //console.log(objEditorArr[0]);
-        //console.log("Editor obj size: " + objEditorArr.length);
     }
     if (saveTo === "preview") {
         objPreviewArr.push(object);
         loadedObjects++;
         previewObjects++;
         uploadedObjectLoadedSuccessfully = true;
-        console.log("really inited");
-        //console.log("loaded preview object: " + previewObjects);
-        //console.log("Preview obj size: " + objPreviewArr.length);
     }
 }
 

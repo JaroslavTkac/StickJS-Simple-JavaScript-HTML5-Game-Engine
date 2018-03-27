@@ -64,22 +64,6 @@ class PointLight {
         this.radius = radius;
         this.name = name;
         this.createObj = createObj;
-        if (this.createObj) {
-            /*new LoadObject("shapes/simpleSphere.json", "assets/img/textures/sun.jpg", {
-                "name": this.name,
-                "x": this.x,
-                "y": this.y,
-                "z": this.z,
-                "sx": 3.5,
-                "sy": 3.5,
-                "sz": 3.5,
-                "yRot": 10,
-                "yRotSpeed": 45,
-                "animateRotation": true,
-                "lighting": false,
-                "useTexture": true
-            }, saveTo);*/
-        }
     }
 
     changePlace(x, y, z) {

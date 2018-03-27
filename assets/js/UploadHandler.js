@@ -29,12 +29,12 @@ function waitUntilWebglInitialized() {
     let textureToApplySrc = "../assets/img/textures/sun.jpg";
     //initialized -> init objects
     for (let i = 0; i < liveLoadedShapesArr.length; i++) {
-        console.log("-------------");
+        /*console.log("-------------");
         console.log(liveLoadedShapesArr);
         console.log("REAL TEXTURE: " + liveLoadedShapesArr[i].textureSrc);
         console.log("-------------");
         console.log("available texture array");
-        console.log(availableTexturesOnServer);
+        console.log(availableTexturesOnServer);*/
         if(liveLoadedShapesArr[i].textureSrc.indexOf("user_textures") !== -1){
             //check for texture availability../assets/img/textures
             for (let j = 0; j < availableTexturesOnServer.length; j++) {
@@ -51,9 +51,9 @@ function waitUntilWebglInitialized() {
             textureToApplySrc = liveLoadedShapesArr[i].textureSrc;
         }
 
-        console.log("-------------");
+        /*console.log("-------------");
         console.log("INITING OBJECT WITH: " + textureToApplySrc);
-        console.log("-------------");
+        console.log("-------------");*/
         new LoadObject(liveLoadedShapesArr[i].jsonPath, textureToApplySrc, {
             "name": liveLoadedShapesArr[i].name,
             "savedShapeName": liveLoadedShapesArr[i].savedShapeName,
@@ -180,7 +180,7 @@ function loadUserData(dir, type) {
             }
             //after successful file location change appending html document
             for (let i = 0; i < folderContent.length; i++) {
-                console.log(content['data'][i]);
+                //console.log(content['data'][i]);
                 if (type === "image") {
                     $('#texture-picker-row').append(
                         "<div class=\"col-lg-4 col-md-4 col-sm-4 col-xs-6 texture-padding\">" +
@@ -312,7 +312,6 @@ function uploadedObjectInitSequence(projectType, objects){
 
 function waitUntilUserUploadedObjectIsLoadedSuccessfully(){
     if (!uploadedObjectLoadedSuccessfully) {
-        console.log("waiting");
         setTimeout(waitUntilUserUploadedObjectIsLoadedSuccessfully, 50);
         return;
     }
@@ -568,7 +567,7 @@ function initUploadedObject(file_path) {
         "transparency": false,
         "alpha": 1.0
     }, "preview", webglEditorArr[webglEditorArr.length - 1]); // new webgl index here
-    console.log(file_path + " Successfully added to preview scene");
+    //console.log(file_path + " Successfully added to preview scene");
 }
 
 //Delete file from server
@@ -715,8 +714,6 @@ function loadMovementConfig() {
             projectId: projectId
         },
         success: function (response) {
-            console.log("LOAD MOVEMENT CONFIG response");
-            console.log(response);
             let data = JSON.parse(response);
             //console.log(response);
 
@@ -894,18 +891,20 @@ function saveSavedShapes() {
     //Send to server user object data
     let saved_data = JSON.stringify(savedShapesArr);
 
-    $.ajax({
-        url: "../php/upload_saved_shapes.php",
-        type: "POST",
-        data: {
-            projectId: projectId,
-            saved_shapes_json_data: saved_data,
-            projectType: projectType
-        },
-        success: function (response) {
-            //console.log(response);
-        }
-    });
+    if(saved_data.length > 2 && savedShapesArr.length > 0) {
+        $.ajax({
+            url: "../php/upload_saved_shapes.php",
+            type: "POST",
+            data: {
+                projectId: projectId,
+                saved_shapes_json_data: saved_data,
+                projectType: projectType
+            },
+            success: function (response) {
+                //console.log(response);
+            }
+        });
+    }
 }
 
 //Loading from DB all user saved shapes -> references for saved canvas IMGs
