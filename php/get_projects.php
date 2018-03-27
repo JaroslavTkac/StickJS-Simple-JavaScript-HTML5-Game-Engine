@@ -7,7 +7,7 @@
  */
 
 // Include connection file
-require_once 'connection.php';
+require 'connection.php';
 
 // Initialize the session
 //session_start();

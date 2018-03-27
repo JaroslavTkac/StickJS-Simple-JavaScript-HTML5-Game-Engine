@@ -6,6 +6,7 @@
  * Time: 11:29
  */
 
+require_once ("../php/login.php");
 
 // Initialize the session
 session_start();

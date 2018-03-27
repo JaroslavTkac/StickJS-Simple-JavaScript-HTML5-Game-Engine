@@ -63,7 +63,7 @@ function webGLStart() {
 
     ambientLight = new AmbientLight(0.35, 0.35, 0.35);
     directionalLight = new DirectionalLight(0.05, 0.05, 0.05, 0, 0, 50, false);
-    pointLightArray.push(new PointLight("sun", 0.3, 0.2, 0.1, -10, 0, -50, 50, 0.025, "objArr", false));
+    pointLightArray.push(new PointLight("sun", 0, 0, 0, -10, 0, -50, 50, 0.025, "objArr", false));
 
 
     webgl.clearColor(0, 0, 0, 1.0);
@@ -73,36 +73,6 @@ function webGLStart() {
     document.onkeyup = handleKeyUp;
 
 
-    /*sound = new Sound();
-    sound.addSong(new Song("standard_sounds/rotation_engine.mp3", "rotationEngine"));
-    sound.addSong(new Song("standard_sounds/space_engine.mp3", "spaceEngine"));
-    sound.addSong(new Song("standard_sounds/space_ambient.mp3", "spaceAmbient"));
-
-
-    sound.getSongByName("rotationEngine").sound.volume = 0.35;
-    sound.getSongByName("spaceAmbient").repeat();
-    sound.getSongByName("spaceAmbient").sound.volume = 0.30;
-    sound.getSongByName("spaceAmbient").play();
-
-
-    getKeyByName("w").songName = "spaceEngine";
-    getKeyByName("w").useSong = true;
-
-    getKeyByName("s").songName = "spaceEngine";
-    getKeyByName("s").useSong = true;
-
-    getKeyByName("a").songName = "rotationEngine";
-    getKeyByName("a").useSong = true;
-
-    getKeyByName("d").songName = "rotationEngine";
-    getKeyByName("d").useSong = true;
-
-    getKeyByName("shift").songName = "rotationEngine";
-    getKeyByName("shift").useSong = true;
-
-    getKeyByName("space").songName = "rotationEngine";
-    getKeyByName("space").useSong = true;
-*/
     /*new LoadObject("../shapes/cube.json", "../assets/img/textures/sun.jpg", {
         "name": "------NotSaveToDB------",
         "x": 0,
@@ -125,6 +95,16 @@ function loading() {
         readyToSaveData = true;
         console.log("Objects loaded in scene: " + objArr.length);
         lastRenderedMainScene = new LastRendered();
+
+        if(projectType === "general") {
+            fpsElement = document.getElementById("fps");
+            fpsNode = document.createTextNode("");
+            avgFpsElement = document.getElementById("avgFps");
+            avgFpsNode = document.createTextNode("");
+            xyzElement = document.getElementById("xyz");
+            xyzNode = document.createTextNode("");
+        }
+        
         render();
     }
     else {
@@ -135,147 +115,34 @@ function loading() {
 
 function render() {
     requestAnimationFrame(render);
-    fpsSum += 1;
     handleKeys();
     drawScene(canvas, webgl, objArr, mvMatrix, pMatrix, mvMatrixStack, shaderProgram,
         ambientLight, directionalLight, pointLightArray);
     animate(objArr);
     renderEditor();
     userCode();
-}
 
-function world(size) {
-    let cubeSrc = "shapes/cube.json";
-    let cylinderSrc = "shapes/cylinder.json";
-    let coneSrc = "shapes/cone.json";
-    let simpleSphereSrc = "shapes/simpleSphere.json";
-    let sphereSrc = "shapes/sphere.json";
-
-    let object;
-    let src, geometry;
-    let rndObj;
-    console.log("world size: " + size);
-    for (let i = 0; i < size; i++) {
-
-        rndObj = Math.floor(Math.random() * 4) + 1;
-        switch (rndObj) {
-            case 1:
-                src = "assets/img/textures/metal.jpg";
-                break;
-            case 2:
-                src = "assets/img/textures/leather.jpg";
-                break;
-            case 3:
-                src = "assets/img/textures/carbon_fiber.jpg";
-                break;
-            case 4:
-                src = "assets/img/textures/wood.jpg";
-                break;
-        }
-        rndObj = Math.floor(Math.random() * 5) + 1;
-        switch (rndObj) {
-            case 1:
-                geometry = cubeSrc;
-                break;
-            case 2:
-                geometry = cylinderSrc;
-                break;
-            case 3:
-                geometry = coneSrc;
-                break;
-            case 4:
-                geometry = simpleSphereSrc;
-                break;
-            case 5:
-                geometry = sphereSrc;
-                break;
-        }
-        object = new LoadObject(geometry, src, {
-            "name": Math.random() < 0.95 ? "stars" : String(i),
-            "x": -52 + Math.random() * 75,
-            "y": -22 + Math.random() * 45,
-            "z": -50 - Math.random() * 50,
-            "r": Math.random(),
-            "g": Math.random(),
-            "b": Math.random(),
-            "xRot": -20 + Math.random() * 60,
-            "yRot": -20 + Math.random() * 60,
-            "zRot": -20 + Math.random() * 60,
-            "xRotSpeed": Math.random() * 35,
-            "yRotSpeed": Math.random() * 35,
-            "zRotSpeed": Math.random() * 35,
-            "animateRotation": Math.random() < 0.95,
-            "useTexture": Math.random() > 0.5,
-            "alpha": Math.random() + 0.4
-        });
+    if(projectType === "general") {
+        fpsCounter();
+        avgFps();
+        displayXYZ();
     }
 }
 
-function demoPlayer() {
-    new LoadObject("shapes/cylinder.json", "assets/img/textures/metal.jpg", {
-        "name": "back",
-        "x": 0,
-        "y": -1,
-        "z": -2.5,
-        "sx": 0.4,
-        "sy": 0.5,
-        "sz": 0.8,
-        "xRot": -90,
-        "yRot": -10,
-        "yRotSpeed": 10,
-        "useTexture": true,
-        "useCamera": true
-    });
-    new LoadObject("shapes/cube.json", "assets/img/textures/metal.jpg", {
-        "name": "wingL",
-        "x": -0.8,
-        "y": -0.7,
-        "z": -2,
-        "sx": 0.5,
-        "sy": 0.04,
-        "sz": 0.25,
-        "useTexture": true,
-        "useCamera": true
-    });
-    new LoadObject("shapes/cube.json", "assets/img/textures/metal.jpg", {
-        "name": "wingR",
-        "x": 0.8,
-        "y": -0.7,
-        "z": -2,
-        "sx": 0.5,
-        "sy": 0.04,
-        "sz": 0.25,
-        "useTexture": true,
-        "useCamera": true
-    });
-    new LoadObject("shapes/cone.json", "assets/img/textures/metal.jpg", {
-        "name": "wingRCone",
-        "x": 1.75,
-        "y": -0.85,
-        "z": -2.55,
-        "sx": 0.3,
-        "sy": 0.3,
-        "sz": 0.6,
-        "xRot": -90,
-        "yRot": 10,
-        "yRotSpeed": 10,
-        "animateRotation": true,
-        "useTexture": true,
-        "useCamera": true
-    });
-    new LoadObject("shapes/cone.json", "assets/img/textures/metal.jpg", {
-        "name": "wingLCone",
-        "x": -1.75,
-        "y": -0.85,
-        "z": -2.55,
-        "sx": 0.3,
-        "sy": 0.3,
-        "sz": 0.6,
-        "xRot": -90,
-        "yRot": 10,
-        "yRotSpeed": -10,
-        "animateRotation": true,
-        "useTexture": true,
-        "useCamera": true
-    });
+function fpsCounter() {
+    let delta = (Date.now() - lastCalledTime) / 1000;
+    lastCalledTime = Date.now();
+    fps = 1 / delta;
+    fpsSum += fps;
+    fpsElement.appendChild(fpsNode);
+    fpsNode.nodeValue = "Fps: " + fps.toFixed(2);
+}
+function avgFps(){
+    framesPassed++;
+    avgFpsElement.appendChild(avgFpsNode);
+    avgFpsNode.nodeValue = "Avg. Fps: " + (fpsSum/framesPassed).toFixed(2);
+}
+function displayXYZ(){
+    xyzElement.appendChild(xyzNode);
+    xyzNode.nodeValue = "x: " + x.toFixed(2) + " y: " + y.toFixed(2) + " z: " + z.toFixed(2);
 }

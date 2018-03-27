@@ -62,10 +62,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
                             $url = $_SERVER['REQUEST_URI'];
                             if(strpos($url, 'views')) {
-                                //header("location: home.php");
                                 //echo $url;
+                                //header("location: home.php");
+
                                 if(strpos($url, 'views/editor.php')){
-                                    header("location: editor.php");
+                                    header("location: my_projects.php");
                                     //echo "RETURN TO: editor.php";
                                 }
                                 if(strpos($url, 'views/users_projects.php')){

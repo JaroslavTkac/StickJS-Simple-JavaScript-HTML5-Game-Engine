@@ -21,9 +21,11 @@ let mvMatrixStackE = [];
 let pMatrixE = mat4.create();
 //let editorObjectLoaded = false;
 let opacitySlider;
-// Animation
+//Animation
 let lastTime = 0;
-// Frames per Second
+
+
+//Frames per Second
 let fpsElement;
 let fpsNode;
 let avgFpsElement;
@@ -32,7 +34,11 @@ let framesPassed = 0;
 let fpsSum = 0;
 let lastCalledTime = 0;
 let fps = 0;
-// Environment
+//X Y Z current coordinates
+let xyzElement;
+let xyzNode;
+
+//Environment
 let objArr = [];
 let objEditorArr = [];
 let objPreviewArr = [];
@@ -44,7 +50,7 @@ let pointLightArray = [];
 
 let ambientLightE, directionalLightE;
 let pointLightArrayE = [];
-// Movement
+//Movement
 let x = 0, y = 0, z = 0, xRotation = 0, yRotation = 0, zRotation = 0;
 let keysArray = [];
 let keyboard;

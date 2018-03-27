@@ -9,13 +9,14 @@
 
 session_start();
 
-
+require_once ('../php/login.php');
 require_once ('../php/check_project_type.php');
 
 $project_id = $_GET['project_id'];
 $project_name = $_GET['project_name'];
 $isLoggedIn = false;
 $isUsersProject = false;
+$projectUserId = 0;
 
 if (isset($_SESSION['username']) || !empty($_SESSION['username'])) {
     $isLoggedIn = true;
@@ -39,6 +40,7 @@ if($projectType === "general" && strlen($_GET['preview']) == 0) {
 }
 if(($projectType === "publish" || $projectType == "demo") && strlen($_GET['preview']) > 0){
     include('../php/get_users_code_file_path.php');
+    require('../php/get_project_user.php');
 }
 if($projectType === "general" && strlen($_GET['preview']) > 0){
     if (!isset($_SESSION['username']) || empty($_SESSION['username'])) {
@@ -86,8 +88,14 @@ if($projectType === "general" && strlen($_GET['preview']) > 0){
     <script src="https://cdn.jsdelivr.net/jquery.roundslider/1.3/roundslider.min.js"></script>
 
     <script>
+        let isLoggedIn = "<?php echo $isLoggedIn; ?>";
         let projectType = "<?php echo $projectType; ?>";
         let userId = "<?php echo $_SESSION['user_id']; ?>";
+        let projectUserId = "<?php echo $projectUserId; ?>";
+        if (!isLoggedIn || userId !== projectUserId){
+            console.log("NOT CORRECT USER ID");
+            userId = projectUserId;
+        }
         let projectId = "<?php echo $project_id; ?>";
         console.log("PROJECT ID: " + projectId)
     </script>
@@ -213,8 +221,24 @@ if($projectType === "general" && strlen($_GET['preview']) > 0){
     <div class="row">
         <!-- Main Scene & Importer -->
         <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12" id="left-window" style="padding: 0 0 0 0">
+
+            <!-- frame rate and x y z coodrinates overlay -->
+            <div align="center" id="overlay">
+                <div >
+                    <span id="fps"></span>
+                    <span id="avgFps"></span>
+                </div>
+                <div>
+                    <span id="xyz"></span>
+                </div>
+            </div>
+
+
             <!-- WEB GL Canvas area -->
             <canvas id="Scene" style="border: 3pt black solid"></canvas>
+
+
+
 
             <!-- Add shape name modal -->
             <div class="modal fade" id="add-name-modal" role="dialog" data-backdrop="static" data-keyboard="false">

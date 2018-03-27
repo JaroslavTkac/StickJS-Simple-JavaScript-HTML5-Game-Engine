@@ -47,6 +47,15 @@ p {
     color: #ea640b;
 }
 
+
+#overlay {
+    position: absolute;
+    color: white;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 11pt;
+    padding: 0.5%;
+
+}
 /* Login window */
 
 /* Carousel Styling */

@@ -829,7 +829,6 @@ function loadSvgCodeScene() {
             //Check or some block data are not corrupted with NaN value
             //if so restore object coordinates to 30;30
             for (let i = 0; i < svgArr.length; i++){
-                console.log("x: " + getSvgElementX(svgArr[i]) + " y: " + getSvgElementY(svgArr[i]));
                 if(isNaN(getSvgElementX(svgArr[i])) || isNaN(getSvgElementY(svgArr[i]))){
                     let currentMatrix = svgArr[i].getAttributeNS(null, "transform").slice(7, -1).split(' ');
 
