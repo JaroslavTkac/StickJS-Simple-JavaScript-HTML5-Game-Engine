@@ -11,9 +11,6 @@ function applyChangesToAll(x, y, z, sx, sy, sz, xRot, yRot, zRot,
                            animateRotation,
                            useCamera, opacity, transparency, sumAllValues) {
 
-    console.log(pointR);
-    console.log(pointG);
-    console.log(pointB);
 
     //console.log("sumAllValues: " + sumAllValues);
     //console.log("Going to apply changes TO ALL");
@@ -95,20 +92,30 @@ function applyChangesToAll(x, y, z, sx, sy, sz, xRot, yRot, zRot,
             ambientLight.b = customParseFloat(ambientB);
 
         if (pointR !== null)
-            pointLightArray[0].r = customParseFloat(pointR);
+            pointLight.r = customParseFloat(pointR);
         if (pointG !== null)
-            pointLightArray[0].g = customParseFloat(pointG);
+            pointLight.g = customParseFloat(pointG);
         if (pointB !== null)
-            pointLightArray[0].b = customParseFloat(pointB);
+            pointLight.b = customParseFloat(pointB);
+
+
+        console.log(pointLight);
+        console.log(pointX + " " + pointY + " " + pointZ);
+
 
         if (pointX !== null)
-            pointLightArray[0].x = customParseFloat(pointX);
+            pointLight.x = customParseFloat(pointX);
         if (pointY !== null)
-            pointLightArray[0].y = customParseFloat(pointY);
+            pointLight.y = customParseFloat(pointY);
         if (pointZ !== null)
-            pointLightArray[0].z = customParseFloat(pointZ);
+            pointLight.z = customParseFloat(pointZ);
+
+        //pointLightArray.splice(0, 1);
+
+        //pointLightArray.push(new PointLight("", customParseFloat(pointR), customParseFloat(pointG), customParseFloat(pointB), customParseFloat(pointX), customParseFloat(pointY), customParseFloat(pointZ), null, null, null, null));
 
 
+        console.log(pointLight);
 
         for (let i = 0; i < objArr.length; i++) {
             if (x !== null)
@@ -155,7 +162,6 @@ function applyChangesToAll(x, y, z, sx, sy, sz, xRot, yRot, zRot,
     }
 
 
-    console.log(pointLightArray[0]);
     //console.log(objArr);
 }
 
@@ -187,12 +193,18 @@ function applyChangesToSpecificType(objectType, x, y, z, sx, sy, sz, xRot, yRot,
         if (pointB !== null)
             pointLightArray[0].b += customParseFloat(pointB);
 
-        if (pointX !== null)
+        if (pointX !== null) {
             pointLightArray[0].x += customParseFloat(pointX);
-        if (pointY !== null)
+            pointLightArray[0].centerX += customParseFloat(pointX);
+        }
+        if (pointY !== null) {
             pointLightArray[0].y += customParseFloat(pointY);
-        if (pointZ !== null)
+            pointLightArray[0].centerY += customParseFloat(pointY);
+        }
+        if (pointZ !== null) {
             pointLightArray[0].z += customParseFloat(pointZ);
+            pointLightArray[0].centerZ += customParseFloat(pointY);
+        }
 
 
         for (let i = 0; i < objArr.length; i++) {
@@ -255,12 +267,18 @@ function applyChangesToSpecificType(objectType, x, y, z, sx, sy, sz, xRot, yRot,
         if (pointB !== null)
             pointLightArray[0].b = customParseFloat(pointB);
 
-        if (pointX !== null)
+        if (pointX !== null) {
             pointLightArray[0].x = customParseFloat(pointX);
-        if (pointY !== null)
+            pointLightArray[0].centerX = customParseFloat(pointX);
+        }
+        if (pointY !== null) {
             pointLightArray[0].y = customParseFloat(pointY);
-        if (pointZ !== null)
+            pointLightArray[0].centerY = customParseFloat(pointY);
+        }
+        if (pointZ !== null) {
             pointLightArray[0].z = customParseFloat(pointZ);
+            pointLightArray[0].centerZ = customParseFloat(pointY);
+        }
 
 
         for (let i = 0; i < objArr.length; i++) {
@@ -341,12 +359,18 @@ function applyChangesToSpecificObject(name, x, y, z, sx, sy, sz, xRot, yRot, zRo
         if (pointB !== null)
             pointLightArray[0].b += customParseFloat(pointB);
 
-        if (pointX !== null)
+        if (pointX !== null) {
             pointLightArray[0].x += customParseFloat(pointX);
-        if (pointY !== null)
+            pointLightArray[0].centerX += customParseFloat(pointX);
+        }
+        if (pointY !== null) {
             pointLightArray[0].y += customParseFloat(pointY);
-        if (pointZ !== null)
+            pointLightArray[0].centerY += customParseFloat(pointY);
+        }
+        if (pointZ !== null) {
             pointLightArray[0].z += customParseFloat(pointZ);
+            pointLightArray[0].centerZ += customParseFloat(pointY);
+        }
 
 
         if (x !== null)
@@ -405,12 +429,21 @@ function applyChangesToSpecificObject(name, x, y, z, sx, sy, sz, xRot, yRot, zRo
         if (pointB !== null)
             pointLightArray[0].b = customParseFloat(pointB);
 
-        if (pointX !== null)
+
+        if (pointX !== null) {
             pointLightArray[0].x = customParseFloat(pointX);
-        if (pointY !== null)
+            pointLightArray[0].centerX = customParseFloat(pointX);
+        }
+        if (pointY !== null) {
             pointLightArray[0].y = customParseFloat(pointY);
-        if (pointZ !== null)
+            pointLightArray[0].centerY = customParseFloat(pointY);
+        }
+        if (pointZ !== null) {
             pointLightArray[0].z = customParseFloat(pointZ);
+            pointLightArray[0].centerZ = customParseFloat(pointY);
+        }
+
+
 
 
         if (x !== null)

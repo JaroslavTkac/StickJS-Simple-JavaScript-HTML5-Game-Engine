@@ -716,7 +716,7 @@ $(document).ready(function () {
         yRotation = 0;
         zRotation = 0;
         playFrames = false;
-        fpsSum = 0;
+        frameCounter = 0;
         //load saved scene
         loadScene();
 

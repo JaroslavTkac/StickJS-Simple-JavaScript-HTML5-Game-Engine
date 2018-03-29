@@ -26,8 +26,8 @@ $(document).ready(function () {
     //Play Frames Button
     $('#start-frame-btn').click(function () {
         playFrames = true;
-        fpsSum = 0;
-        console.log("Frames = " + fpsSum);
+        frameCounter = 0;
+        console.log("Frames = " + frameCounter);
     });
 
     //Clear Code Button
@@ -71,7 +71,7 @@ function parsingBlocks() {
                 //console.log("--On Frame--");
                 //console.log(cluster);
                 //console.log(cluster[0].value);
-                searchingFirstLoopWithCodeUploading(cluster, 1, [cluster[0].value], "onFrame", i);
+                searchingFirstLoopWithCodeUploading(cluster, 1, [cluster[0].value, cluster[0].value2], "onFrame", i);
                 break;
             case "on repeat":
                 //console.log("--On Repeat--");
@@ -1382,7 +1382,7 @@ function parseDataForFunctionToPass(method, x, y, z, sx, sy, sz,
 }
 
 function onFrameConvert(triggerValue, functionToPass) {
-    let ifStatement = "if ( playFrames && fpsSum === " + triggerValue[0] + " ) {\n        ";
+    let ifStatement = "if ( playFrames && frameCounter " + triggerValue[1] + " " + triggerValue[0] + " ) {\n        ";
     let currData = "";
 
     //console.log(triggerValue);
@@ -1396,7 +1396,7 @@ function onFrameConvert(triggerValue, functionToPass) {
 }
 
 function onFrameRepeatConvert(triggerValue, functionToPass) {
-    let ifStatement = "if ( playFrames && fpsSum % " + triggerValue[0] + " === 0 ) {\n        ";
+    let ifStatement = "if ( playFrames && frameCounter % " + triggerValue[0] + " === 0 ) {\n        ";
     let currData = "";
 
     if (tempCodeToAddArr === "")

@@ -11,13 +11,15 @@ require_once 'connection.php';
 
 
 if(isset($_POST['projectId']) && isset($_POST['saved_scene_json_data']) && ($_POST['projectType'] === "general")){
-    $sql = "UPDATE users_saved_scene SET json_data = ? WHERE project_id = ?";
+    $sql = "UPDATE users_saved_scene SET json_data = ?, ambient_data = ?, point_data = ?  WHERE project_id = ?";
 
     if($stmt = $mysqli->prepare($sql)){
-        $stmt->bind_param("ss", $param_json_data, $param_project_id);
+        $stmt->bind_param("ssss", $param_json_data, $param_ambient_data, $param_point_data, $param_project_id);
         //Setting parameters
         $param_project_id = $_POST['projectId'];
         $param_json_data = $_POST['saved_scene_json_data'];
+        $param_ambient_data = $_POST['ambient'];
+        $param_point_data = $_POST['point'];
 
         //Executing SQL
         if($stmt->execute()){

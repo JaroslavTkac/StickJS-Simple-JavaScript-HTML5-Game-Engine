@@ -157,6 +157,9 @@ function loadUserData(dir, type) {
             userId: userId
         },
         success: function (response) {
+            console.log("pr Id: " + projectId);
+            console.log("user Id: " + userId);
+
             let content = JSON.parse(response);
             let data = "";
             let folderContent = [];
@@ -850,6 +853,11 @@ function saveScene() {
 
     //Send to server user object data
     let obj_data = JSON.stringify(objArr);
+    let ambientArr = [];
+    ambientArr.push(ambientLight);
+    let ambient = JSON.stringify(ambientArr);
+    pointLightArray.push(pointLight);
+    let point =  JSON.stringify(pointLightArray);
 
     $.ajax({
         url: "../php/upload_saved_scene.php",
@@ -857,6 +865,8 @@ function saveScene() {
         data: {
             projectId: projectId,
             saved_scene_json_data: obj_data,
+            ambient: ambient,
+            point: point,
             projectType: projectType
         },
         success: function (response) {
@@ -876,11 +886,39 @@ function loadScene() {
         },
         success: function (response) {
             //console.log("load saved scene from db");
-            //console.log(response);
-            sceneToLoadArr = JSON.parse(response);
+            let data = JSON.parse(response);
+            //console.log(data);
+            //sceneToLoadArr = data[0]['jsonData'];
+            sceneToLoadArr = JSON.parse(data[0]['jsonData']);
+            console.log(sceneToLoadArr);
+
+
 
             if (sceneToLoadArr.length === 0) {
                 sceneToLoadArr = null;
+            }
+
+            let ambient = JSON.parse(data[0]['ambient']);
+            console.log(ambient);
+            if(ambient.length !== 0) {
+                ambientLight.r = ambient[0].r;
+                ambientLight.g = ambient[0].g;
+                ambientLight.b = ambient[0].b;
+            }
+
+            let point = JSON.parse(data[0]['point']);
+            console.log(point);
+            if(point.length !== 0) {
+                pointLight.r = point[0].r;
+                pointLight.g = point[0].g;
+                pointLight.b = point[0].b;
+                pointLight.x = point[0].x;
+                pointLight.y = point[0].y;
+                pointLight.z = point[0].z;
+                pointLight.centerX = point[0].x;
+                pointLight.centerY = point[0].y;
+                pointLight.centerZ = point[0].z;
+                console.log(pointLight);
             }
         }
     });

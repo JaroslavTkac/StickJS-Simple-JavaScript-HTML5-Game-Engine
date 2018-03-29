@@ -14,12 +14,12 @@ function animate(array) {
                 array[i].zRot += (array[i].zRotSpeed * elapsed) / 1000.0;
             }
         }
-        orbitLight(pointLightArray);
+        //orbitLight(pointLight);
     }
     lastTime = timeNow;
 }
 
-function drawScene(canvas, webgl, array, mvMatrix, pMatrix, mvMatrixStack, shaderProgram, ambientLight, directionalLight, pointLightArray) {
+function drawScene(canvas, webgl, array, mvMatrix, pMatrix, mvMatrixStack, shaderProgram, ambientLight, directionalLight, pointLight) {
     resize(canvas, webgl);
     webgl.viewport(0, 0, webgl.viewportWidth, webgl.viewportHeight);
     webgl.clear(webgl.COLOR_BUFFER_BIT | webgl.DEPTH_BUFFER_BIT);
@@ -27,6 +27,7 @@ function drawScene(canvas, webgl, array, mvMatrix, pMatrix, mvMatrixStack, shade
     mat4.perspective(75, webgl.viewportWidth / webgl.viewportHeight, 0.1, 1200.0, pMatrix);
 
     mat4.identity(mvMatrix);
+
 
     for (let i in array) {
         mvPushMatrix(mvMatrix, mvMatrixStack);
@@ -49,7 +50,7 @@ function drawScene(canvas, webgl, array, mvMatrix, pMatrix, mvMatrixStack, shade
         mat4.multiply(mvMatrix, scaleMatrix);
 
         array[i].rotation(mvMatrix);
-        array[i].draw(webgl, mvMatrix, pMatrix, shaderProgram, ambientLight, directionalLight, pointLightArray);
+        array[i].draw(webgl, mvMatrix, pMatrix, shaderProgram, ambientLight, directionalLight, pointLight);
 
         webgl.drawElements(webgl.TRIANGLES, array[i].vertexIndexBuffer.numItems, webgl.UNSIGNED_SHORT, 0);
         mvMatrix = mvPopMatrix(mvMatrixStack);
@@ -63,8 +64,9 @@ function webGLStart() {
 
     ambientLight = new AmbientLight(0.35, 0.35, 0.35);
     directionalLight = new DirectionalLight(0.05, 0.05, 0.05, 0, 0, 50, false);
-    pointLightArray.push(new PointLight("", 0, 0, 0, 0, 0, 0, null, null, null, null));
+    pointLightArray.push(new PointLight("", 0, 0, 0, 20, 0, -30, null, null, null, null));
 
+    pointLight = new PointLight("", 0, 0, 0, 20, 0, -30, null, null, null, null);
 
     webgl.clearColor(0, 0, 0, 1.0);
     webgl.enable(webgl.DEPTH_TEST);
@@ -72,16 +74,6 @@ function webGLStart() {
     document.onkeydown = handleKeyDown;
     document.onkeyup = handleKeyUp;
 
-
-    /*new LoadObject("../shapes/cube.json", "../assets/img/textures/sun.jpg", {
-        "name": "------NotSaveToDB------",
-        "x": 0,
-        "y": 0,
-        "z": 0,
-        "sx": 0,
-        "sy": 0,
-        "sz": 0,
-    });*/
 
     startEditorWindow();
     loading();
@@ -117,10 +109,14 @@ function render() {
     requestAnimationFrame(render);
     handleKeys();
     drawScene(canvas, webgl, objArr, mvMatrix, pMatrix, mvMatrixStack, shaderProgram,
-        ambientLight, directionalLight, pointLightArray);
+        ambientLight, directionalLight, pointLight);
     animate(objArr);
     renderEditor();
     userCode();
+
+    if(playFrames) {
+        frameCounter++;
+    }
 
     if(projectType === "general") {
         fpsCounter();

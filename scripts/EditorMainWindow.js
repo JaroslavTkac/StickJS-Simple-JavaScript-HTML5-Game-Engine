@@ -29,7 +29,8 @@ function startEditorWindow() {
 
     ambientLightE = new AmbientLight(redAChange, greenAChange, blueAChange);
     directionalLightE = new DirectionalLight(0, 0, 0, 0, 0, 50, false);
-    pointLightArrayE.push(new PointLight("lamp", redPChange, greenPChange, bluePChange, 0, 0, -4, 15, 0.02, "editor", false));
+    //pointLightArrayE.push(new PointLight("lamp", redPChange, greenPChange, bluePChange, 0, 0, -4, 15, 0.02, "editor", false));
+    pointLightE = new PointLight("lamp", redPChange, greenPChange, bluePChange, 0, 0, -4, 15, 0.02, "editor", false);
     //pointLightArrayE.push(new PointLight("lamp2", 0.3, 0, 0, 0, 0, 4, 0, 0, "editor", false));
 
     for (let i in webglEditorArr) {
@@ -113,7 +114,7 @@ function initPreview(i) {
 
 function renderEditor() {
     drawScene(canvasEditorArr[0], webglEditorArr[0], objEditorArr, mvMatrixE, pMatrixE, mvMatrixStackE, shaderProgramEditorArr[0],
-        ambientLightE, directionalLightE, pointLightArrayE);
+        ambientLightE, directionalLightE, pointLightE);
     animateEditor(objEditorArr);
     changeEditorShapeColor();
 
@@ -121,7 +122,7 @@ function renderEditor() {
 
     for (let i = 1; i < webglEditorArr.length; i++) {
         drawScene(canvasEditorArr[i], webglEditorArr[i], objPreviewArr.slice(i - 1, i), mvMatrixE, pMatrixE, mvMatrixStackE, shaderProgramEditorArr[i],
-            ambientLightE, directionalLightE, pointLightArrayE);
+            ambientLightE, directionalLightE, pointLightE);
     }
 
     animateEditor(objPreviewArr);
@@ -141,9 +142,9 @@ function changeEditorShapeColor() {
     ambientLightE.g = greenAChange;
     ambientLightE.b = blueAChange;
 
-    pointLightArrayE[0].r = redPChange;
-    pointLightArrayE[0].g = greenPChange;
-    pointLightArrayE[0].b = bluePChange;
+    pointLightE.r = redPChange;
+    pointLightE.g = greenPChange;
+    pointLightE.b = bluePChange;
 
 }
 
@@ -183,7 +184,7 @@ function animateEditor(array) {
 
             }
         }
-        orbitLight(pointLightArrayE);
+        orbitLight(pointLightE);
     }
     lastTime = timeNow;
 

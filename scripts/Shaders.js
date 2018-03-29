@@ -1,25 +1,6 @@
 /**
  * Created by jaroslavtkaciuk on 06/04/2017.
  */
-let testFrag =
-    "precision mediump float;" +
-
-    "uniform vec4 uColor;"+
-
-    "void main(void) {"+
-        "gl_FragColor = vec4(uColor);"+
-    "}";
-
-let testVertex =
-    "attribute vec3 aVertexPosition;" +
-
-    "uniform mat4 uMVMatrix;"+
-    "uniform mat4 uPMatrix;"+
-
-    "void main(void) {"+
-        "gl_Position = uPMatrix * uMVMatrix * vec4(aVertexPosition, 1.0);"+
-    "}";
-
 
 let fragmentShaderGLSL =
     "precision mediump float;" +
