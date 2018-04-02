@@ -2,21 +2,18 @@
  * Created by jaroslavtkaciuk on 10/04/2017.
  */
 
-function orbitLight(pointLightArray) {
-    for (let i in pointLightArray) {
-        pointLightArray[i].changePlace(
-            (pointLightArray[i].centerX + Math.cos(pointLightArray[i].alpha) * pointLightArray[i].radius),
-            0,
-            (pointLightArray[i].centerZ + Math.sin(pointLightArray[i].alpha) * pointLightArray[i].radius));
+function orbitLight(pointLight) {
+    pointLight.changePlace(
+        (pointLight.centerX + Math.cos(pointLight.alpha) * pointLight.radius),
+        0,
+        (pointLight.centerZ + Math.sin(pointLight.alpha) * pointLight.radius));
 
-        //y = (pointLight.centerY + (Math.cos(alpha) + Math.sin(alpha))*10);
-        pointLightArray[i].alpha += pointLightArray[i].alphaInc;
-    }
+    pointLight.alpha += pointLight.alphaInc;
 }
 
 function spaceImitation() {
-    orbitLight(pointLightArray);
-    //chaos();
+    orbitLight(pointLight);
+    chaos();
 }
 
 

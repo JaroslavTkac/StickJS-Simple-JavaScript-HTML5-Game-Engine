@@ -2,16 +2,17 @@
 /**
  * Created by PhpStorm.
  * User: jaroslavtkaciuk
- * Date: 03/03/2018
- * Time: 14:13
+ * Date: 31/03/2018
+ * Time: 10:36
  */
+
 // Include connection file
 require_once 'connection.php';
 
-$movement_data = [];
+$lightData = [];
 if(isset($_POST['projectId'])){
-    $sql = "SELECT standard_movement, speed, rotation_speed
-            FROM users_projects_movement_config 
+    $sql = "SELECT ambient_data, point_data
+            FROM users_projects_lighting_setup 
             WHERE project_id = ?";
 
     if($stmt = $mysqli->prepare($sql)){
@@ -24,16 +25,16 @@ if(isset($_POST['projectId'])){
             $stmt->store_result();
 
             if($stmt->num_rows >= 1){
-                $stmt->bind_result($useMovement, $speed, $rotationSpeed);
+                $stmt->bind_result($ambient_data, $point_data);
 
                 if($stmt->fetch()){
-                    array_push($movement_data, ['useMovement' => $useMovement, 'speed' => $speed, 'rotationSpeed' => $rotationSpeed]);
-                    echo json_encode($movement_data);
+                    array_push($lightData, ['ambient' => $ambient_data, 'point' => $point_data]);
+                    echo json_encode($lightData);
                 }
             }
             else{
                 echo "project id : " . $_POST['projectId'] . "\n</br>";
-                echo "No movement speed config found";
+                echo "No lighting setup found";
             }
         }
         else {
@@ -44,7 +45,7 @@ if(isset($_POST['projectId'])){
     $stmt->close();
 }
 else{
-    echo "ERROR on get movement config";
+    echo "ERROR on get lighting setup";
 }
 $mysqli->close();
 

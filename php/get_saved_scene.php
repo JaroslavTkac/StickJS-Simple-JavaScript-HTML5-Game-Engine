@@ -10,9 +10,9 @@
 // Include connection file
 require_once 'connection.php';
 
-
+$sceneData = array();
 if(isset($_POST['projectId'])){
-    $sql = "SELECT json_data
+    $sql = "SELECT json_data, ambient_data, point_data
             FROM users_saved_scene 
             WHERE project_id = ?";
 
@@ -26,10 +26,12 @@ if(isset($_POST['projectId'])){
             $stmt->store_result();
 
             if($stmt->num_rows >= 1){
-                $stmt->bind_result($json_data);
+                $stmt->bind_result($json_data, $ambient_data, $point_data);
 
                 if($stmt->fetch()){
-                    echo $json_data;
+                    array_push($sceneData, ['jsonData' => $json_data, 'ambient' => $ambient_data, 'point' => $point_data]);
+                    echo json_encode($sceneData);
+                    //echo json_encode([$json_data, $ambient_data]);
                 }
             }
             else{

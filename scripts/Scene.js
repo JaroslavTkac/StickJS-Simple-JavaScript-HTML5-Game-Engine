@@ -104,7 +104,7 @@ class CreateShape {
         }
     }
 
-    draw(webgl, mvMatrix, pMatrix, shaderProgram, ambientLight, directionalLight, pointLightArray) {
+    draw(webgl, mvMatrix, pMatrix, shaderProgram, ambientLight, directionalLight, pointLight) {
         if (this.lastRendered === "main") {
             glBindVertexBuffer(webgl, this.vertexPositionBuffer, shaderProgram, lastRenderedMainScene);
 
@@ -136,10 +136,9 @@ class CreateShape {
                 glDirectionalLight(webgl, directionalLight.r, directionalLight.g, directionalLight.b, shaderProgram, lastRenderedMainScene);
 
                 //Point
-                for (let i in pointLightArray) {
-                    glPointLightLocation(webgl, pointLightArray[i].x, pointLightArray[i].y, pointLightArray[i].z, shaderProgram, lastRenderedMainScene);
-                    glPointLight(webgl, pointLightArray[i].r, pointLightArray[i].g, pointLightArray[i].b, shaderProgram, lastRenderedMainScene);
-                }
+                glPointLightLocation(webgl, pointLight.x, pointLight.y, pointLight.z, shaderProgram, lastRenderedMainScene);
+                glPointLight(webgl, pointLight.r, pointLight.g, pointLight.b, shaderProgram, lastRenderedMainScene);
+
             }
             glBindBuffer(webgl, this.vertexIndexBuffer, lastRenderedMainScene);
         }
@@ -201,12 +200,10 @@ class CreateShape {
                 webgl.uniform3f(shaderProgram.directionalColorUniform, directionalLight.r, directionalLight.g, directionalLight.b);
 
                 //Point
-                for (let i in pointLightArray) {
-                    //glPointLightLocation(webgl, pointLightArray[i].x, pointLightArray[i].y, pointLightArray[i].z, shaderProgram, lastRenderedEditorScene);
-                    webgl.uniform3f(shaderProgram.pointLightingLocationUniform, pointLightArray[i].x, pointLightArray[i].y, pointLightArray[i].z);
-                    //glPointLight(webgl, pointLightArray[i].r, pointLightArray[i].g, pointLightArray[i].b, shaderProgram, lastRenderedEditorScene);
-                    webgl.uniform3f(shaderProgram.pointLightingColorUniform, pointLightArray[i].r, pointLightArray[i].g, pointLightArray[i].b);
-                }
+                //glPointLightLocation(webgl, pointLightArray[i].x, pointLightArray[i].y, pointLightArray[i].z, shaderProgram, lastRenderedEditorScene);
+                webgl.uniform3f(shaderProgram.pointLightingLocationUniform, pointLight.x, pointLight.y, pointLight.z);
+                //glPointLight(webgl, pointLightArray[i].r, pointLightArray[i].g, pointLightArray[i].b, shaderProgram, lastRenderedEditorScene);
+                webgl.uniform3f(shaderProgram.pointLightingColorUniform, pointLight.r, pointLight.g, pointLight.b);
             }
             //glBindBuffer(webgl, this.vertexIndexBuffer, lastRenderedEditorScene);
             webgl.bindBuffer(webgl.ELEMENT_ARRAY_BUFFER, this.vertexIndexBuffer);

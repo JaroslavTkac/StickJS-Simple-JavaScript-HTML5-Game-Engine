@@ -18,6 +18,8 @@ $isLoggedIn = false;
 $isUsersProject = false;
 $projectUserId = 0;
 
+require_once ('../php/get_project_user.php');
+
 if (isset($_SESSION['username']) || !empty($_SESSION['username'])) {
     $isLoggedIn = true;
 }
@@ -40,7 +42,6 @@ if($projectType === "general" && strlen($_GET['preview']) == 0) {
 }
 if(($projectType === "publish" || $projectType == "demo") && strlen($_GET['preview']) > 0){
     include('../php/get_users_code_file_path.php');
-    require('../php/get_project_user.php');
 }
 if($projectType === "general" && strlen($_GET['preview']) > 0){
     if (!isset($_SESSION['username']) || empty($_SESSION['username'])) {
@@ -92,6 +93,10 @@ if($projectType === "general" && strlen($_GET['preview']) > 0){
         let projectType = "<?php echo $projectType; ?>";
         let userId = "<?php echo $_SESSION['user_id']; ?>";
         let projectUserId = "<?php echo $projectUserId; ?>";
+
+        // console.log("$_SESSION userID: " + userId);
+        // console.log("isLoggedIn: " + isLoggedIn);
+        // console.log("ProjectUserID: " + projectUserId);
         if (!isLoggedIn || userId !== projectUserId){
             userId = projectUserId;
         }
@@ -744,10 +749,20 @@ if($projectType === "general" && strlen($_GET['preview']) > 0){
                             <path d="M 0 34.652 L 199.879 34.73 C 258.782 34.137 245.231
                                      -0.498 200 0.005 L 31.522 0.005 L 0 34.652 Z" fill="green" stroke="black"
                                   stroke-width="2"></path>
-                            <text class="basic-text-over-svg" x="50" y="24" font-size="20">
-                                On Frame
+                            <text class="basic-text-over-svg" x="30" y="24" font-size="20">
+                                Frames
                             </text>
-                            <foreignObject x="150" y="4" width="60" height="30">
+                            <foreignObject x="100" y="6" width="60" height="30">
+                                <select class="code-selection-inequality-operator" title="Key selection">
+                                    <option value=">">></option>
+                                    <option value="<"><</option>
+                                    <option value="!==">!==</option>
+                                    <option value="===">===</option>
+                                    <option value=">=">>=</option>
+                                    <option value="<="><=</option>
+                                </select>
+                            </foreignObject>
+                            <foreignObject x="160" y="4" width="60" height="30">
                                 <form>
                                     <input class="code-input" title="frame" type="text" value="0"/>
                                 </form>
@@ -767,10 +782,10 @@ if($projectType === "general" && strlen($_GET['preview']) > 0){
                             <path d="M 0 34.652 L 199.879 34.73 C 258.782 34.137 245.231
                                      -0.498 200 0.005 L 31.522 0.005 L 0 34.652 Z" fill="green" stroke="black"
                                   stroke-width="2"></path>
-                            <text class="basic-text-over-svg" x="50" y="24" font-size="20">
+                            <text class="basic-text-over-svg" x="30" y="24" font-size="20">
                                 Key Down
                             </text>
-                            <foreignObject x="155" y="6" width="90" height="30">
+                            <foreignObject x="145" y="6" width="90" height="30">
                                 <select class="code-selection" title="Key selection">
                                     <option value="w">W</option>
                                     <option value="a">A</option>
@@ -780,6 +795,13 @@ if($projectType === "general" && strlen($_GET['preview']) > 0){
                                     <option value="e">E</option>
                                     <option value="lshift">Lshift</option>
                                     <option value="space">Space</option>
+                                    <option value="r">R</option>
+                                    <option value="t">T</option>
+                                    <option value="g">G</option>
+                                    <option value="v">V</option>
+                                    <option value="z">Z</option>
+                                    <option value="c">C</option>
+                                    <option value="x">X</option>
                                 </select>
                             </foreignObject>
                             <text class="code-id"
@@ -797,10 +819,10 @@ if($projectType === "general" && strlen($_GET['preview']) > 0){
                             <path d="M 0 34.652 L 199.879 34.73 C 258.782 34.137 245.231
                                      -0.498 200 0.005 L 31.522 0.005 L 0 34.652 Z" fill="green" stroke="black"
                                   stroke-width="2"></path>
-                            <text class="basic-text-over-svg" x="50" y="24" font-size="20">
+                            <text class="basic-text-over-svg" x="30" y="24" font-size="20">
                                 Key Up
                             </text>
-                            <foreignObject x="155" y="6" width="90" height="30">
+                            <foreignObject x="145" y="6" width="90" height="30">
                                 <select class="code-selection" title="Key selection">
                                     <option value="w">W</option>
                                     <option value="a">A</option>
@@ -834,10 +856,10 @@ if($projectType === "general" && strlen($_GET['preview']) > 0){
                             <path d="M 0 34.652 L 199.879 34.73 C 258.782 34.137 245.231
                                      -0.498 200 0.005 L 31.522 0.005 L 0 34.652 Z" fill="green" stroke="black"
                                   stroke-width="2"></path>
-                            <text class="basic-text-over-svg" x="50" y="24" font-size="20">
-                                Repeat at
+                            <text class="basic-text-over-svg" x="30" y="24" font-size="20">
+                                Repeat at Fr.
                             </text>
-                            <foreignObject x="150" y="4" width="60" height="30">
+                            <foreignObject x="160" y="4" width="60" height="30">
                                 <form>
                                     <input class="code-input" title="frame" type="text" value="0"/>
                                 </form>
@@ -857,7 +879,7 @@ if($projectType === "general" && strlen($_GET['preview']) > 0){
                             <path d="M 0 34.652 L 199.879 34.73 C 258.782 34.137 245.231
                                      -0.498 200 0.005 L 31.522 0.005 L 0 34.652 Z" fill="green" stroke="black"
                                   stroke-width="2"></path>
-                            <text class="basic-text-over-svg" x="50" y="24" font-size="20">
+                            <text class="basic-text-over-svg" x="30" y="24" font-size="20">
                                 On X
                             </text>
                             <foreignObject x="100" y="6" width="60" height="30">
@@ -890,7 +912,7 @@ if($projectType === "general" && strlen($_GET['preview']) > 0){
                             <path d="M 0 34.652 L 199.879 34.73 C 258.782 34.137 245.231
                                      -0.498 200 0.005 L 31.522 0.005 L 0 34.652 Z" fill="green" stroke="black"
                                   stroke-width="2"></path>
-                            <text class="basic-text-over-svg" x="50" y="24" font-size="20">
+                            <text class="basic-text-over-svg" x="30" y="24" font-size="20">
                                 On Y
                             </text>
                             <foreignObject x="100" y="6" width="60" height="30">
@@ -923,7 +945,7 @@ if($projectType === "general" && strlen($_GET['preview']) > 0){
                             <path d="M 0 34.652 L 199.879 34.73 C 258.782 34.137 245.231
                                      -0.498 200 0.005 L 31.522 0.005 L 0 34.652 Z" fill="green" stroke="black"
                                   stroke-width="2"></path>
-                            <text class="basic-text-over-svg" x="50" y="24" font-size="20">
+                            <text class="basic-text-over-svg" x="30" y="24" font-size="20">
                                 On Z
                             </text>
                             <foreignObject x="100" y="6" width="60" height="30">
@@ -987,7 +1009,10 @@ if($projectType === "general" && strlen($_GET['preview']) > 0){
                                     <option value="sphere">Sphere</option>
                                     <option value="simpleSphere">S.Sphere</option>
                                     <option value="cone">Cone</option>
-                                    <option value="cylinder">Cylinder</option>
+                                    <option value="house">House</option>
+                                    <option value="simpleTree">S.Tree</option>
+                                    <option value="pineTree">Pine Tree</option>
+                                    <option value="christmasTree">Ch.Tree</option>
                                 </select>
                             </foreignObject>
                             <text class="code-id"
@@ -1691,6 +1716,24 @@ if($projectType === "general" && strlen($_GET['preview']) > 0){
                              <text class="myFather"
                                    x="0" y="0"></text>
                          </g>
+                        <!-- Reset Frame Counter -->
+                        <g transform="matrix(1 0 0 1 0 2510)"
+                           class="">
+                            <path d="M 10.197 34.73 L 182.538 34.154 C 207.527 33.561 203.713
+                                     -0.497 182.538 0.005 L 0 0.417 L 10.197 34.73 Z" fill="#7b7c7c" stroke="black"
+                                  stroke-width="2"></path>
+                            <text class="basic-text-over-svg" x="20" y="24" font-size="20">
+                                Reset Frames
+                            </text>
+                            <text class="code-id"
+                                  x="0" y="0">set resetframes</text>
+                            <text class="mktime"
+                                  x="0" y="0"></text>
+                            <text class="myChild"
+                                  x="0" y="0"></text>
+                            <text class="myFather"
+                                  x="0" y="0"></text>
+                        </g>
 
 
                          <!-- END SETTERS -->

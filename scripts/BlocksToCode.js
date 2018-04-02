@@ -26,8 +26,8 @@ $(document).ready(function () {
     //Play Frames Button
     $('#start-frame-btn').click(function () {
         playFrames = true;
-        fpsSum = 0;
-        console.log("Frames = " + fpsSum);
+        frameCounter = 0;
+        console.log("Frames = " + frameCounter);
     });
 
     //Clear Code Button
@@ -71,7 +71,7 @@ function parsingBlocks() {
                 //console.log("--On Frame--");
                 //console.log(cluster);
                 //console.log(cluster[0].value);
-                searchingFirstLoopWithCodeUploading(cluster, 1, [cluster[0].value], "onFrame", i);
+                searchingFirstLoopWithCodeUploading(cluster, 1, [cluster[0].value, cluster[0].value2], "onFrame", i);
                 break;
             case "on repeat":
                 //console.log("--On Repeat--");
@@ -156,13 +156,13 @@ function searchingFirstLoopWithCodeUploading(cluster, index, triggerValue, trigg
         if (cluster[j].codeID === "for specific") {
             //console.log("LOOP: for specific");
             //console.log("cluster[j].value = " + cluster[j].value);
-            analyzingCodeClusterForUploading(j, cluster, "specific", "\"" + cluster[j].value + "\"", triggerValue, triggerType);
+            analyzingCodeClusterForUploading(j, cluster, "specific", "\'" + cluster[j].value + "\'", triggerValue, triggerType);
             break;
         }
         if (cluster[j].codeID === "for name") {
             //console.log("LOOP: for name");
             //console.log("cluster[j].value = " + cluster[j].value);
-            analyzingCodeClusterForUploading(j, cluster, "name", "\"" + cluster[j].value + "\"", triggerValue, triggerType);
+            analyzingCodeClusterForUploading(j, cluster, "name", "\'" + cluster[j].value + "\'", triggerValue, triggerType);
             break;
         }
     }
@@ -178,7 +178,7 @@ function analyzingCodeCluster(index, cluster, loopType, value) {
         ambientR = null, ambientG = null, ambientB = null,
         pointR = null, pointG = null, pointB = null,
         pointX = null, pointY = null, pointZ = null,
-        useAnimation = null, sumAllValues = null;
+        useAnimation = null, sumAllValues = null, resetFrames = null;
     let alreadyApplied = false;
 
     //console.log("Value: " + value); // value is object type or name
@@ -310,6 +310,10 @@ function analyzingCodeCluster(index, cluster, loopType, value) {
                         //console.log("set sumvalues");
                         sumAllValues = true;
                         break;
+                    case "set resetframes":
+                        //console.log("set resetframes");
+                        resetFrames = true;
+                        break;
                 }
             }
             else {
@@ -318,7 +322,7 @@ function analyzingCodeCluster(index, cluster, loopType, value) {
                 if (!alreadyApplied) {
                     applyChangesToAll(x, y, z, sx, sy, sz, xRot, yRot, zRot, xRotSpeed, yRotSpeed, zRotSpeed, r, g, b,
                         ambientR, ambientG, ambientB, pointR, pointG, pointB, pointX, pointY, pointZ,
-                        useAnimation, camera, opacity, transparency, sumAllValues);
+                        useAnimation, camera, opacity, transparency, sumAllValues, resetFrames);
                     alreadyApplied = true;
                     searchingFirstLoopWithoutCodeUploading(cluster, i);
                 }
@@ -452,6 +456,10 @@ function analyzingCodeCluster(index, cluster, loopType, value) {
                         //console.log("set sumvalues");
                         sumAllValues = true;
                         break;
+                    case "set resetframes":
+                        //console.log("set resetframes");
+                        resetFrames = true;
+                        break;
                 }
             }
             else {
@@ -460,7 +468,7 @@ function analyzingCodeCluster(index, cluster, loopType, value) {
                 if (!alreadyApplied) {
                     applyChangesToSpecificType(value, x, y, z, sx, sy, sz, xRot, yRot, zRot, xRotSpeed, yRotSpeed, zRotSpeed, r, g, b,
                         ambientR, ambientG, ambientB, pointR, pointG, pointB, pointX, pointY, pointZ,
-                        useAnimation, camera, opacity, transparency, sumAllValues);
+                        useAnimation, camera, opacity, transparency, sumAllValues, resetFrames);
                     alreadyApplied = true;
                     searchingFirstLoopWithoutCodeUploading(cluster, i);
                 }
@@ -593,6 +601,10 @@ function analyzingCodeCluster(index, cluster, loopType, value) {
                         //console.log("set sumvalues");
                         sumAllValues = true;
                         break;
+                    case "set resetframes":
+                        //console.log("set resetframes");
+                        resetFrames = true;
+                        break;
                 }
             }
             else {
@@ -601,7 +613,7 @@ function analyzingCodeCluster(index, cluster, loopType, value) {
                 if (!alreadyApplied) {
                     applyChangesToSpecificObject(value, x, y, z, sx, sy, sz, xRot, yRot, zRot, xRotSpeed, yRotSpeed, zRotSpeed, r, g, b,
                         ambientR, ambientG, ambientB, pointR, pointG, pointB, pointX, pointY, pointZ,
-                        useAnimation, camera, opacity, transparency, sumAllValues);
+                        useAnimation, camera, opacity, transparency, sumAllValues, resetFrames);
                     alreadyApplied = true;
                     searchingFirstLoopWithoutCodeUploading(cluster, i);
                 }
@@ -614,15 +626,15 @@ function analyzingCodeCluster(index, cluster, loopType, value) {
         if (loopType === "basic")
             applyChangesToAll(x, y, z, sx, sy, sz, xRot, yRot, zRot, xRotSpeed, yRotSpeed, zRotSpeed, r, g, b,
                 ambientR, ambientG, ambientB, pointR, pointG, pointB, pointX, pointY, pointZ,
-                useAnimation, camera, opacity, transparency, sumAllValues);
+                useAnimation, camera, opacity, transparency, sumAllValues, resetFrames);
         if (loopType === "specific")
             applyChangesToSpecificType(value, x, y, z, sx, sy, sz, xRot, yRot, zRot, xRotSpeed, yRotSpeed, zRotSpeed, r, g, b,
                 ambientR, ambientG, ambientB, pointR, pointG, pointB, pointX, pointY, pointZ,
-                useAnimation, camera, opacity, transparency, sumAllValues);
+                useAnimation, camera, opacity, transparency, sumAllValues, resetFrames);
         if (loopType === "name")
             applyChangesToSpecificObject(value, x, y, z, sx, sy, sz, xRot, yRot, zRot, xRotSpeed, yRotSpeed, zRotSpeed, r, g, b,
                 ambientR, ambientG, ambientB, pointR, pointG, pointB, pointX, pointY, pointZ,
-                useAnimation, camera, opacity, transparency, sumAllValues);
+                useAnimation, camera, opacity, transparency, sumAllValues, resetFrames);
     }
 }
 
@@ -636,7 +648,7 @@ function analyzingCodeClusterForUploading(index, cluster, loopType, value, trigg
         ambientR = null, ambientG = null, ambientB = null,
         pointR = null, pointG = null, pointB = null,
         pointX = null, pointY = null, pointZ = null,
-        useAnimation = null, sumAllValues = null;
+        useAnimation = null, sumAllValues = null, resetFrames = null;
     let alreadyApplied = false;
     let functionToPass = "";
 
@@ -769,13 +781,18 @@ function analyzingCodeClusterForUploading(index, cluster, loopType, value, trigg
                         //console.log("set sumvalues");
                         sumAllValues = true;
                         break;
+                    case "set resetframes":
+                        //console.log("set resetframes");
+                        resetFrames = true;
+                        break;
+
                 }
             }
             else {
                 if (!alreadyApplied) {
                     functionToPass = parseDataForFunctionToPass("applyChangesToAll(", x, y, z, sx, sy, sz, xRot, yRot, zRot, xRotSpeed,
                         yRotSpeed, zRotSpeed, r, g, b, ambientR, ambientG, ambientB, pointR, pointG, pointB, pointX, pointY, pointZ,
-                        useAnimation, camera, opacity, transparency, sumAllValues);
+                        useAnimation, camera, opacity, transparency, sumAllValues, resetFrames);
 
                     switch (triggerType) {
                         case "onFrame":
@@ -933,6 +950,10 @@ function analyzingCodeClusterForUploading(index, cluster, loopType, value, trigg
                         //console.log("set sumvalues");
                         sumAllValues = true;
                         break;
+                    case "set resetframes":
+                        //console.log("set resetframes");
+                        resetFrames = true;
+                        break;
                 }
             }
             else {
@@ -942,7 +963,7 @@ function analyzingCodeClusterForUploading(index, cluster, loopType, value, trigg
                 if (!alreadyApplied) {
                     functionToPass = parseDataForFunctionToPass("applyChangesToSpecificType(", x, y, z, sx, sy, sz, xRot, yRot, zRot, xRotSpeed,
                         yRotSpeed, zRotSpeed, r, g, b, ambientR, ambientG, ambientB, pointR, pointG, pointB, pointX, pointY, pointZ,
-                        useAnimation, camera, opacity, transparency, sumAllValues, value);
+                        useAnimation, camera, opacity, transparency, sumAllValues, resetFrames, value);
 
                     switch (triggerType) {
                         case "onFrame":
@@ -1100,6 +1121,10 @@ function analyzingCodeClusterForUploading(index, cluster, loopType, value, trigg
                         //console.log("set sumvalues");
                         sumAllValues = true;
                         break;
+                    case "set resetframes":
+                        //console.log("set resetframes");
+                        resetFrames = true;
+                        break;
                 }
             }
             else {
@@ -1109,7 +1134,7 @@ function analyzingCodeClusterForUploading(index, cluster, loopType, value, trigg
                 if (!alreadyApplied) {
                     functionToPass = parseDataForFunctionToPass("applyChangesToSpecificObject(", x, y, z, sx, sy, sz, xRot, yRot, zRot, xRotSpeed,
                         yRotSpeed, zRotSpeed, r, g, b, ambientR, ambientG, ambientB, pointR, pointG, pointB, pointX, pointY, pointZ,
-                        useAnimation, camera, opacity, transparency, sumAllValues, value);
+                        useAnimation, camera, opacity, transparency, sumAllValues, resetFrames, value);
 
                     switch (triggerType) {
                         case "onFrame":
@@ -1147,19 +1172,19 @@ function analyzingCodeClusterForUploading(index, cluster, loopType, value, trigg
         if (loopType === "basic") {
             functionToPass = parseDataForFunctionToPass("applyChangesToAll(", x, y, z, sx, sy, sz, xRot, yRot, zRot, xRotSpeed,
                 yRotSpeed, zRotSpeed, r, g, b, ambientR, ambientG, ambientB, pointR, pointG, pointB, pointX, pointY, pointZ,
-                useAnimation, camera, opacity, transparency, sumAllValues);
+                useAnimation, camera, opacity, transparency, sumAllValues, resetFrames);
         }
 
         if (loopType === "specific") {
             functionToPass = parseDataForFunctionToPass("applyChangesToSpecificType(", x, y, z, sx, sy, sz, xRot, yRot, zRot, xRotSpeed,
                 yRotSpeed, zRotSpeed, r, g, b, ambientR, ambientG, ambientB, pointR, pointG, pointB, pointX, pointY, pointZ,
-                useAnimation, camera, opacity, transparency, sumAllValues, value);
+                useAnimation, camera, opacity, transparency, sumAllValues, resetFrames, value);
         }
 
         if (loopType === "name") {
             functionToPass = parseDataForFunctionToPass("applyChangesToSpecificObject(", x, y, z, sx, sy, sz, xRot, yRot, zRot, xRotSpeed,
                 yRotSpeed, zRotSpeed, r, g, b, ambientR, ambientG, ambientB, pointR, pointG, pointB, pointX, pointY, pointZ,
-                useAnimation, camera, opacity, transparency, sumAllValues, value);
+                useAnimation, camera, opacity, transparency, sumAllValues, resetFrames, value);
         }
 
         switch (triggerType) {
@@ -1207,7 +1232,7 @@ function parseDataForFunctionToPass(method, x, y, z, sx, sy, sz,
                                     r, g, b, ambientR, ambientG, ambientB,
                                     pointR, pointG, pointB, pointX, pointY, pointZ,
                                     useAnimation,
-                                    camera, opacity, transparency, sumAllValues, value) {
+                                    camera, opacity, transparency, sumAllValues, resetFrames, value) {
     let data = method;
 
     //x y z
@@ -1361,28 +1386,36 @@ function parseDataForFunctionToPass(method, x, y, z, sx, sy, sz,
         transparency = "null,";
 
     if (sumAllValues !== null)
-        sumAllValues = sumAllValues.toString();
+        sumAllValues = sumAllValues.toString() + ",";
     else
-        sumAllValues = "null";
+        sumAllValues = "null,";
+
+    if (resetFrames != null)
+        resetFrames = resetFrames.toString();
+    else
+        resetFrames = "null";
+
 
     if (value !== undefined /*&& value !== null*/) {
 
         value = value.toString() + ",";
         data += value + x + y + z + sx + sy + sz + xRot + yRot + zRot + xRotSpeed + yRotSpeed + zRotSpeed +
             r + g + b + ambientR + ambientG + ambientB + pointR + pointG + pointB + pointX + pointY + pointZ
-            + useAnimation + camera + opacity + transparency + sumAllValues + ");";
+            + useAnimation + camera + opacity + transparency + sumAllValues + resetFrames + ");";
     }
     else {
         data += x + y + z + sx + sy + sz + xRot + yRot + zRot + xRotSpeed + yRotSpeed + zRotSpeed +
             r + g + b + ambientR + ambientG + ambientB + pointR + pointG + pointB + pointX + pointY + pointZ
-            + useAnimation + camera + opacity + transparency + sumAllValues + ");";
+            + useAnimation + camera + opacity + transparency + sumAllValues + resetFrames + ");";
     }
+
+    console.log(data);
 
     return data;
 }
 
 function onFrameConvert(triggerValue, functionToPass) {
-    let ifStatement = "if ( playFrames && fpsSum === " + triggerValue[0] + " ) {\n        ";
+    let ifStatement = "if ( playFrames && (frameCounter " + triggerValue[1] + " " + triggerValue[0] + ") ) {\n        ";
     let currData = "";
 
     //console.log(triggerValue);
@@ -1396,7 +1429,7 @@ function onFrameConvert(triggerValue, functionToPass) {
 }
 
 function onFrameRepeatConvert(triggerValue, functionToPass) {
-    let ifStatement = "if ( playFrames && fpsSum % " + triggerValue[0] + " === 0 ) {\n        ";
+    let ifStatement = "if ( playFrames && frameCounter % " + triggerValue[0] + " === 0 ) {\n        ";
     let currData = "";
 
     if (tempCodeToAddArr === "")
@@ -1423,7 +1456,7 @@ function onKeyDownPressConvert(triggerValue, functionToPass) {
 
 function onKeyUpPressConvert(triggerValue, functionToPass) {
     let ifStatement = "for (let i in keysArray) {\n        " +
-        "if (keysArray[i].keyName === \"" + triggerValue[0] + "\" && keysArray[i].keyUp) {\n            " +
+        "if ((keysArray[i].keyName === \"" + triggerValue[0] + ")\" && keysArray[i].keyUp) {\n            " +
         "keysArray[i].keyUp = false;\n            ";
     let currData = "";
 

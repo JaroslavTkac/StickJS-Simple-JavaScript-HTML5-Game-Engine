@@ -23,7 +23,7 @@ let pMatrixE = mat4.create();
 let opacitySlider;
 //Animation
 let lastTime = 0;
-
+let frameCounter = 0;
 
 //Frames per Second
 let fpsElement;
@@ -45,10 +45,10 @@ let objPreviewArr = [];
 let lastRenderedMainScene, lastRenderedEditorScene;
 let sound;
 //Lightning
-let ambientLight, directionalLight;
-let pointLightArray = [];
+let ambientLight, directionalLight, pointLight;
+// let pointLightArray = [];
 
-let ambientLightE, directionalLightE;
+let ambientLightE, directionalLightE, pointLightE;
 let pointLightArrayE = [];
 //Movement
 let x = 0, y = 0, z = 0, xRotation = 0, yRotation = 0, zRotation = 0;

@@ -21,7 +21,7 @@ function waitUntilWebglInitialized() {
         setTimeout(waitUntilWebglInitialized, 100);
         return;
     }
-    if(!texturesLoaded || texturesLoaded === undefined){
+    if (!texturesLoaded || texturesLoaded === undefined) {
         setTimeout(waitUntilWebglInitialized, 100);
         return;
     }
@@ -35,7 +35,7 @@ function waitUntilWebglInitialized() {
         console.log("-------------");
         console.log("available texture array");
         console.log(availableTexturesOnServer);*/
-        if(liveLoadedShapesArr[i].textureSrc.indexOf("user_textures") !== -1){
+        if (liveLoadedShapesArr[i].textureSrc.indexOf("user_textures") !== -1) {
             //check for texture availability../assets/img/textures
             for (let j = 0; j < availableTexturesOnServer.length; j++) {
                 if (liveLoadedShapesArr[i].textureSrc === ("../" + availableTexturesOnServer[j])) {
@@ -47,7 +47,7 @@ function waitUntilWebglInitialized() {
                 }
             }
         }
-        else{
+        else {
             textureToApplySrc = liveLoadedShapesArr[i].textureSrc;
         }
 
@@ -157,6 +157,9 @@ function loadUserData(dir, type) {
             userId: userId
         },
         success: function (response) {
+            console.log("pr Id: " + projectId);
+            console.log("user Id: " + userId);
+
             let content = JSON.parse(response);
             let data = "";
             let folderContent = [];
@@ -200,7 +203,7 @@ function loadUserData(dir, type) {
                             "</a>" +
                             "</div>";
                     }
-                    if (projectType === "publish"){
+                    if (projectType === "publish") {
                         data = "<div align=\"center\" class=\"col-lg-4 col-md-4 col-sm-4 col-xs-6 texture-padding\">" +
                             "<a href=\"#\" class=\"thumbnail\" >" +
                             "<img src=\"../assets/img/textures/user_textures/" + folderContent[i] + "\" class=\"img-rounded inline-block\" " +
@@ -273,10 +276,10 @@ function loadUserData(dir, type) {
 }
 
 
-function uploadedObjectInitSequence(projectType, objects){
+function uploadedObjectInitSequence(projectType, objects) {
     let data = "";
     let i = 0;
-    if(initializeIndex !== objects.length) {
+    if (initializeIndex !== objects.length) {
         i = initializeIndex;
         if (projectType === "general") {
             data = "<div align=\"center\" class=\"col-lg3 col-md-4 col-sm-4 col-xs-6\">" +
@@ -310,13 +313,13 @@ function uploadedObjectInitSequence(projectType, objects){
     }
 }
 
-function waitUntilUserUploadedObjectIsLoadedSuccessfully(){
+function waitUntilUserUploadedObjectIsLoadedSuccessfully() {
     if (!uploadedObjectLoadedSuccessfully) {
         setTimeout(waitUntilUserUploadedObjectIsLoadedSuccessfully, 50);
         return;
     }
     //When object initialized calling again function to init second object
-    if(initializeIndex !== uploadedObjectsToInit.length) {
+    if (initializeIndex !== uploadedObjectsToInit.length) {
         initializeIndex++;
         uploadedObjectInitSequence(projectType, uploadedObjectsToInit);
     }
@@ -662,12 +665,13 @@ setInterval(function () {
 //Saving main important data
 function saveData() {
     //console.log("Saving all data");
-    if(projectType === "general" && readyToSaveData) {
+    if (projectType === "general" && readyToSaveData) {
         console.log(projectType);
         saveSavedShapes();
         saveLiveObjects();
         saveSvgCodeScene();
         saveMovementConfig();
+        saveProjectLightningSetup();
     }
 }
 
@@ -677,6 +681,7 @@ function loadUserProjectData() {
     loadUserLiveObjects();
     loadSvgCodeScene();
     loadMovementConfig();
+    loadProjectLightningSetup();
 }
 
 
@@ -729,10 +734,12 @@ function loadMovementConfig() {
             $('#basic-speed-input').val(data[0].speed);
             $('#rotation-speed-input').val(data[0].rotationSpeed);
 
+            keyboard.speed = data[0].speed;
+            keyboard.rotationSpeed = data[0].rotationSpeed;
+
         }
     });
 }
-
 
 //Uploading user code to server
 function uploadUserConvertedCode() {
@@ -751,7 +758,6 @@ function uploadUserConvertedCode() {
         }
     });
 }
-
 
 //Saving all SVG SCENE elements
 function saveSvgCodeScene() {
@@ -825,8 +831,8 @@ function loadSvgCodeScene() {
 
             //Check or some block data are not corrupted with NaN value
             //if so restore object coordinates to 30;30
-            for (let i = 0; i < svgArr.length; i++){
-                if(isNaN(getSvgElementX(svgArr[i])) || isNaN(getSvgElementY(svgArr[i]))){
+            for (let i = 0; i < svgArr.length; i++) {
+                if (isNaN(getSvgElementX(svgArr[i])) || isNaN(getSvgElementY(svgArr[i]))) {
                     let currentMatrix = svgArr[i].getAttributeNS(null, "transform").slice(7, -1).split(' ');
 
                     currentMatrix[4] = 30;
@@ -850,6 +856,12 @@ function saveScene() {
 
     //Send to server user object data
     let obj_data = JSON.stringify(objArr);
+    let ambientArr = [];
+    ambientArr.push(ambientLight);
+    let ambient = JSON.stringify(ambientArr);
+    let pointLightArray = [];
+    pointLightArray.push(pointLight);
+    let point = JSON.stringify(pointLightArray);
 
     $.ajax({
         url: "../php/upload_saved_scene.php",
@@ -857,6 +869,8 @@ function saveScene() {
         data: {
             projectId: projectId,
             saved_scene_json_data: obj_data,
+            ambient: ambient,
+            point: point,
             projectType: projectType
         },
         success: function (response) {
@@ -876,22 +890,108 @@ function loadScene() {
         },
         success: function (response) {
             //console.log("load saved scene from db");
-            //console.log(response);
-            sceneToLoadArr = JSON.parse(response);
+            let data = JSON.parse(response);
+            sceneToLoadArr = JSON.parse(data[0]['jsonData']);
 
             if (sceneToLoadArr.length === 0) {
                 sceneToLoadArr = null;
             }
+
+            let ambient = JSON.parse(data[0]['ambient']);
+            if (ambient.length !== 0) {
+                ambientLight.r = ambient[0].r;
+                ambientLight.g = ambient[0].g;
+                ambientLight.b = ambient[0].b;
+            }
+
+            let point = JSON.parse(data[0]['point']);
+            if (point.length !== 0) {
+                pointLight.r = point[0].r;
+                pointLight.g = point[0].g;
+                pointLight.b = point[0].b;
+                pointLight.x = point[0].x;
+                pointLight.y = point[0].y;
+                pointLight.z = point[0].z;
+                pointLight.centerX = point[0].x;
+                pointLight.centerY = point[0].y;
+                pointLight.centerZ = point[0].z;
+            }
         }
     });
 }
+
+//Saving user project lightning setup
+function saveProjectLightningSetup() {
+    let ambientArr = [];
+    ambientArr.push(ambientLight);
+    let ambient = JSON.stringify(ambientArr);
+    let pointLightArray = [];
+    pointLightArray.push(pointLight);
+    let point = JSON.stringify(pointLightArray);
+
+    $.ajax({
+        url: "../php/upload_project_lighting_setup.php",
+        type: "POST",
+        data: {
+            projectId: projectId,
+            ambient: ambient,
+            point: point,
+            projectType: projectType
+        },
+        success: function (response) {
+            //console.log(response);
+        },
+        error: function (re) {
+            //console.log(re);
+        }
+    });
+}
+
+//Loading from DB user saved scene by btn click
+function loadProjectLightningSetup() {
+    $.ajax({
+        url: "../php/get_project_lighting_setup.php",
+        type: "POST",
+        data: {
+            projectId: projectId
+        },
+        success: function (response) {
+            //console.log("LOAD LIGHT FROM DB");
+            let data = JSON.parse(response);
+
+            let ambient = JSON.parse(data[0]['ambient']);
+            if (ambient.length !== 0) {
+                ambientLight.r = ambient[0].r;
+                ambientLight.g = ambient[0].g;
+                ambientLight.b = ambient[0].b;
+            }
+
+            let point = JSON.parse(data[0]['point']);
+            if (point.length !== 0) {
+                pointLight.r = point[0].r;
+                pointLight.g = point[0].g;
+                pointLight.b = point[0].b;
+                pointLight.x = point[0].x;
+                pointLight.y = point[0].y;
+                pointLight.z = point[0].z;
+                pointLight.centerX = point[0].x;
+                pointLight.centerY = point[0].y;
+                pointLight.centerZ = point[0].z;
+            }
+        },
+        error: function () {
+            console.log("CAN NOT LOAD LIGHT");
+        }
+    });
+}
+
 
 //Saving all user saved shapes -> basically references of object parameters for images
 function saveSavedShapes() {
     //Send to server user object data
     let saved_data = JSON.stringify(savedShapesArr);
 
-    if(saved_data.length > 2 && savedShapesArr.length > 0) {
+    if (saved_data.length > 2 && savedShapesArr.length > 0) {
         $.ajax({
             url: "../php/upload_saved_shapes.php",
             type: "POST",
@@ -929,12 +1029,12 @@ function loadSavedShapes() {
 
 //Saving user live objects -> objects that are init'ed in scene
 function saveLiveObjects() {
-   /* let toSave = [];
-    for (let i = 0; i < objArr.length; i++){
-        if(objArr[i].name !== "------NotSaveToDB------"){
-            toSave.push(objArr[i]);
-        }
-    }*/
+    /* let toSave = [];
+     for (let i = 0; i < objArr.length; i++){
+         if(objArr[i].name !== "------NotSaveToDB------"){
+             toSave.push(objArr[i]);
+         }
+     }*/
 
     //Send to server user object data
     let obj_data = JSON.stringify(objArr);

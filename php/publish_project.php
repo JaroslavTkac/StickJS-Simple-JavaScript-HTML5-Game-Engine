@@ -68,10 +68,12 @@ if (isset($_POST['userId']) && isset($_POST['projectId'])) {
 
                     createDataInUserTableWithCopiedJSONData("users_live_objects", $mysqli, $_POST['projectId'], $project_id, $filesPathsToChange);
                     createDataInUserTableWithCopiedJSONData("users_saved_shapes", $mysqli, $_POST['projectId'], $project_id, $filesPathsToChange);
-                    createDataInUserTableWithCopiedJSONData("users_saved_scene", $mysqli, $_POST['projectId'], $project_id, $filesPathsToChange);
                     createDataInUserTableWithCopiedJSONData("users_saved_svg_scene", $mysqli, $_POST['projectId'], $project_id, $filesPathsToChange);
 
+                    createDataInUserSavedSceneTableWithCopiedJSONData("users_saved_scene", $mysqli, $_POST['projectId'], $project_id, $filesPathsToChange);
+
                     createUserDataInProjectMovementConfigTable($mysqli, $_POST['projectId'], $project_id);
+                    createDataInUserLightingSetupTableWithCopiedJSONData($mysqli, $_POST['projectId'], $project_id);
                     createUserDataInConvertedCodeTable($mysqli, $_POST['projectId'], $project_id, $param_user_id);
 
 
@@ -169,7 +171,76 @@ function createDataInUserTableWithCopiedJSONData($tableName, $mysqli, $projectId
                 }
             }
 
-            $sql = "INSERT INTO " . $tableName . " (project_id, json_data) VALUES (" . $projectIdToAdd . "," . json_encode($json_data) . ")";
+            $json_data = str_replace("u2600", "&#9728", json_encode($json_data));
+
+            $sql = "INSERT INTO " . $tableName . " (project_id, json_data) VALUES (" . $projectIdToAdd . "," . $json_data . ")";
+            $mysqli->query($sql);
+        } else {
+            echo $sql;
+            echo "\nError ADDING data in " . $tableName . "\n";
+        }
+    } else {
+        echo $sql;
+        echo "\nError SELECTING data in " . $tableName . "\n";
+    }
+}
+
+
+function createDataInUserLightingSetupTableWithCopiedJSONData($mysqli, $projectIdCopyFrom, $projectIdToAdd)
+{
+    $sql = "SELECT ambient_data, point_data 
+            FROM users_projects_lighting_setup 
+            WHERE project_id = " . $projectIdCopyFrom . " 
+            ORDER BY created_at DESC
+            LIMIT 1";
+    $result = $mysqli->query($sql);
+
+    if ($result->num_rows == 1) {
+        // output data of each row
+        if ($row = $result->fetch_assoc()) {
+            $ambient_data = $row['ambient_data'];
+            $point_data = $row['point_data'];
+
+            $sql = "INSERT INTO users_projects_lighting_setup (project_id, ambient_data, point_data) VALUES (" . $projectIdToAdd . ","
+                . json_encode($ambient_data) . "," . json_encode($point_data) . ")";
+            $mysqli->query($sql);
+        } else {
+            echo $sql;
+            echo "\nError ADDING data in users_projects_lighting_setup\n";
+        }
+    } else {
+        echo $sql;
+        echo "\nError SELECTING data in users_projects_lighting_setup\n";
+    }
+}
+
+function createDataInUserSavedSceneTableWithCopiedJSONData($tableName, $mysqli, $projectIdCopyFrom, $projectIdToAdd, $pathToChange)
+{
+    $sql = "SELECT json_data, ambient_data, point_data 
+            FROM " . $tableName . " 
+            WHERE project_id = " . $projectIdCopyFrom . " 
+            ORDER BY created_at DESC
+            LIMIT 1";
+    $result = $mysqli->query($sql);
+
+    if ($result->num_rows == 1) {
+        // output data of each row
+        if ($row = $result->fetch_assoc()) {
+            $json_data = $row['json_data'];
+            $ambient_data = $row['ambient_data'];
+            $point_data = $row['point_data'];
+
+            //Modifying json_data
+            //Replacing original paths with new ones, specially created for published project
+            foreach ($pathToChange as $inner){
+                foreach ($inner as $key => $value) {
+                    //echo "Key: $key  Value: $value\n";
+                    $json_data = str_replace($key,$value,$json_data);
+                }
+            }
+
+            $sql = "INSERT INTO " . $tableName . " (project_id, json_data, ambient_data, point_data) VALUES (" . $projectIdToAdd . "," . json_encode($json_data) .
+                "," . json_encode($ambient_data) . "," . json_encode($point_data) . ")";
             $mysqli->query($sql);
         } else {
             echo $sql;
@@ -236,6 +307,8 @@ function createUserDataInConvertedCodeTable($mysqli, $projectIdCopyFrom, $projec
                     (project_id, old_js_file_path, new_js_file_path, code) 
                     VALUES (" . $projectIdToAdd . ",\"" . $newFile . "\",\""
                 . $newFile . "\",\"" . $code . "\")";
+
+            //echo $sql;
             $mysqli->query($sql);
         } else {
             echo $sql;
