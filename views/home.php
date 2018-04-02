@@ -7,6 +7,10 @@
  */
 
 
+
+//Get demo project
+require_once ('../php/get_demo_project.php');
+
 // Initialize the session
 session_start();
 
@@ -15,6 +19,7 @@ if (!isset($_SESSION['username']) || empty($_SESSION['username'])) {
     header("location: ../index.php");
     exit;
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -101,7 +106,8 @@ if (!isset($_SESSION['username']) || empty($_SESSION['username'])) {
                 <br>
                 <p>Do not know how to start?</p>
                 <br>
-                <h2><a href="demo.php" class="btn btn-primary btn-sm">Check our example</a></h2></div>
+                <h2><a href="editor.php?project_id=<?php echo $demo[0]['demoProjectId']?>&project_name=<?php echo $demo[1]['name']?>
+                    &preview=demo" class="btn btn-primary btn-sm">Check our example</a></h2></div>
         </div>
         <div class="item">
             <div class="slide3"></div>
@@ -145,7 +151,8 @@ if (!isset($_SESSION['username']) || empty($_SESSION['username'])) {
             </div>
             <div class="title col-md-12" style="text-align: center">
                 <h2>Common don't be shy, try our example!</h2>
-                <a href="editor.php?project_id=0&project_name=Example&preview=demo" class="btn btn-primary btn-sm">Check our example</a>
+                <a href="editor.php?project_id=<?php echo $demo[0]['demoProjectId']?>&project_name=<?php echo $demo[1]['name']?>
+                &preview=demo" class="btn btn-primary btn-sm">Check our example</a>
             </div>
         </div>
     </div>

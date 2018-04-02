@@ -53,6 +53,9 @@ if(isset($_POST['userId']) && isset($_POST['projectName'])){
             $sql = "INSERT INTO users_saved_scene (project_id, json_data, ambient_data, point_data) VALUES (" . $project_id . ", \"[]\" , \"[]\" , \"[]\")";
             $result = $mysqli->query($sql);
 
+            $sql = "INSERT INTO users_projects_lighting_setup (project_id, ambient_data, point_data) VALUES (" . $project_id . ", \"[]\" , \"[]\")";
+            $result = $mysqli->query($sql);
+
             $sql = "INSERT INTO users_saved_svg_scene (project_id, json_data) VALUES (" . $project_id . ", \"[]\" )";
             $result = $mysqli->query($sql);
 

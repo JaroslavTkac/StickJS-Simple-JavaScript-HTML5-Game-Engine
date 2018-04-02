@@ -381,6 +381,18 @@ function addSvgElementToScene() {
             }, {
                 value: "cylinder",
                 text: "Cylinder"
+            }, {
+                value: "house",
+                text: "House"
+            }, {
+                value: "simpleTree",
+                text: "S.Tree"
+            }, {
+                value: "pineTree",
+                text: "Pine Tree"
+            }, {
+                value: "christmasTree",
+                text: "Ch.Tree"
             }];
             for (let i = 0; i < userUploadedShapesNamesArray.length; i++) {
                 let name = userUploadedShapesNamesArray[i];
@@ -419,18 +431,23 @@ function addSvgElementToScene() {
 
 
         intersectArrInit();
+
         //Restoring data
         svgArr = document.getElementById("code-logic-scene").children;
         for (let i = 0; i < svgArr.length; i++) {
             if (getmktime(svgArr[i]) !== "trashbin")
                 for (let j = 0; j < dataArr.length; j++) {
                     if (getmktime(svgArr[i]) === dataArr[j].name) {
-                        if (svgArr[i].getElementsByClassName("code-selection").length > 0)
+                        //console.log(dataArr[j]);
+                        if (svgArr[i].getElementsByClassName("code-selection").length > 0) {
                             setSelectedValue(svgArr[i].getElementsByClassName("code-selection")[0], dataArr[j].value);
-                        if (svgArr[i].getElementsByClassName("code-selection-inequality-operator").length > 0)
+                        }
+                        if (svgArr[i].getElementsByClassName("code-selection-inequality-operator").length > 0) {
                             setSelectedValue(svgArr[i].getElementsByClassName("code-selection-inequality-operator")[0], dataArr[j].value2);
-                        if (svgArr[i].getElementsByClassName("code-input").length > 0)
+                        }
+                        if (svgArr[i].getElementsByClassName("code-input").length > 0) {
                             svgArr[i].getElementsByClassName("code-input")[0].value = dataArr[j].value;
+                        }
 
                     }
                 }
@@ -492,6 +509,18 @@ function updateAllForSpecificBlocks() {
         }, {
             value: "cylinder",
             text: "Cylinder"
+        }, {
+            value: "house",
+            text: "House"
+        }, {
+            value: "simpleTree",
+            text: "S.Tree"
+        }, {
+            value: "pineTree",
+            text: "Pine Tree"
+        }, {
+            value: "christmasTree",
+            text: "Ch.Tree"
         }];
         for (let i = 0; i < userUploadedShapesNamesArray.length; i++) {
             let name = userUploadedShapesNamesArray[i];
@@ -522,8 +551,10 @@ function restoreUpdatedCodeSelectionFields() {
 function saveCodeSelectionFields(svgArr) {
     codeBlocksDataStateArray = [];
     for (let i = 0; i < svgArr.length; i++) {
-        if (svgArr[i].getElementsByClassName("code-selection")[0])
+        if (svgArr[i].getElementsByClassName("code-selection")[0]) {
+            //console.log(getDataFromSvgForm(svgArr[i]));
             codeBlocksDataStateArray.push({mktime: getmktime(svgArr[i]), value: getDataFromSvgForm(svgArr[i])});
+        }
     }
 }
 
@@ -534,8 +565,8 @@ function saveCodeSelectionFields(svgArr) {
  */
 function setSelectedValue(selectObj, valueToSet) {
     for (let i = 0; i < selectObj.options.length; i++) {
-        //console.log(selectObj.options[i].text.toUpperCase() + "  ===   " + valueToSet.toUpperCase());
-        if (selectObj.options[i].text.toUpperCase() === valueToSet.toUpperCase()) {
+        //console.log(selectObj.options[i].value.toUpperCase() + "  ===   " + valueToSet.toUpperCase());
+        if (selectObj.options[i].value.toUpperCase() === valueToSet.toUpperCase()) {
             selectObj.options[i].selected = true;
             return;
         }

@@ -9,7 +9,7 @@ function applyChangesToAll(x, y, z, sx, sy, sz, xRot, yRot, zRot,
                            ambientR, ambientG, ambientB,
                            pointR, pointG, pointB, pointX, pointY, pointZ,
                            animateRotation,
-                           useCamera, opacity, transparency, sumAllValues) {
+                           useCamera, opacity, transparency, sumAllValues, resetFrames) {
 
 
     //console.log("sumAllValues: " + sumAllValues);
@@ -25,18 +25,24 @@ function applyChangesToAll(x, y, z, sx, sy, sz, xRot, yRot, zRot,
             ambientLight.b += customParseFloat(ambientB);
 
         if (pointR !== null)
-            pointLightArray[0].r += customParseFloat(pointR);
+            pointLight.r += customParseFloat(pointR);
         if (pointG !== null)
-            pointLightArray[0].g += customParseFloat(pointG);
+            pointLight.g += customParseFloat(pointG);
         if (pointB !== null)
-            pointLightArray[0].b += customParseFloat(pointB);
+            pointLight.b += customParseFloat(pointB);
 
-        if (pointX !== null)
-            pointLightArray[0].x += customParseFloat(pointX);
-        if (pointY !== null)
-            pointLightArray[0].y += customParseFloat(pointY);
-        if (pointZ !== null)
-            pointLightArray[0].z += customParseFloat(pointZ);
+        if (pointX !== null) {
+            pointLight.x += customParseFloat(pointX);
+            pointLight.centerX += customParseFloat(pointX);
+        }
+        if (pointY !== null) {
+            pointLight.y += customParseFloat(pointY);
+            pointLight.centerY += customParseFloat(pointY);
+        }
+        if (pointZ !== null) {
+            pointLight.z += customParseFloat(pointZ);
+            pointLight.centerZ += customParseFloat(pointZ);
+        }
 
 
         for (let i = 0; i < objArr.length; i++) {
@@ -78,6 +84,8 @@ function applyChangesToAll(x, y, z, sx, sy, sz, xRot, yRot, zRot,
                 objArr[i].alpha += customParseFloat(opacity);
             if (useCamera !== null)
                 objArr[i].useCamera = useCamera;
+            if (resetFrames !== null)
+                frameCounter = 0;
 
             //correct object values
             correctUserInputValues(objArr[i]);
@@ -99,10 +107,6 @@ function applyChangesToAll(x, y, z, sx, sy, sz, xRot, yRot, zRot,
             pointLight.b = customParseFloat(pointB);
 
 
-        console.log(pointLight);
-        console.log(pointX + " " + pointY + " " + pointZ);
-
-
         if (pointX !== null)
             pointLight.x = customParseFloat(pointX);
         if (pointY !== null)
@@ -110,12 +114,6 @@ function applyChangesToAll(x, y, z, sx, sy, sz, xRot, yRot, zRot,
         if (pointZ !== null)
             pointLight.z = customParseFloat(pointZ);
 
-        //pointLightArray.splice(0, 1);
-
-        //pointLightArray.push(new PointLight("", customParseFloat(pointR), customParseFloat(pointG), customParseFloat(pointB), customParseFloat(pointX), customParseFloat(pointY), customParseFloat(pointZ), null, null, null, null));
-
-
-        console.log(pointLight);
 
         for (let i = 0; i < objArr.length; i++) {
             if (x !== null)
@@ -156,6 +154,8 @@ function applyChangesToAll(x, y, z, sx, sy, sz, xRot, yRot, zRot,
                 objArr[i].alpha = customParseFloat(opacity);
             if (useCamera !== null)
                 objArr[i].useCamera = useCamera;
+            if (resetFrames !== null)
+                frameCounter = 0;
 
             correctUserInputValues(objArr[i]);
         }
@@ -171,7 +171,7 @@ function applyChangesToSpecificType(objectType, x, y, z, sx, sy, sz, xRot, yRot,
                                     ambientR, ambientG, ambientB,
                                     pointR, pointG, pointB, pointX, pointY, pointZ,
                                     animateRotation,
-                                    useCamera, opacity, transparency, sumAllValues) {
+                                    useCamera, opacity, transparency, sumAllValues, resetFrames) {
 
 
     //console.log("Going to apply changes TO: " + objectType);
@@ -187,23 +187,23 @@ function applyChangesToSpecificType(objectType, x, y, z, sx, sy, sz, xRot, yRot,
             ambientLight.b += customParseFloat(ambientB);
 
         if (pointR !== null)
-            pointLightArray[0].r += customParseFloat(pointR);
+            pointLight.r += customParseFloat(pointR);
         if (pointG !== null)
-            pointLightArray[0].g += customParseFloat(pointG);
+            pointLight.g += customParseFloat(pointG);
         if (pointB !== null)
-            pointLightArray[0].b += customParseFloat(pointB);
+            pointLight.b += customParseFloat(pointB);
 
         if (pointX !== null) {
-            pointLightArray[0].x += customParseFloat(pointX);
-            pointLightArray[0].centerX += customParseFloat(pointX);
+            pointLight.x += customParseFloat(pointX);
+            pointLight.centerX += customParseFloat(pointX);
         }
         if (pointY !== null) {
-            pointLightArray[0].y += customParseFloat(pointY);
-            pointLightArray[0].centerY += customParseFloat(pointY);
+            pointLight.y += customParseFloat(pointY);
+            pointLight.centerY += customParseFloat(pointY);
         }
         if (pointZ !== null) {
-            pointLightArray[0].z += customParseFloat(pointZ);
-            pointLightArray[0].centerZ += customParseFloat(pointY);
+            pointLight.z += customParseFloat(pointZ);
+            pointLight.centerZ += customParseFloat(pointY);
         }
 
 
@@ -247,6 +247,8 @@ function applyChangesToSpecificType(objectType, x, y, z, sx, sy, sz, xRot, yRot,
                     objArr[i].alpha += customParseFloat(opacity);
                 if (useCamera !== null)
                     objArr[i].useCamera = useCamera;
+                if (resetFrames !== null)
+                    frameCounter = 0;
 
                 correctUserInputValues(objArr[i]);
             }
@@ -261,23 +263,23 @@ function applyChangesToSpecificType(objectType, x, y, z, sx, sy, sz, xRot, yRot,
             ambientLight.b = customParseFloat(ambientB);
 
         if (pointR !== null)
-            pointLightArray[0].r = customParseFloat(pointR);
+            pointLight.r = customParseFloat(pointR);
         if (pointG !== null)
-            pointLightArray[0].g = customParseFloat(pointG);
+            pointLight.g = customParseFloat(pointG);
         if (pointB !== null)
-            pointLightArray[0].b = customParseFloat(pointB);
+            pointLight.b = customParseFloat(pointB);
 
         if (pointX !== null) {
-            pointLightArray[0].x = customParseFloat(pointX);
-            pointLightArray[0].centerX = customParseFloat(pointX);
+            pointLight.x = customParseFloat(pointX);
+            pointLight.centerX = customParseFloat(pointX);
         }
         if (pointY !== null) {
-            pointLightArray[0].y = customParseFloat(pointY);
-            pointLightArray[0].centerY = customParseFloat(pointY);
+            pointLight.y = customParseFloat(pointY);
+            pointLight.centerY = customParseFloat(pointY);
         }
         if (pointZ !== null) {
-            pointLightArray[0].z = customParseFloat(pointZ);
-            pointLightArray[0].centerZ = customParseFloat(pointY);
+            pointLight.z = customParseFloat(pointZ);
+            pointLight.centerZ = customParseFloat(pointY);
         }
 
 
@@ -321,6 +323,8 @@ function applyChangesToSpecificType(objectType, x, y, z, sx, sy, sz, xRot, yRot,
                     objArr[i].alpha = customParseFloat(opacity);
                 if (useCamera !== null)
                     objArr[i].useCamera = useCamera;
+                if (resetFrames !== null)
+                    frameCounter = 0;
 
                 correctUserInputValues(objArr[i]);
             }
@@ -336,7 +340,7 @@ function applyChangesToSpecificObject(name, x, y, z, sx, sy, sz, xRot, yRot, zRo
                                       ambientR, ambientG, ambientB,
                                       pointR, pointG, pointB, pointX, pointY, pointZ,
                                       animateRotation,
-                                      useCamera, opacity, transparency, sumAllValues) {
+                                      useCamera, opacity, transparency, sumAllValues, resetFrames) {
 
 
     //console.log("Going to apply changes TO: " + name);
@@ -353,23 +357,23 @@ function applyChangesToSpecificObject(name, x, y, z, sx, sy, sz, xRot, yRot, zRo
             ambientLight.b = customParseFloat(ambientB);
 
         if (pointR !== null)
-            pointLightArray[0].r += customParseFloat(pointR);
+            pointLight.r += customParseFloat(pointR);
         if (pointG !== null)
-            pointLightArray[0].g += customParseFloat(pointG);
+            pointLight.g += customParseFloat(pointG);
         if (pointB !== null)
-            pointLightArray[0].b += customParseFloat(pointB);
+            pointLight.b += customParseFloat(pointB);
 
         if (pointX !== null) {
-            pointLightArray[0].x += customParseFloat(pointX);
-            pointLightArray[0].centerX += customParseFloat(pointX);
+            pointLight.x += customParseFloat(pointX);
+            pointLight.centerX += customParseFloat(pointX);
         }
         if (pointY !== null) {
-            pointLightArray[0].y += customParseFloat(pointY);
-            pointLightArray[0].centerY += customParseFloat(pointY);
+            pointLight.y += customParseFloat(pointY);
+            pointLight.centerY += customParseFloat(pointY);
         }
         if (pointZ !== null) {
-            pointLightArray[0].z += customParseFloat(pointZ);
-            pointLightArray[0].centerZ += customParseFloat(pointY);
+            pointLight.z += customParseFloat(pointZ);
+            pointLight.centerZ += customParseFloat(pointY);
         }
 
 
@@ -411,6 +415,8 @@ function applyChangesToSpecificObject(name, x, y, z, sx, sy, sz, xRot, yRot, zRo
             object.alpha += customParseFloat(opacity);
         if (useCamera !== null)
             object.useCamera = useCamera;
+        if (resetFrames !== null)
+            frameCounter = 0;
 
         correctUserInputValues(object);
     }
@@ -423,24 +429,24 @@ function applyChangesToSpecificObject(name, x, y, z, sx, sy, sz, xRot, yRot, zRo
             ambientLight.b = customParseFloat(ambientB);
 
         if (pointR !== null)
-            pointLightArray[0].r = customParseFloat(pointR);
+            pointLight.r = customParseFloat(pointR);
         if (pointG !== null)
-            pointLightArray[0].g = customParseFloat(pointG);
+            pointLight.g = customParseFloat(pointG);
         if (pointB !== null)
-            pointLightArray[0].b = customParseFloat(pointB);
+            pointLight.b = customParseFloat(pointB);
 
 
         if (pointX !== null) {
-            pointLightArray[0].x = customParseFloat(pointX);
-            pointLightArray[0].centerX = customParseFloat(pointX);
+            pointLight.x = customParseFloat(pointX);
+            pointLight.centerX = customParseFloat(pointX);
         }
         if (pointY !== null) {
-            pointLightArray[0].y = customParseFloat(pointY);
-            pointLightArray[0].centerY = customParseFloat(pointY);
+            pointLight.y = customParseFloat(pointY);
+            pointLight.centerY = customParseFloat(pointY);
         }
         if (pointZ !== null) {
-            pointLightArray[0].z = customParseFloat(pointZ);
-            pointLightArray[0].centerZ = customParseFloat(pointY);
+            pointLight.z = customParseFloat(pointZ);
+            pointLight.centerZ = customParseFloat(pointY);
         }
 
 
@@ -484,6 +490,8 @@ function applyChangesToSpecificObject(name, x, y, z, sx, sy, sz, xRot, yRot, zRo
             object.alpha = customParseFloat(opacity);
         if (useCamera !== null)
             object.useCamera = useCamera;
+        if (resetFrames !== null)
+            frameCounter = 0;
 
         correctUserInputValues(object);
     }

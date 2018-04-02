@@ -46,7 +46,7 @@ let lastRenderedMainScene, lastRenderedEditorScene;
 let sound;
 //Lightning
 let ambientLight, directionalLight, pointLight;
-let pointLightArray = [];
+// let pointLightArray = [];
 
 let ambientLightE, directionalLightE, pointLightE;
 let pointLightArrayE = [];

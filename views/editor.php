@@ -94,9 +94,9 @@ if($projectType === "general" && strlen($_GET['preview']) > 0){
         let userId = "<?php echo $_SESSION['user_id']; ?>";
         let projectUserId = "<?php echo $projectUserId; ?>";
 
-        /*console.log("$_SESSION userID: " + userId);
-        console.log("isLoggedIn: " + isLoggedIn);
-        console.log("ProjectUserID: " + projectUserId);*/
+        // console.log("$_SESSION userID: " + userId);
+        // console.log("isLoggedIn: " + isLoggedIn);
+        // console.log("ProjectUserID: " + projectUserId);
         if (!isLoggedIn || userId !== projectUserId){
             userId = projectUserId;
         }
@@ -1009,7 +1009,10 @@ if($projectType === "general" && strlen($_GET['preview']) > 0){
                                     <option value="sphere">Sphere</option>
                                     <option value="simpleSphere">S.Sphere</option>
                                     <option value="cone">Cone</option>
-                                    <option value="cylinder">Cylinder</option>
+                                    <option value="house">House</option>
+                                    <option value="simpleTree">S.Tree</option>
+                                    <option value="pineTree">Pine Tree</option>
+                                    <option value="christmasTree">Ch.Tree</option>
                                 </select>
                             </foreignObject>
                             <text class="code-id"
@@ -1713,6 +1716,24 @@ if($projectType === "general" && strlen($_GET['preview']) > 0){
                              <text class="myFather"
                                    x="0" y="0"></text>
                          </g>
+                        <!-- Reset Frame Counter -->
+                        <g transform="matrix(1 0 0 1 0 2510)"
+                           class="">
+                            <path d="M 10.197 34.73 L 182.538 34.154 C 207.527 33.561 203.713
+                                     -0.497 182.538 0.005 L 0 0.417 L 10.197 34.73 Z" fill="#7b7c7c" stroke="black"
+                                  stroke-width="2"></path>
+                            <text class="basic-text-over-svg" x="20" y="24" font-size="20">
+                                Reset Frames
+                            </text>
+                            <text class="code-id"
+                                  x="0" y="0">set resetframes</text>
+                            <text class="mktime"
+                                  x="0" y="0"></text>
+                            <text class="myChild"
+                                  x="0" y="0"></text>
+                            <text class="myFather"
+                                  x="0" y="0"></text>
+                        </g>
 
 
                          <!-- END SETTERS -->

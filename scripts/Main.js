@@ -64,8 +64,6 @@ function webGLStart() {
 
     ambientLight = new AmbientLight(0.35, 0.35, 0.35);
     directionalLight = new DirectionalLight(0.05, 0.05, 0.05, 0, 0, 50, false);
-    pointLightArray.push(new PointLight("", 0, 0, 0, 20, 0, -30, null, null, null, null));
-
     pointLight = new PointLight("", 0, 0, 0, 20, 0, -30, null, null, null, null);
 
     webgl.clearColor(0, 0, 0, 1.0);
@@ -87,6 +85,7 @@ function loading() {
         readyToSaveData = true;
         console.log("Objects loaded in scene: " + objArr.length);
         lastRenderedMainScene = new LastRendered();
+        lastRenderedEditorScene = new LastRendered();
 
         if(projectType === "general") {
             fpsElement = document.getElementById("fps");
