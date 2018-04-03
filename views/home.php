@@ -184,7 +184,13 @@ if (!isset($_SESSION['username']) || empty($_SESSION['username'])) {
         <div class="row">
             <h1 class="title col-md-12">Update log</h1>
             <div id="update-log">
-                <h2>0.9.3.1</h2>
+                <h2>0.9.4.1</h2>
+                <hr class="update-hr">
+                <ul>
+                    <li>Fixed code blocks input field length in Chrome.</li>
+                    <li>Added cross-browser supported custom scroll bars.</li>
+                </ul>
+                <h2>0.9.4.0</h2>
                 <hr class="update-hr">
                 <ul>
                     <li>New available shapes for user and textures.</li>

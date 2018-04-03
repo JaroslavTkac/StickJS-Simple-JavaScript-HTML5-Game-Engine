@@ -72,6 +72,7 @@ if($projectType === "general" && strlen($_GET['preview']) > 0){
     <link rel="stylesheet" type="text/css" href="../assets/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="../assets/css/styles.css">
 
+
     <!-- JavaScript Includes -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="../assets/js/jquery.knob.js"></script>
@@ -345,8 +346,9 @@ if($projectType === "general" && strlen($_GET['preview']) > 0){
                     </div>
                 </nav>
 
+
                 <div id="selectable-shapes">
-                    <div class="row" id="selectable-shapes-row">
+                    <div class="row" id="selectable-shapes-row" >
                         <div class="col-lg3 col-md-4 col-sm-4 col-xs-6" align="center">
                             <a href="#" class="thumbnail">
                                 <canvas class="preview-scene shape" id="../shapes/cube.json"></canvas>
@@ -439,18 +441,17 @@ if($projectType === "general" && strlen($_GET['preview']) > 0){
                         </div>
                     </div>
                 </div>
-
-                <div id="selectable-music" style="display: none;">
-                    <div class="row" id="selectable-music-row">
-
-                    </div>
-                </div>
-
                 <div id="selectable-textures" style="display: none;">
                     <div class="row" id="selectable-textures-row">
 
                     </div>
                 </div>
+
+<!--                <div id="selectable-music" style="display: none;">-->
+<!--                    <div class="row" id="selectable-music-row">-->
+<!---->
+<!--                    </div>-->
+<!--                </div>-->
             </div>
         </div>
 
