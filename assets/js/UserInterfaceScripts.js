@@ -763,6 +763,51 @@ $(document).ready(function () {
     };
 
 
+
+
+
+    $(document).mousedown(function(){
+        //set code-input mode attributes -> preventing accidental selecting
+        $('.code-input')
+            .css('-webkit-user-select', 'none')
+            .css('-moz-user-select', 'none')
+            .css('-ms-user-select', 'none')
+            .css('user-select', 'none');
+
+        $('.code-selection-inequality-operator')
+            .css('-webkit-user-select', 'none')
+            .css('-moz-user-select', 'none')
+            .css('-ms-user-select', 'none')
+            .css('user-select', 'none');
+
+        $('.code-selection')
+            .css('-webkit-user-select', 'none')
+            .css('-moz-user-select', 'none')
+            .css('-ms-user-select', 'none')
+            .css('user-select', 'none');
+
+    });
+
+    $(document).mouseup(function(){
+        $('.code-input').css('-webkit-user-select', 'text')
+            .css('-moz-user-select', 'text')
+            .css('-ms-user-select', 'text')
+            .css('user-select', 'text');
+
+        $('.code-selection-inequality-operator')
+            .css('-webkit-user-select', 'text')
+            .css('-moz-user-select', 'text')
+            .css('-ms-user-select', 'text')
+            .css('user-select', 'text');
+
+        $('.code-selection')
+            .css('-webkit-user-select', 'text')
+            .css('-moz-user-select', 'text')
+            .css('-ms-user-select', 'text')
+            .css('user-select', 'text');
+
+    });
+
 });
 
 

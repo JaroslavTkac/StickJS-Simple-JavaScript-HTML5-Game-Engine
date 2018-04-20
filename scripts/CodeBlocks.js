@@ -8,6 +8,9 @@
  * @param evt
  */
 function selectElement(evt) {
+    console.log("Select element");
+
+
     //On element click preparing clean array for selected element children
     childMatrix = [];
     //Taking svg <g> element
@@ -37,8 +40,8 @@ function selectElement(evt) {
     //Saving children translate matrix in case of grouped elements conjunction
     let childrenData = getChildrenData(selectedElement);
     if (childrenData.length > 0 && childrenData[0] !== "") {
-        for (i = 0; i < childrenData.length; i++) {
-            var childM = getGelementByName(childrenData[i]).getAttributeNS(null, "transform").slice(7, -1).split(' ');
+        for (let i = 0; i < childrenData.length; i++) {
+            let childM = getGelementByName(childrenData[i]).getAttributeNS(null, "transform").slice(7, -1).split(' ');
             childMatrix.push({
                 childmktime: getChildrenData(selectedElement)[i],
                 childM: childM,
@@ -58,7 +61,7 @@ function selectElement(evt) {
 
     //Setting event listeners (attributes) to svg <g> element
     selectedElement.setAttributeNS(null, "onmousemove", "moveElement(evt)");
-    selectedElement.setAttributeNS(null, "onmouseleave", "deselectElement(evt)");
+    //selectedElement.setAttributeNS(null, "onmouseleave", "deselectElement(evt)");
     selectedElement.setAttributeNS(null, "onmouseup", "deselectElement(evt)");
 }
 
@@ -68,6 +71,7 @@ function selectElement(evt) {
  * @param evt
  */
 function moveElement(evt) {
+    //console.log("clientX: " + evt.clientX + "  currentX: " + currentX);
     let dx = evt.clientX - currentX;
     let dy = evt.clientY - currentY;
     currentMatrix[4] += dx;
@@ -81,7 +85,7 @@ function moveElement(evt) {
     //updating intersection array
     intersectArrUpdate(selectedElement);
     //finding intersection
-    findIntersection(selectedElement);
+    findIntersection(selectedElement, "moving");
 
     //transform translate children of selected element
     for (let i = 0; i < childMatrix.length; i++) {
@@ -105,9 +109,11 @@ function moveElement(evt) {
  * @param evt
  */
 function deselectElement(evt) {
+    console.log("CHEKING DESELECTED");
     if (selectedElement !== 0) {
+        console.log("DESELECTED");
         selectedElement.removeAttributeNS(null, "onmousemove");
-        selectedElement.removeAttributeNS(null, "onmouseleave");
+        //selectedElement.removeAttributeNS(null, "onmouseleave");
         selectedElement.removeAttributeNS(null, "onmouseup");
         let childData;
 
@@ -140,10 +146,10 @@ function deselectElement(evt) {
         }
         for (let i = 0; i < svgArr.length; i++) {
             //Found intersection
-            if ((svgArr[i].firstElementChild.getAttribute("stroke") === "green") &&
+            if ((svgArr[i].firstElementChild.getAttribute("stroke") === "yellow") &&
                 svgArr[i].firstElementChild.getAttribute("stroke-dasharray") === "0") {
 
-                //Main father -> element that was with green border
+                //Main father -> element that was with yellow border
                 let fathersName = getmktime(svgArr[i]);
                 //Main father -> svg <g> element
                 let father = svgArr[i];
@@ -154,37 +160,27 @@ function deselectElement(evt) {
                     break;
                 }
 
-                //Setting father value
-                //selectedElement.getElementsByClassName("myFather")[0].innerHTML = fathersName;
-
                 //Joining element to another by y axis
-                while (father.firstElementChild.getAttribute("stroke") === "green") {
-                    currentMatrix[5] += 1;
-                    tmpTotalDy += 1;
-                    selectedElement.setAttributeNS(null, "transform", "matrix(" + currentMatrix.join(' ') + ")");
-
-                    //updating intersection array
-                    intersectArrUpdate(selectedElement);
-                    //finding intersection
-                    findIntersection(selectedElement);
+                if (getElementYt(father) !== getElementYf(selectedElement)) {
+                    let temp = (getElementYf(selectedElement) - getElementYt(father));
+                    currentMatrix[5] -= temp - 1;
+                    tmpTotalDy -= temp - 1;
                 }
+
                 //Aligning element by x axis
-                while (getElementXf(father) !== getElementXf(selectedElement)) {
-                    if (getElementXf(father) <= getElementXf(selectedElement)) {
-                        currentMatrix[4] -= 1;
-                        tmpTotalDx -= 1;
-                    }
-                    if (getElementXf(father) >= getElementXf(selectedElement)) {
-                        currentMatrix[4] += 1;
-                        tmpTotalDx += 1;
-                    }
-                    selectedElement.setAttributeNS(null, "transform", "matrix(" + currentMatrix.join(' ') + ")");
-
-                    //updating intersection array
-                    intersectArrUpdate(selectedElement);
-                    //finding intersection
-                    findIntersection(selectedElement);
+                if (getElementXf(father) !== getElementXf(selectedElement)){
+                    let temp = getElementXf(father) - getElementXf(selectedElement);
+                    currentMatrix[4] += temp;
+                    tmpTotalDx += temp;
                 }
+
+                selectedElement.setAttributeNS(null, "transform", "matrix(" + currentMatrix.join(' ') + ")");
+
+                //updating intersection array
+                intersectArrUpdate(selectedElement);
+                //finding intersection
+                findIntersection(selectedElement);
+
 
                 //Say that selected element is child
                 childData = father.getElementsByClassName("myChild")[0].textContent;
@@ -206,8 +202,8 @@ function deselectElement(evt) {
                     //paimti visus vaikus prijungiamo objekto
                     childData = getChildrenData(selectedElement);
                     for (let j = 0; j < childData.length; j++) {
-                        var childM = getGelementByName(childData[j]).getAttributeNS(null, "transform").slice(7, -1).split(' ');
-                        for (k = 0; k < childM.length; k++) {
+                        let childM = getGelementByName(childData[j]).getAttributeNS(null, "transform").slice(7, -1).split(' ');
+                        for (let k = 0; k < childM.length; k++) {
                             childM[k] = parseFloat(childM[k]);
                         }
                         childM[4] += tmpTotalDx;
@@ -248,14 +244,13 @@ function deselectElement(evt) {
             }
 
             //If element can not be joined
-            if ((svgArr[i].firstElementChild.getAttribute("stroke") === "green") &&
+            if ((svgArr[i].firstElementChild.getAttribute("stroke") === "yellow") &&
                 svgArr[i].firstElementChild.getAttribute("stroke-dasharray") !== "0")
                 moveSelectedElementBack();
 
             //Deleting element
             if ((svgArr[i].firstElementChild.getAttribute("stroke") === "red") &&
                 svgArr[i].firstElementChild.getAttribute("stroke-dasharray") === "0") {
-                console.log("Going to delete");
                 deleteSvgElement(selectedElement);
             }
         }
@@ -315,6 +310,8 @@ function addSvgElementToScene() {
             hoverElement.setAttribute("stroke", "black");
             hoverElement.setAttribute("stroke-width", "2");
         }
+
+    }).on('dblclick', 'g', function () {
         let svgToAdd = $(this)[0].outerHTML;
 
         //Edit transform translation
@@ -537,8 +534,6 @@ function updateAllForSpecificBlocks() {
         restoreUpdatedCodeSelectionFields();
     }
 }
-
-
 
 function restoreUpdatedCodeSelectionFields() {
     let element;
@@ -879,11 +874,20 @@ function intersectArrUpdate(element) {
 /**
  * Finding intersection
  *  @param element - svg <g> element
+ *  @param type - identifier where using this function
  */
-function findIntersection(element) {
-    //taking top border center point coordinations
-    let elementX = Math.round(getElementXf(element) + ((getElementXt(element) - getElementXf(element)) / 2));
+function findIntersection(element, type) {
+    //console.log(type);
+    //taking top border center point coordinates
+    let centerElementX = Math.round(getElementXf(element) + ((getElementXt(element) - getElementXf(element)) / 2));
     let elementY = getElementYf(element);
+    //taking top border corner (LEFT) point coordinates
+    let leftCornerElementX = centerElementX - 40;
+    let additionalLeftCornerElementX = centerElementX - 60;
+    //taking top border corner (RIGHT) point coordinates
+    let rightCornerElementX = centerElementX + 40;
+    let additionalRightCornerElementX = centerElementX + 60;
+
 
     //clear un-intersected svg elements
     for (let i = 0; i < svgIntersectArr.length; i++) {
@@ -893,14 +897,29 @@ function findIntersection(element) {
         if (svgIntersectArr[i].trashbin)
             getGelementByName(svgIntersectArr[i].mktime).firstElementChild.setAttribute("transform", "scale(1.0)");
     }
-    //Checking or taken center dot is in any svg <g> elements
+    //Checking or taken corner (LEFT & RIGHT) and center dot is in any svg <g> elements
     for (let i = 0; i < svgIntersectArr.length; i++) {
         if (svgIntersectArr[i].mktime !== getmktime(element)) {
             for (let x = svgIntersectArr[i].xf; x < svgIntersectArr[i].xt; ++x) {
-                for (let y = svgIntersectArr[i].yf; y < svgIntersectArr[i].yt; ++y) {
-                    if (x === elementX && y === elementY) {
-                        previewIntersection(i, element);
-                        return;
+            //     for (let y = svgIntersectArr[i].yf; y < svgIntersectArr[i].yt; ++y) {
+                for (let y = svgIntersectArr[i].yt; y > svgIntersectArr[i].yf; --y) { //FIXME WHY ??!
+                    //more efficient way
+                    if (type === "moving"){
+                        if (y === elementY || ((y - elementY) >= -5 && (y - elementY) <= 0)) {
+                            if (x === additionalLeftCornerElementX || x === centerElementX || x === additionalRightCornerElementX
+                                || x === leftCornerElementX || x === rightCornerElementX
+                            ) {
+                                previewIntersection(i, element);
+                                return;
+                            }
+                        }
+                    } else if (y === elementY){
+                        if (x === additionalLeftCornerElementX || x === centerElementX || x === additionalRightCornerElementX
+                            || x === leftCornerElementX || x === rightCornerElementX
+                        ) {
+                            previewIntersection(i, element);
+                            return;
+                        }
                     }
                 }
             }
@@ -916,9 +935,9 @@ function findIntersection(element) {
 function previewIntersection(elementIndex) {
     for (let i = 0; i < svgIntersectArr.length; i++) {
         if (i === elementIndex) {
-            //Drawing standart green border to preview intersection
-            getGelementByName(svgIntersectArr[i].mktime).firstElementChild.setAttribute("stroke", "green");
-            getGelementByName(svgIntersectArr[i].mktime).firstElementChild.setAttribute("stroke-width", "4");
+            //Drawing standart yellow border to preview intersection
+            getGelementByName(svgIntersectArr[i].mktime).firstElementChild.setAttribute("stroke", "yellow");
+            getGelementByName(svgIntersectArr[i].mktime).firstElementChild.setAttribute("stroke-width", "5");
 
             //If element which is now intersected can not be joined draw dashed border
             let hasClass = selectedElement.classList.contains('joinable');

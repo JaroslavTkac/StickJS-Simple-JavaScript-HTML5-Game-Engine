@@ -337,7 +337,9 @@ canvas {
     user-select: none;
     /* Non-prefixed version, currently
                                      supported by Chrome and Opera */
+
 }
+
 
 svg text {
     cursor: grab;
@@ -403,6 +405,15 @@ input[type=text]{
 .code-input{
     width: 60px;
     border-radius: 8%;
+    outline:none;
+
+    /* dooring element movement setting none to all
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+     */
+
 }
 
 
