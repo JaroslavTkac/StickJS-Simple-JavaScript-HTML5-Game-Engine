@@ -7,9 +7,11 @@
  * Selecting svg element function. Used to init selectedElement by svg <g> element.
  * @param evt
  */
+
+let lastSelectedElement;
+
 function selectElement(evt) {
     console.log("Select element");
-
 
     //On element click preparing clean array for selected element children
     childMatrix = [];
@@ -60,9 +62,13 @@ function selectElement(evt) {
     tmpMatrixY = currentMatrix[5];
 
     //Setting event listeners (attributes) to svg <g> element
-    selectedElement.setAttributeNS(null, "onmousemove", "moveElement(evt)");
-    //selectedElement.setAttributeNS(null, "onmouseleave", "deselectElement(evt)");
-    selectedElement.setAttributeNS(null, "onmouseup", "deselectElement(evt)");
+     selectedElement.setAttributeNS(null, "onmousemove", "moveElement(evt)");
+     selectedElement.setAttributeNS(null, "onmouseleave", "deselectElement(evt)");
+     selectedElement.setAttributeNS(null, "onmouseup", "deselectElement(evt)");
+
+
+
+     //selectedElement.setAttributeNS(null, "onmousemove", "moveElement(evt)");
 }
 
 /**
@@ -109,12 +115,19 @@ function moveElement(evt) {
  * @param evt
  */
 function deselectElement(evt) {
+    let tmpTotalDx = 0;
+    let tmpTotalDy = 0;
     console.log("CHEKING DESELECTED");
     if (selectedElement !== 0) {
+
         console.log("DESELECTED");
-        selectedElement.removeAttributeNS(null, "onmousemove");
-        //selectedElement.removeAttributeNS(null, "onmouseleave");
-        selectedElement.removeAttributeNS(null, "onmouseup");
+         selectedElement.removeAttributeNS(null, "onmousemove");
+         selectedElement.removeAttributeNS(null, "onmouseleave");
+         selectedElement.removeAttributeNS(null, "onmouseup");
+
+        //selectedElement.removeAttributeNS(null, "onmousemove");
+
+
         let childData;
 
         let svgArr = document.getElementById("code-logic-scene").children;
@@ -124,8 +137,7 @@ function deselectElement(evt) {
             //and deleting SELECTED element NAME from every element child section
             if ((svgArr[i].getElementsByClassName("myChild")[0].textContent.indexOf(getmktime(selectedElement)) !== -1) &&
                 (tmpMatrixX !== currentMatrix[4] || tmpMatrixY !== currentMatrix[5])) {
-                //console.log("Going to clean father's ** " + getmktime(svgArr[i]) + " ** children");
-                //console.log(i);
+
                 childData = getChildrenData(svgArr[i]);
                 let cleanData = "";
                 for (let j = 0; j < childData.length; j++) {
@@ -137,11 +149,8 @@ function deselectElement(evt) {
                     else
                         break;
                 }
-                //console.log("child data: " + childData);
-                //console.log("cleaned child data: " + cleanData);
                 svgArr[i].getElementsByClassName("myChild")[0].innerHTML = cleanData;
-                //svgArr[i].getElementsByClassName("myFather")[0].innerHTML = "none";
-                //console.log("My father: " + svgArr[i].getElementsByClassName("myFather")[0].textContent);
+
             }
         }
         for (let i = 0; i < svgArr.length; i++) {
@@ -163,8 +172,8 @@ function deselectElement(evt) {
                 //Joining element to another by y axis
                 if (getElementYt(father) !== getElementYf(selectedElement)) {
                     let temp = (getElementYf(selectedElement) - getElementYt(father));
-                    currentMatrix[5] -= temp - 1;
-                    tmpTotalDy -= temp - 1;
+                    currentMatrix[5] -= temp;
+                    tmpTotalDy -= temp;
                 }
 
                 //Aligning element by x axis
@@ -198,21 +207,24 @@ function deselectElement(evt) {
                             getGelementByName(fathersName).getElementsByClassName("myChild")[0].innerHTML =
                                 getChildrenData(father) + "," + childData[j];
                     }
+                    console.log(getGelementByName(fathersName).getElementsByClassName("myChild")[0].innerHTML);
 
                     //paimti visus vaikus prijungiamo objekto
                     childData = getChildrenData(selectedElement);
+                    console.log(childData);
                     for (let j = 0; j < childData.length; j++) {
-                        let childM = getGelementByName(childData[j]).getAttributeNS(null, "transform").slice(7, -1).split(' ');
-                        for (let k = 0; k < childM.length; k++) {
-                            childM[k] = parseFloat(childM[k]);
-                        }
-                        childM[4] += tmpTotalDx;
-                        childM[5] += tmpTotalDy;
+                         let childM = getGelementByName(childData[j]).getAttributeNS(null, "transform").slice(7, -1).split(' ');
+                         for (let k = 0; k < childM.length; k++) {
+                             childM[k] = parseFloat(childM[k]);
+                             console.log(childM[k]);
+                         }
+                         childM[4] += tmpTotalDx;
+                         childM[5] += tmpTotalDy;
 
-                        getGelementByName(childData[j]).setAttributeNS(null, "transform", "matrix(" + childM.join(' ') + ")");
+                         getGelementByName(childData[j]).setAttributeNS(null, "transform", "matrix(" + childM.join(' ') + ")");
 
-                        //updating intersection array
-                        intersectArrUpdate(getGelementByName(childData[j]));
+                         //updating intersection array
+                         intersectArrUpdate(getGelementByName(childData[j]));
                     }
                 }
 
@@ -254,10 +266,8 @@ function deselectElement(evt) {
                 deleteSvgElement(selectedElement);
             }
         }
-    }
+     }
     selectedElement = 0;
-    tmpTotalDx = 0;
-    tmpTotalDy = 0;
 
     //saving all written code to server
     saveSvgCodeScene();
@@ -898,14 +908,15 @@ function findIntersection(element, type) {
             getGelementByName(svgIntersectArr[i].mktime).firstElementChild.setAttribute("transform", "scale(1.0)");
     }
     //Checking or taken corner (LEFT & RIGHT) and center dot is in any svg <g> elements
-    for (let i = 0; i < svgIntersectArr.length; i++) {
-        if (svgIntersectArr[i].mktime !== getmktime(element)) {
-            for (let x = svgIntersectArr[i].xf; x < svgIntersectArr[i].xt; ++x) {
-            //     for (let y = svgIntersectArr[i].yf; y < svgIntersectArr[i].yt; ++y) {
-                for (let y = svgIntersectArr[i].yt; y > svgIntersectArr[i].yf; --y) { //FIXME WHY ??!
-                    //more efficient way
-                    if (type === "moving"){
-                        if (y === elementY || ((y - elementY) >= -5 && (y - elementY) <= 0)) {
+    //more efficient way
+    if (type === "moving") {
+        for (let i = 0; i < svgIntersectArr.length; i++) {
+            if (svgIntersectArr[i].mktime !== getmktime(element)) {
+                for (let x = svgIntersectArr[i].xf; x < svgIntersectArr[i].xt; ++x) {
+                    //     for (let y = svgIntersectArr[i].yf; y < svgIntersectArr[i].yt; ++y) {
+                    for (let y = svgIntersectArr[i].yt; y > svgIntersectArr[i].yf; --y) {
+
+                        if (y === elementY || ((y - elementY) >= -10 && (y - elementY) <= 0)) {
                             if (x === additionalLeftCornerElementX || x === centerElementX || x === additionalRightCornerElementX
                                 || x === leftCornerElementX || x === rightCornerElementX
                             ) {
@@ -913,18 +924,12 @@ function findIntersection(element, type) {
                                 return;
                             }
                         }
-                    } else if (y === elementY){
-                        if (x === additionalLeftCornerElementX || x === centerElementX || x === additionalRightCornerElementX
-                            || x === leftCornerElementX || x === rightCornerElementX
-                        ) {
-                            previewIntersection(i, element);
-                            return;
-                        }
                     }
                 }
             }
         }
     }
+
 }
 
 /**

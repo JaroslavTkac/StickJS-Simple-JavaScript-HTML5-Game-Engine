@@ -1780,7 +1780,7 @@ if($projectType === "general" && strlen($_GET['preview']) > 0){
                     </svg>
                 </div>
                 <div align="center">
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div id="logic-buttons" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <label class="btn btn-primary" id="push-code-btn" data-toggle="tooltip" data-placement="top"
                                title="Apply your code" style="display: none">
                             <span class="glyphicon glyphicon-floppy-save"></span>
