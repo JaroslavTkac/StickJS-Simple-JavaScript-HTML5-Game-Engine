@@ -684,7 +684,6 @@ function loadUserProjectData() {
     loadProjectLightningSetup();
 }
 
-
 //Saving user project movement config
 function saveMovementConfig() {
     let useMovement;
@@ -755,6 +754,11 @@ function uploadUserConvertedCode() {
         success: function (response) {
             console.log("Response of update");
             console.log(response);
+            $('#code-uploaded-modal').modal('show');
+
+            //TODO Triger modal window that says code uploaded -> reload page to see changes or run it
+
+
         }
     });
 }
@@ -984,7 +988,6 @@ function loadProjectLightningSetup() {
         }
     });
 }
-
 
 //Saving all user saved shapes -> basically references of object parameters for images
 function saveSavedShapes() {

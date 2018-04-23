@@ -184,6 +184,16 @@ if (!isset($_SESSION['username']) || empty($_SESSION['username'])) {
         <div class="row">
             <h1 class="title col-md-12">Update log</h1>
             <div id="update-log">
+                <h2>0.9.4.2</h2>
+                <hr class="update-hr">
+                <ul>
+                    <li>Added informational popups.</li>
+                    <li>Improved blocks intersections for blocks joining.</li>
+                    <li>Improved blocks blocks joining performance, no more lags.</li>
+                    <li>Changed blocks adding to block scene from, to prevent accidental block addition.</li>
+                    <li>Minor blocks dragging improvements and cursor style improvements while dragging blocks.</li>
+                    <li>Added more information into How To section.</li>
+                </ul>
                 <h2>0.9.4.1</h2>
                 <hr class="update-hr">
                 <ul>

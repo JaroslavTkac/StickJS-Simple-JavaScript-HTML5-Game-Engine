@@ -104,6 +104,13 @@ $(document).ready(function () {
             $('#how-to-modal').modal('show');
     });
 
+
+    if(projectType !== "general") {
+        setTimeout(function () {
+            $('#please-register-modal').modal('show');
+        }, 4000);
+    }
+
     //Preparing page for code blocks
     $(window).keydown(function (event) {
         if (event.keyCode === 13) {

@@ -200,26 +200,109 @@ if($projectType === "general" && strlen($_GET['preview']) > 0){
                 <h4 class="modal-title" style="alignment: center">How to use StickJS</h4>
             </div>
             <div class="modal-body">
-                <h2 align="center">Upload</h2>
+                <h4 align="center">Upload</h4>
                 <hr class="update-hr">
                 <p>By clicking upload button, you can upload these types of files to server.</p>
                 <ul>
-                    <li>mp3</li>
                     <li>obj</li>
                     <li>png</li>
                     <li>jpg</li>
                 </ul>
                 <p><i>StickJS only supports .obj files, that are UV unwrapped (have texture coordinates).</i></p>
-                <h2 align="center">Editor</h2>
+                <h4 align="center">Scene control buttons</h4>
+                <hr class="update-hr">
+                <ul>
+                    <li>Aspect Ratio - changes proportions (size) of your scene and editor/code area.</li>
+                    <li>Save, Reset, Clear - simply saves current scene, resetting scene to early saved and erasing everything from scene.</li>
+                    <li>Play Frames - starts frame counter, used to run any kind of programed animations.</li>
+                    <li>Shape To Delete - simply selecting shape by name, which one you want to delete from scene.</li>
+                    <li>Upload - used to upload stuff to your project.</li>
+                </ul>
+                <h4 align="center">Editor</h4>
                 <hr class="update-hr">
                 <p>There you can modify shapes and save them for following exporting to main scene.</p>
-                <p><i>Color, Texture, Opacity and Shape rotation directly have effect on shape before saving. However by
-                        clicking on tab Lightning
-                        you only affecting shapes that are in editor window.</i></p>
+                <p><i>Color, Texture, Opacity and Shape rotation directly have effect on shape before saving.
+                        However by clicking on tab Lightning you only affecting shapes that are in editor window.</i></p>
+                <h4 align="center">Logic</h4>
+                <hr class="update-hr">
+                <p>To add block to editor double click on it in left blocks choosing area.</p>
+                <p>Blocks construction work by this pattern:</p>
+                <ul>
+                    <li>Any kind of trigger block</li>
+                    <li>Any Loop block</li>
+                    <li>And any setter block</li>
+                </ul>
+                <hr class="update-hr">
+                <p><i><strong>Remember</strong></i></p>
+                <ul>
+                    <li>You cannot join two trigger blocks together.</li>
+                    <li>You cannot have multiple triggers in block group.</li>
+                    <li>You must have at least one <i><strong>Loop</strong></i> block in block group.</li>
+                    <li>You can use <i>Lighting blocks</i> with any kind of loop block.</li>
+                </ul>
+                <h4 align="center">Buttons</h4>
+                <hr class="update-hr">
+                <ul>
+                    <li>
+                        <span class="glyphicon glyphicon-floppy-save"></span> - button to run blocks which are joined with "On Apply" trigger.
+                    </li>
+                    <li>
+                        <span class="glyphicon glyphicon-save-file"></span> - button to upload your code to server.
+                    </li>
+                    <li>
+                        <span class="glyphicon glyphicon-remove"></span> - button to clear all blocks.
+                    </li>
+                </ul>
             </div>
         </div>
     </div>
 </div>
+
+
+<!-- Please Register Modal -->
+<div class="modal fade" id="please-register-modal" role="dialog" data-keyboard="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div align="center" class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h2 class="modal-title" style="alignment: center">Alert</h2>
+            </div>
+            <div class="modal-body">
+                <p>It is user created project, you cannot drastically change it.
+                    Any code uploading is disabled.</p>
+                <h3 align="center">Your able to:</h3>
+                <hr class="update-hr">
+                <ul>
+                    <li>Modify all shapes in project scene <strong>only</strong> with
+                        "On Apply" trigger, other triggers will have no effect on project.</li>
+                    <li>Select and add shapes to scene from currently used by project.</li>
+                    <li>Preview user project and run it.</li>
+                </ul>
+                <h3 align="center">Remember</h3>
+                <hr class="update-hr">
+                <p>To get full project creation experience please register and create own project.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Code Uploaded Plese Reload Page Modal -->
+<div class="modal fade" id="code-uploaded-modal" role="dialog" data-keyboard="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div align="center" class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h3 class="modal-title" style="alignment: center">Your Code Uploaded To Server</h3>
+            </div>
+            <div class="modal-body">
+                <p>Please reload page to be able to run your code or see any other changes if you used
+                    other triggers, not only "On Apply".</p>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 <div class="container-fluid" style="background: #e3eef4">
     <div class="row">
