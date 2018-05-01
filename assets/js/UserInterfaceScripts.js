@@ -740,20 +740,23 @@ $(document).ready(function () {
     });
 
     //Disable focus when selecting shape to delete
-    $('#deletable-shape-selection').click(function () {
-       $(this).blur();
+    $('#deletable-shape-selection').change(function () {
+        $(this).blur();
     });
 
 
     //Deleting selected shape from scene
     $('#delete-shape-from-scene-btn').click(function () {
-        let element = $('#deletable-shape-selection')[0];
+        let dropDown = $('#deletable-shape-selection');
+        let element = dropDown[0];
         let shapeToDelete = element.options[element.selectedIndex].value;
         for (let i = 0; i < objArr.length; i++){
             if(objArr[i].name === shapeToDelete){
                 objArr.splice(i, 1);
             }
         }
+        //refresh deletion drop down list
+        updateAbleToDeleteLiveShapesInSceneList();
     });
 
 

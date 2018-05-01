@@ -59,12 +59,9 @@ p {
 
 #deletable-shape-selection{
     width: 100px;
-}
-
-#deletable-shape-selection{
-    color: white;
     padding-top: -10px;
 }
+
 #delete-info{
     color: white;
     padding-bottom: 0;

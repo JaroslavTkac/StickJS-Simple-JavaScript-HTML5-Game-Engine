@@ -147,9 +147,8 @@ function cleanArray(actual) {
 }
 function updateAbleToDeleteLiveShapesInSceneList() {
     if(projectType === "general") {
+        let dropDown = $('#deletable-shape-selection');
         for (let i = 0; i < objArr.length; i++) {
-            let dropDown = $('#deletable-shape-selection');
-
             if (dropDown !== undefined) {
                 $(dropDown).find('option').remove().end();
                 let items = [];
@@ -164,6 +163,10 @@ function updateAbleToDeleteLiveShapesInSceneList() {
                 for (let i = 0; i < items.length; i++)
                     $(dropDown).append(new Option(items[i].text, items[i].value));
             }
+        }
+        if (objArr.length === 0){
+            $(dropDown).find('option').remove().end();
+            $(dropDown).append(new Option("Name", ""));
         }
     }
 }

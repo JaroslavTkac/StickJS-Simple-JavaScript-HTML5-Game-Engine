@@ -1004,7 +1004,6 @@ function saveSavedShapes() {
                 projectType: projectType
             },
             success: function (response) {
-                //console.log(response);
             }
         });
     }
